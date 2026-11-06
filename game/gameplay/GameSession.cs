@@ -15,6 +15,7 @@ public partial class GameSession : Node
     private string _phase = "idle";
     private uint _randomState;
     private LevelDefinition? _level;
+    private bool _resultPublished;
     private CancellationTokenSource _lifetime = new();
     private IBoardPresenter? _presenter;
     private readonly MatchResolver _resolver = new();
@@ -47,22 +48,38 @@ public partial class GameSession : Node
     public void StartLevel(int levelId)
     {
         if (levelId is < 1 or > 3) throw new ArgumentOutOfRangeException(nameof(levelId));
-        if (levelId != 1)
-        {
-            LastRequestNotice = "Levels 2 and 3 will be connected in step 3.";
-            GD.Print($"[LEVEL_PENDING] {LastRequestNotice}");
-            return;
-        }
-        var level = LevelDefinition.FromJson(Godot.FileAccess.GetFileAsString("res://data/levels/level_01.json"));
+        var level = LevelDefinition.FromJson(Godot.FileAccess.GetFileAsString($"res://data/levels/level_{levelId:00}.json"));
         var board = new BoardGenerator().CreateInitialBoard(level, out uint state);
+        BeginLevel(level, board, state);
+    }
+
+    // Shared composition boundary for supplied level data; isolated rule checks use their own fixtures.
+    // The production path above always loads the three checked-in configurations, never test boards.
+    internal void BeginLevel(LevelDefinition level, BoardModel board, uint randomState)
+    {
+        level.Validate();
+        if (randomState == 0 || board.Width != level.Width || board.Height != level.Height)
+            throw new ArgumentException("Invalid initial board or random state.");
+        var boxes = level.Boxes.ToDictionary(b => new GridPosition(b.Column, b.Row), b => b.Layers);
+        for (int y = 0; y < board.Height; y++)
+        for (int x = 0; x < board.Width; x++)
+        {
+            var position = new GridPosition(x, y);
+            BoardCell cell = board.GetCell(position);
+            if (cell.Kind == CellKind.Empty || (boxes.TryGetValue(position, out int layers)
+                ? cell.Kind != CellKind.Box || cell.BoxLayers != layers : cell.Kind != CellKind.Piece))
+                throw new ArgumentException("Initial cells must agree with the supplied level configuration.");
+        }
+        if (_resolver.FindMatches(board).Count != 0) throw new ArgumentException("Initial board must be stable.");
         RenewLifetime();
         _level = level;
         CurrentBoard = board;
-        _randomState = state;
+        _randomState = randomState;
         _moves = level.InitialMoves;
         _phase = "playing";
         LastResolution = null;
-        LastRequestNotice = "Level 1 started. Box damage and victory are pending step 3.";
+        _resultPublished = false;
+        LastRequestNotice = $"第{level.LevelId}关开始 · {level.Name}。消除木箱旁的棋子即可伤害木箱。";
         _presenter?.SetBoard(board);
         _presenter?.SetInteractive(true);
         PublishState();
@@ -82,6 +99,7 @@ public partial class GameSession : Node
         _moves = 0;
         _randomState = 0;
         _phase = "idle";
+        _resultPublished = false;
         _presenter?.ClearBoard();
         _presenter?.SetInteractive(false);
         PublishState();
@@ -121,24 +139,10 @@ public partial class GameSession : Node
                 if (id != _sessionId) return SwapAttemptStatus.Cancelled;
                 CurrentBoard = step.After;
                 presenter?.SetBoard(step.After);
+                if (step.Kind == BoardStepKind.Clear) PublishState();
             }
-            _randomState = resolution.NextRandomState;
-            CurrentBoard = resolution.FinalBoard;
-            LastResolution = resolution;
-            _phase = _moves == 0 ? "lost" : "playing";
-            LastRequestNotice = resolution.Status == SwapAttemptStatus.NoMatch
-                ? "没有形成匹配：已交换回去，不扣步。"
-                : $"本次扣1步，连锁{resolution.Cascades}轮，消除{resolution.TotalCleared}枚。";
-            presenter?.SetInteractive(_phase == "playing");
-            PublishState();
-            if (id == _sessionId && _phase == "lost")
-            {
-                GDictionary result = GetSnapshot();
-                result["won"] = false;
-                result["stars"] = 0;
-                EmitSignal(SignalName.LevelFinished, result);
-            }
-            return resolution.Status;
+            token.ThrowIfCancellationRequested();
+            if (id != _sessionId) return SwapAttemptStatus.Cancelled;
         }
         catch (OperationCanceledException) { return SwapAttemptStatus.Cancelled; }
         catch (Exception error)
@@ -156,17 +160,31 @@ public partial class GameSession : Node
             GD.PushError($"[PRESENTATION_ERROR] {error}");
             return SwapAttemptStatus.Error;
         }
+        _randomState = resolution.NextRandomState;
+        CurrentBoard = resolution.FinalBoard;
+        LastResolution = resolution;
+        _phase = LevelRules.PhaseAfterCascades(CountBoxes(), _moves);
+        LastRequestNotice = resolution.Status == SwapAttemptStatus.NoMatch
+            ? "没有形成匹配：已交换回去，不扣步。"
+            : $"本次扣1步，连锁{resolution.Cascades}轮，消除{resolution.TotalCleared}枚。";
+        bool terminal = _phase is "won" or "lost";
+        GDictionary? result = null;
+        if (terminal && !_resultPublished)
+        {
+            _resultPublished = true;
+            result = GetSnapshot();
+            bool won = _phase == "won";
+            result["won"] = won;
+            result["stars"] = LevelRules.Stars(_level!.InitialMoves, _moves, won);
+        }
+        presenter?.SetInteractive(!terminal);
+        PublishState();
+        // A state listener may synchronously leave or retry; never publish an old session's result.
+        if (result is not null && id == _sessionId) EmitSignal(SignalName.LevelFinished, result);
+        return resolution.Status;
     }
 
-    private int CountBoxes()
-    {
-        if (CurrentBoard is null) return 0;
-        int count = 0;
-        for (int row = 0; row < CurrentBoard.Height; row++)
-        for (int column = 0; column < CurrentBoard.Width; column++)
-            if (CurrentBoard.GetCell(new GridPosition(column, row)).Kind == CellKind.Box) count++;
-        return count;
-    }
+    private int CountBoxes() => CurrentBoard is null ? 0 : LevelRules.CountBoxes(CurrentBoard);
 
     private void RenewLifetime()
     {

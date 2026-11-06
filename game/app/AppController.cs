@@ -39,6 +39,12 @@ public partial class AppController : Node
             return;
         }
 
+        if (OS.GetCmdlineUserArgs().Contains("--level-smoke-test"))
+        {
+            RunLevelChecks();
+            return;
+        }
+
         if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
         {
             RunGameplayChecks();
@@ -61,6 +67,8 @@ public partial class AppController : Node
 
         MountOptionalUi();
     }
+
+    private async void RunLevelChecks() => GetTree().Quit(await StepThreeSmokeCheck.Run(this));
 
     private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 
@@ -113,8 +121,14 @@ public partial class AppController : Node
         ConnectUi(ui);
     }
 
-    internal void ConnectUi(GameUiBridge ui)
+    internal void ConnectUi(GameUiBridge ui, ProgressStoreBridge? progress = null)
     {
+        if (progress is not null)
+        {
+            _progress = progress;
+            AddChild(progress);
+            progress.LoadProgress("2d");
+        }
         _ui = ui;
         GetNode("UiMount").AddChild(ui);
         ui.StartRequested += OnStartRequested;

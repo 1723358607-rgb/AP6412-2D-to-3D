@@ -7,6 +7,8 @@ namespace AP6412Match3.Tests.Gameplay;
 /// <summary>Contract-only test double. Never loaded by the normal application; no persistence.</summary>
 public partial class StepTwoUiProbe : GameUiBridge
 {
+    public int BestShown { get; private set; }
+    public GDictionary Result { get; private set; } = new();
     public string Page { get; private set; } = "";
     public GDictionary Snapshot { get; private set; } = new();
     public override void _Ready() => MouseFilter = MouseFilterEnum.Ignore;
@@ -14,5 +16,5 @@ public partial class StepTwoUiProbe : GameUiBridge
     public override void ShowLevelSelect(GDictionary progress) => Page = "select";
     public override void ShowGame(GDictionary snapshot) { Page = "game"; Snapshot = snapshot; }
     public override void UpdateHud(GDictionary snapshot) => Snapshot = snapshot;
-    public override void ShowResult(GDictionary result, int bestStars) => Page = "result";
+    public override void ShowResult(GDictionary result, int bestStars) { Page = "result"; Result = result; BestShown = bestStars; }
 }

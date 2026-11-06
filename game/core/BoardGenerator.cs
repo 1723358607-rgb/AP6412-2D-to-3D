@@ -21,7 +21,7 @@ public sealed class BoardGenerator
                 continue;
 
             // Reserved first-level opening: R B R above a red center.
-            // Swapping (1,0) with (1,1) can later create R R R; no opening match exists.
+            // Swapping (1,0) with (1,1) creates R R R; no opening match exists.
             PieceColor? fixedColor = level.LevelId == 1 ? (column, row) switch
             {
                 (0, 0) or (2, 0) or (1, 1) => PieceColor.Red,

@@ -1,3 +1,9 @@
+# Step 3 draft — final verification pending
+
+A's three-level box-damage/win/loss/star implementation is present in this draft. The completed local step-3 headless check passed, including real level replays and last-move victory. The local environment then disconnected. This remote reconstruction has not been compared byte-for-byte with local files or rebuilt; step-0/1/2 regression and graphical/real teammate persistence checks remain pending. Do not treat this draft as the integrated main version.
+
+Run the existing `presentation/2d/GameplayLoop.tscn` scene for development: 1/2/3 select formal test levels, R retries, N advances after victory. It never saves progress or simulates production unlocks. See ../docs/evidence/member-a/step-3.md for exact player moves and actual checks. Existing step-2 instructions below are historical until this draft is reconciled.
+
 # Shared Godot project
 
 This is the repository's single Godot project for AP6412 Route B. It provides

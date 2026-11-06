@@ -89,7 +89,7 @@ public static class StepTwoSmokeCheck
 
             session.AttachPresenter(null);
             session.StartLevel(1);
-            for (int move = 0; move < 15; move++)
+            for (int move = 0; move < 15 && session.GetSnapshot()["phase"].AsString() == "playing"; move++)
             {
                 pair = FindPair(session.CurrentBoard!, true);
                 int remaining = Moves(session);
@@ -98,8 +98,8 @@ public static class StepTwoSmokeCheck
                 CheckStable(session.CurrentBoard!, opening);
                 GD.Print($"[STEP2_PLAYTHROUGH] move={move + 1}; from={pair.From}; to={pair.To}; cascades={session.LastResolution!.Cascades}; remaining={Moves(session)}");
             }
-            Require(results == 1 && lastResult is not null && !lastResult["won"].AsBool() && lastResult["stars"].AsInt32() == 0 &&
-                lastResult["target_remaining"].AsInt32() == 5 && session.GetSnapshot()["phase"].AsString() == "lost", "Real failure result wrong.");
+            Require(results == 1 && lastResult is not null && session.GetSnapshot()["phase"].AsString() is "won" or "lost", "Terminal result missing.");
+            Require(lastResult!["stars"].AsInt32() == LevelRules.Stars(15, Moves(session), lastResult["won"].AsBool()), "Earned stars inconsistent.");
             Require(await session.RequestSwapAsync(OpeningFrom, OpeningTo) == SwapAttemptStatus.Busy && results == 1, "Ended session accepted another move/result.");
 
             // Run actual .tscn, input mapping, signal -> session, and frame-based board presentation.
@@ -237,7 +237,8 @@ public static class StepTwoSmokeCheck
         {
             var p = new GridPosition(x, y); var cell = board.GetCell(p); var previous = original.GetCell(p);
             Require(cell.Kind != CellKind.Empty, "Stable board has holes.");
-            Require(previous.Kind == CellKind.Box ? cell == previous : cell.Kind != CellKind.Box, "Fixed boxes moved or changed layers.");
+            Require(cell.Kind != CellKind.Box || previous.Kind == CellKind.Box && cell.BoxLayers <= previous.BoxLayers,
+                "A surviving box moved, gained layers or appeared outside its original position.");
         }
     }
 

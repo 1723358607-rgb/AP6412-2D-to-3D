@@ -175,10 +175,18 @@ public partial class BoardView2D : Node2D, IBoardPresenter
             BoardCell cell = board.GetCell(position);
             if (cell.Kind == CellKind.Box)
             {
-                DrawRect(rect.Grow(-4), new Color("a56e3e"));
-                DrawRect(rect.Grow(-7), new Color("edc18b"), false, 2);
-                DrawLine(origin + new Vector2(10, 10), origin + Vector2.One * (CellSize - 10), new Color("603c27"), 4, true);
-                DrawLine(origin + new Vector2(CellSize - 10, 10), origin + new Vector2(10, CellSize - 10), new Color("603c27"), 4, true);
+                bool hit = _animation?.Kind == BoardStepKind.Clear && _animation.DamagedBoxes?.Contains(position) == true;
+                float scale = hit && cell.BoxLayers == 1 ? 1 - progress : 1;
+                DrawSetTransform(center, 0, Vector2.One * scale);
+                var boxRect = new Rect2(-Vector2.One * CellSize / 2, Vector2.One * CellSize);
+                Color wood = new(cell.BoxLayers == 2 ? "855943" : "a56e3e");
+                DrawRect(boxRect.Grow(-4), hit ? wood.Lerp(new Color("fff0a5"), Mathf.Sin(progress * Mathf.Pi)) : wood);
+                DrawRect(boxRect.Grow(-7), new Color("edc18b"), false, cell.BoxLayers == 2 ? 4 : 2);
+                DrawLine(new Vector2(-19, -19), new Vector2(19, 19), new Color("603c27"), 4, true);
+                DrawLine(new Vector2(19, -19), new Vector2(-19, 19), new Color("603c27"), 4, true);
+                DrawRect(new Rect2(new Vector2(-10, -13), new Vector2(20, 26)), new Color("3e2d27"));
+                DrawString(ThemeDB.FallbackFont, new Vector2(-6, 7), cell.BoxLayers.ToString(), fontSize: 19, modulate: new Color("fff0ce"));
+                DrawSetTransform(Vector2.Zero);
             }
             else if (cell.Kind == CellKind.Piece && !movingDestinations.Contains(position))
             {

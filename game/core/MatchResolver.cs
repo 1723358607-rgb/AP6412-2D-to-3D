@@ -1,6 +1,6 @@
 namespace AP6412Match3.Core;
 
-/// <summary>Pure swap/match/fall/refill transaction. Box damage is deferred to step 3.</summary>
+/// <summary>Pure swap/match/box-damage/fall/refill transaction; presentation never decides results.</summary>
 public sealed class MatchResolver
 {
     public HashSet<GridPosition> FindMatches(BoardModel board)
@@ -61,13 +61,10 @@ public sealed class MatchResolver
         {
             if (++cascades > maxCascades)
                 throw new InvalidOperationException("Cascade limit reached; transaction was not committed.");
-            var cells = current.CopyCells();
-            foreach (var position in matched) cells[position.Column, position.Row] = default;
-            var cleared = new BoardModel(cells);
-            var positions = matched.OrderBy(p => p.Row).ThenBy(p => p.Column).ToArray();
-            steps.Add(new BoardStep(BoardStepKind.Clear, current, cleared, Array.AsReadOnly(positions), []));
-            total += positions.Length;
-            var fall = ApplyGravity(cleared);
+            BoardStep clear = ClearMatches(current, matched);
+            steps.Add(clear);
+            total += clear.Cleared.Count;
+            var fall = ApplyGravity(clear.After);
             steps.Add(fall);
             var refill = generator.Refill(fall.After, ref state);
             steps.Add(refill);
@@ -75,6 +72,32 @@ public sealed class MatchResolver
             matched = FindMatches(current);
         }
         return new SwapResolution(SwapAttemptStatus.Accepted, current, state, steps.AsReadOnly(), cascades, total);
+    }
+
+    public BoardStep ClearMatches(BoardModel board, IReadOnlySet<GridPosition> matched)
+    {
+        var damaged = new HashSet<GridPosition>();
+        foreach (GridPosition position in matched)
+        {
+            if (!board.Contains(position) || !board.GetCell(position).IsMovable)
+                throw new ArgumentException("Only ordinary pieces can be cleared.", nameof(matched));
+            foreach (var offset in new[] { new GridPosition(-1, 0), new GridPosition(1, 0), new GridPosition(0, -1), new GridPosition(0, 1) })
+            {
+                var adjacent = new GridPosition(position.Column + offset.Column, position.Row + offset.Row);
+                if (board.Contains(adjacent) && board.GetCell(adjacent).Kind == CellKind.Box) damaged.Add(adjacent);
+            }
+        }
+        var cells = board.CopyCells();
+        foreach (GridPosition position in matched) cells[position.Column, position.Row] = default;
+        foreach (GridPosition box in damaged)
+        {
+            int layers = board.GetCell(box).BoxLayers;
+            cells[box.Column, box.Row] = layers == 1 ? default : BoardCell.Box(layers - 1);
+        }
+        var clearedPositions = matched.OrderBy(p => p.Row).ThenBy(p => p.Column).ToArray();
+        var damagedPositions = damaged.OrderBy(p => p.Row).ThenBy(p => p.Column).ToArray();
+        return new BoardStep(BoardStepKind.Clear, board, new BoardModel(cells),
+            Array.AsReadOnly(clearedPositions), [], Array.AsReadOnly(damagedPositions));
     }
 
     public BoardStep ApplyGravity(BoardModel board)

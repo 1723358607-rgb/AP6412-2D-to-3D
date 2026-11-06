@@ -1,8 +1,18 @@
-# 接口与文件归属 v1.2 — Godot Mono / C#
+# 接口与文件归属 v1.3 草稿 — Godot Mono / C#
 
 用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。
 
 当前A第2步已提供第一关真实交换/消除/补充、GameSession快照与主入口接线；正式B UI尚未交付，木箱伤害/通关/星级留第3步。以下C#声明保持不变，是双方唯一接口约定。
+
+## 第3步草稿实现（覆盖下方历史第2步状态说明）
+
+公开GameUiBridge、ProgressStoreBridge及snapshot/result字段不变。StartLevel现在读取全部三份正式配置；第3步已实现单/双层箱伤害、真实目标变化、连锁结束后won/lost与整数stars。phase仍为resolving时target_remaining可先变成0，UI必须等待LevelFinished而不能自行据此判胜。
+
+木箱同轮最多减一层，2→1不减目标，1→0才减；最后一步目标完成仍won。结果只发一次，先RecordResult再GetBestStars再ShowResult。重试/切关/返回取消旧会话。B不调用A的内部BeginLevel或测试入口。
+
+正式存档未交付前，AppController对正式UI仍仅放行第一关；GameplayLoop的1/2/3仅为开发关卡直测，不代表解锁，也不写存档。B接入真实ProgressStore后通过IsUnlocked放行后续关卡。现有DemoLevelProgressProvider不能作为生产进度。
+
+本轮环境中断，远端草稿待核对和最终回归；第3步自动检查通过不等于UI/存档集成已通过。详见member-a/step-3.md。
 
 ## 1. 目录与所有权
 

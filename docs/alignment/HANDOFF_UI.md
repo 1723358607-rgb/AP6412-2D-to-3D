@@ -1,5 +1,7 @@
 # 给 UI 负责人 AI 的启动说明
 
+第3步草稿提醒：A已提供真实木箱、三关和三星结果；本轮执行环境断线，PR待最终复核。已看到PR #5的Crystal Garden首页/选关演示，但演示星数/解锁与占位游戏页不等于真实接入。请先读docs/evidence/member-a/step-3.md及CONTRACT的新说明；生产入口需替换DemoLevelProgressProvider，接入真实HUD/结果与ProgressStore，保留你的现有UI文件和分支。下方旧启动说明为历史上下文。
+
 更新 v1.2：Godot Mono / C# 已确认，旧版 GDScript 接口示例作废，以 CONTRACT 和 C# 基类为准。
 
 把下面整段发给队友使用的 AI，并让它能够读取真实仓库或本资料包。只发送仓库链接不会自动授权访问私有仓库。
