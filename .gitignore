@@ -1,14 +1,23 @@
-# Godot generated cache and imported resources
+# Godot import/cache and .NET build output
 .godot/
-game/.godot/
-
-# .NET build output
 **/bin/
 **/obj/
+.mono/
 
-# IDE and macOS files
-.DS_Store
+# Machine-local IDE files
+.vs/
 .idea/
-.vscode/
 *.user
+*.suo
+.DS_Store
+
+# Local exports and private credentials
+exports/
+*.pfx
+*.p12
+.env
+.env.*
+
+# Retained from concurrent initialization
+.vscode/
 *.userprefs

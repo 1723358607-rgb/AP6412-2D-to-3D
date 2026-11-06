@@ -7,7 +7,7 @@ in `docs/alignment/CONTRACT.md`. Match-3 rules and UI pages are not implemented.
 ## Required environment
 
 - Godot `4.7.2.stable.mono` (.NET build)
-- A .NET SDK capable of targeting .NET 8 (validated locally with SDK 10.0.401)
+- A .NET SDK capable of targeting .NET 8 (initial parallel record: 10.0.401; this reconciliation verified with 10.0.302)
 
 Both members must confirm the exact Godot version before beginning dependent
 work. The gameplay machine has been verified; the UI member's version remains
@@ -24,10 +24,12 @@ Command-line verification from the repository root:
 
 ```sh
 dotnet build game/AP6412Match3.csproj
-/Applications/Godot_4.7.2_mono.app/Contents/MacOS/Godot --path game
+/Applications/Godot_mono.app/Contents/MacOS/Godot --path game
 ```
 
 Generated `.godot/`, `bin/` and `obj/` directories are intentionally ignored.
+
+The entry currently shows A's Step 0 check screen, not the finished UI or a playable board. Actual checks and host-environment restrictions are documented in `docs/evidence/member-a/step-0.md` from the repository root. C# shared bases are in `app/contracts/`; UI uses `AP6412Match3.App.Contracts.GameUiBridge`. Read the updated CONTRACT before implementing.
 
 ## Ownership boundaries
 

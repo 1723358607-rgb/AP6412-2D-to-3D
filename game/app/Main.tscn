@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://app/AppController.cs" id="1_app"]
 [ext_resource type="Script" path="res://gameplay/GameSession.cs" id="2_session"]
+
 [ext_resource type="Script" path="res://presentation/2d/BoardView2D.cs" id="3_view2d"]
 [ext_resource type="Script" path="res://presentation/3d/BoardView3D.cs" id="4_view3d"]
 
@@ -17,3 +18,63 @@ script = ExtResource("3_view2d")
 [node name="BoardView3D" type="Node3D" parent="."]
 visible = false
 script = ExtResource("4_view3d")
+
+[node name="UiMount" type="CanvasLayer" parent="."]
+layer = 1
+
+[node name="Bootstrap" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Panel" type="Control" parent="Bootstrap"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Bootstrap/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 72
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Content" type="VBoxContainer" parent="Bootstrap/Panel/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Stage" type="Label" parent="Bootstrap/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.48, 0.77, 0.92, 1)
+theme_override_font_sizes/font_size = 22
+text = "AP6412  /  STEP 0  /  SHARED PROJECT"
+
+[node name="Title" type="Label" parent="Bootstrap/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "彩块工坊 · 共同工程已启动"
+autowrap_mode = 3
+
+[node name="Environment" type="Label" parent="Bootstrap/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Godot 4.7.2 Mono  ·  C#  ·  2D first"
+
+[node name="Scope" type="Label" parent="Bootstrap/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 23
+text = "当前仅验证工程与接口，尚无可玩的三消关卡。\n玩法：成员 A / member-a\nUI 与存档：成员 B / member-b"
+autowrap_mode = 3
+
+[node name="Next" type="Label" parent="Bootstrap/Panel/Margin/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.75, 0.84, 1)
+theme_override_font_sizes/font_size = 20
+text = "下一步：A 制作棋盘原型；B 制作页面原型。\nUI 接入前显示本页。按 Esc 退出本启动检查。"
+autowrap_mode = 3

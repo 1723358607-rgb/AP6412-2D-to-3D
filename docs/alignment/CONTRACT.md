@@ -1,6 +1,8 @@
-# 接口与文件归属 v1.0
+# 接口与文件归属 v1.1 — Godot Mono / C#
 
-本文是实现约定，尚不表示相关类已经存在。Godot 完整版本在第 0 步确认后记录。
+用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。
+
+第 0 步已提供 GameSession 的 idle 骨架、AppController，以及 GameUiBridge / ProgressStoreBridge 两个连接基类；没有可玩三消或正式 UI。以下 C# 声明是双方唯一接口约定。
 
 ## 1. 目录与所有权
 
@@ -9,7 +11,8 @@
 | 路径 | 负责人 | 内容 |
 |---|---|---|
 | `game/project.godot`、`game/app/` | A | 工程设置、总入口与两侧连接 |
-| `game/core/` | A | 棋盘、匹配、生成、木箱、步数、胜负、星级 |
+| `game/AP6412Match3.csproj`、`.sln` | A | 共享 .NET 工程和 Godot SDK；B 不另建项目 |
+| `game/core/`、`game/gameplay/` | A | 核心棋盘规则与 GameSession 会话、步数、胜负、星级 |
 | `game/data/levels/` | A | 三关配置与种子 |
 | `game/presentation/` | A | 2D/3D 棋盘显示、选取、交换/消除动画 |
 | `game/tests/gameplay/` | A | 规则检查与确定性操作记录 |
@@ -42,36 +45,43 @@
 
 ## 3. UI 发出的请求
 
-UI 根控制器由 B 提供以下信号，A 在 AppController 中连接：
+公共连接基类命名空间为 `AP6412Match3.App.Contracts`；会话位于 `AP6412Match3.Gameplay`，入口位于 `AP6412Match3.App`。B 创建 `game/ui/GameUiRoot.cs`，继承 A 提供的 `GameUiBridge`；根 Control 场景固定为 `res://ui/GameUiRoot.tscn`。继承以下信号，不重新声明同名事件：
 
-```gdscript
-signal start_requested(level_id: int)
-signal retry_requested
-signal next_requested
-signal leave_requested
+```csharp
+[Signal] public delegate void StartRequestedEventHandler(int levelId);
+[Signal] public delegate void RetryRequestedEventHandler();
+[Signal] public delegate void NextRequestedEventHandler();
+[Signal] public delegate void LeaveRequestedEventHandler();
+[Signal] public delegate void LevelSelectRequestedEventHandler();
+[Signal] public delegate void StartScreenRequestedEventHandler();
 ```
 
-- `start_requested` 只对已解锁关卡发出；A 也验证关卡编号。
-- `next_requested` 只在非最终关胜利时提供，A 计算下一关编号；B 不复制当前局胜负逻辑。
-- B 负责离开确认弹窗。确认后发出 `leave_requested`，取消不发出。
+- `StartRequested` 只对已解锁关卡发出；A 也验证关卡编号。
+- `NextRequested` 只在非最终关胜利时提供，A 计算下一关编号；B 不复制当前局胜负逻辑。
+- B 负责离开确认弹窗。确认后发出 `LeaveRequested`，取消不发出。
+- 开始界面进入选关、已结束结算返回选关，发出 `LevelSelectRequested`；选关返回开始发出 `StartScreenRequested`。这两个补充信号明确了原约定未细化的导航连接。
 - A 负责结束旧会话、停止动画和清理连接，避免旧结果污染新页面。
+
+C# 用 `EmitSignal(GameUiBridge.SignalName.StartRequested, levelId)` 等方式发出请求；AppController 使用生成的 C# 事件订阅。不要使用普通 Action 事件替代 Godot 生成事件，也不要用旧 snake_case 字符串调用这些 C# 自定义接口。
 
 ## 4. GameSession 提供的入口与信号
 
 以下为公开边界；具体内部实现由 A 完成：
 
-```gdscript
-func start_level(level_id: int) -> void
-func retry_level() -> void
-func leave_level() -> void
-func get_snapshot() -> Dictionary
-signal state_changed(snapshot: Dictionary)
-signal level_finished(result: Dictionary)
+```csharp
+public void StartLevel(int levelId);
+public void RetryLevel();
+public void LeaveLevel();
+public Godot.Collections.Dictionary GetSnapshot();
+[Signal] public delegate void StateChangedEventHandler(Godot.Collections.Dictionary snapshot);
+[Signal] public delegate void LevelFinishedEventHandler(Godot.Collections.Dictionary result);
 ```
 
 棋盘点击/交换由 A 的表现层处理，不让 B 的 HUD 直接操作 BoardModel。
 
-启动时及每个有意义的状态变化后发布新快照；发布数据为副本，UI 只读，不能反向修改核心状态。订阅后应能立即读取 `get_snapshot()`，不依赖猜测信号顺序。
+发布数据为副本，UI 只读，不能反向修改核心状态。订阅后立即调用 `GetSnapshot()`，不依赖启动信号顺序；玩法实现后每个有意义的状态变化发布新快照。C# 使用 Variant 的 `AsInt32()`、`AsString()`、`AsBool()` 等读取字段。
+
+第 0 步：`IsGameplayImplemented` 为 false，快照为真实 idle、level_id=0、计数为0。合法 StartLevel 请求仅报告尚未实现，不伪造 playing/胜负/星级；非法编号抛出 ArgumentOutOfRangeException。不要把这个骨架当作已实现游戏。UI 阶段1仍用隔离测试入口验证完整页面状态。
 
 ### snapshot 固定字段
 
@@ -101,25 +111,27 @@ signal level_finished(result: Dictionary)
 
 由 B 的 UI 根控制器提供：
 
-```gdscript
-func show_start() -> void
-func show_level_select(progress: Dictionary) -> void
-func show_game(snapshot: Dictionary) -> void
-func update_hud(snapshot: Dictionary) -> void
-func show_result(result: Dictionary, best_stars: int) -> void
+```csharp
+public override void ShowStart();
+public override void ShowLevelSelect(Godot.Collections.Dictionary progress);
+public override void ShowGame(Godot.Collections.Dictionary snapshot);
+public override void UpdateHud(Godot.Collections.Dictionary snapshot);
+public override void ShowResult(Godot.Collections.Dictionary result, int bestStars);
 ```
 
-具体场景路径在第 0—1 步确定并记录到本文件。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
+AppController 自动查找 `res://ui/GameUiRoot.tscn` 并挂载，未找到时保留 A 的启动检查页（不是正式 UI）。B 不修改 AppController 或项目设置；页面内部可自由拆分，统一从 GameUiRoot 连接。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
 
 ## 6. ProgressStore 边界（B）
 
-```gdscript
-func load_progress(mode: String) -> void
-func record_result(result: Dictionary) -> void
-func get_best_stars(level_id: int) -> int
-func is_unlocked(level_id: int) -> bool
-func get_progress() -> Dictionary
+```csharp
+public override void LoadProgress(string mode);
+public override void RecordResult(Godot.Collections.Dictionary result);
+public override int GetBestStars(int levelId);
+public override bool IsUnlocked(int levelId);
+public override Godot.Collections.Dictionary GetProgress();
 ```
+
+B 的 `game/progress/ProgressStore.cs` 继承 `ProgressStoreBridge`，根 Node 场景固定为 `res://progress/ProgressStore.tscn`。AppController 在场景存在时自动挂载并先调用 LoadProgress("2d")。该场景可以到步骤3再实现；之前只提供初始零星选关数据，不保存、不模拟通关。正式游戏开始前必须接入真实进度模块。
 
 进度快照建议：
 
