@@ -1,0 +1,144 @@
+# 接口与文件归属 v1.0
+
+本文是实现约定，尚不表示相关类已经存在。Godot 完整版本在第 0 步确认后记录。
+
+## 1. 目录与所有权
+
+建议仓库根目录下统一使用 `game/` 作为 Godot 工程目录。
+
+| 路径 | 负责人 | 内容 |
+|---|---|---|
+| `game/project.godot`、`game/app/` | A | 工程设置、总入口与两侧连接 |
+| `game/core/` | A | 棋盘、匹配、生成、木箱、步数、胜负、星级 |
+| `game/data/levels/` | A | 三关配置与种子 |
+| `game/presentation/` | A | 2D/3D 棋盘显示、选取、交换/消除动画 |
+| `game/tests/gameplay/` | A | 规则检查与确定性操作记录 |
+| `game/ui/` | B | 开始、选关、HUD、结算、返回确认 |
+| `game/progress/` | B | 本地历史最佳成绩、解锁查询 |
+| `game/tests/ui/` | B | 模拟数据入口、UI/存档检查 |
+| `docs/evidence/member-a/`、`ai-logs/member-a/` | A | A 的验收、说明、完整对话和索引 |
+| `docs/evidence/member-b/`、`ai-logs/member-b/` | B | B 的验收、说明、完整对话和索引 |
+| `docs/alignment/` | A 整合，双方共同确认 | 公共约定；更改需通知另一侧 |
+
+各自场景保存在各自目录中。A 通过实例化引用 B 的 UI 场景，不直接修改 B 的 UI 文件。B 不自行创建第二个工程或第二套玩法，不修改 `project.godot`；需要项目设置时交由 A 整合。
+
+开发某一步需要跨界时，先写明变更与原因，交给文件负责人处理。禁止覆盖未提交内容、重写队友历史或用 force push 解决冲突。
+
+## 2. 初始类职责
+
+| 类/模块 | 负责人 | 职责 |
+|---|---|---|
+| BoardModel | A | 格子、普通棋子、木箱状态 |
+| MatchResolver | A | 匹配、去重、木箱伤害、连锁结算 |
+| BoardGenerator | A | 生成、补充、合法步检查、重排 |
+| LevelDefinition | A | 读取关卡配置，提供总步数、木箱等 |
+| GameSession | A | 唯一的 UI 玩法入口，管理本局、结果与星级 |
+| BoardView2D / BoardView3D | A | 显示和输入映射；不重新计算匹配 |
+| AppController | A | 导航连接、会话生命周期、棋盘和 UI 的接线 |
+| 页面/HUD 控制器 | B | 接收用户请求并显示快照/结果 |
+| ProgressStore | B | 本地进度；最高星数、解锁查询、读写 |
+
+可以在实现中合理合并小类或拆分过大类，但修改类图与约定，并解释真实职责；不为凑 UML 或 SOLID 数量创建空类。
+
+## 3. UI 发出的请求
+
+UI 根控制器由 B 提供以下信号，A 在 AppController 中连接：
+
+```gdscript
+signal start_requested(level_id: int)
+signal retry_requested
+signal next_requested
+signal leave_requested
+```
+
+- `start_requested` 只对已解锁关卡发出；A 也验证关卡编号。
+- `next_requested` 只在非最终关胜利时提供，A 计算下一关编号；B 不复制当前局胜负逻辑。
+- B 负责离开确认弹窗。确认后发出 `leave_requested`，取消不发出。
+- A 负责结束旧会话、停止动画和清理连接，避免旧结果污染新页面。
+
+## 4. GameSession 提供的入口与信号
+
+以下为公开边界；具体内部实现由 A 完成：
+
+```gdscript
+func start_level(level_id: int) -> void
+func retry_level() -> void
+func leave_level() -> void
+func get_snapshot() -> Dictionary
+signal state_changed(snapshot: Dictionary)
+signal level_finished(result: Dictionary)
+```
+
+棋盘点击/交换由 A 的表现层处理，不让 B 的 HUD 直接操作 BoardModel。
+
+启动时及每个有意义的状态变化后发布新快照；发布数据为副本，UI 只读，不能反向修改核心状态。订阅后应能立即读取 `get_snapshot()`，不依赖猜测信号顺序。
+
+### snapshot 固定字段
+
+| 字段 | 类型 | 约定 |
+|---|---|---|
+| `session_id` | int | 本次进程内单调增加；重开/新开局使用新编号 |
+| `level_id` | int | 1、2、3；idle 时可为 0 |
+| `phase` | String | `idle`、`playing`、`resolving`、`won`、`lost` |
+| `initial_moves` | int | 该关总步数 |
+| `moves_remaining` | int | 当前步数，不为负 |
+| `target_total` | int | 木箱总个数，不是总层数 |
+| `target_remaining` | int | 尚未完全破坏的木箱个数 |
+| `mode` | String | `2d` 或 `3d`；由应用配置指定 |
+
+### result 固定字段
+
+包含 `session_id`、`level_id`、`initial_moves`、`moves_remaining`、`target_remaining`、`mode`，另加：
+
+| 字段 | 类型 | 约定 |
+|---|---|---|
+| `won` | bool | 是否完成目标 |
+| `stars` | int | A 按 SPEC 计算；胜利 1—3、失败 0 |
+
+每局只发布一次 `level_finished`，在全部连锁结算后发布。AppController 收到结果后先调用 ProgressStore 记录，再显示结算；下次打开选关时刷新历史最佳。
+
+## 5. B 提供的 UI 入口
+
+由 B 的 UI 根控制器提供：
+
+```gdscript
+func show_start() -> void
+func show_level_select(progress: Dictionary) -> void
+func show_game(snapshot: Dictionary) -> void
+func update_hud(snapshot: Dictionary) -> void
+func show_result(result: Dictionary, best_stars: int) -> void
+```
+
+具体场景路径在第 0—1 步确定并记录到本文件。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
+
+## 6. ProgressStore 边界（B）
+
+```gdscript
+func load_progress(mode: String) -> void
+func record_result(result: Dictionary) -> void
+func get_best_stars(level_id: int) -> int
+func is_unlocked(level_id: int) -> bool
+func get_progress() -> Dictionary
+```
+
+进度快照建议：
+
+```json
+{
+  "schema_version": 1,
+  "mode": "2d",
+  "best_stars": {"1": 0, "2": 0, "3": 0}
+}
+```
+
+- 第一关始终解锁；2/3 关由上一关 best_stars>0 推导，避免两个状态源不一致。
+- 按 mode 分别保存到 `user://progress_2d.json` 和 `user://progress_3d.json`。
+- 不在存档中重新计算本次星数，只做格式验证、最高值更新和持久化。
+- 忽略失败结果对成绩的覆盖；保留最高星数；同一结果重复记录不降低或重复累加成绩。
+- 缺失存档使用初始状态；损坏存档不崩溃，保留损坏文件以便诊断，使用安全初始状态继续。测试使用单独测试存档路径，不删除真实玩家成绩。
+
+## 7. 连接前的模拟测试
+
+B 可在 `game/tests/ui/` 中使用与上述字段完全相同的测试快照和结果。模拟入口必须明确标注 TEST/MOCK；不能假装已连接真实玩法，不能写入正式存档。
+
+首次连接使用真实 GameSession。若接口不满足，记录缺失字段/调用/复现步骤，由对应负责人修改；不得两边同时改接口名。
