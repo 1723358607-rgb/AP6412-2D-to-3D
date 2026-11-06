@@ -1,5 +1,7 @@
 # Step 0 evidence — Member A
 
+> 身份更正（2026-11-07）：这里的 Member A 是用户的队友、Gameplay 负责人（`@1723358607-rgb`）；当前用户是 Member B、UI 负责人（`@Sherylshiy`）。保留本文件的原始历史内容。
+
 步骤/负责人：Step 0，共享 Godot 工程初始化；Member A（Gameplay）
 
 代码提交/PR：待本文件随本次变更提交后补充到 PR 记录。

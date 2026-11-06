@@ -2,7 +2,7 @@
 
 实施更新 v1.1：用户指定 Godot Mono/.NET 和 C#；A 本机已检测4.7.2 Mono与.NET SDK10.0.302。所有任务使用 C#、公共基类及 CONTRACT 的 PascalCase 接口；不要使用旧 GDScript 示例。第0步本机自动检查与未完成验收见 docs/evidence/member-a/step-0.md。
 
-用户=A（玩法），队友=B（UI）。不要求学生手写代码；要求学生实际检查、提出修正并理解自己的模块。
+身份映射：A=用户的队友（玩法），B=当前用户（UI/视觉/进度）。早期版本曾把两个人写反，但 A/B 的模块职责和第 0—7 步计划不变。详见 [MEMBER_ATTRIBUTION.md](MEMBER_ATTRIBUTION.md)。不要求学生手写代码；要求学生实际检查、提出修正并理解自己的模块。
 
 ## 每轮指令都加上的公共要求
 

@@ -2,6 +2,8 @@
 
 AP6412 Group Assignment · Route B · Two-person collaboration.
 
+> **Member identity correction (2026-11-07):** Member A is the user's teammate and owns Gameplay; Member B is the current user and owns UI/visual/progress work. Early documents that said “user=A, teammate=B” reversed the people, not the module responsibilities. See [Member attribution correction](docs/alignment/MEMBER_ATTRIBUTION.md).
+
 ## Current status
 
 A's **Step 2 real match-3 loop** is implemented: adjacent swaps, invalid-swap rollback, deduplicated matches, one move per valid swap, segmented gravity, seeded refill and cascades. The first-level development harness uses real session snapshots. Box damage, victory/stars and levels 2/3 are pending Step 3; this is not a complete or frozen 2D game.
@@ -13,7 +15,7 @@ Open `res://presentation/2d/GameplayLoop.tscn` and run the current scene (F6). B
 - .NET: A tested SDK 10.0.302 on macOS arm64; project targets net8.0 with Godot.NET.Sdk 4.7.2 and major runtime roll-forward. Teammate environment must be checked separately.
 - Group identifier and member names: TBD
 - Member A: @1723358607-rgb — gameplay; personal branch `member-a`.
-- Member B: GitHub account TBD — UI and local progress; personal branch `member-b`.
+- Member B: @Sherylshiy — UI, visual integration and local progress; personal branch `member-b`. Crystal Garden work is currently traceable through `codex/crystal-garden-ui-demo` and PR #5.
 
 ## 项目对齐与下一步
 
@@ -25,7 +27,7 @@ Open `res://presentation/2d/GameplayLoop.tscn` and run the current scene (F6). B
 - [给 UI 负责人 AI 的启动说明](docs/alignment/HANDOFF_UI.md)
 - [真实同步状态与待办](docs/alignment/STATUS.md)
 
-第 0 步共同工程已建立，见 [实际验收记录](docs/evidence/member-a/step-0.md) 和 [当前类关系](docs/evidence/member-a/step-0-class-map.md)。用户先做图形手动验收，队友确认版本并同步工程。后续先完成并冻结完整 2D，再开发 3D。对齐文档不是完整原始 AI 日志；对方 AI 是否已阅读，需要实际确认。
+第 0 步共同工程已建立，见 [实际验收记录](docs/evidence/member-a/step-0.md) 和 [当前类关系](docs/evidence/member-a/step-0-class-map.md)。历史记录中的“用户”是当时执行/反馈者的原始称呼，不用于判断 A/B 身份；正确映射见成员归属更正。后续先完成并冻结完整 2D，再开发 3D。对齐文档不是完整原始 AI 日志；对方 AI 是否已阅读，需要实际确认。
 
 ## Development sequence
 
@@ -54,6 +56,8 @@ Tags are created only when the corresponding playable versions have been complet
 - `docs/`: game specification, assumptions, Class Maps, change map, verification, report and declarations.
 - `ai-logs/member-a/`: Member A's complete chronological AI conversations and value index.
 - `ai-logs/member-b/`: Member B's complete chronological AI conversations and value index.
+
+Member B 的当前可核实 Crystal Garden 贡献索引位于 `docs/evidence/member-b/crystal-garden-contribution-index.md`；AI 日志归档状态见 `ai-logs/member-b/index.md`。索引不等于完整原始对话。
 
 Full prompts AND responses, including corrections and relevant code blocks, must be retained. Selected excerpts or summaries alone are insufficient. See `ai-logs/README.md`.
 

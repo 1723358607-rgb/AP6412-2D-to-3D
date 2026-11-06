@@ -1,5 +1,7 @@
 # 接口与文件归属 v1.2 — Godot Mono / C#
 
+身份映射：A=用户的队友（Gameplay，`@1723358607-rgb`），B=当前用户（UI/视觉/进度，`@Sherylshiy`）。职责和以下接口不因身份文字更正而改变；详见 [MEMBER_ATTRIBUTION.md](MEMBER_ATTRIBUTION.md)。
+
 用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。
 
 当前A第2步已提供第一关真实交换/消除/补充、GameSession快照与主入口接线；正式B UI尚未交付，木箱伤害/通关/星级留第3步。以下C#声明保持不变，是双方唯一接口约定。
@@ -22,6 +24,8 @@
 | `docs/evidence/member-a/`、`ai-logs/member-a/` | A | A 的验收、说明、完整对话和索引 |
 | `docs/evidence/member-b/`、`ai-logs/member-b/` | B | B 的验收、说明、完整对话和索引 |
 | `docs/alignment/` | A 整合，双方共同确认 | 公共约定；更改需通知另一侧 |
+
+`game/presentation/` 的总体玩法所有权仍属 A。B 在 PR #5 对 `BoardView2D` 做的贴图、Alpha、视觉尺寸、格心与点击坐标校准属于 UI / Presentation Integration，应在贡献记录中单独注明，但不转移完整类或 Gameplay Core 的所有权。
 
 各自场景保存在各自目录中。A 通过实例化引用 B 的 UI 场景，不直接修改 B 的 UI 文件。B 不自行创建第二个工程或第二套玩法，不修改 `project.godot`；需要项目设置时交由 A 整合。
 
