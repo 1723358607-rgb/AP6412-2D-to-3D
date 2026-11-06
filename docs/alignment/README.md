@@ -1,6 +1,6 @@
 # 彩块工坊：两人协作与 AI 对齐入口
 
-版本：v1.1 · 2026-11-06（新加坡）· Godot Mono / C#
+版本：v1.2 · 2026-11-06（新加坡）· Godot Mono / C#
 
 目标仓库：https://github.com/1723358607-rgb/AP6412-2D-to-3D
 
@@ -36,10 +36,10 @@
 
 用户已授权A侧AI在每轮项目任务中处理检查、拉取/同步、提交、推送和PR整合；保留本地与队友修改，不在未发起任务时后台同步。B侧AI在自己的member-b上处理本地工作，不能同时向member-a写代码。
 
-## 当前交付：第0步C#骨架 + 第1步独立棋盘原型
+## 当前交付：A第2步真实消除闭环
 
-第1步更新：已有独立棋盘原型，打开 `res://presentation/2d/BoardPrototype.tscn` 运行当前场景即可验收，不依赖正式UI。它只有选择和交换请求校验，没有实际交换、消除或结算。详见 [第1步记录](../evidence/member-a/step-1.md)。第0步C#接口和证据继续保留。
+唯一工程仍为 game/project.godot，默认场景res://app/Main.tscn。A已实现第一关真实交换/回退、匹配去重、一次扣步、分段下落、补充和连锁，发布真实snapshot并处理动画输入锁定、重试/离开取消。当前木箱不受伤，通关/星级/第2与3关留第3步；死局重排留第4步。没有完整2D或冻结标签。
 
-唯一工程入口为 `game/project.godot`，默认场景为 `res://app/Main.tscn`。包含C# GameSession的idle骨架、AppController、UI/进度连接基类和独立棋盘原型；尚无完整消除玩法、正式UI或完成标签。
+本轮用户报告第1步手动检查通过；第2步C#编译、规则、实际场景、主入口接口探针与回归检查通过，宿主权限错误保留在日志。第2步图形验收和B真实UI/电脑联调尚未执行。证据与可操作验收见 [第2步记录](../evidence/member-a/step-2.md)。
 
-本机 C# 编译与无窗口边界检查已执行；图形窗口、按键和队友电脑尚待手动确认。实际结果见 [第 0 步验收记录](../evidence/member-a/step-0.md)。用户先完成记录中的手动验收；队友可同步公共工程并按 HANDOFF_UI 开始自己的第 1 步，不另建项目。
+UI交付前F5进入A的真实GameplayLoop；独立F6场景为res://presentation/2d/GameplayLoop.tscn。B仍只开发自己的ui/progress/tests/ui，通过GameUiBridge接入，不另建工程。详细真实HUD及可选BoardHost约定见CONTRACT。历史BoardPrototype.tscn仍仅记录请求。

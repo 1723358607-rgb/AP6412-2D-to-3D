@@ -17,7 +17,6 @@ public static class StepZeroSmokeCheck
             foreach (string key in keys)
                 Require(snapshot.ContainsKey(key), $"Snapshot key missing: {key}");
             Require(snapshot["phase"].AsString() == "idle", "Bootstrap must remain idle.");
-            Require(!session.IsGameplayImplemented, "Step 0 must not claim gameplay exists.");
             snapshot["moves_remaining"] = 999;
             Require(session.GetSnapshot()["moves_remaining"].AsInt32() == 0,
                 "A UI snapshot must not mutate gameplay state.");
@@ -34,7 +33,7 @@ public static class StepZeroSmokeCheck
             session.LevelFinished -= CountResult;
             session.StateChanged -= CountState;
             Require(results == 0, "Bootstrap must not emit fake wins or losses.");
-            Require(stateEvents == 1, "LeaveLevel must publish idle state once.");
+            Require(stateEvents == 3, "Start, retry and leave each publish a real state once.");
             Require(session.GetSnapshot()["phase"].AsString() == "idle", "Commands must not fake an active game.");
 
             bool rejected = false;
@@ -58,7 +57,7 @@ public static class StepZeroSmokeCheck
                 ui.Free();
             }
 
-            GD.Print("[STEP0_SMOKE_PASS] C# assembly, snapshot isolation, idle lifecycle and inherited UI signals.");
+            GD.Print("[STEP0_SMOKE_PASS] C# assembly, snapshot isolation, start/retry/leave lifecycle and inherited UI signals.");
             return 0;
         }
         catch (Exception error)

@@ -1,9 +1,11 @@
 namespace AP6412Match3.Core;
 
-/// <summary>Step 1 deterministic initial board only. Refill/cascades/reshuffling are later work.</summary>
+/// <summary>Deterministic initial generation and refill. Dead-board reshuffling is later work.</summary>
 public sealed class BoardGenerator
 {
-    public BoardModel CreateInitialBoard(LevelDefinition level)
+    public BoardModel CreateInitialBoard(LevelDefinition level) => CreateInitialBoard(level, out _);
+
+    public BoardModel CreateInitialBoard(LevelDefinition level, out uint nextRandomState)
     {
         ArgumentNullException.ThrowIfNull(level);
         level.Validate();
@@ -34,10 +36,7 @@ public sealed class BoardGenerator
             }
 
             // xorshift32 has explicit uint arithmetic, independent of .NET Random versions.
-            state ^= state << 13;
-            state ^= state >> 17;
-            state ^= state << 5;
-            int first = (int)(state % 4);
+            int first = NextColor(ref state);
             bool placed = false;
             for (int offset = 0; offset < 4; offset++)
             {
@@ -53,7 +52,33 @@ public sealed class BoardGenerator
             if (!placed)
                 throw new InvalidOperationException("No valid initial piece color available.");
         }
+        nextRandomState = state;
         return new BoardModel(cells);
+    }
+
+    public static int NextColor(ref uint state)
+    {
+        if (state == 0) throw new ArgumentOutOfRangeException(nameof(state));
+        state ^= state << 13;
+        state ^= state >> 17;
+        state ^= state << 5;
+        return (int)(state % 4);
+    }
+
+    public BoardStep Refill(BoardModel board, ref uint state)
+    {
+        var cells = board.CopyCells();
+        var motions = new List<PieceMotion>();
+        for (int row = 0; row < board.Height; row++)
+        for (int column = 0; column < board.Width; column++)
+        {
+            if (cells[column, row].Kind != CellKind.Empty) continue;
+            var cell = BoardCell.Piece((PieceColor)NextColor(ref state));
+            cells[column, row] = cell;
+            var position = new GridPosition(column, row);
+            motions.Add(new PieceMotion(position, position, cell, true));
+        }
+        return new BoardStep(BoardStepKind.Refill, board, new BoardModel(cells), [], motions.AsReadOnly());
     }
 
     private static bool IsSame(BoardCell cell, PieceColor color) =>

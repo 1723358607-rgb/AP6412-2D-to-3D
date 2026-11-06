@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://presentation/2d/GameplayLoopRunner.cs" id="1_runner"]
+[ext_resource type="Script" path="res://presentation/2d/BoardView2D.cs" id="2_view"]
+[ext_resource type="Script" path="res://gameplay/GameSession.cs" id="3_session"]
+
+[node name="GameplayLoop" type="Node"]
+script = ExtResource("1_runner")
+
+[node name="GameSession" type="Node" parent="."]
+script = ExtResource("3_session")
+
+[node name="BoardView2D" type="Node2D" parent="."]
+script = ExtResource("2_view")

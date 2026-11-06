@@ -1,6 +1,6 @@
 # 给 UI 负责人 AI 的启动说明
 
-更新 v1.1：Godot Mono / C# 已确认，旧版 GDScript 接口示例作废，以 CONTRACT 和 C# 基类为准。
+更新 v1.2：Godot Mono / C# 已确认，旧版 GDScript 接口示例作废，以 CONTRACT 和 C# 基类为准。
 
 把下面整段发给队友使用的 AI，并让它能够读取真实仓库或本资料包。只发送仓库链接不会自动授权访问私有仓库。
 
@@ -20,7 +20,7 @@
 
 如果这些文件尚未上传，先读取我提供的同路径资料包，明确当前仍未同步 GitHub；不要假装已读取仓库最新版。
 
-当前公共工程入口为 game/project.godot，C#解决方案为 game/AP6412Match3.sln。请额外读取 docs/evidence/member-a/step-0.md 和 game/app/contracts 下的实际 C# 基类。A 只提供启动检查页，没有替我制作正式 UI 或存档。
+当前公共工程入口为 game/project.godot，C#解决方案为 game/AP6412Match3.sln。请额外读取 docs/evidence/member-a/step-0.md 和 game/app/contracts 下的实际 C# 基类。A已提供第2步真实GameplayLoop及入口接线，没有替我制作正式UI或存档。请同时读取docs/evidence/member-a/step-2.md。
 
 我负责开始、选关、HUD、胜利/失败结算、返回确认，以及最高星数/解锁的本地进度模块，使用 `member-b` 分支。玩法侧 A 使用 `member-a`，负责消除、棋盘、三关配置、木箱、胜负和星级计算，以及2D/3D棋盘表现。不要替 A 重写玩法或修改其文件。公共工程入口和 project.godot 由 A 整合。
 
@@ -28,7 +28,7 @@
 
 UI 根类 GameUiRoot 继承 AP6412Match3.App.Contracts.GameUiBridge，场景固定为 res://ui/GameUiRoot.tscn；在后续步骤3实现的 ProgressStore 继承 ProgressStoreBridge，场景为 res://progress/ProgressStore.tscn。AppController 会自动发现并挂载。使用继承的 C# Godot 信号和 PascalCase 方法；不要重新定义同名信号或编写 GDScript。开始/选关的导航也按 CONTRACT 的 LevelSelectRequested 和 StartScreenRequested 连接。
 
-GameSession 当前只是 idle 骨架：没有真实关卡或结果。第1步页面用 game/tests/ui/ 中清楚标注的模拟入口预览，不把它当真实通关，不写正式存档。真实 HUD 接入在第2步进行。
+GameSession当前可开始第一关并发布真实步数/phase/木箱计数。第1步页面仍可在game/tests/ui/隔离预览，第2步正式HUD必须使用ShowGame/UpdateHud传入的真实snapshot。请在游戏页预留可选BoardHost（Control，建议560×500，空白区域及祖先允许鼠标通过）；详见CONTRACT。木箱伤害/胜利/三星及第2/3关留第3步，当前目标保持5/5，不造假进度。
 
 本项目从开始到选关，有三张关卡卡片，显示历史最高0—3星。通关即可解锁下一关。玩法计算本次星数，UI展示并保存历史最大值；低星和失败不覆盖高星。2D/3D独立存档。字段、方法和信号按 CONTRACT，不在聊天中自行改名。
 

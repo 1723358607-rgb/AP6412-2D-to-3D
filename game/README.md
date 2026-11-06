@@ -1,8 +1,8 @@
 # Shared Godot project
 
 This is the repository's single Godot project for AP6412 Route B. It provides
-the C# shared entry/contracts and Step 1 independent board prototype. Actual
-match resolution and B's formal UI pages are not implemented by A here.
+the C# shared entry/contracts and Step 2 real swap/match/fall/refill/cascade loop.
+Box damage/victory/stars/levels2–3 are pending Step3. B owns formal UI and saves.
 
 ## Required environment
 
@@ -29,7 +29,7 @@ dotnet build game/AP6412Match3.csproj
 
 Generated `.godot/`, `bin/` and `obj/` directories are intentionally ignored.
 
-Before B's UI exists, F5 shows A's Step 1 board prototype; after UI is supplied, F5 prioritizes that UI. A's `res://presentation/2d/BoardPrototype.tscn` always runs independently with Run Current Scene. It records adjacent-swap requests only: no actual exchange, elimination, moves or results yet. Actual checks and host restrictions are recorded in repository-root `docs/evidence/member-a/step-1.md`. C# shared bases remain in `app/contracts/`; UI uses `AP6412Match3.App.Contracts.GameUiBridge`. Read CONTRACT before implementing.
+Before B's UI exists, F5 opens A's Step2 GameplayLoop; after UI is supplied, F5 prioritizes that UI. `res://presentation/2d/GameplayLoop.tscn` always runs independently with Run Current Scene (F6), using the real GameSession and counters. R restarts; Esc exits. `BoardPrototype.tscn` remains the historical Step1 request-only scene. See repository-root `docs/evidence/member-a/step-2.md` for exact sample moves, actual automated checks and pending manual/UI checks. Shared bases remain in `app/contracts/`; B uses `AP6412Match3.App.Contracts.GameUiBridge`. Read CONTRACT before implementing.
 
 ## Ownership boundaries
 

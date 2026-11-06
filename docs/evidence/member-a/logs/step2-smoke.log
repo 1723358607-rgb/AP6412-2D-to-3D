@@ -1,0 +1,32 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[BOOTSTRAP_OK] Godot 4.7.2-stable (official); C#; mode=2d; phase=idle
+[STEP2_OPENING] seed=641201; from=(1,0); to=(1,1); moves=15->14; cascades=1; cleared=6; before=RBRGBBG/GRBRBRB/GBYBRRY/RBGYYBR/YGGRYYB/GRBGBRG/Y#####R; after=RRGGBBG/GGBRBRB/GGYBRRY/RYGYYBR/YGGRYYB/GRBGBRG/Y#####R
+[STEP2_CORE_PASS] fixtures and 100 deterministic openings; multi-wave samples=36.
+[STEP2_INVALID] from=GridPosition { Column = 0, Row = 0 }; to=GridPosition { Column = 1, Row = 0 }; moves=15->15; board unchanged; RNG not consumed.
+[STEP2_LIFETIME_PASS] busy guard; one deduction; retry/leave cancellation; monotonic session IDs; no stale result.
+[STEP2_PLAYTHROUGH] move=1; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 1, Row = 1 }; cascades=1; remaining=14
+[STEP2_PLAYTHROUGH] move=2; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 2, Row = 0 }; cascades=1; remaining=13
+[STEP2_PLAYTHROUGH] move=3; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 1, Row = 1 }; cascades=2; remaining=12
+[STEP2_PLAYTHROUGH] move=4; from=GridPosition { Column = 0, Row = 0 }; to=GridPosition { Column = 0, Row = 1 }; cascades=1; remaining=11
+[STEP2_PLAYTHROUGH] move=5; from=GridPosition { Column = 5, Row = 0 }; to=GridPosition { Column = 5, Row = 1 }; cascades=3; remaining=10
+[STEP2_PLAYTHROUGH] move=6; from=GridPosition { Column = 4, Row = 0 }; to=GridPosition { Column = 5, Row = 0 }; cascades=1; remaining=9
+[STEP2_PLAYTHROUGH] move=7; from=GridPosition { Column = 4, Row = 0 }; to=GridPosition { Column = 5, Row = 0 }; cascades=1; remaining=8
+[STEP2_PLAYTHROUGH] move=8; from=GridPosition { Column = 2, Row = 0 }; to=GridPosition { Column = 3, Row = 0 }; cascades=1; remaining=7
+[STEP2_PLAYTHROUGH] move=9; from=GridPosition { Column = 2, Row = 0 }; to=GridPosition { Column = 2, Row = 1 }; cascades=1; remaining=6
+[STEP2_PLAYTHROUGH] move=10; from=GridPosition { Column = 4, Row = 0 }; to=GridPosition { Column = 4, Row = 1 }; cascades=1; remaining=5
+[STEP2_PLAYTHROUGH] move=11; from=GridPosition { Column = 1, Row = 1 }; to=GridPosition { Column = 1, Row = 2 }; cascades=1; remaining=4
+[STEP2_PLAYTHROUGH] move=12; from=GridPosition { Column = 3, Row = 1 }; to=GridPosition { Column = 3, Row = 2 }; cascades=1; remaining=3
+[STEP2_PLAYTHROUGH] move=13; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 2, Row = 0 }; cascades=2; remaining=2
+[STEP2_PLAYTHROUGH] move=14; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 1, Row = 1 }; cascades=1; remaining=1
+[STEP2_PLAYTHROUGH] move=15; from=GridPosition { Column = 1, Row = 0 }; to=GridPosition { Column = 2, Row = 0 }; cascades=1; remaining=0
+[GAMEPLAY_LOOP_READY] Real level-1 swaps, moves and cascades; box damage/victory pending step 3.
+[SWAP_REQUEST] (1,0) -> (1,1); prototype=False
+[SWAP_REQUEST] (1,0) -> (2,0); prototype=False
+[STEP2_SCENE_PASS] actual .tscn; mapped mouse handlers; signal wiring; awaited animation; stable board; retry while animating.
+[UI_CONNECTED] UI mounted through the shared C# bridge.
+[SWAP_REQUEST] (1,0) -> (1,1); prototype=False
+[STEP2_APP_BRIDGE_PASS] Production AppController; inherited request signals; real snapshots; optional BoardHost; navigation cancellation. Probe is not teammate UI.
+[STEP2_SMOKE_PASS] Real swap/rollback/clear/gravity/refill/cascade/session/scene checks. GUI appearance and teammate UI remain unverified.
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)

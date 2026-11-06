@@ -4,9 +4,9 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-Step 0 C# bootstrap and shared connection contracts are implemented. There is no playable match-3 level or frozen baseline yet. Local compilation and headless checks completed; graphical/manual and teammate checks remain pending.
+A's **Step 2 real match-3 loop** is implemented: adjacent swaps, invalid-swap rollback, deduplicated matches, one move per valid swap, segmented gravity, seeded refill and cascades. The first-level development harness uses real session snapshots. Box damage, victory/stars and levels 2/3 are pending Step 3; this is not a complete or frozen 2D game.
 
-**Step 1 gameplay prototype:** open `res://presentation/2d/BoardPrototype.tscn` and run the current scene to inspect a 7×7 board, four colors/shapes, five fixed boxes, selection and validated adjacent-swap requests. Requests do not yet execute swaps or consume moves. This scene is independent of B's UI. Before the UI scene exists, F5 also opens this prototype; once B's UI exists, F5 continues to prioritize the real UI. See [step-1 checks and manual acceptance](docs/evidence/member-a/step-1.md).
+Open `res://presentation/2d/GameplayLoop.tscn` and run the current scene (F6). Before B supplies UI, F5 opens this harness; afterwards it prioritizes B's UI. The Step 1 request-only `BoardPrototype.tscn` remains available. User reported Step 1 acceptance; Step 2 graphical/manual and real teammate UI checks remain pending. See [Step 2 checks, exact sample moves and handoff](docs/evidence/member-a/step-2.md).
 
 - Game concept: 彩块工坊 — three match-3 levels, limited moves, box targets and 1–3 stars.
 - Engine: Godot 4.7.2 Mono/.NET, C# only. A's exact build: `4.7.2.stable.mono.official.ed1daf0bf`; teammate version pending.
@@ -70,8 +70,8 @@ dotnet build AP6412Match3.sln --no-restore
 ```
 
 3. Import `game/project.godot` in the Godot .NET project manager. Build the C# project, then press **F5**.
-4. Before B supplies the UI, F5 now opens the **Step 1 independent board prototype**. Once B supplies UI, F5 prioritizes its start screen. To test A's board regardless of UI, open `res://presentation/2d/BoardPrototype.tscn` and run the current scene. R resets the prototype; Esc exits it.
-5. The prototype draws a board and validates selection/adjacent-swap requests; no actual swaps, matching, win/lose, stars or persistence are implemented yet. No Windows/macOS standalone export has been made.
+4. Before B supplies UI, F5 opens the **Step 2 real gameplay harness**. Once B supplies UI, F5 prioritizes its start screen. To test gameplay regardless of UI, open `res://presentation/2d/GameplayLoop.tscn` and run the current scene. R resets to the same 15-move opening; Esc exits.
+5. Try row1/col1 ↔ row1/col2: rollback, still15. Then row1/col2 ↔ row2/col2: clear/refill,14moves. Use the exact cascade sequence in the Step2 evidence. Boxes remain fixed and undamaged until Step3; stars/victory/levels2–3 and save integration are pending. No standalone export exists.
 
 Headless check on this Mac:
 
@@ -79,7 +79,7 @@ Headless check on this Mac:
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --log-file /tmp/ap6412-step0-smoke.log -- --smoke-test
 ```
 
-For Step 1, use `--board-smoke-test` instead of `--smoke-test`; expect `[STEP1_SMOKE_PASS]`. The Step 0 check remains available as a regression check.
+For Step2 use `--fixed-fps 60` before `--`, and `--gameplay-smoke-test` after `--`; expect `[STEP2_SMOKE_PASS]`. Step1 `--board-smoke-test` and Step0 `--smoke-test` remain regression checks. Logs retain the host CA error; editor import additionally reports IDE socket/settings permissions.
 
 Run the command from the repository root. Expect `[STEP0_SMOKE_PASS]` and exit 0. It checks the actual C# runtime and interfaces, not unfinished match-3 functionality. In the restricted tool environment, macOS user-data/CA and editor IDE-port/settings operations report host permission errors; these are recorded, not hidden. The graphical window attempt exited 134, so visual layout and Esc remain manual checks.
 
@@ -87,7 +87,7 @@ For offline work, the local validation restored from the installed Godot .NET bu
 
 ### UI teammate handoff
 
-B implements C# `GameUiRoot : AP6412Match3.App.Contracts.GameUiBridge` at `res://ui/GameUiRoot.tscn`. Later, `ProgressStore : ProgressStoreBridge` lives at `res://progress/ProgressStore.tscn`. The app discovers these scenes automatically; do not create another project or edit A's entry scene/settings. See the actual base classes in `game/app/contracts/` and the updated CONTRACT, including both navigation signals. Until gameplay exists, preview UI states in B's isolated test scene with clearly labelled mock data.
+B implements C# `GameUiRoot : AP6412Match3.App.Contracts.GameUiBridge` at `res://ui/GameUiRoot.tscn`. Later, `ProgressStore : ProgressStoreBridge` lives at `res://progress/ProgressStore.tscn`. The app discovers these scenes automatically; do not create another project or edit A's entry scene/settings. See the actual base classes in `game/app/contracts/` and the updated CONTRACT, including both navigation signals. Step2 HUD must display real snapshots. B may supply a `BoardHost` Control (560×500 recommended); see CONTRACT for layout and input propagation. Mock previews remain confined to B's isolated test scenes.
 
 ## Submission checklist
 
