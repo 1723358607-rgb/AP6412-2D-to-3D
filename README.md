@@ -6,11 +6,23 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 Repository setup only. No playable game or frozen baseline exists yet.
 
-- Game concept: TBD by both members
-- Engine and exact version: TBD
+- Game concept: 彩块工坊 — three match-3 levels, limited moves, box targets and 1–3 stars.
+- Engine: Godot; exact version pending confirmation on both computers.
 - Group identifier and member names: TBD
-- Member A: @1723358607-rgb — personal branch `member-a`
-- Member B: TBD — personal branch `member-b`
+- Member A: @1723358607-rgb — gameplay; personal branch `member-a`.
+- Member B: GitHub account TBD — UI and local progress; personal branch `member-b`.
+
+## 项目对齐与下一步
+
+双方 AI 开始工作前，先读取 [共同对齐入口](docs/alignment/README.md)。
+
+- [游戏设定：三关、木箱、三星与存档](docs/alignment/SPEC.md)
+- [接口与文件归属](docs/alignment/CONTRACT.md)
+- [每一步双方任务、可复制指令与验收](docs/alignment/WORKFLOW.md)
+- [给 UI 负责人 AI 的启动说明](docs/alignment/HANDOFF_UI.md)
+- [真实同步状态与待办](docs/alignment/STATUS.md)
+
+当前先做第 0 步：确认两台电脑的 Godot 完整版本并建立唯一共同工程。先完成并冻结完整 2D，再开发 3D。对齐文档不是完整原始 AI 日志；对方 AI 是否已阅读，需要实际确认。
 
 ## Development sequence
 
