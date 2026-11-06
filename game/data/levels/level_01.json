@@ -1,0 +1,15 @@
+{
+  "level_id": 1,
+  "name": "打开工坊",
+  "width": 7,
+  "height": 7,
+  "initial_moves": 15,
+  "seed": 641201,
+  "boxes": [
+    { "column": 1, "row": 6, "layers": 1 },
+    { "column": 2, "row": 6, "layers": 1 },
+    { "column": 3, "row": 6, "layers": 1 },
+    { "column": 4, "row": 6, "layers": 1 },
+    { "column": 5, "row": 6, "layers": 1 }
+  ]
+}

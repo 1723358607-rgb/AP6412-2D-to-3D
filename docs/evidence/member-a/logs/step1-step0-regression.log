@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+[BOOTSTRAP_OK] Godot 4.7.2-stable (official); C#; mode=2d; phase=idle
+[STEP0_NOT_IMPLEMENTED] Step 0: level 1 requested; gameplay is not implemented yet.
+[STEP0_NOT_IMPLEMENTED] Step 0: no active playable session to retry.
+[STEP0_SMOKE_PASS] C# assembly, snapshot isolation, idle lifecycle and inherited UI signals.

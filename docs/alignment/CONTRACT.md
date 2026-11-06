@@ -83,6 +83,8 @@ public Godot.Collections.Dictionary GetSnapshot();
 
 第 0 步：`IsGameplayImplemented` 为 false，快照为真实 idle、level_id=0、计数为0。合法 StartLevel 请求仅报告尚未实现，不伪造 playing/胜负/星级；非法编号抛出 ArgumentOutOfRangeException。不要把这个骨架当作已实现游戏。UI 阶段1仍用隔离测试入口验证完整页面状态。
 
+第1步补充：A已提供独立 `res://presentation/2d/BoardPrototype.tscn`（7×7第一关、选择与邻接交换请求校验），不改变上述GameSession快照/API。原型只记录请求、不移动棋子、不扣步/结算。B继续用自己的隔离测试入口预览页面；正式HUD仍到第2步接入。B正式UI存在时默认主入口优先挂载B的UI，A可F6独立运行棋盘原型。
+
 ### snapshot 固定字段
 
 | 字段 | 类型 | 约定 |
@@ -119,7 +121,7 @@ public override void UpdateHud(Godot.Collections.Dictionary snapshot);
 public override void ShowResult(Godot.Collections.Dictionary result, int bestStars);
 ```
 
-AppController 自动查找 `res://ui/GameUiRoot.tscn` 并挂载，未找到时保留 A 的启动检查页（不是正式 UI）。B 不修改 AppController 或项目设置；页面内部可自由拆分，统一从 GameUiRoot 连接。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
+AppController 自动查找 `res://ui/GameUiRoot.tscn` 并挂载，未找到时显示A的独立棋盘原型（不是正式UI）。B不修改AppController或项目设置；页面内部可自由拆分，统一从GameUiRoot连接。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
 
 ## 6. ProgressStore 边界（B）
 

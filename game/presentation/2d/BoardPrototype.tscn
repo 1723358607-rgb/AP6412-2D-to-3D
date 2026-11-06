@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://presentation/2d/BoardPrototypeRunner.cs" id="1_runner"]
+[ext_resource type="Script" path="res://presentation/2d/BoardView2D.cs" id="2_view"]
+
+[node name="BoardPrototype" type="Node"]
+script = ExtResource("1_runner")
+
+[node name="BoardView2D" type="Node2D" parent="."]
+script = ExtResource("2_view")

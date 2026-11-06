@@ -28,7 +28,28 @@ public partial class AppController : Node
             return;
         }
 
+        if (OS.GetCmdlineUserArgs().Contains("--board-smoke-test"))
+        {
+            int exitCode = StepOneSmokeCheck.Run(this, _session);
+            GetTree().Quit(exitCode);
+            return;
+        }
+
+        if (OS.GetCmdlineUserArgs().Contains("--board-prototype") || !ResourceLoader.Exists(UiScenePath))
+        {
+            ShowBoardPrototype();
+            return;
+        }
+
         MountOptionalUi();
+    }
+
+    private void ShowBoardPrototype()
+    {
+        GetNode<CanvasLayer>("Bootstrap").Hide();
+        GetNode<Node2D>("BoardView2D").Hide();
+        var prototype = GD.Load<PackedScene>("res://presentation/2d/BoardPrototype.tscn").Instantiate();
+        AddChild(prototype);
     }
 
     public override void _UnhandledKeyInput(InputEvent @event)

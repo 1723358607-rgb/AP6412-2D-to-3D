@@ -6,6 +6,8 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 Step 0 C# bootstrap and shared connection contracts are implemented. There is no playable match-3 level or frozen baseline yet. Local compilation and headless checks completed; graphical/manual and teammate checks remain pending.
 
+**Step 1 gameplay prototype:** open `res://presentation/2d/BoardPrototype.tscn` and run the current scene to inspect a 7×7 board, four colors/shapes, five fixed boxes, selection and validated adjacent-swap requests. Requests do not yet execute swaps or consume moves. This scene is independent of B's UI. Before the UI scene exists, F5 also opens this prototype; once B's UI exists, F5 continues to prioritize the real UI. See [step-1 checks and manual acceptance](docs/evidence/member-a/step-1.md).
+
 - Game concept: 彩块工坊 — three match-3 levels, limited moves, box targets and 1–3 stars.
 - Engine: Godot 4.7.2 Mono/.NET, C# only. A's exact build: `4.7.2.stable.mono.official.ed1daf0bf`; teammate version pending.
 - .NET: A tested SDK 10.0.302 on macOS arm64; project targets net8.0 with Godot.NET.Sdk 4.7.2 and major runtime roll-forward. Teammate environment must be checked separately.
@@ -68,14 +70,16 @@ dotnet build AP6412Match3.sln --no-restore
 ```
 
 3. Import `game/project.godot` in the Godot .NET project manager. Build the C# project, then press **F5**.
-4. Expect the **Step 0 shared-project check screen**, explicitly stating that gameplay is not implemented. Before B supplies the UI, **Esc** closes this bootstrap.
-5. The bootstrap does not contain a playable board, win/lose, stars or persistence. Those belong to later steps. No Windows/macOS standalone export has been made.
+4. Before B supplies the UI, F5 now opens the **Step 1 independent board prototype**. Once B supplies UI, F5 prioritizes its start screen. To test A's board regardless of UI, open `res://presentation/2d/BoardPrototype.tscn` and run the current scene. R resets the prototype; Esc exits it.
+5. The prototype draws a board and validates selection/adjacent-swap requests; no actual swaps, matching, win/lose, stars or persistence are implemented yet. No Windows/macOS standalone export has been made.
 
 Headless check on this Mac:
 
 ```sh
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --log-file /tmp/ap6412-step0-smoke.log -- --smoke-test
 ```
+
+For Step 1, use `--board-smoke-test` instead of `--smoke-test`; expect `[STEP1_SMOKE_PASS]`. The Step 0 check remains available as a regression check.
 
 Run the command from the repository root. Expect `[STEP0_SMOKE_PASS]` and exit 0. It checks the actual C# runtime and interfaces, not unfinished match-3 functionality. In the restricted tool environment, macOS user-data/CA and editor IDE-port/settings operations report host permission errors; these are recorded, not hidden. The graphical window attempt exited 134, so visual layout and Esc remain manual checks.
 
