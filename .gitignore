@@ -1,0 +1,23 @@
+# Godot import/cache and .NET build output
+.godot/
+**/bin/
+**/obj/
+.mono/
+
+# Machine-local IDE files
+.vs/
+.idea/
+*.user
+*.suo
+.DS_Store
+
+# Local exports and private credentials
+exports/
+*.pfx
+*.p12
+.env
+.env.*
+
+# Retained from concurrent initialization
+.vscode/
+*.userprefs

@@ -1,0 +1,9 @@
+* text=auto
+*.cs text eol=lf
+*.csproj text eol=lf
+*.tscn text eol=lf
+*.godot text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+# Preserve engine progress output verbatim, including its trailing spaces.
+*.log -whitespace
