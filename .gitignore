@@ -1,0 +1,14 @@
+# Godot generated cache and imported resources
+.godot/
+game/.godot/
+
+# .NET build output
+**/bin/
+**/obj/
+
+# IDE and macOS files
+.DS_Store
+.idea/
+.vscode/
+*.user
+*.userprefs

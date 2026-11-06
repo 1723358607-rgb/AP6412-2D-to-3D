@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://app/AppController.cs" id="1_app"]
+[ext_resource type="Script" path="res://gameplay/GameSession.cs" id="2_session"]
+[ext_resource type="Script" path="res://presentation/2d/BoardView2D.cs" id="3_view2d"]
+[ext_resource type="Script" path="res://presentation/3d/BoardView3D.cs" id="4_view3d"]
+
+[node name="App" type="Node"]
+script = ExtResource("1_app")
+
+[node name="GameSession" type="Node" parent="."]
+script = ExtResource("2_session")
+
+[node name="BoardView2D" type="Node2D" parent="."]
+script = ExtResource("3_view2d")
+
+[node name="BoardView3D" type="Node3D" parent="."]
+visible = false
+script = ExtResource("4_view3d")
