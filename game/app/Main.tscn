@@ -53,7 +53,7 @@ theme_override_constants/separation = 24
 layout_mode = 2
 theme_override_colors/font_color = Color(0.48, 0.77, 0.92, 1)
 theme_override_font_sizes/font_size = 22
-text = "AP6412  /  STEP 0  /  SHARED PROJECT"
+text = "AP6412  /  SHARED PROJECT  /  DIAGNOSTICS"
 
 [node name="Title" type="Label" parent="Bootstrap/Panel/Margin/Content"]
 layout_mode = 2
@@ -69,12 +69,12 @@ text = "Godot 4.7.2 Mono  ·  C#  ·  2D first"
 [node name="Scope" type="Label" parent="Bootstrap/Panel/Margin/Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
-text = "当前仅验证工程与接口，尚无可玩的三消关卡。\n玩法：成员 A / member-a\nUI 与存档：成员 B / member-b"
+text = "当前已实现第一关交换、消除、补充与真实步数。\n玩法：成员 A / member-a\nUI 与存档：成员 B / member-b"
 autowrap_mode = 3
 
 [node name="Next" type="Label" parent="Bootstrap/Panel/Margin/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.84, 1)
 theme_override_font_sizes/font_size = 20
-text = "下一步：A 制作棋盘原型；B 制作页面原型。\nUI 接入前显示本页。按 Esc 退出本启动检查。"
+text = "如停留在此页，请查看输出中的 UI 连接错误。\n可独立运行 presentation/2d/GameplayLoop.tscn 验收玩法。\n木箱伤害、通关与三星将于第3步接入。"
 autowrap_mode = 3

@@ -1,8 +1,8 @@
-# 接口与文件归属 v1.1 — Godot Mono / C#
+# 接口与文件归属 v1.2 — Godot Mono / C#
 
 用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。
 
-第 0 步已提供 GameSession 的 idle 骨架、AppController，以及 GameUiBridge / ProgressStoreBridge 两个连接基类；没有可玩三消或正式 UI。以下 C# 声明是双方唯一接口约定。
+当前A第2步已提供第一关真实交换/消除/补充、GameSession快照与主入口接线；正式B UI尚未交付，木箱伤害/通关/星级留第3步。以下C#声明保持不变，是双方唯一接口约定。
 
 ## 1. 目录与所有权
 
@@ -81,9 +81,13 @@ public Godot.Collections.Dictionary GetSnapshot();
 
 发布数据为副本，UI 只读，不能反向修改核心状态。订阅后立即调用 `GetSnapshot()`，不依赖启动信号顺序；玩法实现后每个有意义的状态变化发布新快照。C# 使用 Variant 的 `AsInt32()`、`AsString()`、`AsBool()` 等读取字段。
 
-第 0 步：`IsGameplayImplemented` 为 false，快照为真实 idle、level_id=0、计数为0。合法 StartLevel 请求仅报告尚未实现，不伪造 playing/胜负/星级；非法编号抛出 ArgumentOutOfRangeException。不要把这个骨架当作已实现游戏。UI 阶段1仍用隔离测试入口验证完整页面状态。
+历史第0步：`IsGameplayImplemented` 为 false，快照为真实 idle、level_id=0、计数为0。合法 StartLevel 请求仅报告尚未实现，不伪造 playing/胜负/星级；非法编号抛出 ArgumentOutOfRangeException。不要把这个骨架当作已实现游戏。UI 阶段1仍用隔离测试入口验证完整页面状态。
 
-第1步补充：A已提供独立 `res://presentation/2d/BoardPrototype.tscn`（7×7第一关、选择与邻接交换请求校验），不改变上述GameSession快照/API。原型只记录请求、不移动棋子、不扣步/结算。B继续用自己的隔离测试入口预览页面；正式HUD仍到第2步接入。B正式UI存在时默认主入口优先挂载B的UI，A可F6独立运行棋盘原型。
+历史第1步：A已提供独立 `res://presentation/2d/BoardPrototype.tscn`（7×7第一关、选择与邻接交换请求校验），不改变上述GameSession快照/API。原型只记录请求、不移动棋子、不扣步/结算。B继续用自己的隔离测试入口预览页面；正式HUD仍到第2步接入。B正式UI存在时默认主入口优先挂载B的UI，A可F6独立运行棋盘原型。
+
+第2步当前实现：`IsGameplayImplemented=true` 表示第一关消除循环已接入，不表示整个游戏完成。StartLevel(1)立即发布playing/15步/5箱；有效交换发布resolving（扣1步）后回到playing，未匹配回退不扣步；最后一步全部连锁后lost且结果0星。StartLevel(2/3)暂报告待第3步实现，不能据此显示假关卡。Retry/Leave取消旧任务并增长session_id。木箱本轮不会受伤，target_remaining保持真实5；第3步再更新目标与胜利。
+
+`res://presentation/2d/GameplayLoop.tscn` 是A的真实玩法开发入口，HUD文字来自真实快照；保留原第1步场景作为历史请求原型。真实B UI接入情况以实际联调为准，不把测试探针当完成UI。
 
 ### snapshot 固定字段
 
@@ -121,7 +125,13 @@ public override void UpdateHud(Godot.Collections.Dictionary snapshot);
 public override void ShowResult(Godot.Collections.Dictionary result, int bestStars);
 ```
 
-AppController 自动查找 `res://ui/GameUiRoot.tscn` 并挂载，未找到时显示A的独立棋盘原型（不是正式UI）。B不修改AppController或项目设置；页面内部可自由拆分，统一从GameUiRoot连接。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
+AppController 自动查找 `res://ui/GameUiRoot.tscn` 并挂载，未找到时显示A的第2步GameplayLoop真实玩法开发场景（不是正式UI）。B不修改AppController或项目设置；页面内部可自由拆分，统一从GameUiRoot连接。先实现可替换的页面组件，禁止让模拟数据留在最终生产入口中。
+
+### 棋盘挂载补充（第2步，不修改公共方法）
+
+B可在游戏页提供名为 `BoardHost` 的Control（建议至少560×500；不裁切），A会把已有BoardView2D挂到其下，随空间大小居中。空白棋盘区域及覆盖它的父级Control需要允许未处理鼠标事件通过（MouseFilter Ignore）；HUD按钮/弹窗仍正常拦截。A不会重写B布局。未提供BoardHost时使用CanvasLayer2的中央回退棋盘，B要预留中央空间。此布局与事件穿透必须在B真实页面联调后验收。
+
+ShowGame应立即刷新传入snapshot，UpdateHud接收后续真实变化；B不直接调用RequestSwapAsync、不自己移动棋子或扣步。返回开始/选关由AppController先取消旧会话，结算或idle时棋盘隐藏。离开确认取消时不要发请求，保持当前局。
 
 ## 6. ProgressStore 边界（B）
 

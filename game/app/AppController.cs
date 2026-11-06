@@ -2,6 +2,8 @@ using Godot;
 using AP6412Match3.Gameplay;
 using AP6412Match3.App.Contracts;
 using AP6412Match3.Tests.Gameplay;
+using AP6412Match3.Core;
+using AP6412Match3.Presentation;
 using GDictionary = Godot.Collections.Dictionary;
 
 namespace AP6412Match3.App;
@@ -15,10 +17,12 @@ public partial class AppController : Node
     private GameSession _session = null!;
     private GameUiBridge? _ui;
     private ProgressStoreBridge? _progress;
+    private BoardView2D _boardView = null!;
 
     public override void _Ready()
     {
         _session = GetNode<GameSession>("GameSession");
+        _boardView = GetNode<BoardView2D>("BoardView2D");
         GD.Print($"[BOOTSTRAP_OK] Godot {Engine.GetVersionInfo()["string"]}; C#; mode=2d; phase=idle");
 
         if (OS.GetCmdlineUserArgs().Contains("--smoke-test"))
@@ -35,14 +39,30 @@ public partial class AppController : Node
             return;
         }
 
-        if (OS.GetCmdlineUserArgs().Contains("--board-prototype") || !ResourceLoader.Exists(UiScenePath))
+        if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
+        {
+            RunGameplayChecks();
+            return;
+        }
+
+        if (OS.GetCmdlineUserArgs().Contains("--board-prototype"))
         {
             ShowBoardPrototype();
             return;
         }
 
+        if (OS.GetCmdlineUserArgs().Contains("--gameplay-loop") || !ResourceLoader.Exists(UiScenePath))
+        {
+            GetNode<CanvasLayer>("Bootstrap").Hide();
+            _boardView.Hide();
+            AddChild(GD.Load<PackedScene>("res://presentation/2d/GameplayLoop.tscn").Instantiate());
+            return;
+        }
+
         MountOptionalUi();
     }
+
+    private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 
     private void ShowBoardPrototype()
     {
@@ -90,6 +110,11 @@ public partial class AppController : Node
             progress.LoadProgress("2d");
         }
 
+        ConnectUi(ui);
+    }
+
+    internal void ConnectUi(GameUiBridge ui)
+    {
         _ui = ui;
         GetNode("UiMount").AddChild(ui);
         ui.StartRequested += OnStartRequested;
@@ -97,9 +122,12 @@ public partial class AppController : Node
         ui.NextRequested += OnNextRequested;
         ui.LeaveRequested += OnLeaveRequested;
         ui.LevelSelectRequested += ShowLevelSelect;
-        ui.StartScreenRequested += ui.ShowStart;
-        _session.StateChanged += ui.UpdateHud;
+        ui.StartScreenRequested += ShowStart;
+        _session.StateChanged += OnStateChanged;
         _session.LevelFinished += OnLevelFinished;
+        _session.AttachPresenter(_boardView);
+        _boardView.SwapRequested += OnBoardSwap;
+        _boardView.Hide();
 
         GetNode<CanvasLayer>("Bootstrap").Hide();
         ui.ShowStart();
@@ -117,8 +145,8 @@ public partial class AppController : Node
             return;
 
         _session.StartLevel(levelId);
-        if (_session.IsGameplayImplemented)
-            _ui?.ShowGame(_session.GetSnapshot());
+        if (_session.GetSnapshot()["level_id"].AsInt32() == levelId)
+            ShowGame();
     }
 
     private void OnNextRequested()
@@ -133,22 +161,63 @@ public partial class AppController : Node
     {
         _session.RetryLevel();
         if (_session.IsGameplayImplemented)
-            _ui?.ShowGame(_session.GetSnapshot());
+            ShowGame();
     }
 
     private void OnLeaveRequested()
     {
-        _session.LeaveLevel();
         ShowLevelSelect();
     }
 
-    private void ShowLevelSelect() => _ui?.ShowLevelSelect(
+    private void ShowLevelSelect()
+    {
+        _session.LeaveLevel();
+        _ui?.ShowLevelSelect(
         _progress?.GetProgress() ?? new GDictionary
         {
             ["schema_version"] = 1,
             ["mode"] = "2d",
             ["best_stars"] = new GDictionary { ["1"] = 0, ["2"] = 0, ["3"] = 0 },
         });
+    }
+
+    private void ShowStart()
+    {
+        _session.LeaveLevel();
+        _ui?.ShowStart();
+    }
+
+    private void ShowGame()
+    {
+        if (_session.CurrentBoard is null) return;
+        _ui?.ShowGame(_session.GetSnapshot());
+        // Optional named UI slot; public bridge signatures stay unchanged.
+        if (_ui?.FindChild("BoardHost", true, false) is Control host)
+        {
+            host.MouseFilter = Control.MouseFilterEnum.Ignore;
+            if (_boardView.GetParent() != host) _boardView.Reparent(host, false);
+        }
+        else
+        {
+            var fallback = GetNodeOrNull<CanvasLayer>("BoardFallback");
+            if (fallback is null)
+            {
+                fallback = new CanvasLayer { Name = "BoardFallback", Layer = 2 };
+                AddChild(fallback);
+            }
+            if (_boardView.GetParent() != fallback) _boardView.Reparent(fallback, false);
+        }
+        _boardView.SetBoard(_session.CurrentBoard);
+    }
+
+    private void OnStateChanged(GDictionary snapshot)
+    {
+        _ui?.UpdateHud(snapshot);
+        if (snapshot["phase"].AsString() is "idle" or "won" or "lost") _boardView.Hide();
+    }
+
+    private async void OnBoardSwap(Vector2I from, Vector2I to) =>
+        await _session.RequestSwapAsync(new GridPosition(from.X, from.Y), new GridPosition(to.X, to.Y));
 
     private void OnLevelFinished(GDictionary result)
     {
@@ -163,13 +232,14 @@ public partial class AppController : Node
     {
         if (_ui is null)
             return;
-        _session.StateChanged -= _ui.UpdateHud;
+        _session.StateChanged -= OnStateChanged;
         _session.LevelFinished -= OnLevelFinished;
         _ui.StartRequested -= OnStartRequested;
         _ui.RetryRequested -= OnRetryRequested;
         _ui.NextRequested -= OnNextRequested;
         _ui.LeaveRequested -= OnLeaveRequested;
         _ui.LevelSelectRequested -= ShowLevelSelect;
-        _ui.StartScreenRequested -= _ui.ShowStart;
+        _ui.StartScreenRequested -= ShowStart;
+        _boardView.SwapRequested -= OnBoardSwap;
     }
 }
