@@ -13,6 +13,7 @@ public partial class GameUiRoot : GameUiBridge
     private const string HomeScenePath = "res://ui/HomeScreen.tscn";
     private const string LevelsScenePath = "res://ui/LevelSelectionScreen.tscn";
     private const string PlaceholderScenePath = "res://ui/LevelPlaceholderScreen.tscn";
+    private const string GameplayScenePath = "res://ui/GameplayScreen.tscn";
 
     private Control _screenHost = null!;
     private readonly ILevelProgressProvider _demoProgress = new DemoLevelProgressProvider();
@@ -43,13 +44,16 @@ public partial class GameUiRoot : GameUiBridge
 
     public override void ShowGame(GDictionary snapshot)
     {
-        int levelId = snapshot.TryGetValue("level_id", out Variant level) ? level.AsInt32() : 1;
-        DisplayLevelPlaceholder(Math.Clamp(levelId, 1, 3));
+        var screen = Instantiate<GameplayScreen>(GameplayScenePath);
+        screen.LeaveConfirmed += () => EmitSignal(SignalName.LeaveRequested);
+        SetScreen(screen);
+        screen.ApplySnapshot(snapshot);
     }
 
     public override void UpdateHud(GDictionary snapshot)
     {
-        // The current gameplay session has no live HUD fields to render yet.
+        if (CurrentScreen is GameplayScreen gameplay)
+            gameplay.ApplySnapshot(snapshot);
     }
 
     public override void ShowResult(GDictionary result, int bestStars)
@@ -107,12 +111,20 @@ public partial class GameUiRoot : GameUiBridge
         }
 
         bool captureLevels = args.Contains("--ui-capture-levels");
+        bool captureGameplay = args.Contains("--ui-capture-gameplay");
         bool captureHome = args.Contains("--ui-capture-home");
-        if (!captureHome && !captureLevels)
+        if (!captureHome && !captureLevels && !captureGameplay)
             return;
+
+        GetWindow().ContentScaleSize = new Vector2I(1920, 1080);
+        GetWindow().Size = new Vector2I(1920, 1080);
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
+        await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
 
         if (captureLevels)
             ShowLevelSelect(new GDictionary());
+        else if (captureGameplay)
+            EmitSignal(SignalName.StartRequested, 1);
 
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
@@ -155,8 +167,17 @@ public partial class GameUiRoot : GameUiBridge
             Press(home, "LevelsButton");
             levels = (LevelSelectionScreen)CurrentScreen!;
             Press(levels, "LevelCards/Level1Card/ClickTarget");
-            Require(CurrentScreen is LevelPlaceholderScreen { LevelId: 1 }, "level 1 opens placeholder");
+            Require(CurrentScreen is GameplayScreen, "level 1 opens real gameplay UI");
+            Press(CurrentScreen!, "SettingsButton");
+            Require(CurrentScreen is GameplayScreen { IsSettingsOpen: true }, "gameplay settings opens");
+            Press(CurrentScreen!, "CloseSettingsButton");
+            Require(CurrentScreen is GameplayScreen { IsSettingsOpen: false }, "gameplay settings closes");
+            Press(CurrentScreen!, "PauseButton");
+            Require(CurrentScreen is GameplayScreen, "pending pause action does not corrupt gameplay screen");
             Press(CurrentScreen!, "BackButton");
+            Require(CurrentScreen is GameplayScreen gameplay && gameplay.IsLeaveDialogOpen,
+                "gameplay back opens leave confirmation");
+            Press(CurrentScreen!, "ConfirmLeaveButton");
 
             levels = (LevelSelectionScreen)CurrentScreen!;
             Press(levels, "LevelCards/Level2Card/ClickTarget");
