@@ -1,8 +1,8 @@
 # Shared Godot project
 
-This is the repository's single Godot project for AP6412 Route B. Step 0 only
-provides a C# project, application entry scene and the class boundaries agreed
-in `docs/alignment/CONTRACT.md`. Match-3 rules and UI pages are not implemented.
+This is the repository's single Godot project for AP6412 Route B. It provides
+the C# shared entry/contracts and Step 1 independent board prototype. Actual
+match resolution and B's formal UI pages are not implemented by A here.
 
 ## Required environment
 
@@ -29,7 +29,7 @@ dotnet build game/AP6412Match3.csproj
 
 Generated `.godot/`, `bin/` and `obj/` directories are intentionally ignored.
 
-The entry currently shows A's Step 0 check screen, not the finished UI or a playable board. Actual checks and host-environment restrictions are documented in `docs/evidence/member-a/step-0.md` from the repository root. C# shared bases are in `app/contracts/`; UI uses `AP6412Match3.App.Contracts.GameUiBridge`. Read the updated CONTRACT before implementing.
+Before B's UI exists, F5 shows A's Step 1 board prototype; after UI is supplied, F5 prioritizes that UI. A's `res://presentation/2d/BoardPrototype.tscn` always runs independently with Run Current Scene. It records adjacent-swap requests only: no actual exchange, elimination, moves or results yet. Actual checks and host restrictions are recorded in repository-root `docs/evidence/member-a/step-1.md`. C# shared bases remain in `app/contracts/`; UI uses `AP6412Match3.App.Contracts.GameUiBridge`. Read CONTRACT before implementing.
 
 ## Ownership boundaries
 

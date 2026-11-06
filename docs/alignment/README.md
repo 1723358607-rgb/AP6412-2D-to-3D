@@ -34,8 +34,12 @@
 
 `main` 保存已整合的公共版本；个人分支保存真实贡献。保留有意义的提交和 PR/merge 历史。不要伪造队友提交、评审、聊天记录、测试结果或已完成状态。
 
-## 当前交付：第 0 步 C# 启动骨架
+用户已授权A侧AI在每轮项目任务中处理检查、拉取/同步、提交、推送和PR整合；保留本地与队友修改，不在未发起任务时后台同步。B侧AI在自己的member-b上处理本地工作，不能同时向member-a写代码。
 
-唯一工程入口为 `game/project.godot`，默认场景为 `res://app/Main.tscn`。包含 C# GameSession 的 idle 骨架、AppController 和 UI/进度连接基类；没有三消棋盘、正式 UI 或完成标签。
+## 当前交付：第0步C#骨架 + 第1步独立棋盘原型
+
+第1步更新：已有独立棋盘原型，打开 `res://presentation/2d/BoardPrototype.tscn` 运行当前场景即可验收，不依赖正式UI。它只有选择和交换请求校验，没有实际交换、消除或结算。详见 [第1步记录](../evidence/member-a/step-1.md)。第0步C#接口和证据继续保留。
+
+唯一工程入口为 `game/project.godot`，默认场景为 `res://app/Main.tscn`。包含C# GameSession的idle骨架、AppController、UI/进度连接基类和独立棋盘原型；尚无完整消除玩法、正式UI或完成标签。
 
 本机 C# 编译与无窗口边界检查已执行；图形窗口、按键和队友电脑尚待手动确认。实际结果见 [第 0 步验收记录](../evidence/member-a/step-0.md)。用户先完成记录中的手动验收；队友可同步公共工程并按 HANDOFF_UI 开始自己的第 1 步，不另建项目。
