@@ -6,7 +6,8 @@ public readonly record struct PieceMotion(GridPosition From, GridPosition To, Bo
 
 /// <summary>Logical snapshots and motion descriptions, independent of any renderer.</summary>
 public sealed record BoardStep(BoardStepKind Kind, BoardModel Before, BoardModel After,
-    IReadOnlyList<GridPosition> Cleared, IReadOnlyList<PieceMotion> Motions);
+    IReadOnlyList<GridPosition> Cleared, IReadOnlyList<PieceMotion> Motions,
+    IReadOnlyList<GridPosition>? DamagedBoxes = null);
 
 public sealed record SwapResolution(SwapAttemptStatus Status, BoardModel FinalBoard, uint NextRandomState,
     IReadOnlyList<BoardStep> Steps, int Cascades, int TotalCleared);

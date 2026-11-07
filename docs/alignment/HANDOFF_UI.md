@@ -1,5 +1,7 @@
 # 给 UI 负责人 AI 的启动说明
 
+第3步接入更新：A玩法、代码核对、最终构建和第0/1/2/3步回归已完成。B的PR #5最新已新增GameplayScreen、真实HUD/BoardHost和视觉校准；当前ShowLevelSelect仍用演示进度，ShowResult直接返回选关，正式存档/结算仍需实现。接入请读docs/evidence/member-a/step-3.md及CONTRACT：保留你的UI/贴图/格心校准，合并BoardView2D时接入DamagedBoxes层数/受击显示，不整文件覆盖。AppController已在换页前保管A棋盘，支持B销毁旧页面。下方旧启动说明为历史上下文。
+
 更新 v1.2：Godot Mono / C# 已确认，旧版 GDScript 接口示例作废，以 CONTRACT 和 C# 基类为准。
 
 把下面整段发给队友使用的 AI，并让它能够读取真实仓库或本资料包。只发送仓库链接不会自动授权访问私有仓库。

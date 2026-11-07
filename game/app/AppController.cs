@@ -39,6 +39,12 @@ public partial class AppController : Node
             return;
         }
 
+        if (OS.GetCmdlineUserArgs().Contains("--level-smoke-test"))
+        {
+            RunLevelChecks();
+            return;
+        }
+
         if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
         {
             RunGameplayChecks();
@@ -61,6 +67,8 @@ public partial class AppController : Node
 
         MountOptionalUi();
     }
+
+    private async void RunLevelChecks() => GetTree().Quit(await StepThreeSmokeCheck.Run(this));
 
     private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 
@@ -113,8 +121,14 @@ public partial class AppController : Node
         ConnectUi(ui);
     }
 
-    internal void ConnectUi(GameUiBridge ui)
+    internal void ConnectUi(GameUiBridge ui, ProgressStoreBridge? progress = null)
     {
+        if (progress is not null)
+        {
+            _progress = progress;
+            AddChild(progress);
+            progress.LoadProgress("2d");
+        }
         _ui = ui;
         GetNode("UiMount").AddChild(ui);
         ui.StartRequested += OnStartRequested;
@@ -190,6 +204,7 @@ public partial class AppController : Node
     private void ShowGame()
     {
         if (_session.CurrentBoard is null) return;
+        ParkBoard();
         _ui?.ShowGame(_session.GetSnapshot());
         // Optional named UI slot; public bridge signatures stay unchanged.
         if (_ui?.FindChild("BoardHost", true, false) is Control host)
@@ -212,8 +227,16 @@ public partial class AppController : Node
 
     private void OnStateChanged(GDictionary snapshot)
     {
+        if (snapshot["phase"].AsString() is "idle" or "won" or "lost") ParkBoard();
         _ui?.UpdateHud(snapshot);
-        if (snapshot["phase"].AsString() is "idle" or "won" or "lost") _boardView.Hide();
+    }
+
+    private void ParkBoard()
+    {
+        // B may remove and free its old page (including BoardHost) on any navigation.
+        // A owns this presenter for the application lifetime, so reclaim it before that callback.
+        if (_boardView.GetParent() != this) _boardView.Reparent(this, false);
+        _boardView.Hide();
     }
 
     private async void OnBoardSwap(Vector2I from, Vector2I to) =>
@@ -225,6 +248,7 @@ public partial class AppController : Node
         _progress?.RecordResult(result);
         int level = result["level_id"].AsInt32();
         int best = _progress?.GetBestStars(level) ?? 0;
+        ParkBoard();
         _ui?.ShowResult(result, best);
     }
 

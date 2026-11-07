@@ -1,0 +1,60 @@
+{
+  "level_id": 2,
+  "name": "深入整理",
+  "width": 7,
+  "height": 7,
+  "initial_moves": 20,
+  "seed": 641202,
+  "boxes": [
+    {
+      "column": 1,
+      "row": 5,
+      "layers": 1
+    },
+    {
+      "column": 2,
+      "row": 5,
+      "layers": 1
+    },
+    {
+      "column": 3,
+      "row": 5,
+      "layers": 1
+    },
+    {
+      "column": 4,
+      "row": 5,
+      "layers": 1
+    },
+    {
+      "column": 5,
+      "row": 5,
+      "layers": 1
+    },
+    {
+      "column": 1,
+      "row": 6,
+      "layers": 1
+    },
+    {
+      "column": 2,
+      "row": 6,
+      "layers": 1
+    },
+    {
+      "column": 3,
+      "row": 6,
+      "layers": 1
+    },
+    {
+      "column": 4,
+      "row": 6,
+      "layers": 1
+    },
+    {
+      "column": 5,
+      "row": 6,
+      "layers": 1
+    }
+  ]
+}

@@ -1,39 +1,11 @@
 # Shared Godot project
 
-This is the repository's single Godot project for AP6412 Route B. It provides
-the C# shared entry/contracts and Step 2 real swap/match/fall/refill/cascade loop.
-Box damage/victory/stars/levels2–3 are pending Step3. B owns formal UI and saves.
+The repository's single Godot project uses Godot4.7.2 Mono/.NET, C# and net8.0 (A verified SDK10.0.302). Import this directory's project.godot, build AP6412Match3.sln, then run app/Main.tscn (F5). Build/import the entire repository; do not download project.godot alone.
 
-## Required environment
+A's Step3 gameplay includes three formal levels, box damage, target counts, win/loss and integer stars. With no B UI mounted, F5 opens presentation/2d/GameplayLoop.tscn. This scene also runs independently (F6): 1/2/3 test formal levels, R retries, N advances after victory, Esc exits. It does not save progress or simulate production unlocks. The historical BoardPrototype.tscn remains request-only.
 
-- Godot `4.7.2.stable.mono` (.NET build)
-- A .NET SDK capable of targeting .NET 8 (initial parallel record: 10.0.401; this reconciliation verified with 10.0.302)
+B provides ui/GameUiRoot.tscn via the existing GameUiBridge, then progress/ProgressStore.tscn via ProgressStoreBridge. The app discovers them automatically. A's board presenter is reclaimed before UI page replacement and mounted into the next BoardHost. B's result pages and real persistence require integration and joint acceptance.
 
-Both members must confirm the exact Godot version before beginning dependent
-work. The gameplay machine has been verified; the UI member's version remains
-to be confirmed.
+Final build and step0/1/2/3 automated checks pass. Graphical/manual and real B persistence checks remain pending. Exact sample moves, commands, actual output and limitations: ../docs/evidence/member-a/step-3.md. Read ../docs/alignment/CONTRACT.md before integration.
 
-## Open and run
-
-1. Open Godot 4.7.2 .NET.
-2. Import `game/project.godot`.
-3. Build the C# solution if Godot requests it.
-4. Run the project. The entry scene is `res://app/Main.tscn`.
-
-Command-line verification from the repository root:
-
-```sh
-dotnet build game/AP6412Match3.csproj
-/Applications/Godot_mono.app/Contents/MacOS/Godot --path game
-```
-
-Generated `.godot/`, `bin/` and `obj/` directories are intentionally ignored.
-
-Before B's UI exists, F5 opens A's Step2 GameplayLoop; after UI is supplied, F5 prioritizes that UI. `res://presentation/2d/GameplayLoop.tscn` always runs independently with Run Current Scene (F6), using the real GameSession and counters. R restarts; Esc exits. `BoardPrototype.tscn` remains the historical Step1 request-only scene. See repository-root `docs/evidence/member-a/step-2.md` for exact sample moves, actual automated checks and pending manual/UI checks. Shared bases remain in `app/contracts/`; B uses `AP6412Match3.App.Contracts.GameUiBridge`. Read CONTRACT before implementing.
-
-## Ownership boundaries
-
-- Gameplay member: `app/`, `core/`, `data/`, `gameplay/`, `presentation/`,
-  `tests/gameplay/` and project integration.
-- UI member: `ui/`, `progress/` and `tests/ui/` after this shared project has
-  been merged into `main` and synchronized to `member-b`.
+A owns app/core/gameplay/data/presentation/tests/gameplay and project integration. B owns ui/progress/tests/ui. Existing B visual changes to BoardView2D/CrystalGardenBoardLayout must be preserved when integrating, not overwritten with A's entire version. Build caches (.godot/bin/obj) are ignored; no standalone export or 2D baseline is frozen.
