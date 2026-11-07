@@ -1,10 +1,10 @@
-# 接口与文件归属 v1.3 草稿 — Godot Mono / C#
+# 接口与文件归属 v1.3 — Godot Mono / C#
 
 用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。
 
-当前A第2步已提供第一关真实交换/消除/补充、GameSession快照与主入口接线；正式B UI尚未交付，木箱伤害/通关/星级留第3步。以下C#声明保持不变，是双方唯一接口约定。
+当前A第3步已提供真实木箱伤害、三关、胜负与三星；最终构建和自动回归通过。B的PR #5已有真实HUD/视觉接入，结果与持久化进度仍待完成。以下公开C#声明和字典字段保持不变。
 
-## 第3步草稿实现（覆盖下方历史第2步状态说明）
+## 第3步当前实现（下方第0/1/2步为历史）
 
 公开GameUiBridge、ProgressStoreBridge及snapshot/result字段不变。StartLevel现在读取全部三份正式配置；第3步已实现单/双层箱伤害、真实目标变化、连锁结束后won/lost与整数stars。phase仍为resolving时target_remaining可先变成0，UI必须等待LevelFinished而不能自行据此判胜。
 
@@ -12,7 +12,7 @@
 
 正式存档未交付前，AppController对正式UI仍仅放行第一关；GameplayLoop的1/2/3仅为开发关卡直测，不代表解锁，也不写存档。B接入真实ProgressStore后通过IsUnlocked放行后续关卡。现有DemoLevelProgressProvider不能作为生产进度。
 
-本轮环境中断，远端草稿待核对和最终回归；第3步自动检查通过不等于UI/存档集成已通过。详见member-a/step-3.md。
+本机与远端草稿代码已逐文件核对一致，最终构建0警告0错误，第0/1/2/3步检查通过；图形和B真实存档仍待验收。AppController会在换页前将棋盘取回A根节点，避免B释放旧BoardHost时一并销毁棋盘。详见docs/evidence/member-a/step-3.md。
 
 ## 1. 目录与所有权
 
@@ -95,7 +95,7 @@ public Godot.Collections.Dictionary GetSnapshot();
 
 历史第1步：A已提供独立 `res://presentation/2d/BoardPrototype.tscn`（7×7第一关、选择与邻接交换请求校验），不改变上述GameSession快照/API。原型只记录请求、不移动棋子、不扣步/结算。B继续用自己的隔离测试入口预览页面；正式HUD仍到第2步接入。B正式UI存在时默认主入口优先挂载B的UI，A可F6独立运行棋盘原型。
 
-第2步当前实现：`IsGameplayImplemented=true` 表示第一关消除循环已接入，不表示整个游戏完成。StartLevel(1)立即发布playing/15步/5箱；有效交换发布resolving（扣1步）后回到playing，未匹配回退不扣步；最后一步全部连锁后lost且结果0星。StartLevel(2/3)暂报告待第3步实现，不能据此显示假关卡。Retry/Leave取消旧任务并增长session_id。木箱本轮不会受伤，target_remaining保持真实5；第3步再更新目标与胜利。
+历史第2步：`IsGameplayImplemented=true` 表示第一关消除循环已接入，不表示整个游戏完成。StartLevel(1)立即发布playing/15步/5箱；有效交换发布resolving（扣1步）后回到playing，未匹配回退不扣步；最后一步全部连锁后lost且结果0星。StartLevel(2/3)暂报告待第3步实现，不能据此显示假关卡。Retry/Leave取消旧任务并增长session_id。木箱本轮不会受伤，target_remaining保持真实5；第3步再更新目标与胜利。
 
 `res://presentation/2d/GameplayLoop.tscn` 是A的真实玩法开发入口，HUD文字来自真实快照；保留原第1步场景作为历史请求原型。真实B UI接入情况以实际联调为准，不把测试探针当完成UI。
 

@@ -1,6 +1,6 @@
-# 第3步实际类关系（草稿）
+# 第3步实际类关系（成员A）
 
-对应本轮实现；远端复原稿待恢复环境核对。历史第0/1/2步类图保持不变。
+对应第3步最终实现；本机已与远端草稿核对，最终构建与回归通过。历史第0/1/2步类图保持不变。
 
 ```mermaid
 classDiagram
@@ -21,3 +21,5 @@ classDiagram
 LevelRules、MatchResolver、BoardGenerator、BoardModel、LevelDefinition不引用Godot。GameSession拥有唯一结果与生命周期。BoardStep.DamagedBoxes只是表现描述；2D视图不决定伤害或星数。B的公开桥接签名未变。
 
 StepThreeProgressProbe与StepTwoUiProbe只在A隔离检查中使用，没有文件存档，不是B的生产实现。BeginLevel内部组合入口允许检查自定义关卡数据；正式StartLevel只读取三份正式JSON，不提供强制胜利操作。
+
+AppController拥有BoardView2D的应用级生命周期；B的BoardHost是临时页面节点。换页前ParkBoard取回棋盘，进入游戏后再挂载，避免UI页面QueueFree误删玩法呈现器。该行为已有真实失败复现和修复后回归。

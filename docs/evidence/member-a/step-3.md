@@ -1,68 +1,71 @@
-# 第3步：木箱、三关、胜负和星级（A，草稿）
+# 第3步：木箱、三关、胜负和星级（成员A）
 
-日期：2026-11-07（Asia/Singapore）。用户原文：“继续第三步吧”。
+日期：2026-11-07（Asia/Singapore）。当前任务：“继续完成第三步”。本记录对应member-a / PR #6的玩法交付；B的正式存档与共同页面联调另行验收。
 
-## 当前交付与中断
+## 收尾与版本核对
 
-本轮先检查了真实仓库、分支和未提交修改，从main的3c1986229c38db7cbbeb0918af870b7eefa572ae快进到member-a继续。已有BoardPrototype.tscn修改只是Godot保存时补充的场景/脚本UID，保留在本机，没有覆盖或夹带进本次远端草稿。
+上轮因执行环境断线保留草稿。本轮已将本机14份玩法代码/配置/检查文件与远端4a0a805fa2a7486fe401eec4375f21736e190ef6逐文件核对，全部字节一致；随后安全同步草稿文档和证据。原BoardPrototype.tscn的Godot UID保存修改继续留在本机，未覆盖、未夹带进本次提交。新脚本UID已由真实编辑器扫描生成并归档。
 
-A侧功能已在本机实现，规则与实际会话/主入口检查执行通过。随后尝试连接Godot图形窗口时，连接返回Transport closed；执行环境继而变为unavailable。之后无法读取本机文件、重新构建或运行回归。
+本轮新增AppController页面生命周期修复：B的页面会在导航时RemoveChild/QueueFree，BoardHost属于临时UI页面；A的BoardView2D属于应用生命周期，必须先取回A根节点，再允许页面销毁，进游戏时挂入新的BoardHost。补充可销毁页面的测试替身后，旧逻辑真实复现“UI page disposal destroyed A's persistent board presenter”（exit1）；修复后全部检查通过。没有修改B的任何文件或分支，也没有替换B的贴图/坐标校准。
 
-为保留已完成工作，本草稿依据本轮实际执行的代码补丁及GitHub已知基线复原代码与测试，附上真实工具输出中可确认的运行结果。**远端草稿尚未与本机逐字节核对，也未重新构建；不得把本稿当作已经全面验收的主分支版本。** 本轮保持草稿PR，不合并main。恢复环境后需核对本地差异、补齐脚本UID、构建及回归，再按项目流程整合。
+本次代码在member-a保留新增收尾提交，通过PR #6整合，实际SHA/合并状态以GitHub历史为准。没有冻结完整2D或发布3D。
 
-## 实现范围
+## 实际实现
 
-- MatchResolver.ClearMatches：每轮从全部被消除的普通棋子收集上下左右相邻木箱，HashSet去重后各减一层。对角不伤害，木箱被摧毁也不传播伤害。
-- 双层箱2→1时仍计一个目标，1→0才减少目标数；移除后按新连通的列区段下落。补充和连锁沿用同一xorshift32随机流。
-- 正式配置为7×7：第一关5个单层箱/15步，第二关10个单层箱/20步，第三关14个箱/24步，其中第6行第2/4/6列双层；种子641201/641202/641203。没有为跑通检查修改既定步数或布局。
-- LevelRules纯核心计算目标个数、连锁结束后的phase和整数星级。先目标完成判won，再步数耗尽判lost；最后一步通关是一星。
-- GameSession在伤害波结束时更新真实HUD目标，phase仍为resolving；全部表现步骤和连锁结束后才结算。每局结果只发一次，终局拒绝继续操作；重试、切关、离开取消旧会话。
-- IBoardPresenter、GameUiBridge与ProgressStoreBridge公开接口不变。BoardStep新增可选DamagedBoxes描述；2D表现层显示箱上剩余层数，并播放受击/消失。
-- GameplayLoop是A独立开发入口：1/2/3直测正式关卡，R重试，通关后N下一关；第3关无第4关。**直接选关仅为开发验收，不代表正式解锁，也不写成绩存档。**
-- AppController仍由A接线：真实LevelFinished→ProgressStore.RecordResult→查询最高星数→UI.ShowResult。无ProgressStore时正式UI仍只允许第一关。
+- 木箱只承受被消除普通棋子上下左右的伤害，同轮多方向命中集合去重后只减一层；对角不伤害，箱子被破坏不传播伤害。
+- 双层2→1仍计一个目标；1→0才减少目标。移除后按新连通区段下落，补充和连锁复用同一xorshift32状态。
+- 正式三关仍为7×7、15/20/24步、5/10/14箱；第三关第6行第2/4/6列双层。种子641201/641202/641203，未为通过检查改步数、箱位或规则。
+- LevelRules用整数判星；GameSession在全部连锁和表现结束后先判目标完成，再判步数耗尽。最后一步获胜为一星，失败零星；每局只发一次结果，终局拒绝新交换。
+- 伤害后HUD收到真实目标变化，但phase仍可为resolving；重试/切关/离开取消旧会话，不发旧结果。
+- BoardView2D显示剩余层数并播放受击/消失；不在表现层重新判定匹配、伤害或星级。
+- AppController先记录结果，再查历史最佳，再显示结果；无ProgressStore时正式UI只允许第一关。公开桥接及snapshot/result字段不变。
+- GameplayLoop是A的独立开发入口：1/2/3直测正式关卡，R重试，通关后N下一关；第三关不会进入第4关。它不写存档，不代表生产解锁。
 
-## 本次实际检查
+## 本轮检查结果
 
 环境：Godot4.7.2.stable.mono.official.ed1daf0bf；.NET SDK10.0.302；net8.0；macOS arm64。
 
-| 项目 | 实际状态 |
+| 检查 | 实际结果 |
 |---|---|
-| 第3步功能编译 | 成功，0错误；测试文件有1条CS8602 nullable警告 |
-| nullable警告修正 | 已改latest为latest!；修正后未重新编译，不宣称最终0警告 |
-| 第3步无窗口规则/会话/主入口检查 | 已执行，exit0、STEP3_SMOKE_PASS；运行的是前一轮成功构建的DLL，nullable修正不改变运行逻辑 |
-| 三关正式配置回放 | 均真实通关、三星；对应每步棋盘和操作见step-3-replays.json |
-| 单/双层木箱、四向同波去重、目标计数、移除后重连下落 | 通过 |
-| 三关星级全部整数余步及边界 | 通过：2/3与5/6；3/4与7/8；4/5与9/10 |
-| 最后一步通关与等待最终补充 | 通过隔离1步/1箱测试夹具；won=true、余步0、stars1，仅一个result |
-| 动画中切关/离开、目标先归零但未结算、终局监听重入 | 通过；旧结果没有污染新关 |
-| 总入口先记录成绩再显示结果、下一关及最终关边界 | 通过A的内存UI/进度测试替身；不代表队友持久化实现 |
-| 第0/1/2步本轮回归 | **未运行**，环境中断 |
-| 图形与真实鼠标/按键试玩 | **未完成**，连接Transport closed，没有观察到最终图形结果 |
-| 队友真实UI、真实存档读写和重启保留 | **未运行** |
-| 离线复原后的远端草稿构建/逐字节核对 | **未运行**；恢复环境后必做 |
+| 本机与远端草稿代码核对 | 14份代码/配置/检查文件字节一致 |
+| 最终C#构建 | 通过，0警告、0错误；原nullable警告已消除 |
+| 第3步规则/会话/主入口检查 | 通过，exit0，STEP3_SMOKE_PASS |
+| 第2步真实消除/场景/接线回归 | 通过，exit0，STEP2_SMOKE_PASS |
+| 第1步原型/映射回归 | 通过，exit0，STEP1_SMOKE_PASS |
+| 第0步接口/生命周期回归 | 通过，exit0，STEP0_SMOKE_PASS |
+| 默认主入口无窗口启动3帧 | 通过，exit0，GAMEPLAY_LOOP_READY |
+| 可销毁UI页面的结算/重试/离开/再开局 | 先复现失败，修复后通过，棋盘生命周期保留 |
+| 编辑器无窗口导入 | 扫描和载入完成，exit0；仍有editor_settings-4.7.tres写入权限错误，不算无错误导入 |
+| 图形窗口、真实鼠标/按键、动画观感 | **未执行本轮手动检查**，待本人按下方操作验收 |
+| 队友最新UI与真实存档、重启保留 | **未执行整合检查**；使用的内存探针不是B持久化实现 |
 
-实际命令（仓库根目录）：
+核心覆盖：单/双层木箱、多方向同轮只伤一层、目标1→1→0、无对角/箱子传播伤害、箱子移除后重连下落；三关所有整数余步星级与边界；最后一步通关先于失败；目标归零后等待最终补充；重复操作/旧结果拒绝；正式三关真实会话回放。
+
+实际命令（仓库根；本机路径由队友按其机器替换）：
 
 ```sh
 dotnet build game/AP6412Match3.sln --no-restore -p:NuGetAudit=false -p:UseSharedCompilation=false --disable-build-servers
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --fixed-fps 60 --log-file /tmp/ap6412-step3.log -- --level-smoke-test
+/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --fixed-fps 60 --log-file /tmp/ap6412-step2-regression.log -- --gameplay-smoke-test
+/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --fixed-fps 60 --log-file /tmp/ap6412-step1-regression.log -- --board-smoke-test
+/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --fixed-fps 60 --log-file /tmp/ap6412-step0-regression.log -- --smoke-test
 ```
 
-本机构建另使用工作区DOTNET_CLI_HOME、已有NUGET_PACKAGES及遥测关闭设置；没有更改工程依赖。无窗口执行返回exit0，用时约0.25秒。logs/step3-observed-output.txt是从实际工具返回内容保留的输出文本，不冒充从断线电脑重新读取的原始日志文件。本次返回未出现前轮宿主CA错误；不据此声称所有机器环境问题都已解决。
+构建使用已有还原缓存，以及工作区DOTNET_CLI_HOME/已有NUGET_PACKAGES/关闭遥测等本机设置；不写入项目依赖。最终原始输出为logs/step3-final-build.log、step3-final.log、step3-step0/1/2-regression.log、step3-final-startup.log。编辑器错误保留在step3-editor-import.log，修复前失败在step3-page-lifetime-before.log。此前断线时保存的step3-observed-output.txt只是当时工具返回文本，保留为历史，不替代最终原始输出。
 
-## 已观察的正式回放
+## 正式回放与星级
 
 | 关卡 | 种子 | 有效交换数 | 最终余步 | 结果 |
 |---|---:|---:|---:|---|
-| 1 | 641201 | 2 | 13/15 | 3星、0箱 |
-| 2 | 641202 | 1 | 19/20 | 3星、0箱 |
-| 3 | 641203 | 9 | 15/24 | 3星、0箱 |
+| 1 | 641201 | 2 | 13/15 | 三星、0箱 |
+| 2 | 641202 | 1 | 19/20 | 三星、0箱 |
+| 3 | 641203 | 9 | 15/24 | 三星、0箱 |
 
-这些操作由有上限的测试搜索从同一正式棋盘和补充序列中找到，再通过真实GameSession逐步回放。搜索只改变选择哪一个合法交换，不修改关卡随机状态、规则或步数，不进入生产玩法。
+完整每步行列、连锁数、目标与棋盘为step-3-replays.json；本轮从实际最终输出重新提取。查找操作的有界策略只在检查中使用，不改变正式种子或补充流，不进入生产玩法。
 
-**难度尚未平衡。** 第二关存在一手5轮连锁清空目标的路径，第三关也有较多余步。第4步需跑测并评估参数/种子，而不是把本轮三星路径当“难度合理”的证据。死局重排仍待第4步，不保证任意随机操作轨迹永远可继续。
+星级边界：第一关余2/3对应1/2星、5/6对应2/3星；第二关3/4与7/8；第三关4/5与9/10。失败始终0。最后一步获胜用明确隔离的1步/1箱夹具（种子991）验证，不是改正式关卡或强制通关按钮。
 
-最后一步获胜用的是明确隔离的1步/1箱夹具，种子991，不是悄悄把正式关改成1步或提供强制胜利按钮；夹具不写存档。
+**难度尚未平衡。** 第二关存在一手5轮连锁通关路径。第4步需要评估初始种子和参数，不能把三星路径当难度合理证明；本轮没有偷偷改配置。死局重排仍待第4步，不保证任意游玩路径都能继续。
 
 ## 玩家手动验收
 
@@ -91,20 +94,22 @@ dotnet build game/AP6412Match3.sln --no-restore -p:NuGetAudit=false -p:UseShared
 
 第三关完成后N不应进入不存在的第4关。快速点击、动画中R和1/2/3切关应不多扣步、不被旧动画覆盖；Esc退出。窗口内文字/数字辨认、真实点击、完整失败重试仍需要本人记录实际结果。
 
-## 队友下一步
+## UI/存档接入说明
 
-已读取真实PR #5，头为979b46813cf7907388b47b23deebe216f8bfeee7、分支codex/crystal-garden-ui-demo；其中已有Crystal Garden首页/选关，PR说明明确当前DemoLevelProgressProvider提供演示星数/解锁、游戏页仍为占位。此事实不等于B已经完成真实HUD或存档。本轮没有改B的任何文件、分支或PR。
+已重新读取B的PR #5最新头d280b88865623368afdc4bd09ad5c9349b5c152d。相较上轮，B已新增GameplayScreen、真实snapshot HUD、BoardHost、贴图和CrystalGardenBoardLayout校准；不再把整个游戏页称为占位页。当前实际GameUiRoot.ShowLevelSelect仍使用DemoLevelProgressProvider，ShowResult直接跳回选关，ProgressStore尚未连接。以上是代码读取结果，不等于本轮已运行B页面。
 
-1. B合并本轮A代码（草稿完成复核后），保留现有UI工作。GameUiRoot仍继承既有GameUiBridge，不另造GameSession。
-2. 生产入口换掉DemoLevelProgressProvider假星数/解锁，模拟数据只放隔离预览；用真实ProgressStore.GetProgress刷新选关。
-3. 实现res://progress/ProgressStore.tscn，继承ProgressStoreBridge，LoadProgress/RecordResult/GetBestStars/IsUnlocked/GetProgress按CONTRACT。最高星数取max，失败不覆盖，任意通关解锁下一关；2D/3D分别存文件，测试用隔离路径。
-4. 把占位游戏页换成真实HUD与可选BoardHost，ShowGame立即刷新，UpdateHud显示真实余步/剩箱；ShowResult区分本次与最佳星数，B不重新计算三星。
-5. 第三关无下一关按钮；离开确认取消不发请求，确认才LeaveRequested。A负责AppController接线。
-6. 实测从首页→选关→真实第一关→结算→选关星数变化，以及重开保留、三星后低星不降、失败不覆盖。测试替身不算这一步完成。
+交给B的下一步：
 
-## 恢复环境后的收尾
+1. 从最新main同步到B工作分支，保留B已有文件与Git历史；不要覆盖其BoardView2D贴图/Alpha/格心校准。合并这个双方都改过的文件时，应保留B视觉层，再接入A的DamagedBoxes受击及层数显示；不能整文件互相覆盖。
+2. 保留真实HUD与BoardHost；接入胜利/失败结算，显示本次星数与历史最佳，第三关没有“下一关”。等待LevelFinished，不能看到target_remaining=0就自行提前判胜。
+3. 实现res://progress/ProgressStore.tscn，继承ProgressStoreBridge；最高星数max，失败不覆盖，通关解锁下一关，2D/3D独立文件，重启读取。测试使用隔离存档，不能写假成绩到生产存档。
+4. ShowLevelSelect使用传入真实progress替换演示数据；由AppController先记录再刷新页面，B不自己扣步/算星。
+5. 实测开始→选关→真实游玩→结算→显示历史成绩，以及三星后低星不降、失败不覆盖、关闭重开保留、离开取消/确认与重试。A已覆盖可销毁页面的棋盘保管，但真实UI合并后仍需两边一起验收。
 
-- 对照本机未提交工作和本草稿，保留原场景UID修改；补齐新脚本UID，不覆盖B工作。
-- 完整重新构建并运行--level-smoke-test、--gameplay-smoke-test、--board-smoke-test、--smoke-test。
-- 做真实图形与输入检查，随后完成个人分支、PR/merge同步。
-- 本轮不打2d-baseline、不做3D、不宣称B已读确认或完整AI日志齐全。ai-logs/member-a/index.md仍只是价值索引，完整原始对话待实际导出。
+本轮没有更改或合并B的PR #5、贡献归属PR #7或其分支；贡献角色按账号/模块记录（A=@1723358607-rgb玩法，B=@Sherylshiy UI/视觉/进度），不将另一侧会话里的“当前用户”当本会话角色指令。
+
+## 完成范围与后续
+
+A侧第3步实现、草稿核对、最终构建和自动回归已完成；图形手动验收以及B结果/进度集成仍待完成，因此小组第3步还未全体验收，不打2d-baseline、不开始3D。验收后再进入第4步死局重排和难度跑测。
+
+完整原始AI对话仍待真实导出；ai-logs/member-a/index.md只是价值索引，不能冒充完整Prompt/Response。

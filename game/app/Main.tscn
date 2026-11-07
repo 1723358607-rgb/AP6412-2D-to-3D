@@ -69,12 +69,12 @@ text = "Godot 4.7.2 Mono  ·  C#  ·  2D first"
 [node name="Scope" type="Label" parent="Bootstrap/Panel/Margin/Content"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 23
-text = "当前已实现第一关交换、消除、补充与真实步数。\n玩法：成员 A / member-a\nUI 与存档：成员 B / member-b"
+text = "当前已实现三关、木箱伤害、胜负与三星。\n玩法：成员 A / member-a\nUI 与存档：成员 B / member-b"
 autowrap_mode = 3
 
 [node name="Next" type="Label" parent="Bootstrap/Panel/Margin/Content"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.7, 0.75, 0.84, 1)
 theme_override_font_sizes/font_size = 20
-text = "如停留在此页，请查看输出中的 UI 连接错误。\n可独立运行 presentation/2d/GameplayLoop.tscn 验收玩法。\n木箱伤害、通关与三星将于第3步接入。"
+text = "如停留在此页，请查看输出中的 UI 连接错误。\n可独立运行 presentation/2d/GameplayLoop.tscn 验收玩法。\n正式结算、存档和页面联调请按第3步接入说明验收。"
 autowrap_mode = 3

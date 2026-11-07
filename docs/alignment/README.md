@@ -36,14 +36,10 @@
 
 用户已授权A侧AI在每轮项目任务中处理检查、拉取/同步、提交、推送和PR整合；保留本地与队友修改，不在未发起任务时后台同步。B侧AI在自己的member-b上处理本地工作，不能同时向member-a写代码。
 
-## 第3步草稿更新（2026-11-07，新加坡）
+## 当前交付：A第3步玩法及自动检查完成
 
-A已实现木箱单/双层伤害、三关、胜负与整数三星；第3步无窗口检查通过，但环境随后断线，最终构建/回归、远端与本机核对及图形试玩尚未完成。本轮保留草稿PR，不合并main。详见 [第3步证据](../evidence/member-a/step-3.md)。
+唯一工程game/project.godot，默认app/Main.tscn。A已完成单/双层木箱伤害、真实目标计数、三关、先胜后负及整数三星；本机/远端代码核对、最终构建（0警告0错误）、第0/1/2/3步回归通过。AppController已修复临时UI页面销毁棋盘的问题。
 
-## 上轮交付：A第2步真实消除闭环
+A独立验收场景res://presentation/2d/GameplayLoop.tscn：1/2/3测正式关卡，R重试，通关后N下一关；不写存档、不代替正式解锁。手动黄金操作与真实输出见[第3步记录](../evidence/member-a/step-3.md)。
 
-唯一工程仍为 game/project.godot，默认场景res://app/Main.tscn。A已实现第一关真实交换/回退、匹配去重、一次扣步、分段下落、补充和连锁，发布真实snapshot并处理动画输入锁定、重试/离开取消。当前木箱不受伤，通关/星级/第2与3关留第3步；死局重排留第4步。没有完整2D或冻结标签。
-
-本轮用户报告第1步手动检查通过；第2步C#编译、规则、实际场景、主入口接口探针与回归检查通过，宿主权限错误保留在日志。第2步图形验收和B真实UI/电脑联调尚未执行。证据与可操作验收见 [第2步记录](../evidence/member-a/step-2.md)。
-
-UI交付前F5进入A的真实GameplayLoop；独立F6场景为res://presentation/2d/GameplayLoop.tscn。B仍只开发自己的ui/progress/tests/ui，通过GameUiBridge接入，不另建工程。详细真实HUD及可选BoardHost约定见CONTRACT。历史BoardPrototype.tscn仍仅记录请求。
+B的PR #5已经有GameplayScreen、真实HUD/BoardHost和视觉校准，但结果页及ProgressStore仍待接入；不覆盖B的贴图/坐标工作。图形手动与真实UI/存档联合验收尚未完成。第4步再做死局重排和难度平衡，当前第二关存在一手通关路径。没有冻结2D基线或开发3D。

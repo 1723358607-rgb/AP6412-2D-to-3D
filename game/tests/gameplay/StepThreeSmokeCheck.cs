@@ -164,7 +164,7 @@ public static class StepThreeSmokeCheck
 
     private static async Task CheckAppBridge(AppController app)
     {
-        var ui = new StepTwoUiProbe();
+        var ui = new StepTwoUiProbe { RecreatePages = true };
         ui.AddChild(new Control { Name = "BoardHost", Size = new Vector2(560, 500) });
         var progress = new StepThreeProgressProbe();
         app.ConnectUi(ui, progress);
@@ -186,7 +186,16 @@ public static class StepThreeSmokeCheck
         }
         ui.EmitSignal(GameUiBridge.SignalName.LevelSelectRequested);
         Require(ui.Page == "select" && session.CurrentBoard is null, "Return to level select left an active board.");
-        GD.Print("[STEP3_APP_PASS] production controller; record-before-result; unlock/next via in-memory progress probe; final level rejects level4; return clears session. Real B persistence not tested.");
+        for (int frame = 0; frame < 3; frame++) await app.ToSignal(app.GetTree(), SceneTree.SignalName.ProcessFrame);
+        var parkedBoard = app.GetNodeOrNull<Node>("BoardView2D");
+        Require(parkedBoard is not null && GodotObject.IsInstanceValid(parkedBoard), "UI page disposal destroyed A's persistent board presenter.");
+        ui.EmitSignal(GameUiBridge.SignalName.StartRequested, 1);
+        Require(ui.Page == "game" && Moves(session) == 15, "Reopening gameplay after page disposal failed.");
+        ui.EmitSignal(GameUiBridge.SignalName.RetryRequested);
+        ui.EmitSignal(GameUiBridge.SignalName.LeaveRequested);
+        for (int frame = 0; frame < 3; frame++) await app.ToSignal(app.GetTree(), SceneTree.SignalName.ProcessFrame);
+        Require(app.GetNodeOrNull<Node>("BoardView2D") is not null && session.CurrentBoard is null, "Retry/leave page disposal lost the presenter.");
+        GD.Print("[STEP3_APP_PASS] production controller; record-before-result; unlock/next via in-memory progress probe; final level rejects level4; disposable UI pages preserve A's board across result/retry/leave/reopen. Real B persistence not tested.");
     }
 
     private static Fixture MakeFixture(bool winning, int id = 1)

@@ -1,25 +1,21 @@
-# Step 3 draft — final verification pending
-
-A's three-level box-damage/win/loss/star implementation is present in this draft. The completed local step-3 headless check passed, including real level replays and last-move victory. The local environment then disconnected. This remote reconstruction has not been compared byte-for-byte with local files or rebuilt; step-0/1/2 regression and graphical/real teammate persistence checks remain pending. Do not treat this draft as the integrated main version.
-
-Run the existing `presentation/2d/GameplayLoop.tscn` scene for development: 1/2/3 select formal test levels, R retries, N advances after victory. It never saves progress or simulates production unlocks. See docs/evidence/member-a/step-3.md for exact player moves and actual checks. Existing step-2 instructions below are historical until this draft is reconciled.
-
 # AP6412 — 2D to 3D
 
 AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-A's **Step 2 real match-3 loop** is implemented: adjacent swaps, invalid-swap rollback, deduplicated matches, one move per valid swap, segmented gravity, seeded refill and cascades. The first-level development harness uses real session snapshots. Box damage, victory/stars and levels 2/3 are pending Step 3; this is not a complete or frozen 2D game.
+A's **Step 3 gameplay** is implemented: three formal levels, one/two-layer box damage, real target counts, win/loss and integer earned stars. Valid swaps, rollback, gravity/refill/cascades, one-move deduction and cancellation remain intact. AppController preserves its board presenter when a UI page is destroyed.
 
-Open `res://presentation/2d/GameplayLoop.tscn` and run the current scene (F6). Before B supplies UI, F5 opens this harness; afterwards it prioritizes B's UI. The Step 1 request-only `BoardPrototype.tscn` remains available. User reported Step 1 acceptance; Step 2 graphical/manual and real teammate UI checks remain pending. See [Step 2 checks, exact sample moves and handoff](docs/evidence/member-a/step-2.md).
+The remote draft was compared byte-for-byte to the local implementation. Final C# build passed with 0 warnings/errors; step-3 checks and step-0/1/2 regressions passed. Graphical/manual acceptance and real teammate result/progress integration remain pending. No complete 2D baseline is frozen.
+
+Open `res://presentation/2d/GameplayLoop.tscn`, run current scene (F6), and use 1/2/3 to test formal levels, R to retry, N to advance after a win. This development harness never saves progress or simulates production unlocks. See [Step 3 evidence and exact sample moves](docs/evidence/member-a/step-3.md).
 
 - Game concept: 彩块工坊 — three match-3 levels, limited moves, box targets and 1–3 stars.
 - Engine: Godot 4.7.2 Mono/.NET, C# only. A's exact build: `4.7.2.stable.mono.official.ed1daf0bf`; teammate version pending.
 - .NET: A tested SDK 10.0.302 on macOS arm64; project targets net8.0 with Godot.NET.Sdk 4.7.2 and major runtime roll-forward. Teammate environment must be checked separately.
 - Group identifier and member names: TBD
 - Member A: @1723358607-rgb — gameplay; personal branch `member-a`.
-- Member B: GitHub account TBD — UI and local progress; personal branch `member-b`.
+- Member B: @Sherylshiy — UI, visual integration and local progress; personal branch `member-b`. Crystal Garden work is currently traceable through `codex/crystal-garden-ui-demo` and PR #5.
 
 ## 项目对齐与下一步
 
@@ -76,8 +72,8 @@ dotnet build AP6412Match3.sln --no-restore
 ```
 
 3. Import `game/project.godot` in the Godot .NET project manager. Build the C# project, then press **F5**.
-4. Before B supplies UI, F5 opens the **Step 2 real gameplay harness**. Once B supplies UI, F5 prioritizes its start screen. To test gameplay regardless of UI, open `res://presentation/2d/GameplayLoop.tscn` and run the current scene. R resets to the same 15-move opening; Esc exits.
-5. Try row1/col1 ↔ row1/col2: rollback, still15. Then row1/col2 ↔ row2/col2: clear/refill,14moves. Use the exact cascade sequence in the Step2 evidence. Boxes remain fixed and undamaged until Step3; stars/victory/levels2–3 and save integration are pending. No standalone export exists.
+4. Before B supplies UI, F5 opens the **real three-level gameplay harness**. Once B supplies UI, F5 prioritizes its start screen. To test gameplay regardless of UI, open `res://presentation/2d/GameplayLoop.tscn` and run the current scene. R resets to the same 15-move opening; Esc exits.
+5. Try row1/col1 ↔ row1/col2: rollback, still15. Then row1/col2 ↔ row2/col2: clear/refill,14moves. Use the exact cascade sequence in the Step2 evidence. Boxes now take adjacent-match damage; clearing all boxes wins and awards stars. Use 1/2/3 to test all levels. Save integration is pending with B. No standalone export exists.
 
 Headless check on this Mac:
 
@@ -85,7 +81,7 @@ Headless check on this Mac:
 /Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --log-file /tmp/ap6412-step0-smoke.log -- --smoke-test
 ```
 
-For Step2 use `--fixed-fps 60` before `--`, and `--gameplay-smoke-test` after `--`; expect `[STEP2_SMOKE_PASS]`. Step1 `--board-smoke-test` and Step0 `--smoke-test` remain regression checks. Logs retain the host CA error; editor import additionally reports IDE socket/settings permissions.
+For Step3 use `--fixed-fps 60` before `--`, and `--level-smoke-test` after `--`; expect `[STEP3_SMOKE_PASS]`. Step2 `--gameplay-smoke-test` remains available. Step1 `--board-smoke-test` and Step0 `--smoke-test` remain regression checks. Logs retain the host CA error; editor import additionally reports IDE socket/settings permissions.
 
 Run the command from the repository root. Expect `[STEP0_SMOKE_PASS]` and exit 0. It checks the actual C# runtime and interfaces, not unfinished match-3 functionality. In the restricted tool environment, macOS user-data/CA and editor IDE-port/settings operations report host permission errors; these are recorded, not hidden. The graphical window attempt exited 134, so visual layout and Esc remain manual checks.
 
