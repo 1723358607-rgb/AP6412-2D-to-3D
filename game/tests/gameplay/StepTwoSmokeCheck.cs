@@ -260,7 +260,7 @@ public static class StepTwoSmokeCheck
     private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
     private static void Click(BoardView2D view, GridPosition p) => view._UnhandledInput(new InputEventMouseButton
     { Pressed = true, ButtonIndex = MouseButton.Left, Position = view.GetGlobalTransformWithCanvas() *
-        (new Vector2(p.Column, p.Row) * BoardView2D.Pitch + Vector2.One * BoardView2D.CellSize / 2) });
+        view.CellCenter(p) });
 
     private sealed class GatedPresenter : IBoardPresenter
     {

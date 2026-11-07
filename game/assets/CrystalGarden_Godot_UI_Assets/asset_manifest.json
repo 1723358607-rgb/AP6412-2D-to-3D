@@ -1,0 +1,242 @@
+[
+  {
+    "source": "image15.png",
+    "destination": "assets/backgrounds/garden_background_16x9.png",
+    "original_size": [
+      1600,
+      900
+    ],
+    "export_size": [
+      1600,
+      900
+    ],
+    "alpha_min_max": [
+      255,
+      255
+    ]
+  },
+  {
+    "source": "image.png_3",
+    "destination": "assets/home/crystal_garden_logo.png",
+    "original_size": [
+      1600,
+      616
+    ],
+    "export_size": [
+      1598,
+      611
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image.png_4",
+    "destination": "assets/home/button_play.png",
+    "original_size": [
+      1600,
+      495
+    ],
+    "export_size": [
+      1600,
+      495
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image.png_2",
+    "destination": "assets/home/button_levels.png",
+    "original_size": [
+      1522,
+      538
+    ],
+    "export_size": [
+      1520,
+      538
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image.png_1",
+    "destination": "assets/home/button_settings.png",
+    "original_size": [
+      1512,
+      530
+    ],
+    "export_size": [
+      1512,
+      530
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image6.png",
+    "destination": "assets/shared/button_back.png",
+    "original_size": [
+      1536,
+      1024
+    ],
+    "export_size": [
+      1518,
+      1009
+    ],
+    "alpha_min_max": [
+      0,
+      254
+    ]
+  },
+  {
+    "source": "image.png_6",
+    "destination": "assets/levels/select_level_title.png",
+    "original_size": [
+      1600,
+      533
+    ],
+    "export_size": [
+      1590,
+      533
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image.png_5",
+    "destination": "assets/levels/level_card_blank.png",
+    "original_size": [
+      1199,
+      1312
+    ],
+    "export_size": [
+      1198,
+      1305
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image10.png",
+    "destination": "assets/levels/level_01_garden_ruins.png",
+    "original_size": [
+      1586,
+      992
+    ],
+    "export_size": [
+      1572,
+      992
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image11.png",
+    "destination": "assets/levels/level_02_glass_gazebo.png",
+    "original_size": [
+      1585,
+      992
+    ],
+    "export_size": [
+      1530,
+      992
+    ],
+    "alpha_min_max": [
+      0,
+      253
+    ]
+  },
+  {
+    "source": "image12.png",
+    "destination": "assets/levels/level_03_archway_ruins.png",
+    "original_size": [
+      1586,
+      992
+    ],
+    "export_size": [
+      1583,
+      992
+    ],
+    "alpha_min_max": [
+      0,
+      253
+    ]
+  },
+  {
+    "source": "image8.png",
+    "destination": "assets/levels/star_earned.png",
+    "original_size": [
+      1600,
+      1541
+    ],
+    "export_size": [
+      1600,
+      1508
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image9.png",
+    "destination": "assets/levels/star_unearned.png",
+    "original_size": [
+      1600,
+      1554
+    ],
+    "export_size": [
+      1563,
+      1495
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  },
+  {
+    "source": "image13.png",
+    "destination": "assets/levels/locked_overlay.png",
+    "original_size": [
+      1600,
+      1142
+    ],
+    "export_size": [
+      1600,
+      1142
+    ],
+    "alpha_min_max": [
+      77,
+      77
+    ]
+  },
+  {
+    "source": "image14.png",
+    "destination": "assets/levels/locked_padlock.png",
+    "original_size": [
+      1277,
+      1231
+    ],
+    "export_size": [
+      1198,
+      1137
+    ],
+    "alpha_min_max": [
+      0,
+      255
+    ]
+  }
+]

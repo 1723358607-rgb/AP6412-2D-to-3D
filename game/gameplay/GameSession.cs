@@ -71,6 +71,8 @@ public partial class GameSession : Node
                 throw new ArgumentException("Initial cells must agree with the supplied level configuration.");
         }
         if (_resolver.FindMatches(board).Count != 0) throw new ArgumentException("Initial board must be stable.");
+        ShuffleResult ready = new BoardGenerator().EnsurePlayable(board, randomState);
+        board = ready.Board; randomState = ready.NextRandomState;
         RenewLifetime();
         _level = level;
         CurrentBoard = board;
@@ -113,7 +115,7 @@ public partial class GameSession : Node
         uint previousRandomState = _randomState;
         SwapResolution? previousResolution = LastResolution;
         SwapResolution resolution;
-        try { resolution = _resolver.ResolveSwap(original, from, to, _randomState); }
+        try { resolution = _resolver.ResolveSwap(original, from, to, _randomState, ensurePlayable: _moves > 1); }
         catch (Exception error)
         {
             LastRequestNotice = error.Message;
@@ -167,6 +169,7 @@ public partial class GameSession : Node
         LastRequestNotice = resolution.Status == SwapAttemptStatus.NoMatch
             ? "没有形成匹配：已交换回去，不扣步。"
             : $"本次扣1步，连锁{resolution.Cascades}轮，消除{resolution.TotalCleared}枚。";
+        if (resolution.Reshuffles > 0) LastRequestNotice += " 无合法步，已重排，不额外扣步。";
         bool terminal = _phase is "won" or "lost";
         GDictionary? result = null;
         if (terminal && !_resultPublished)

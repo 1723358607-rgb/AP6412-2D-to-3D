@@ -1,6 +1,6 @@
 namespace AP6412Match3.Core;
 
-/// <summary>Deterministic initial generation and refill. Dead-board reshuffling is later work.</summary>
+/// <summary>Deterministic generation/refill and bounded piece-preserving dead-board recovery.</summary>
 public sealed class BoardGenerator
 {
     public BoardModel CreateInitialBoard(LevelDefinition level) => CreateInitialBoard(level, out _);
@@ -52,17 +52,49 @@ public sealed class BoardGenerator
             if (!placed)
                 throw new InvalidOperationException("No valid initial piece color available.");
         }
-        nextRandomState = state;
-        return new BoardModel(cells);
+        ShuffleResult ready = EnsurePlayable(new BoardModel(cells), state);
+        nextRandomState = ready.NextRandomState;
+        return ready.Board;
     }
 
-    public static int NextColor(ref uint state)
+    public static int NextColor(ref uint state) => (int)(NextUInt(ref state) % 4);
+
+    private static uint NextUInt(ref uint state)
     {
         if (state == 0) throw new ArgumentOutOfRangeException(nameof(state));
         state ^= state << 13;
         state ^= state >> 17;
         state ^= state << 5;
-        return (int)(state % 4);
+        return state;
+    }
+
+    public ShuffleResult EnsurePlayable(BoardModel board, uint randomState, int maxAttempts = 512)
+    {
+        if (randomState == 0 || maxAttempts < 1) throw new ArgumentOutOfRangeException();
+        var positions = new List<GridPosition>(); var pieces = new List<BoardCell>();
+        for (int y = 0; y < board.Height; y++)
+        for (int x = 0; x < board.Width; x++)
+        {
+            GridPosition p = new(x, y); BoardCell cell = board.GetCell(p);
+            if (cell.Kind == CellKind.Empty) throw new ArgumentException("Stable boards cannot contain holes.");
+            if (cell.Kind == CellKind.Piece) { positions.Add(p); pieces.Add(cell); }
+        }
+        var resolver = new MatchResolver();
+        if (resolver.FindMatches(board).Count != 0) throw new ArgumentException("Dead-board recovery requires a stable board.");
+        if (BoardMoves.FindLegal(board).Count != 0) return new(board, randomState, 0);
+        uint state = randomState;
+        for (int attempt = 1; attempt <= maxAttempts; attempt++)
+        {
+            BoardCell[] shuffled = pieces.ToArray();
+            for (int i = shuffled.Length - 1; i > 0; i--)
+            { int j = (int)(NextUInt(ref state) % (uint)(i + 1)); (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]); }
+            var cells = board.CopyCells();
+            for (int i = 0; i < positions.Count; i++) cells[positions[i].Column, positions[i].Row] = shuffled[i];
+            var candidate = new BoardModel(cells);
+            if (resolver.FindMatches(candidate).Count == 0 && BoardMoves.FindLegal(candidate).Count != 0)
+                return new(candidate, state, attempt);
+        }
+        throw new InvalidOperationException($"No playable piece-preserving shuffle after {maxAttempts} attempts; source board and RNG were not committed.");
     }
 
     public BoardStep Refill(BoardModel board, ref uint state)
@@ -84,3 +116,5 @@ public sealed class BoardGenerator
     private static bool IsSame(BoardCell cell, PieceColor color) =>
         cell.Kind == CellKind.Piece && cell.Color == color;
 }
+
+public sealed record ShuffleResult(BoardModel Board, uint NextRandomState, int Attempts);

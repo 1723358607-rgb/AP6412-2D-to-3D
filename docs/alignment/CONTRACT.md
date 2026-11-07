@@ -1,3 +1,5 @@
+> 第4步实施补充：公共桥接方法/字典/信号未改。当前无ProgressStore场景时，AppController挂载A的app/integration/IntegratedUi + RuntimeProgressBridge，复用B页面但只保留实际会话内成绩；页面有重置提示。正式ProgressStore出现时改回B原UI，B必须同步完成真实ShowLevelSelect和ShowResult，不能只添加空存档场景。BoardHost使用B测量的布局，BoardView2D.CellCenter统一绘制/点击/测试格心。详见HANDOFF_UI与第4步证据。
+
 # 接口与文件归属 v1.3 — Godot Mono / C#
 
 用户已确定使用 Godot Mono 与 C# 脚本。本机为 `4.7.2.stable.mono.official.ed1daf0bf`、.NET SDK `10.0.302`、macOS arm64；队友完整版本待其实际确认。工程目标框架为 net8.0，Godot SDK 固定为 4.7.2。所有项目脚本使用 C#，不要按旧版伪代码生成 GDScript。

@@ -35,7 +35,7 @@ public sealed class MatchResolver
         return matches;
     }
 
-    public SwapResolution ResolveSwap(BoardModel board, GridPosition from, GridPosition to, uint randomState, int maxCascades = 64)
+    public SwapResolution ResolveSwap(BoardModel board, GridPosition from, GridPosition to, uint randomState, int maxCascades = 64, bool ensurePlayable = true)
     {
         if (maxCascades < 1) throw new ArgumentOutOfRangeException(nameof(maxCascades));
         if (board.ValidateSwap(from, to) != SwapValidation.Accepted)
@@ -71,7 +71,17 @@ public sealed class MatchResolver
             current = refill.After;
             matched = FindMatches(current);
         }
-        return new SwapResolution(SwapAttemptStatus.Accepted, current, state, steps.AsReadOnly(), cascades, total);
+        int reshuffles = 0;
+        if (ensurePlayable && LevelRules.CountBoxes(current) > 0)
+        {
+            ShuffleResult ready = generator.EnsurePlayable(current, state);
+            if (ready.Attempts > 0)
+            {
+                steps.Add(new BoardStep(BoardStepKind.Reshuffle, current, ready.Board, [], []));
+                current = ready.Board; state = ready.NextRandomState; reshuffles = 1;
+            }
+        }
+        return new SwapResolution(SwapAttemptStatus.Accepted, current, state, steps.AsReadOnly(), cascades, total, reshuffles);
     }
 
     public BoardStep ClearMatches(BoardModel board, IReadOnlySet<GridPosition> matched)

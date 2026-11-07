@@ -4,18 +4,16 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-A's **Step 3 gameplay** is implemented: three formal levels, one/two-layer box damage, real target counts, win/loss and integer earned stars. Valid swaps, rollback, gravity/refill/cascades, one-move deduction and cancellation remain intact. AppController preserves its board presenter when a UI page is destroyed.
+Step4 gameplay and actual UI integration are implemented. F5 opens B's Crystal Garden home/level/game pages and assets, connected to actual swaps, boxes, wins/losses, earned stars and current-session unlocks. Dead boards recover through bounded deterministic piece-preserving shuffle. Level2 seed is now641209; move budgets and star rules are unchanged.
 
-The remote draft was compared byte-for-byte to the local implementation. Final C# build passed with 0 warnings/errors; step-3 checks and step-0/1/2 regressions passed. Graphical/manual acceptance and real teammate result/progress integration remain pending. No complete 2D baseline is frozen.
+**Progress is currently session-only and resets on close.** B's persistent store and original UI result/progress binding remain pending. No 2D baseline tag has been created. See [Step4 evidence, screenshots and exact manual replay](docs/evidence/member-a/step-4.md) and [B handoff](docs/alignment/HANDOFF_UI.md).
 
-Open `res://presentation/2d/GameplayLoop.tscn`, run current scene (F6), and use 1/2/3 to test formal levels, R to retry, N to advance after a win. This development harness never saves progress or simulates production unlocks. See [Step 3 evidence and exact sample moves](docs/evidence/member-a/step-3.md).
+Build:0 warnings/errors. Step0–4 and B original UI demo checks passed, including real X11/software OpenGL rendering and input. The cloud editor import logged a GodotTools/MSBuild exception, and audio fell back to Dummy; Mac/teammate manual acceptance is pending. This cloud run did not update the old Mac working copy.
 
-- Game concept: 彩块工坊 — three match-3 levels, limited moves, box targets and 1–3 stars.
-- Engine: Godot 4.7.2 Mono/.NET, C# only. A's exact build: `4.7.2.stable.mono.official.ed1daf0bf`; teammate version pending.
-- .NET: A tested SDK 10.0.302 on macOS arm64; project targets net8.0 with Godot.NET.Sdk 4.7.2 and major runtime roll-forward. Teammate environment must be checked separately.
-- Group identifier and member names: TBD
-- Member A: @1723358607-rgb — gameplay; personal branch `member-a`.
-- Member B: @Sherylshiy — UI, visual integration and local progress; personal branch `member-b`. Crystal Garden work is currently traceable through `codex/crystal-garden-ui-demo` and PR #5.
+- Engine: Godot4.7.2 Mono/.NET, C#; exact build `4.7.2.stable.mono.official.ed1daf0bf`.
+- Project: net8.0 / Godot.NET.Sdk4.7.2. Tested SDK8.0.427 on Linux and previously10.0.302 on macOS arm64; teammate version pending.
+- A @1723358607-rgb: gameplay / member-a. B @Sherylshiy: UI, visuals and progress / member-b; original Crystal Garden work preserved through its source branch and PR #5.
+- Group number and human names: TBD.
 
 ## 项目对齐与下一步
 
@@ -61,35 +59,33 @@ Full prompts AND responses, including corrections and relevant code blocks, must
 
 ## How to run
 
-Use **Godot .NET / Mono 4.7.2**, not the standard build without C# support. The only project is `game/project.godot`; the main scene is `res://app/Main.tscn`.
-
-1. Install/confirm the .NET SDK on each computer; the current machine has 10.0.302. Confirm the teammate's exact Godot Mono version before parallel implementation.
-2. In the repository's `game` directory, restore and build:
+Get the **entire repository**. Import `game/project.godot` with **Godot Mono/.NET4.7.2**, build C#, press **F5**. The main scene is `res://app/Main.tscn`. Do not import only a downloaded project.godot file.
 
 ```sh
+cd game
 dotnet restore AP6412Match3.csproj
 dotnet build AP6412Match3.sln --no-restore
 ```
 
-3. Import `game/project.godot` in the Godot .NET project manager. Build the C# project, then press **F5**.
-4. Before B supplies UI, F5 opens the **real three-level gameplay harness**. Once B supplies UI, F5 prioritizes its start screen. To test gameplay regardless of UI, open `res://presentation/2d/GameplayLoop.tscn` and run the current scene. R resets to the same 15-move opening; Esc exits.
-5. Try row1/col1 ↔ row1/col2: rollback, still15. Then row1/col2 ↔ row2/col2: clear/refill,14moves. Use the exact cascade sequence in the Step2 evidence. Boxes now take adjacent-match damage; clearing all boxes wins and awards stars. Use 1/2/3 to test all levels. Save integration is pending with B. No standalone export exists.
+Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock next level and see actual current/best stars. Retry/Levels/Next use real gameplay. Closing the app resets the current temporary progress.
 
-Headless check on this Mac:
+For a quick deterministic win, start/retry level1, then swap **row6/col3↔row6/col4**, wait, then **row5/col4↔row5/col5** (1-based). Expect victory,13 moves,3 stars. See [Step4](docs/evidence/member-a/step-4.md) for all three replays and edge cases.
+
+Independent A development harness: open `res://presentation/2d/GameplayLoop.tscn`, F6; 1/2/3 select test levels, R retries, N advances after victory, Esc exits. It never persists progress. Historical BoardPrototype remains request-only.
+
+From repository root, with GODOT pointing to your executable:
 
 ```sh
-/Applications/Godot_mono.app/Contents/MacOS/Godot --headless --path game --log-file /tmp/ap6412-step0-smoke.log -- --smoke-test
+"$GODOT" --headless --path game --fixed-fps 60 -- --step4-smoke-test
 ```
 
-For Step3 use `--fixed-fps 60` before `--`, and `--level-smoke-test` after `--`; expect `[STEP3_SMOKE_PASS]`. Step2 `--gameplay-smoke-test` remains available. Step1 `--board-smoke-test` and Step0 `--smoke-test` remain regression checks. Logs retain the host CA error; editor import additionally reports IDE socket/settings permissions.
+Expected `[STEP4_SMOKE_PASS]` and exit0. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
 
-Run the command from the repository root. Expect `[STEP0_SMOKE_PASS]` and exit 0. It checks the actual C# runtime and interfaces, not unfinished match-3 functionality. In the restricted tool environment, macOS user-data/CA and editor IDE-port/settings operations report host permission errors; these are recorded, not hidden. The graphical window attempt exited 134, so visual layout and Esc remain manual checks.
-
-For offline work, the local validation restored from the installed Godot .NET bundle and an existing NuGet cache. These machine-specific paths are not project dependencies; a teammate with network access can use normal `dotnet restore`.
+If the old Mac checkout has an unfinished merge, preserve it and its uncommitted work; do not blindly pull/reset. For immediate play, download the full main ZIP into a **new folder** and import its game/project.godot. Cloud/GitHub updates do not themselves resolve a local Mac merge.
 
 ### UI teammate handoff
 
-B implements C# `GameUiRoot : AP6412Match3.App.Contracts.GameUiBridge` at `res://ui/GameUiRoot.tscn`. Later, `ProgressStore : ProgressStoreBridge` lives at `res://progress/ProgressStore.tscn`. The app discovers these scenes automatically; do not create another project or edit A's entry scene/settings. See the actual base classes in `game/app/contracts/` and the updated CONTRACT, including both navigation signals. Step2 HUD must display real snapshots. B may supply a `BoardHost` Control (560×500 recommended); see CONTRACT for layout and input propagation. Mock previews remain confined to B's isolated test scenes.
+B retains `ui/`, `progress/`, `tests/ui/`. Implement `ProgressStoreBridge` at `res://progress/ProgressStore.tscn` **together with** original UI snapshot-backed level selection and real result pages. Adding the store scene switches off A's temporary app adapter, so do not deliver an empty store shell alone. Keep input propagation, measured BoardHost alignment and A box-damage rendering. See [CONTRACT](docs/alignment/CONTRACT.md) and [current checklist](docs/alignment/HANDOFF_UI.md).
 
 ## Submission checklist
 

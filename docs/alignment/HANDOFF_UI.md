@@ -1,3 +1,20 @@
+# 第4步后，B下一轮接入清单（2026-11-08）
+
+请先同步main到你自己的工作分支，保留已有修改。B的Crystal Garden三页/贴图/格心校准已整合，原ui/文件未被A改写；BoardView2D合并保留双方贡献。A新增app/integration临时适配器接入真实选关/星数/结果，RAM-only，不是正式存档。详见 [第4步证据](../evidence/member-a/step-4.md)。
+
+1. 在progress/实现ProgressStoreBridge及ProgressStore.tscn，分2d/3d文件，最高星数/解锁/重复结果/失败不覆盖，缺失和损坏文件安全处理。
+2. 同次提交完成GameUiRoot.ShowLevelSelect对真实progress的消费，以及ShowResult的本次/最佳/Retry/Next/Levels；停止使用DemoLevelProgressProvider作为正式数据。末关无Next。
+3. 正式存档场景一出现，AppController会回到B原版UI，A临时适配器不再挂载。因此不能只加ProgressStore空壳而保留演示选关与空结算。
+4. 页面根/ScreenHost/游戏页空白允许棋盘未处理鼠标事件通过；按钮/离开弹窗必须拦截。BoardHost与B的格心布局已对齐，不要覆盖A的木箱层数/伤害效果。
+5. 补隔离存档自动检查，真人关闭重开与低星重玩检查；不能删除真实成绩。不要在UI重新计算星级或规则。
+6. 双方完成README流程、确认引擎完整版本、提交截图/检查结果后再讨论第5步冻结；尚无2d-baseline标签。
+
+第二关正式seed现在641209，旧641202的一手通关已移除；新逐格通关路径在第4步证据。请对方AI实际读取后记录确认，文档发布不等于对方已经确认。
+
+---
+
+以下为历史交接说明；以上方当前清单优先。
+
 # 给 UI 负责人 AI 的启动说明
 
 第3步接入更新：A玩法、代码核对、最终构建和第0/1/2/3步回归已完成。B的PR #5最新已新增GameplayScreen、真实HUD/BoardHost和视觉校准；当前ShowLevelSelect仍用演示进度，ShowResult直接返回选关，正式存档/结算仍需实现。接入请读docs/evidence/member-a/step-3.md及CONTRACT：保留你的UI/贴图/格心校准，合并BoardView2D时接入DamagedBoxes层数/受击显示，不整文件覆盖。AppController已在换页前保管A棋盘，支持B销毁旧页面。下方旧启动说明为历史上下文。

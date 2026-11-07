@@ -84,12 +84,13 @@ public static class StepOneSmokeCheck
             for (int row = 0; row < 7; row++)
             for (int column = 0; column < 7; column++)
             {
-                var point = new Vector2(column * BoardView2D.Pitch + BoardView2D.CellSize / 2, row * BoardView2D.Pitch + BoardView2D.CellSize / 2);
+                var point = view.CellCenter(new GridPosition(column, row));
                 Require(view.TryGetCellAtLocalPosition(point, out var position) && position == new GridPosition(column, row), "Cell center mapping wrong.");
             }
-            Require(!view.TryGetCellAtLocalPosition(new Vector2(-1, 20), out _), "Negative point mapped.");
-            Require(!view.TryGetCellAtLocalPosition(new Vector2(BoardView2D.CellSize + 1, 20), out _), "Gap mapped as a cell.");
-            Require(!view.TryGetCellAtLocalPosition(view.BoardSize, out _), "Outside edge mapped.");
+            Vector2 origin = view.CellCenter(new(0, 0)) - Vector2.One * BoardView2D.CellSize / 2;
+            Require(!view.TryGetCellAtLocalPosition(origin + new Vector2(-1, 20), out _), "Outside point mapped.");
+            Require(!view.TryGetCellAtLocalPosition(origin + new Vector2(BoardView2D.CellSize + 1, 20), out _), "Gap mapped as a cell.");
+            Require(!view.TryGetCellAtLocalPosition(origin + view.BoardSize, out _), "Outside edge mapped.");
             Require(session.GetSnapshot()["phase"].AsString() == "idle" && session.GetSnapshot()["moves_remaining"].AsInt32() == 0,
                 "Independent prototype must not fake GameSession or decrement moves.");
 

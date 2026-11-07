@@ -1,0 +1,122 @@
+{
+  "project": "Crystal Garden Gameplay",
+  "assets": [
+    {
+      "source": "image.png_1/screen.png",
+      "output": "board_7x7_frame.png",
+      "pixels": [
+        1199,
+        1312
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_2/screen.png",
+      "output": "gem_heart_pink.png",
+      "pixels": [
+        1220,
+        1448
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_3/screen.png",
+      "output": "gem_teardrop_blue.png",
+      "pixels": [
+        982,
+        1448
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_4/screen.png",
+      "output": "gem_hexagon_gold.png",
+      "pixels": [
+        1256,
+        1448
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_5/screen.png",
+      "output": "gem_diamond_purple.png",
+      "pixels": [
+        1132,
+        1448
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_6/screen.png",
+      "output": "hud_goal_moves_panel.png",
+      "pixels": [
+        923,
+        1600
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_7/screen.png",
+      "output": "hud_bottom_progress_frame.png",
+      "pixels": [
+        1600,
+        424
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_8/screen.png",
+      "output": "obstacle_wooden_crate.png",
+      "pixels": [
+        914,
+        762
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_9/screen.png",
+      "output": "button_settings.png",
+      "pixels": [
+        1146,
+        976
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_10/screen.png",
+      "output": "button_pause.png",
+      "pixels": [
+        1142,
+        862
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_11/screen.png",
+      "output": "progress_fill_full.png",
+      "pixels": [
+        1600,
+        98
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "image.png_12/screen.png",
+      "output": "progress_track_empty.png",
+      "pixels": [
+        1600,
+        126
+      ],
+      "transparent_background": true
+    },
+    {
+      "source": "previous generated play/pause button artwork",
+      "output": "button_resume_play.png",
+      "pixels": [
+        874,
+        613
+      ],
+      "transparent_background": true
+    }
+  ]
+}
