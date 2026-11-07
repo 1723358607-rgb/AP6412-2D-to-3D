@@ -7,14 +7,20 @@ namespace AP6412Match3.Presentation;
 /// <summary>Board-only drawing/input adapter; no menus, HUD, match resolution or session state.</summary>
 public partial class BoardView2D : Node2D, IBoardPresenter
 {
+    private const string GameplayAssetRoot = "res://assets/CrystalGarden_Gameplay_Assets";
+    private readonly Dictionary<PieceColor, TextureVisual> _pieceVisuals = [];
+    private TextureVisual? _crateVisual;
     private BoardStep? _animation;
     private float _animationProgress;
     private int _animationVersion;
     private bool _interactive;
     private bool _prototype;
-    public const float CellSize = 58;
+    private bool _debugGrid;
+    public const float CellSize = 70;
     public const float Gap = 6;
+    // Kept for the historical prototype test contract; production frame mapping uses GridPitch.
     public const float Pitch = CellSize + Gap;
+    public static Vector2 GridPitch => CrystalGardenBoardLayout.Pitch;
     public BoardInteraction? Interaction { get; private set; }
     public string LastMessage { get; private set; } = "点击普通棋子，然后点击相邻棋子。";
 
@@ -23,6 +29,14 @@ public partial class BoardView2D : Node2D, IBoardPresenter
 
     public override void _Ready()
     {
+        // Source regions are the measured main Alpha silhouettes (thresholded to ignore sparse glow pixels).
+        // Drawing cropped regions removes large transparent margins while preserving each gem's aspect ratio.
+        _pieceVisuals[PieceColor.Red] = LoadVisual("gem_heart_pink.png", new Rect2(108, 308, 1022, 884));
+        _pieceVisuals[PieceColor.Blue] = LoadVisual("gem_teardrop_blue.png", new Rect2(98, 218, 758, 992));
+        _pieceVisuals[PieceColor.Green] = LoadVisual("gem_diamond_purple.png", new Rect2(152, 196, 832, 1010));
+        _pieceVisuals[PieceColor.Yellow] = LoadVisual("gem_hexagon_gold.png", new Rect2(204, 242, 886, 952));
+        _crateVisual = LoadVisual("obstacle_wooden_crate.png", new Rect2(222, 142, 536, 512));
+        _debugGrid = OS.GetCmdlineUserArgs().Contains("--board-grid-debug");
         SetProcessUnhandledInput(false);
     }
 
@@ -102,24 +116,38 @@ public partial class BoardView2D : Node2D, IBoardPresenter
         if (GetParent() is Control host) host.Resized -= UpdateLayout;
     }
 
-    public Vector2 BoardSize => Interaction is null ? Vector2.Zero :
-        new Vector2(Interaction.Board.Width * Pitch - Gap, Interaction.Board.Height * Pitch - Gap);
+    private Rect2 BoardBounds => Interaction is null ? new Rect2() : new Rect2(
+        CrystalGardenBoardLayout.FirstCellCenter - Vector2.One * CellSize / 2,
+        new Vector2(
+            (Interaction.Board.Width - 1) * GridPitch.X + CellSize,
+            (Interaction.Board.Height - 1) * GridPitch.Y + CellSize));
+
+    public Vector2 BoardSize => BoardBounds.Size;
+    public Vector2 CellCenter(GridPosition p) => CrystalGardenBoardLayout.FirstCellCenter + new Vector2(p.Column * GridPitch.X, p.Row * GridPitch.Y);
 
     private void UpdateLayout()
     {
-        Vector2 viewport = GetParent() is Control host ? host.Size : GetViewportRect().Size;
-        Position = (viewport - BoardSize) / 2 + (GetParent() is Control ? Vector2.Zero : new Vector2(0, 16));
+        if (GetParent() is Control boardHost && boardHost.Name == "BoardHost")
+            Position = Vector2.Zero;
+        else
+        {
+            Vector2 viewport = GetParent() is Control host ? host.Size : GetViewportRect().Size;
+            Position = (viewport - BoardBounds.Size) / 2 - BoardBounds.Position
+                + (GetParent() is Control ? Vector2.Zero : new Vector2(0, 16));
+        }
         QueueRedraw();
     }
 
     public bool TryGetCellAtLocalPosition(Vector2 point, out GridPosition position)
     {
         position = default;
-        if (Interaction is null || point.X < 0 || point.Y < 0 || point.X >= BoardSize.X || point.Y >= BoardSize.Y)
+        Rect2 bounds = BoardBounds;
+        if (Interaction is null || !bounds.HasPoint(point))
             return false;
-        int column = (int)(point.X / Pitch);
-        int row = (int)(point.Y / Pitch);
-        if (point.X - column * Pitch >= CellSize || point.Y - row * Pitch >= CellSize)
+        Vector2 relative = point - bounds.Position;
+        int column = Mathf.FloorToInt(relative.X / GridPitch.X);
+        int row = Mathf.FloorToInt(relative.Y / GridPitch.Y);
+        if (relative.X - column * GridPitch.X >= CellSize || relative.Y - row * GridPitch.Y >= CellSize)
             return false;
         position = new GridPosition(column, row);
         return Interaction.Board.Contains(position);
@@ -163,34 +191,26 @@ public partial class BoardView2D : Node2D, IBoardPresenter
         BoardModel board = _animation is { Kind: BoardStepKind.Clear } clear ? clear.Before : _animation?.After ?? Interaction.Board;
         float progress = Mathf.SmoothStep(0, 1, _animationProgress);
         var movingDestinations = _animation?.Motions.Select(m => m.To).ToHashSet() ?? [];
-        DrawRect(new Rect2(new Vector2(-14, -14), BoardSize + new Vector2(28, 28)), new Color("111c30"));
         for (int row = 0; row < board.Height; row++)
         for (int column = 0; column < board.Width; column++)
         {
             var position = new GridPosition(column, row);
-            Vector2 origin = new(column * Pitch, row * Pitch);
-            Vector2 center = origin + Vector2.One * (CellSize / 2);
-            var rect = new Rect2(origin, Vector2.One * CellSize);
-            DrawRect(rect, new Color("20314b"));
+            Vector2 center = CellCenter(position);
+            var rect = new Rect2(center - Vector2.One * CellSize / 2, Vector2.One * CellSize);
             BoardCell cell = board.GetCell(position);
             if (cell.Kind == CellKind.Box)
             {
                 bool hit = _animation?.Kind == BoardStepKind.Clear && _animation.DamagedBoxes?.Contains(position) == true;
-                float scale = hit && cell.BoxLayers == 1 ? 1 - progress : 1;
-                DrawSetTransform(center, 0, Vector2.One * scale);
-                var boxRect = new Rect2(-Vector2.One * CellSize / 2, Vector2.One * CellSize);
-                Color wood = new(cell.BoxLayers == 2 ? "855943" : "a56e3e");
-                DrawRect(boxRect.Grow(-4), hit ? wood.Lerp(new Color("fff0a5"), Mathf.Sin(progress * Mathf.Pi)) : wood);
-                DrawRect(boxRect.Grow(-7), new Color("edc18b"), false, cell.BoxLayers == 2 ? 4 : 2);
-                DrawLine(new Vector2(-19, -19), new Vector2(19, 19), new Color("603c27"), 4, true);
-                DrawLine(new Vector2(19, -19), new Vector2(-19, 19), new Color("603c27"), 4, true);
-                DrawRect(new Rect2(new Vector2(-10, -13), new Vector2(20, 26)), new Color("3e2d27"));
+                DrawSetTransform(center, 0, Vector2.One * (hit && cell.BoxLayers == 1 ? 1 - progress : 1));
+                if (_crateVisual is { } crate) DrawVisual(crate, Vector2.Zero, 62);
+                DrawRect(new Rect2(-10, -13, 20, 26), new Color("3e2d27"));
                 DrawString(ThemeDB.FallbackFont, new Vector2(-6, 7), cell.BoxLayers.ToString(), fontSize: 19, modulate: new Color("fff0ce"));
                 DrawSetTransform(Vector2.Zero);
             }
             else if (cell.Kind == CellKind.Piece && !movingDestinations.Contains(position))
             {
-                float scale = _animation?.Kind == BoardStepKind.Clear && _animation.Cleared.Contains(position) ? 1 - progress : 1;
+                float scale = _animation?.Kind == BoardStepKind.Clear && _animation.Cleared.Contains(position) ? 1 - progress :
+                    _animation?.Kind == BoardStepKind.Reshuffle ? Mathf.Lerp(0.25f, 1, progress) : 1;
                 DrawSetTransform(center, 0, Vector2.One * scale);
                 DrawPiece(Vector2.Zero, cell.Color);
                 DrawSetTransform(Vector2.Zero);
@@ -205,40 +225,48 @@ public partial class BoardView2D : Node2D, IBoardPresenter
         if (_animation is not null)
         foreach (PieceMotion motion in _animation.Motions)
         {
-            Vector2 destination = new Vector2(motion.To.Column, motion.To.Row) * Pitch + Vector2.One * CellSize / 2;
+            Vector2 destination = CellCenter(motion.To);
             Vector2 source = motion.Spawned ? destination + new Vector2(0, -14) :
-                new Vector2(motion.From.Column, motion.From.Row) * Pitch + Vector2.One * CellSize / 2;
+                CellCenter(motion.From);
             DrawSetTransform(source.Lerp(destination, progress), 0, Vector2.One * (motion.Spawned ? Mathf.Lerp(0.1f, 1, progress) : 1));
             DrawPiece(Vector2.Zero, motion.Cell.Color);
             DrawSetTransform(Vector2.Zero);
         }
 
-        Font font = ThemeDB.FallbackFont;
-        for (int column = 0; column < board.Width; column++)
-            DrawString(font, new Vector2(column * Pitch, -22), (column + 1).ToString(), HorizontalAlignment.Center, CellSize, 16, new Color("93a6c2"));
+        if (_debugGrid)
+            DrawGridDebug(board);
+
+    }
+
+    private void DrawGridDebug(BoardModel board)
+    {
         for (int row = 0; row < board.Height; row++)
-            DrawString(font, new Vector2(-42, row * Pitch + CellSize / 2 + 6), (row + 1).ToString(), HorizontalAlignment.Center, 20, 16, new Color("93a6c2"));
+        for (int column = 0; column < board.Width; column++)
+        {
+            Vector2 center = CrystalGardenBoardLayout.FirstCellCenter
+                + new Vector2(column * GridPitch.X, row * GridPitch.Y);
+            Rect2 hitRect = new(center - Vector2.One * CellSize / 2, Vector2.One * CellSize);
+            DrawRect(hitRect, new Color(0.1f, 1f, 1f, 0.8f), false, 1.5f);
+            DrawLine(center - new Vector2(7, 0), center + new Vector2(7, 0), new Color("ff315f"), 2);
+            DrawLine(center - new Vector2(0, 7), center + new Vector2(0, 7), new Color("ff315f"), 2);
+        }
     }
 
     private void DrawPiece(Vector2 center, PieceColor color)
     {
-        const float radius = 20;
-        switch (color)
-        {
-            case PieceColor.Red:
-                DrawColoredPolygon([center + new Vector2(0, -radius), center + new Vector2(radius, 0), center + new Vector2(0, radius), center + new Vector2(-radius, 0)], new Color("f47788"));
-                break;
-            case PieceColor.Blue:
-                DrawCircle(center, radius, new Color("68b9fa"));
-                DrawCircle(center + new Vector2(-6, -6), 5, new Color("b5e3ff"));
-                break;
-            case PieceColor.Green:
-                DrawColoredPolygon([center + new Vector2(0, -radius - 2), center + new Vector2(radius + 1, radius - 1), center + new Vector2(-radius - 1, radius - 1)], new Color("67d8a7"));
-                break;
-            case PieceColor.Yellow:
-                DrawRect(new Rect2(center - Vector2.One * 17, Vector2.One * 34), new Color("f6cd70"));
-                DrawRect(new Rect2(center - Vector2.One * 8, Vector2.One * 16), new Color("ffe8a5"));
-                break;
-        }
+        if (_pieceVisuals.TryGetValue(color, out TextureVisual visual))
+            DrawVisual(visual, center, 61);
     }
+
+    private static TextureVisual LoadVisual(string fileName, Rect2 sourceRegion) =>
+        new(GD.Load<Texture2D>($"{GameplayAssetRoot}/{fileName}"), sourceRegion);
+
+    private void DrawVisual(TextureVisual visual, Vector2 center, float longestSide)
+    {
+        float scale = longestSide / Mathf.Max(visual.SourceRegion.Size.X, visual.SourceRegion.Size.Y);
+        Vector2 size = visual.SourceRegion.Size * scale;
+        DrawTextureRectRegion(visual.Texture, new Rect2(center - size / 2, size), visual.SourceRegion);
+    }
+
+    private readonly record struct TextureVisual(Texture2D Texture, Rect2 SourceRegion);
 }

@@ -1,11 +1,11 @@
 # Shared Godot project
 
-The repository's single Godot project uses Godot4.7.2 Mono/.NET, C# and net8.0 (A verified SDK10.0.302). Import this directory's project.godot, build AP6412Match3.sln, then run app/Main.tscn (F5). Build/import the entire repository; do not download project.godot alone.
+Single project: Godot4.7.2 Mono/.NET, C#, net8.0. Download/clone the whole repository, import project.godot, build AP6412Match3.sln, F5 opens app/Main.tscn and the actual Crystal Garden UI connected to three-level gameplay.
 
-A's Step3 gameplay includes three formal levels, box damage, target counts, win/loss and integer stars. With no B UI mounted, F5 opens presentation/2d/GameplayLoop.tscn. This scene also runs independently (F6): 1/2/3 test formal levels, R retries, N advances after victory, Esc exits. It does not save progress or simulate production unlocks. The historical BoardPrototype.tscn remains request-only.
+B's pages/assets are preserved. A's app/integration adapter supplies real session-only results/stars/unlocks while B's ProgressStore is absent; progress resets on closing. B must deliver the formal store together with real original UI progress/result bindings. No frozen 2D tag or standalone export exists.
 
-B provides ui/GameUiRoot.tscn via the existing GameUiBridge, then progress/ProgressStore.tscn via ProgressStoreBridge. The app discovers them automatically. A's board presenter is reclaimed before UI page replacement and mounted into the next BoardHost. B's result pages and real persistence require integration and joint acceptance.
+Final build has0 warnings/errors; Step0–4 and B UI demo checks pass. Real X11 software rendering/input captured all four pages. Editor import has a GodotTools/MSBuild exception, audio uses Dummy; Mac and teammate manual checks are pending. See ../docs/evidence/member-a/step-4.md for logs, screenshots, exact replay and limitations.
 
-Final build and step0/1/2/3 automated checks pass. Graphical/manual and real B persistence checks remain pending. Exact sample moves, commands, actual output and limitations: ../docs/evidence/member-a/step-3.md. Read ../docs/alignment/CONTRACT.md before integration.
+A development harness presentation/2d/GameplayLoop.tscn remains independently runnable with F6 (1/2/3, R, N, Esc). It saves nothing. BoardPrototype is historical request-only.
 
-A owns app/core/gameplay/data/presentation/tests/gameplay and project integration. B owns ui/progress/tests/ui. Existing B visual changes to BoardView2D/CrystalGardenBoardLayout must be preserved when integrating, not overwritten with A's entire version. Build caches (.godot/bin/obj) are ignored; no standalone export or 2D baseline is frozen.
+Read ../docs/alignment/HANDOFF_UI.md and CONTRACT.md before editing. A owns app/core/gameplay/data/presentation/tests/gameplay and integration; B owns ui/progress/tests/ui. Preserve both contributions in BoardView2D and B's CrystalGardenBoardLayout. Build caches are ignored.

@@ -1,6 +1,6 @@
 namespace AP6412Match3.Core;
 
-public enum BoardStepKind { Swap, SwapBack, Clear, Fall, Refill }
+public enum BoardStepKind { Swap, SwapBack, Clear, Fall, Refill, Reshuffle }
 public enum SwapAttemptStatus { Accepted, NoMatch, Invalid, Busy, Cancelled, Error }
 public readonly record struct PieceMotion(GridPosition From, GridPosition To, BoardCell Cell, bool Spawned = false);
 
@@ -10,4 +10,4 @@ public sealed record BoardStep(BoardStepKind Kind, BoardModel Before, BoardModel
     IReadOnlyList<GridPosition>? DamagedBoxes = null);
 
 public sealed record SwapResolution(SwapAttemptStatus Status, BoardModel FinalBoard, uint NextRandomState,
-    IReadOnlyList<BoardStep> Steps, int Cascades, int TotalCleared);
+    IReadOnlyList<BoardStep> Steps, int Cascades, int TotalCleared, int Reshuffles = 0);

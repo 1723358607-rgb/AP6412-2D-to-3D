@@ -1,0 +1,273 @@
+{
+  "recorded_date_singapore": "2026-11-08",
+  "coordinates": "zero-based col,row",
+  "levels": [
+    {
+      "level_id": 1,
+      "seed": 641201,
+      "initial_moves": 15,
+      "trials": 128,
+      "random_wins": 46,
+      "random_stars": [
+        82,
+        12,
+        18,
+        16
+      ],
+      "greedy_won": true,
+      "greedy_moves": 2,
+      "greedy_stars": 3,
+      "one_move_wins": 0,
+      "total_reshuffles": 0
+    },
+    {
+      "level_id": 2,
+      "seed": 641209,
+      "initial_moves": 20,
+      "trials": 128,
+      "random_wins": 48,
+      "random_stars": [
+        80,
+        17,
+        19,
+        12
+      ],
+      "greedy_won": true,
+      "greedy_moves": 5,
+      "greedy_stars": 3,
+      "one_move_wins": 0,
+      "total_reshuffles": 0
+    },
+    {
+      "level_id": 3,
+      "seed": 641203,
+      "initial_moves": 24,
+      "trials": 128,
+      "random_wins": 20,
+      "random_stars": [
+        108,
+        11,
+        3,
+        6
+      ],
+      "greedy_won": true,
+      "greedy_moves": 9,
+      "greedy_stars": 3,
+      "one_move_wins": 0,
+      "total_reshuffles": 0
+    }
+  ],
+  "old_level2": {
+    "level_id": 2,
+    "seed": 641202,
+    "initial_moves": 20,
+    "trials": 128,
+    "random_wins": 70,
+    "random_stars": [
+      58,
+      14,
+      18,
+      38
+    ],
+    "greedy_won": true,
+    "greedy_moves": 1,
+    "greedy_stars": 3,
+    "one_move_wins": 1,
+    "total_reshuffles": 0
+  },
+  "replays": [
+    {
+      "level_id": 1,
+      "seed": 641201,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 13,
+        "moves": [
+          {
+            "from_col": 2,
+            "from_row": 5,
+            "to_col": 3,
+            "to_row": 5,
+            "remaining": 14,
+            "targets": 2,
+            "cascades": 3,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 4,
+            "remaining": 13,
+            "targets": 0,
+            "cascades": 6,
+            "reshuffles": 0
+          }
+        ]
+      }
+    },
+    {
+      "level_id": 2,
+      "seed": 641209,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 15,
+        "moves": [
+          {
+            "from_col": 2,
+            "from_row": 4,
+            "to_col": 3,
+            "to_row": 4,
+            "remaining": 19,
+            "targets": 9,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 4,
+            "remaining": 18,
+            "targets": 4,
+            "cascades": 5,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 5,
+            "remaining": 17,
+            "targets": 1,
+            "cascades": 3,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 1,
+            "to_col": 4,
+            "to_row": 2,
+            "remaining": 16,
+            "targets": 1,
+            "cascades": 5,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 2,
+            "from_row": 3,
+            "to_col": 3,
+            "to_row": 3,
+            "remaining": 15,
+            "targets": 0,
+            "cascades": 9,
+            "reshuffles": 0
+          }
+        ]
+      }
+    },
+    {
+      "level_id": 3,
+      "seed": 641203,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 15,
+        "moves": [
+          {
+            "from_col": 3,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 4,
+            "remaining": 23,
+            "targets": 11,
+            "cascades": 3,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 2,
+            "to_col": 4,
+            "to_row": 3,
+            "remaining": 22,
+            "targets": 10,
+            "cascades": 3,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 4,
+            "remaining": 21,
+            "targets": 8,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 5,
+            "to_col": 5,
+            "to_row": 5,
+            "remaining": 20,
+            "targets": 6,
+            "cascades": 5,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 5,
+            "to_col": 4,
+            "to_row": 5,
+            "remaining": 19,
+            "targets": 5,
+            "cascades": 1,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 3,
+            "to_col": 4,
+            "to_row": 4,
+            "remaining": 18,
+            "targets": 4,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 4,
+            "to_col": 4,
+            "to_row": 5,
+            "remaining": 17,
+            "targets": 4,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 5,
+            "to_col": 4,
+            "to_row": 5,
+            "remaining": 16,
+            "targets": 2,
+            "cascades": 9,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 1,
+            "from_row": 2,
+            "to_col": 1,
+            "to_row": 3,
+            "remaining": 15,
+            "targets": 0,
+            "cascades": 7,
+            "reshuffles": 0
+          }
+        ]
+      }
+    }
+  ]
+}

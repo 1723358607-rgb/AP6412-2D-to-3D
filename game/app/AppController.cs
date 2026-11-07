@@ -4,6 +4,7 @@ using AP6412Match3.App.Contracts;
 using AP6412Match3.Tests.Gameplay;
 using AP6412Match3.Core;
 using AP6412Match3.Presentation;
+using AP6412Match3.App.Integration;
 using GDictionary = Godot.Collections.Dictionary;
 
 namespace AP6412Match3.App;
@@ -44,6 +45,16 @@ public partial class AppController : Node
             RunLevelChecks();
             return;
         }
+        if (OS.GetCmdlineUserArgs().Contains("--balance-scan"))
+        {
+            GetTree().Quit(BalanceStudy.Run());
+            return;
+        }
+        if (OS.GetCmdlineUserArgs().Contains("--step4-smoke-test"))
+        {
+            RunStepFourChecks();
+            return;
+        }
 
         if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
         {
@@ -69,6 +80,7 @@ public partial class AppController : Node
     }
 
     private async void RunLevelChecks() => GetTree().Quit(await StepThreeSmokeCheck.Run(this));
+    private async void RunStepFourChecks() => GetTree().Quit(await StepFourSmokeCheck.Run(this));
 
     private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 
@@ -87,7 +99,7 @@ public partial class AppController : Node
             GetTree().Quit();
     }
 
-    private void MountOptionalUi()
+    internal void MountOptionalUi()
     {
         if (!ResourceLoader.Exists(UiScenePath))
         {
@@ -95,7 +107,8 @@ public partial class AppController : Node
             return;
         }
 
-        Node uiNode = GD.Load<PackedScene>(UiScenePath).Instantiate();
+        bool runtimeFallback = !ResourceLoader.Exists(ProgressScenePath) && !OS.GetCmdlineUserArgs().Contains("--ui-smoke-test");
+        Node uiNode = GD.Load<PackedScene>(runtimeFallback ? "res://app/integration/IntegratedUi.tscn" : UiScenePath).Instantiate();
         if (uiNode is not GameUiBridge ui)
         {
             uiNode.Free();
@@ -116,6 +129,12 @@ public partial class AppController : Node
             _progress = progress;
             AddChild(progress);
             progress.LoadProgress("2d");
+        }
+        else if (runtimeFallback)
+        {
+            _progress = new RuntimeProgressBridge();
+            AddChild(_progress); _progress.LoadProgress("2d");
+            GD.Print("[RUNTIME_PROGRESS] Real session-only stars/unlocks; persistent ProgressStore remains pending with B.");
         }
 
         ConnectUi(ui);

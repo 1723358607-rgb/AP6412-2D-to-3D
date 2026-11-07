@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[BOOTSTRAP_OK] Godot 4.7.2-stable (official); C#; mode=2d; phase=idle
+[BALANCE_BASELINE] {"level_id":1,"seed":641201,"initial_moves":15,"trials":64,"random_wins":23,"random_stars":[41,5,10,8],"greedy_won":true,"greedy_moves":2,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_BASELINE] {"level_id":2,"seed":641202,"initial_moves":20,"trials":64,"random_wins":37,"random_stars":[27,8,8,21],"greedy_won":true,"greedy_moves":1,"greedy_stars":3,"one_move_wins":1,"total_reshuffles":0}
+[BALANCE_BASELINE] {"level_id":3,"seed":641203,"initial_moves":24,"trials":64,"random_wins":12,"random_stars":[52,5,3,4],"greedy_won":true,"greedy_moves":9,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641202,"initial_moves":20,"trials":32,"random_wins":18,"random_stars":[14,4,4,10],"greedy_won":true,"greedy_moves":1,"greedy_stars":3,"one_move_wins":1,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641203,"initial_moves":20,"trials":32,"random_wins":18,"random_stars":[14,6,7,5],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641204,"initial_moves":20,"trials":32,"random_wins":15,"random_stars":[17,4,5,6],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641205,"initial_moves":20,"trials":32,"random_wins":16,"random_stars":[16,5,5,6],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641206,"initial_moves":20,"trials":32,"random_wins":11,"random_stars":[21,6,4,1],"greedy_won":true,"greedy_moves":6,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641207,"initial_moves":20,"trials":32,"random_wins":13,"random_stars":[19,8,0,5],"greedy_won":true,"greedy_moves":5,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641208,"initial_moves":20,"trials":32,"random_wins":17,"random_stars":[15,8,4,5],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641209,"initial_moves":20,"trials":32,"random_wins":8,"random_stars":[24,5,2,1],"greedy_won":true,"greedy_moves":5,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641210,"initial_moves":20,"trials":32,"random_wins":12,"random_stars":[20,3,4,5],"greedy_won":true,"greedy_moves":7,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641211,"initial_moves":20,"trials":32,"random_wins":14,"random_stars":[18,4,6,4],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641212,"initial_moves":20,"trials":32,"random_wins":12,"random_stars":[20,4,4,4],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641213,"initial_moves":20,"trials":32,"random_wins":13,"random_stars":[19,7,3,3],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641214,"initial_moves":20,"trials":32,"random_wins":6,"random_stars":[26,3,2,1],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641215,"initial_moves":20,"trials":32,"random_wins":15,"random_stars":[17,6,3,6],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641216,"initial_moves":20,"trials":32,"random_wins":9,"random_stars":[23,6,3,0],"greedy_won":true,"greedy_moves":6,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641217,"initial_moves":20,"trials":32,"random_wins":14,"random_stars":[18,6,4,4],"greedy_won":true,"greedy_moves":6,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641218,"initial_moves":20,"trials":32,"random_wins":16,"random_stars":[16,2,9,5],"greedy_won":true,"greedy_moves":5,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641219,"initial_moves":20,"trials":32,"random_wins":15,"random_stars":[17,4,7,4],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641220,"initial_moves":20,"trials":32,"random_wins":12,"random_stars":[20,7,3,2],"greedy_won":true,"greedy_moves":5,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641221,"initial_moves":20,"trials":32,"random_wins":17,"random_stars":[15,11,5,1],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641222,"initial_moves":20,"trials":32,"random_wins":10,"random_stars":[22,5,4,1],"greedy_won":true,"greedy_moves":6,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641223,"initial_moves":20,"trials":32,"random_wins":15,"random_stars":[17,5,8,2],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641224,"initial_moves":20,"trials":32,"random_wins":11,"random_stars":[21,4,6,1],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641225,"initial_moves":20,"trials":32,"random_wins":17,"random_stars":[15,8,4,5],"greedy_won":true,"greedy_moves":4,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}
+[BALANCE_CANDIDATE] {"level_id":2,"seed":641226,"initial_moves":20,"trials":32,"random_wins":15,"random_stars":[17,5,4,6],"greedy_won":true,"greedy_moves":3,"greedy_stars":3,"one_move_wins":0,"total_reshuffles":0}

@@ -86,12 +86,12 @@ public partial class GameplayLoopRunner : Node
         var root = new Control { MouseFilter = Control.MouseFilterEnum.Ignore };
         root.SetAnchorsAndOffsetsPreset(Control.LayoutPreset.FullRect);
         layer.AddChild(root);
-        AddLabel(root, new Vector2(52, 28), new Vector2(1176, 28), "AP6412  /  GAMEPLAY STEP 3  /  DEVELOPMENT HARNESS", 18, "8ca8cf");
+        AddLabel(root, new Vector2(52, 28), new Vector2(GetViewport().GetVisibleRect().Size.X - 104, 28), "AP6412  /  GAMEPLAY STEP 3  /  DEVELOPMENT HARNESS", 18, "8ca8cf");
         AddLabel(root, new Vector2(52, 62), new Vector2(1176, 48), "彩块工坊 · 木箱与三星", 34, "f0f5ff");
         _state = AddLabel(root, new Vector2(52, 196), new Vector2(290, 290), "", 20, "c8d6ea");
-        AddLabel(root, new Vector2(934, 196), new Vector2(294, 320), "消除木箱旁棋子\n\n箱上数字 = 剩余层数\n同轮最多伤害一层\n全部木箱消失即通关\n\n1 / 2 / 3：开发关卡\nR：重试同一关\nN：通关后下一关\nEsc：退出", 19, "c8d6ea");
-        _feedback = AddLabel(root, new Vector2(52, 628), new Vector2(1176, 36), "", 21, "fff0a5");
-        AddLabel(root, new Vector2(52, 672), new Vector2(1176, 28), "玩法开发入口：可直接测试三关，不写存档、不代表解锁。正式菜单、成绩保存与解锁由队友接入。", 17, "8ca8cf");
+        AddLabel(root, new Vector2(GetViewport().GetVisibleRect().Size.X - 346, 196), new Vector2(294, 320), "消除木箱旁棋子\n\n箱上数字 = 剩余层数\n同轮最多伤害一层\n全部木箱消失即通关\n\n1 / 2 / 3：开发关卡\nR：重试同一关\nN：通关后下一关\nEsc：退出", 19, "c8d6ea");
+        _feedback = AddLabel(root, new Vector2(52, GetViewport().GetVisibleRect().Size.Y - 92), new Vector2(GetViewport().GetVisibleRect().Size.X - 104, 36), "", 21, "fff0a5");
+        AddLabel(root, new Vector2(52, GetViewport().GetVisibleRect().Size.Y - 48), new Vector2(GetViewport().GetVisibleRect().Size.X - 104, 28), "玩法开发入口：可直接测试三关，不写存档、不代表解锁。正式菜单、成绩保存与解锁由队友接入。", 17, "8ca8cf");
     }
 
     private static Label AddLabel(Control parent, Vector2 position, Vector2 size, string text, int fontSize, string color)
