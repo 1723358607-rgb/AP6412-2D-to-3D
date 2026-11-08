@@ -68,3 +68,14 @@
 | 本会话第4步诊断，完整日志待导出 | 第二关旧种子一手通关 | 同预算换641209，保留旧记录并比较同128策略 | step-4-replays.json / balance-scan.log | 贪心1→5步，开局一手通关1→0；真人平衡待验 |
 | 本会话第4步修正，完整日志待导出 | B视觉坐标与旧原型测试坐标不同 | 统一CellCenter，实测事件穿透与弹窗过滤 | BoardView2D / StepFourSmokeCheck | 实际viewport输入、49格与弹窗拦截通过 |
 | 本会话第4步验证，完整日志待导出 | 云环境导入MSBuild异常、无声卡 | 保留错误原日志，独立构建/真实窗口验证，不把exit0说成导入无错误 | logs/step4-import.log、step4-rendered.log | 编译/游戏通过，声音和Mac本轮未验 |
+
+
+## 第5步准备（2026-11-09，新加坡）
+
+完整日志待实际导出，本节只作索引，不编造聊天轮次或模型。用户本轮要求“做下一步吧”。
+
+| 待定位的原始轮次 | 决策及理由 | 对应证据 | 实际验证 |
+|---|---|---|---|
+| 本轮第5步，完整导出待补 | 先核对B远端交付；没有正式存档则完成A资料，不伪造2D冻结 | step-5.md与双方验收单 | GitHub分支/PR实读，未创建标签 |
+| 本轮第5步规则参考，完整导出待补 | 用实际GameSession和IBoardPresenter逐格记录，避免只用“能赢”证明规则等价 | RuleReferenceCheck / step-5-rule-reference.json | 3关16步217中间步骤，两次一致，档案比较通过 |
+| 本轮职责和统计说明，完整导出待补 | 区分纯core与Godot会话、class与record/enum；不预报CCR=0 | step-5-class-map / design-notes / source-manifest | 9文件21公开类型清点；核心与B文件未改 |

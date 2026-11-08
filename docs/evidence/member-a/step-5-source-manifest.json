@@ -1,0 +1,501 @@
+{
+  "schema_version": 1,
+  "status": "provisional-not-frozen",
+  "prepared_date_singapore": "2026-11-09",
+  "base_main_commit": "072129e44d21983110ac40b1315f67747b353139",
+  "scope": "All checked-in game code/scenes/configuration excluding asset binaries and build caches; not a CCR calculation",
+  "files": [
+    {
+      "path": "game/AP6412Match3.csproj",
+      "sha256": "05e6122205f006d2ef2e3e8c0be437a656e2afaa9ddc258ebb927440f8656a74"
+    },
+    {
+      "path": "game/AP6412Match3.sln",
+      "sha256": "00570e531c1693367a60c78ed2addd9f095504fe7a6d70b3131f9cb3b8f475a0"
+    },
+    {
+      "path": "game/app/AppController.cs",
+      "sha256": "55494d4992bcd4f98308768ff15148b6f3e338509a06b374fa71f558c45611cc"
+    },
+    {
+      "path": "game/app/AppController.cs.uid",
+      "sha256": "c4b1da2eb8058fdec88060716c0cf06aa159491554a7b76f9734c4823647b7a2"
+    },
+    {
+      "path": "game/app/Main.tscn",
+      "sha256": "4581977bdac1ab71c976ca303db4319169e87f7c6b97d2d7972218a1ad5a82b7"
+    },
+    {
+      "path": "game/app/contracts/GameUiBridge.cs",
+      "sha256": "a50736a07ba8435a629eab652e10749d9b1295b457cf5a1745c5070824b9912c"
+    },
+    {
+      "path": "game/app/contracts/GameUiBridge.cs.uid",
+      "sha256": "dc9777542669736d6c46e40a437aa30eb89086030d1e8eb35d5b6ffbaa0aba8a"
+    },
+    {
+      "path": "game/app/contracts/ProgressStoreBridge.cs",
+      "sha256": "fefe7a2234f1fb91e4bf5dbed4580bf38ab1d33fff138df39af3e50b39a1908a"
+    },
+    {
+      "path": "game/app/contracts/ProgressStoreBridge.cs.uid",
+      "sha256": "676de7afc4e5743aad2dbc25cb8f0bc183766e9179ae7909cf66d2093f835c49"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.cs",
+      "sha256": "d7db1681c0ea93f726bdee7bc5a7027174ecd8d77178a9d6b805ffa22fc2aab3"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.cs.uid",
+      "sha256": "12ea3b5413d6e577be884ddf06996c0448f0b3aa8699ddbece7c4108f0be55d4"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.tscn",
+      "sha256": "da33cbbe10d1425196d771c50335d7176358db489bdca72039e422855052c6ad"
+    },
+    {
+      "path": "game/app/integration/RuntimeProgressBridge.cs",
+      "sha256": "ad2b0301e2275f386d36ba546cda2c25aa0a5860bb1c968b83cfb018840c5806"
+    },
+    {
+      "path": "game/app/integration/RuntimeProgressBridge.cs.uid",
+      "sha256": "0b8a022ceedc431e7145105a6b1c1c22617c7583e9cffef81d58d3f869c41b38"
+    },
+    {
+      "path": "game/core/BoardCell.cs",
+      "sha256": "ed581c66445513fd6d423c59189852860461063a925b703ac6843c14a0f9b201"
+    },
+    {
+      "path": "game/core/BoardCell.cs.uid",
+      "sha256": "cf8770567bd01677e8ab6028bbad19f5f83f0fa637188ebb5b5dbcf2f66cee08"
+    },
+    {
+      "path": "game/core/BoardGenerator.cs",
+      "sha256": "bd9a2c77680b79597eab148ab5356d9ed9143668d6a498cd7ec21b789ef351b3"
+    },
+    {
+      "path": "game/core/BoardGenerator.cs.uid",
+      "sha256": "3dfc279fe792974de0bfacc4b1b2a80e817f0adeebe7d594db4e48d34dcbfea0"
+    },
+    {
+      "path": "game/core/BoardInteraction.cs",
+      "sha256": "80f2c717f52704fe0b3be299a2c16b3f637f9e67dc5e1822c5cbf3530d447bd8"
+    },
+    {
+      "path": "game/core/BoardInteraction.cs.uid",
+      "sha256": "a542d3d877d5307897e2ebda7bd8f3795ca8a4bd7cc22aefd1f4b54d143a71d2"
+    },
+    {
+      "path": "game/core/BoardModel.cs",
+      "sha256": "61fbe347dcd642f368bd08dfe02c9afb98ba32bc346243886f32e8754879a9eb"
+    },
+    {
+      "path": "game/core/BoardModel.cs.uid",
+      "sha256": "5c7303ce2a37c10648d4e1c5ac9e24f4fa7621f5be6cf0655608c38ef144d967"
+    },
+    {
+      "path": "game/core/BoardMoves.cs",
+      "sha256": "e0d0d1981ab73832610ac75d9e850b7a6d22fd013685858d4efa06f49961174d"
+    },
+    {
+      "path": "game/core/BoardMoves.cs.uid",
+      "sha256": "229a9857d7e68e2dfcfd19a6ab1f6965f12251a4222748c5471a7dd35bd6380f"
+    },
+    {
+      "path": "game/core/BoardResolution.cs",
+      "sha256": "980b6c7810ab344b566507a5b0b72e94f41297b1b71fd34e1a5e5619da2a6d7f"
+    },
+    {
+      "path": "game/core/BoardResolution.cs.uid",
+      "sha256": "989e487be8016408151096d36218ad7739fecf1e4c9e9fb09677ce7268350800"
+    },
+    {
+      "path": "game/core/LevelDefinition.cs",
+      "sha256": "05d8d89761bcd6cf2855ff70e2fa924a1244ddb1f7d32f7879f42658bf5e8375"
+    },
+    {
+      "path": "game/core/LevelDefinition.cs.uid",
+      "sha256": "b5346ea1e0f30c105f12240fb88a68a0b1df152230c410a13afdcbbc545b7777"
+    },
+    {
+      "path": "game/core/LevelRules.cs",
+      "sha256": "1fe95a7b7f80f6c870815a581f5466b75edab47d45aba93028e69016c90ba267"
+    },
+    {
+      "path": "game/core/LevelRules.cs.uid",
+      "sha256": "49bae3254e1df7adfc9ce1a353d183bc5cd28be38a57221f1b44999026c828ab"
+    },
+    {
+      "path": "game/core/MatchResolver.cs",
+      "sha256": "69fde73a93c92fd04ace9aff61a9689c9cc7e8105b1c0cee39713b086bb4a411"
+    },
+    {
+      "path": "game/core/MatchResolver.cs.uid",
+      "sha256": "08264c2993942bfdefd31b801c424749882a5102209e494916b3fbcff3132e57"
+    },
+    {
+      "path": "game/data/levels/level_01.json",
+      "sha256": "884af7bb8fddce24d96177c8c87ddf0421ce6ecf1173b7f1690744a9bd638477"
+    },
+    {
+      "path": "game/data/levels/level_02.json",
+      "sha256": "b68ddb7a69526ff96f0e41aee52cf485b260895e445d93eaeb616ec1bccd1817"
+    },
+    {
+      "path": "game/data/levels/level_03.json",
+      "sha256": "c202c9301be2f207756af14af36ddd81b0a53910aa3e3427462db93d3186772c"
+    },
+    {
+      "path": "game/gameplay/GameSession.cs",
+      "sha256": "0ef1b07116c1350a92e22b78fc04c16a80949a340e813977ced78aeca816e34c"
+    },
+    {
+      "path": "game/gameplay/GameSession.cs.uid",
+      "sha256": "07718617afdd0f968b2b401a5275c852a5d560d8f12da3c344cecc24fbad9189"
+    },
+    {
+      "path": "game/gameplay/IBoardPresenter.cs",
+      "sha256": "88b27271f2a1da6c23f3a93b7b30eea308434543bbf30a48769d4cc8d74b04ef"
+    },
+    {
+      "path": "game/gameplay/IBoardPresenter.cs.uid",
+      "sha256": "aa56e8fb1c69244b4b7852fc16ac58c6f19f48a0af96e155a28f195fd717fb7a"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototype.tscn",
+      "sha256": "4f3421a0e4cdbf13be992bc8e33f6b8f9e64e37909419e91cfac725441f59481"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototypeRunner.cs",
+      "sha256": "69c65014ef92c395eee60d409b5c01917421b23002bdeb9d481d8f32b883e24c"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototypeRunner.cs.uid",
+      "sha256": "d0d5a03d010afe912193ee8051790f250b9f4d13e78d07071dda3022ea568d48"
+    },
+    {
+      "path": "game/presentation/2d/BoardView2D.cs",
+      "sha256": "eaab19e176f182f74d334de0737e150fc9dbdc1c46bd7597c52e2fb7e2bbfa70"
+    },
+    {
+      "path": "game/presentation/2d/BoardView2D.cs.uid",
+      "sha256": "727a7677f55a7d2bb1221cbf5e176c0e393ebfe8c5c7461684ed6ad9534016d8"
+    },
+    {
+      "path": "game/presentation/2d/CrystalGardenBoardLayout.cs",
+      "sha256": "bfd4d25cbea6363bf1d5e0e2c9f12ab283121f06d1e8917bb36e142a00b53821"
+    },
+    {
+      "path": "game/presentation/2d/CrystalGardenBoardLayout.cs.uid",
+      "sha256": "3ca513cfa571ea135e28e8875cf11d5812c16d19877bea9ecf0a7b1af17f3796"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoop.tscn",
+      "sha256": "64105c97d40b15a3d03c28a9d994d7eaf4a9cdad2c3175af74d18fd8777d0fae"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoopRunner.cs",
+      "sha256": "077ad46d2028d8891b371e859480506e7e33ae1ab46f2c9bb0536121dc3bc51e"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoopRunner.cs.uid",
+      "sha256": "248ecd8f86d8365e0b69e1a0a2dd068f65e690f9b12a4a88d5cbc22de40da558"
+    },
+    {
+      "path": "game/presentation/3d/BoardView3D.cs",
+      "sha256": "4c8c1f4576957ef09d5ec9ffce5fcdb9f7314272368ba5619946b9a78f3df25c"
+    },
+    {
+      "path": "game/presentation/3d/BoardView3D.cs.uid",
+      "sha256": "8e4c98ea25fc25fd0ef61b64edd6e75d6bb78417810fa439a12e955252985308"
+    },
+    {
+      "path": "game/project.godot",
+      "sha256": "8b622d5b5034a6c6a89ca730eae282d5e54aad6b6cecd9f8e0ad2adfd8532660"
+    },
+    {
+      "path": "game/tests/gameplay/BalanceStudy.cs",
+      "sha256": "077902bfb27365c01bdf52aefdba3c054366d18cc5da1af56c318259b7a3b0b0"
+    },
+    {
+      "path": "game/tests/gameplay/BalanceStudy.cs.uid",
+      "sha256": "7e552328828a2a2654b59371fd2ab0a8be2eb89e04b26cd331d7b272c1b9473d"
+    },
+    {
+      "path": "game/tests/gameplay/RuleReferenceCheck.cs",
+      "sha256": "c99abedad70c09753cffaca3d64d5f261b7658c0cda7479c0a1249327fa29f83"
+    },
+    {
+      "path": "game/tests/gameplay/StepFourSmokeCheck.cs",
+      "sha256": "6c42d332976994355dbe766aed570caa4793a6cb0b6338486309f8fcb103e579"
+    },
+    {
+      "path": "game/tests/gameplay/StepFourSmokeCheck.cs.uid",
+      "sha256": "abab3a939c29db6dad511a35db91d1f3cf2bd95cb0f15365fd7838eb0b1323e5"
+    },
+    {
+      "path": "game/tests/gameplay/StepOneSmokeCheck.cs",
+      "sha256": "578db3a5df47bffc58832bbb18527c6c8d2241ca9a5afcdce0630d4de7949abc"
+    },
+    {
+      "path": "game/tests/gameplay/StepOneSmokeCheck.cs.uid",
+      "sha256": "822b5ee428947202a4c10dd657320ba2f316bcb897a780b117d7b44bdd2ce518"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeProgressProbe.cs",
+      "sha256": "d72ec42d40d8888548dd98b2931b6c6c9d692b8677e0f511f6a7d8c85eab9597"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeProgressProbe.cs.uid",
+      "sha256": "2eb5e9d10c45bc4007bac36a19e4ecf5e5ea4c0758a1c864c4178416c529e58d"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeSmokeCheck.cs",
+      "sha256": "6e0988b14d9abd11c164b60dc742a03d4bc469a4f758ada8425fe0a908506f54"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeSmokeCheck.cs.uid",
+      "sha256": "aad1a15521bcb8a51c15696516d174a95c7efdbbec36215703aae9687d7fdde2"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoSmokeCheck.cs",
+      "sha256": "671ffff7f4a2d965eb67f63da5106aedbcf54211e09179ab1e9526be80088b6f"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoSmokeCheck.cs.uid",
+      "sha256": "ccbb2f7764e2085eb25a94d5ddbb4eeb9a96de9b5fa37045486ec5a1962813fa"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoUiProbe.cs",
+      "sha256": "993bb41c45f9eb9f8264ede2a8b7121750d830b3262cf4876f1a1b4226f46282"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoUiProbe.cs.uid",
+      "sha256": "8f5907392275689d63c11b52c285cc8148ef5d5679d02c139c16b711a0d37edf"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroSmokeCheck.cs",
+      "sha256": "c4083b6c5dd6342f9c2d66e6068dec3710e3239e7c2b2a7d60799e09d29b5c35"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroSmokeCheck.cs.uid",
+      "sha256": "1f7018d36bc89ae88205f9305d5c763d3fc6dbfc7665e260ad756258bc343ada"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroUiProbe.cs",
+      "sha256": "df551efbff47142400869b17ae7679ca8df4d0568ad7e2dacf5e4242cd7db3c8"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroUiProbe.cs.uid",
+      "sha256": "d0ab7102b922af509d0239bf1a6d03d92a6182ff1da562d57405b7606dbba2e0"
+    },
+    {
+      "path": "game/ui/CrystalGardenUi.cs",
+      "sha256": "22e4c9315d6cc513f2db06443aa96ae092d2d2b79add242df10925c55202ae36"
+    },
+    {
+      "path": "game/ui/CrystalGardenUi.cs.uid",
+      "sha256": "128293605164d9ba4190b04f3507f8b901c03e3f6948115f4a01422bdeb8f4e3"
+    },
+    {
+      "path": "game/ui/GameUiRoot.cs",
+      "sha256": "3b23187b1123426bf41d84d3c4484e39998ec4fad610acd84c5529451563ddf1"
+    },
+    {
+      "path": "game/ui/GameUiRoot.cs.uid",
+      "sha256": "5ae8ee74a3956e4d0cfc5e8b95a5fc2018c17189d04d58d26db0038322d9289f"
+    },
+    {
+      "path": "game/ui/GameUiRoot.tscn",
+      "sha256": "6a5d70a74690e13c3a71b4ffba480436494d5ca054f73e5cb6cff249ac04087c"
+    },
+    {
+      "path": "game/ui/GameplayScreen.cs",
+      "sha256": "2be3abb9e0a7399ae09d7ca5bf4f7f12b53bb68294fc0e874324d50c68bb34ac"
+    },
+    {
+      "path": "game/ui/GameplayScreen.cs.uid",
+      "sha256": "5324c6cc95a204f38bfafcca5109996a7c7eacb6c61b31029c04e1c332bfcc31"
+    },
+    {
+      "path": "game/ui/GameplayScreen.tscn",
+      "sha256": "995dc37406b7a428bae2b66a74e57e411c2e38a70044c16718bf31118976d557"
+    },
+    {
+      "path": "game/ui/HomeScreen.cs",
+      "sha256": "3d01d1eed5ef6b74d143bc81f305cae065c8265af04454a18566eeccbfc580d2"
+    },
+    {
+      "path": "game/ui/HomeScreen.cs.uid",
+      "sha256": "e79ff5b1b7259904ecbbd10c3955681d492972cf3b130aefd53a0448e44a04f8"
+    },
+    {
+      "path": "game/ui/HomeScreen.tscn",
+      "sha256": "7180aecadaa85ff175abfb939b3ebb285c456d1dccbc1e057567b7baf143a57a"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.cs",
+      "sha256": "5803a9d6bdb11d922c64726b87b63377ed298ca26fe60c8034ee2308aac7fa89"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.cs.uid",
+      "sha256": "c57ff35aef2eb251c12d611764b038d393cbc2800a1a0e7a8212ac55f296234e"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.tscn",
+      "sha256": "c28a5f87ba2e1e09c29c2a40c2f0c7dbb7c8d9bb1f45e0f6cad59a376bdfc10c"
+    },
+    {
+      "path": "game/ui/LevelProgressProvider.cs",
+      "sha256": "a3d67dad3b828eb25cd7c3c69fb3710bdee08c4575bc5891112f580dca3b9e3f"
+    },
+    {
+      "path": "game/ui/LevelProgressProvider.cs.uid",
+      "sha256": "c96f316565835c05e825e292352e31782af355ff8602bc56d1f06946b828432b"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.cs",
+      "sha256": "ebaaf8dfa2b71ba7acdd51c0f5349ec0df45778fef191c4ea03257bec1d0901e"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.cs.uid",
+      "sha256": "11b2d216a281bbbb9b80cbbd8f2921449005b2837be2e47afe8ef3aaa98a8d86"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.tscn",
+      "sha256": "55d12bd21fc12d2829aa6e6503e0e15c8b90fa7b13570a2122d69e8a50ba9fdc"
+    }
+  ],
+  "core_type_inventory": [
+    {
+      "path": "game/core/BoardCell.cs",
+      "types": [
+        {
+          "kind": "enum",
+          "name": "PieceColor"
+        },
+        {
+          "kind": "enum",
+          "name": "CellKind"
+        },
+        {
+          "kind": "enum",
+          "name": "SwapValidation"
+        },
+        {
+          "kind": "record struct",
+          "name": "GridPosition"
+        },
+        {
+          "kind": "record struct",
+          "name": "BoardCell"
+        }
+      ]
+    },
+    {
+      "path": "game/core/BoardGenerator.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "BoardGenerator"
+        },
+        {
+          "kind": "record",
+          "name": "ShuffleResult"
+        }
+      ]
+    },
+    {
+      "path": "game/core/BoardInteraction.cs",
+      "types": [
+        {
+          "kind": "enum",
+          "name": "SelectionOutcome"
+        },
+        {
+          "kind": "record struct",
+          "name": "SwapRequest"
+        },
+        {
+          "kind": "class",
+          "name": "BoardInteraction"
+        }
+      ]
+    },
+    {
+      "path": "game/core/BoardModel.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "BoardModel"
+        }
+      ]
+    },
+    {
+      "path": "game/core/BoardMoves.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "BoardMoves"
+        }
+      ]
+    },
+    {
+      "path": "game/core/BoardResolution.cs",
+      "types": [
+        {
+          "kind": "enum",
+          "name": "BoardStepKind"
+        },
+        {
+          "kind": "enum",
+          "name": "SwapAttemptStatus"
+        },
+        {
+          "kind": "record struct",
+          "name": "PieceMotion"
+        },
+        {
+          "kind": "record",
+          "name": "BoardStep"
+        },
+        {
+          "kind": "record",
+          "name": "SwapResolution"
+        }
+      ]
+    },
+    {
+      "path": "game/core/LevelDefinition.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "LevelDefinition"
+        },
+        {
+          "kind": "class",
+          "name": "BoxDefinition"
+        }
+      ]
+    },
+    {
+      "path": "game/core/LevelRules.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "LevelRules"
+        }
+      ]
+    },
+    {
+      "path": "game/core/MatchResolver.cs",
+      "types": [
+        {
+          "kind": "class",
+          "name": "MatchResolver"
+        }
+      ]
+    }
+  ],
+  "reference_sha256": "dec352ecc26f298005b74d57d559af7f10fb6825d617e55a9bfa0073151eeadd"
+}

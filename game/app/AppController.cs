@@ -55,6 +55,11 @@ public partial class AppController : Node
             RunStepFourChecks();
             return;
         }
+        if (OS.GetCmdlineUserArgs().Contains("--rule-reference"))
+        {
+            RunRuleReference();
+            return;
+        }
 
         if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
         {
@@ -81,6 +86,7 @@ public partial class AppController : Node
 
     private async void RunLevelChecks() => GetTree().Quit(await StepThreeSmokeCheck.Run(this));
     private async void RunStepFourChecks() => GetTree().Quit(await StepFourSmokeCheck.Run(this));
+    private async void RunRuleReference() => GetTree().Quit(await RuleReferenceCheck.Run());
 
     private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 

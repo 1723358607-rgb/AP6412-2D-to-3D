@@ -9,3 +9,5 @@ Final build has0 warnings/errors; Step0–4 and B UI demo checks pass. Real X11 
 A development harness presentation/2d/GameplayLoop.tscn remains independently runnable with F6 (1/2/3, R, N, Esc). It saves nothing. BoardPrototype is historical request-only.
 
 Read ../docs/alignment/HANDOFF_UI.md and CONTRACT.md before editing. A owns app/core/gameplay/data/presentation/tests/gameplay and integration; B owns ui/progress/tests/ui. Preserve both contributions in BoardView2D and B's CrystalGardenBoardLayout. Build caches are ignored.
+
+Step5 A evidence is ready, not frozen: ../docs/evidence/member-a/step-5.md. After building, --rule-reference records actual session/presenter states; tools/verify-2d-reference.py from repository root compares with the saved provisional archive. It needs the complete repository, writes no player saves, and does not validate future 3D rendering. Two-person manual checklist and B persistence remain pending.

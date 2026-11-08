@@ -1,0 +1,95 @@
+{
+  "status": "provisional-not-frozen",
+  "godot": "4.7.2.stable.mono.official.ed1daf0bf",
+  "dotnet_sdk": "10.0.302",
+  "os": "macOS arm64",
+  "base_main_commit": "072129e44d21983110ac40b1315f67747b353139",
+  "checks": [
+    {
+      "log": "docs/evidence/member-a/logs/step5-reference-repeat.log",
+      "pass_markers": [
+        "RULE_REFERENCE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-reference.log",
+      "pass_markers": [
+        "RULE_REFERENCE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-step0-regression.log",
+      "pass_markers": [
+        "STEP0_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-step1-regression.log",
+      "pass_markers": [
+        "STEP1_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-step2-regression.log",
+      "pass_markers": [
+        "STEP2_CORE_PASS",
+        "STEP2_LIFETIME_PASS",
+        "STEP2_SCENE_PASS",
+        "STEP2_APP_BRIDGE_PASS",
+        "STEP2_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-step3-regression.log",
+      "pass_markers": [
+        "STEP3_BOX_PASS",
+        "STEP3_STAR_PASS",
+        "STEP3_STAR_PASS",
+        "STEP3_STAR_PASS",
+        "STEP3_FORMAL_PASS",
+        "STEP3_FORMAL_PASS",
+        "STEP3_FORMAL_PASS",
+        "STEP3_LAST_MOVE_PASS",
+        "STEP3_LIFETIME_PASS",
+        "STEP3_APP_PASS",
+        "STEP3_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-step4-regression.log",
+      "pass_markers": [
+        "STEP4_RECOVERY_PASS",
+        "STEP4_OPENINGS_PASS",
+        "STEP4_UI_PASS",
+        "STEP4_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    },
+    {
+      "log": "docs/evidence/member-a/logs/step5-ui-demo-regression.log",
+      "pass_markers": [
+        "CRYSTAL_UI_SMOKE_PASS"
+      ],
+      "has_error_text": false
+    }
+  ],
+  "freeze_gates": {
+    "persistent_progress_scene": false,
+    "full_ai_raw_log_export": false,
+    "member_b_environment_confirmation": false,
+    "two_person_manual_acceptance": false
+  },
+  "build": {
+    "exit_code": 0,
+    "warnings": 0,
+    "errors": 0,
+    "log": "docs/evidence/member-a/logs/step5-build.log"
+  },
+  "archive_comparison": "REFERENCE_COMPARE_PASS"
+}

@@ -1,0 +1,5534 @@
+{
+  "schema_version": 1,
+  "status": "provisional-not-frozen",
+  "coordinates": "zero-based column,row",
+  "cell_legend": "R/B/G/Y = Core PieceColor; 1/2 = box layers; . = empty (not artwork colors)",
+  "grid_hash": "SHA256 UTF-8 rows joined by LF, no trailing LF",
+  "levels": [
+    {
+      "level_id": 1,
+      "seed": 641201,
+      "initial_moves": 15,
+      "initial": {
+        "phase": "playing",
+        "moves_remaining": 15,
+        "target_remaining": 5,
+        "random_state": 3336064200,
+        "grid": [
+          "RBRGBBG",
+          "GRBRBRB",
+          "GBYBRRY",
+          "RBGYYBR",
+          "YGGRYYB",
+          "GRBGBRG",
+          "Y11111R"
+        ],
+        "grid_sha256": "200ae5d34e9ae7a348f9cd44dc20e378ae243b995b555ef46faef36d817ad19f"
+      },
+      "moves": [
+        {
+          "from": [
+            2,
+            5
+          ],
+          "to": [
+            3,
+            5
+          ],
+          "Cascades": 3,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 14,
+            "target_remaining": 2,
+            "random_state": 2351729647,
+            "grid": [
+              "RRYGRBG",
+              "GRGRYRB",
+              "GBRYBRY",
+              "RGGYBBR",
+              "YGGBRYB",
+              "GRRYYRG",
+              "Y1YRY1R"
+            ],
+            "grid_sha256": "023ffa161b5f3637416384eed2885d367ea6a05c90eea3780c7fbe64af730923"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "RBRGBBG",
+                "GRBRBRB",
+                "GBYBRRY",
+                "RBGYYBR",
+                "YGGRYYB",
+                "GRGBBRG",
+                "Y11111R"
+              ],
+              "grid_sha256": "cf20ce97f14f1412d531163722141c7ca022191bd3a1729b9cdbacaff2a03e0c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RBRGBBG",
+                "GRBRBRB",
+                "GBYBRRY",
+                "RB.YYBR",
+                "YG.RYYB",
+                "GR.BBRG",
+                "Y1.111R"
+              ],
+              "grid_sha256": "39180d255849045818cc66e99799f486de6c0feaf53a612bede04a6b52aa67e4",
+              "cleared": [
+                [
+                  2,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  2,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RB.GBBG",
+                "GR.RBRB",
+                "GB.BRRY",
+                "RB.YYBR",
+                "YGRRYYB",
+                "GRBBBRG",
+                "Y1Y111R"
+              ],
+              "grid_sha256": "c45863d79377579646a3a8e54f2d9a412a6b4af8c6cf85c052a12f686c9c2e53",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RBRGBBG",
+                "GRRRBRB",
+                "GBGBRRY",
+                "RBGYYBR",
+                "YGRRYYB",
+                "GRBBBRG",
+                "Y1Y111R"
+              ],
+              "grid_sha256": "bbeb74608dda583fc8e63fbe185a9a38376509c6ecbc81a535e939d18981bad4",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RBRGBBG",
+                "G...BRB",
+                "GBGBRRY",
+                "RBGYYBR",
+                "YGRRYYB",
+                "GR...RG",
+                "Y1Y..1R"
+              ],
+              "grid_sha256": "d8789e2d3d31709e8918a321ca83b35ab4d0a2bf45a0bdd2b3983e5b634e7305",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  3,
+                  6
+                ],
+                [
+                  4,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "R....BG",
+                "GB...RB",
+                "GBR.BRY",
+                "RBGGBBR",
+                "YGGBRYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "3fc04437399abdaf4bafaea488ab4811b7081f68f4815d9b3256e105fda5677d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RGYYRBG",
+                "GBGGYRB",
+                "GBRGBRY",
+                "RBGGBBR",
+                "YGGBRYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "b8d970bf9d8b2d1530adf9b20e7b6652ce39861086935dffd896e6a8fda5863c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RGYYRBG",
+                "G.G.YRB",
+                "G.R.BRY",
+                "R.G.BBR",
+                "YGGBRYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "a7e48b3011ff2e7cebca2a5a276473e2b28a2fe4c2c796c41aa25c2cc87e92b8",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "R.Y.RBG",
+                "G.G.YRB",
+                "G.R.BRY",
+                "RGGYBBR",
+                "YGGBRYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "8a1b67e88c4852d3d2de97fcb662f9bece96cc1ba0ae2f65e029ee365baf8e7f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RRYGRBG",
+                "GRGRYRB",
+                "GBRYBRY",
+                "RGGYBBR",
+                "YGGBRYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "023ffa161b5f3637416384eed2885d367ea6a05c90eea3780c7fbe64af730923",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "Cascades": 6,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "won",
+            "moves_remaining": 13,
+            "target_remaining": 0,
+            "random_state": 2967400937,
+            "grid": [
+              "BRGRRBG",
+              "GYBBGYB",
+              "YBYYRBG",
+              "RYYBRRY",
+              "GRGBBRR",
+              "YBGRGBB",
+              "YGYGBYG"
+            ],
+            "grid_sha256": "b22419e3ab63a0eade9095dc259bc801e74ebcc817961d8ba57c38ef8e3aebf6"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "RRYGRBG",
+                "GRGRYRB",
+                "GBRYBRY",
+                "RGGYBBR",
+                "YGGRBYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "1b72abfbad159680f46cdff31f33757b6ef54346511d950b592de2be7fe143c5",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RRYGRBG",
+                "GRGRYRB",
+                "GBRY.RY",
+                "RGGY.BR",
+                "YGGR.YB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "a31ddfa8b783bd86d218141f3644f2c0e1295e03063a17c088c8e1dce6bb702a",
+              "cleared": [
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RRYG.BG",
+                "GRGR.RB",
+                "GBRY.RY",
+                "RGGYRBR",
+                "YGGRYYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "e4664503c36d0433ec196e9b08b81c84b48f442f8f94a393f24e8261b931bc0f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RRYGYBG",
+                "GRGRYRB",
+                "GBRYYRY",
+                "RGGYRBR",
+                "YGGRYYB",
+                "GRRYYRG",
+                "Y1YRY1R"
+              ],
+              "grid_sha256": "b55d8c1c0ec5507b4c71c6b00b9b9f4480591c5e5e9b3f9b0af6951e6de74eb1",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RRYG.BG",
+                "GRGR.RB",
+                "GBRY.RY",
+                "RGGYRBR",
+                "YGGR.YB",
+                "GRRY.RG",
+                "Y1YR..R"
+              ],
+              "grid_sha256": "268debff2247bd7b68291520c335e7e738c958b02c4ef38563220bfbc24255b3",
+              "cleared": [
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  5,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RRYG..G",
+                "GRGR.BB",
+                "GBRY.RY",
+                "RGGY.RR",
+                "YGGR.BB",
+                "GRRY.YG",
+                "Y1YRRRR"
+              ],
+              "grid_sha256": "5d5017b411a60f1767df0170b2b3f169fd92a21cf105178c4f1200674c9372e0",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RRYGBBG",
+                "GRGRBBB",
+                "GBRYBRY",
+                "RGGYGRR",
+                "YGGRRBB",
+                "GRRYBYG",
+                "Y1YRRRR"
+              ],
+              "grid_sha256": "61e50fbc22589b68a424065a81fe880d354625d32747410f2164ba0e7c6a00bd",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RRYG.BG",
+                "GRGR...",
+                "GBRY.RY",
+                "RGGYGRR",
+                "YGGRRBB",
+                "GRRYBYG",
+                "Y1Y...."
+              ],
+              "grid_sha256": "af46e4e2154fe6122dcfb29b7c0e126bf1c1e1583b2a28429e9ad2a30970b723",
+              "cleared": [
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  3,
+                  6
+                ],
+                [
+                  4,
+                  6
+                ],
+                [
+                  5,
+                  6
+                ],
+                [
+                  6,
+                  6
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RRY....",
+                "GRGG...",
+                "GBRR.BG",
+                "RGGY.RY",
+                "YGGYGRR",
+                "GRRRRBB",
+                "Y1YYBYG"
+              ],
+              "grid_sha256": "0439481d72a5dbfbc15bf3cef06b481fc0039432de038ca13fcfa7e958e42884",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RRYRRBG",
+                "GRGGRBB",
+                "GBRRYBG",
+                "RGGYBRY",
+                "YGGYGRR",
+                "GRRRRBB",
+                "Y1YYBYG"
+              ],
+              "grid_sha256": "a33525c586bbec21f6cefd4dce2b5c011fa0dcd4273e74c0d4483dc6bbaaa268",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RRYRR.G",
+                "GRGGR.B",
+                "GBRRY.G",
+                "RGGYBRY",
+                "YGGYGRR",
+                "G....BB",
+                "Y.YYBYG"
+              ],
+              "grid_sha256": "3ab5fc2dcd7a05934517c5d314a145faf209019ffd5db69d4237dd805e55d8ae",
+              "cleared": [
+                [
+                  5,
+                  0
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "R.....G",
+                "G.YRR.B",
+                "GRGGR.G",
+                "RRRRYRY",
+                "YBGYBRR",
+                "GGGYGBB",
+                "YGYYBYG"
+              ],
+              "grid_sha256": "f42c2484078d2f84c0339a1ecfcec34d36c5bf4d48c6c4792d188acc73629200",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RGGBGBG",
+                "GRYRRYB",
+                "GRGGRBG",
+                "RRRRYRY",
+                "YBGYBRR",
+                "GGGYGBB",
+                "YGYYBYG"
+              ],
+              "grid_sha256": "ea24041a589fc1b173b0f1f14431c9b9db7607d507087045b6f8072b41d22cd5",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RGGBGBG",
+                "G.YRRYB",
+                "G.GGRBG",
+                "....YRY",
+                "YBG.BRR",
+                "....GBB",
+                "YGY.BYG"
+              ],
+              "grid_sha256": "813ae8729d5484f8a83c8343940b4a2cabe395ee1549acbd1603cae7f61556bb",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  3,
+                  6
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "....GBG",
+                "....RYB",
+                "R.G.RBG",
+                "G.Y.YRY",
+                "GGGBBRR",
+                "YBGRGBB",
+                "YGYGBYG"
+              ],
+              "grid_sha256": "ae3f6a2c3a4be730599a6409bedff9898e39f669d9758399285bac4ac02c7154",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GYYBGBG",
+                "YBYYRYB",
+                "RYGBRBG",
+                "GRYYYRY",
+                "GGGBBRR",
+                "YBGRGBB",
+                "YGYGBYG"
+              ],
+              "grid_sha256": "1cbcce9d266ec7be6fb0228bba63e99c15f4b05093ea4b97908e8bfdabd29a1f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GYYBGBG",
+                "YBYYRYB",
+                "RYGBRBG",
+                "GR...RY",
+                "...BBRR",
+                "YBGRGBB",
+                "YGYGBYG"
+              ],
+              "grid_sha256": "d8a42ad810e31dec74bbd938d52f09d502a153d3b9ea5bee42586167b8bb7fc8",
+              "cleared": [
+                [
+                  2,
+                  3
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                ".....BG",
+                "GY.BGYB",
+                "YBYYRBG",
+                "RYYBRRY",
+                "GRGBBRR",
+                "YBGRGBB",
+                "YGYGBYG"
+              ],
+              "grid_sha256": "03cc510c0856761e40a62121b9afe1a0344cd7bef56e0a7aab9213276b5ef99d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BRGRRBG",
+                "GYBBGYB",
+                "YBYYRBG",
+                "RYYBRRY",
+                "GRGBBRR",
+                "YBGRGBB",
+                "YGYGBYG"
+              ],
+              "grid_sha256": "b22419e3ab63a0eade9095dc259bc801e74ebcc817961d8ba57c38ef8e3aebf6",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        }
+      ],
+      "result": {
+        "won": true,
+        "stars": 3
+      }
+    },
+    {
+      "level_id": 2,
+      "seed": 641209,
+      "initial_moves": 20,
+      "initial": {
+        "phase": "playing",
+        "moves_remaining": 20,
+        "target_remaining": 10,
+        "random_state": 2176989195,
+        "grid": [
+          "GBRRGBR",
+          "GGRGGYY",
+          "BYYBRBR",
+          "RGYBRRB",
+          "GGRYBGG",
+          "G11111G",
+          "Y11111Y"
+        ],
+        "grid_sha256": "130b1cb2b1e2553e098469a1a0badf77a8053fb35d5c65207e35480ec9db940b"
+      },
+      "moves": [
+        {
+          "from": [
+            2,
+            4
+          ],
+          "to": [
+            3,
+            4
+          ],
+          "Cascades": 2,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 19,
+            "target_remaining": 9,
+            "random_state": 1413910155,
+            "grid": [
+              "GYGYGBR",
+              "GBYRGYY",
+              "BYYBRBR",
+              "RGBBRRB",
+              "GGRRBGG",
+              "G1R111G",
+              "Y11111Y"
+            ],
+            "grid_sha256": "d52525d2eb83185c415f414f5a9464f9458563bcdc2b00992587e898df771258"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GBRRGBR",
+                "GGRGGYY",
+                "BYYBRBR",
+                "RGYBRRB",
+                "GGYRBGG",
+                "G11111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "d0e1bf8f899303ea614f1f008b747bf45bc2b5b4ea4fd972e005c92693dfaeed",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBRRGBR",
+                "GGRGGYY",
+                "BY.BRBR",
+                "RG.BRRB",
+                "GG.RBGG",
+                "G1.111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "09a9327205a3b8fa7d8c9e91df774c5a536cbd9eeb052b725597bd8763e51104",
+              "cleared": [
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  2,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GB.RGBR",
+                "GG.GGYY",
+                "BY.BRBR",
+                "RG.BRRB",
+                "GGRRBGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "da1fbc983ee91507b89ce82e9bbb71b6f0490e363f5fd205295b34ed0a72fa77",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBGRGBR",
+                "GGGGGYY",
+                "BYGBRBR",
+                "RGBBRRB",
+                "GGRRBGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "86bde7bca4029e39de0ed7f72cd3dbe56ebd8fec10111b1fa2efe4577edfba5f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GB.RGBR",
+                ".....YY",
+                "BY.BRBR",
+                "RGBBRRB",
+                "GGRRBGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "14d13cf21cefbe38dad0bb9b0120b5fc8b95a2665c8e857f1500546489a16455",
+              "cleared": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  0,
+                  1
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                ".....BR",
+                "GB.RGYY",
+                "BY.BRBR",
+                "RGBBRRB",
+                "GGRRBGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "cc592c57394511aa2c9b824a54c8fe1e98ddd3cdcce5fbb4f1fd672a074d60d5",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GYGYGBR",
+                "GBYRGYY",
+                "BYYBRBR",
+                "RGBBRRB",
+                "GGRRBGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "d52525d2eb83185c415f414f5a9464f9458563bcdc2b00992587e898df771258",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "Cascades": 5,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 18,
+            "target_remaining": 4,
+            "random_state": 1566170708,
+            "grid": [
+              "GRBRYRR",
+              "GYGYBYR",
+              "BBYBGRG",
+              "RGBRBRB",
+              "GGRYRYR",
+              "G1RRYRR",
+              "Y111YBY"
+            ],
+            "grid_sha256": "44b276b47c617b7e2fa15d317459d9f8fb9310c1666a1101c9c2a77644d56130"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GYGYGBR",
+                "GBYRGYY",
+                "BYYBRBR",
+                "RGBBRRB",
+                "GGRBRGG",
+                "G1R111G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "e79641a2f892234b0b36d9581d6759fc84e765daef263b39fdb16fd3f3a2f204",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GYGYGBR",
+                "GBYRGYY",
+                "BYY..BR",
+                "RGB..RB",
+                "GGR..GG",
+                "G1R..1G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "36244bd0b9244c407508ec356e07d94f682c59b15fc1c7c931d60a62219d0f1d",
+              "cleared": [
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GYG..BR",
+                "GBY..YY",
+                "BYY..BR",
+                "RGB..RB",
+                "GGRYGGG",
+                "G1RRG1G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "5ed3a1da7ff20c776352ea4435197af4b64bc8154af6511642b2a9de34151645",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GYGRBBR",
+                "GBYRYYY",
+                "BYYYBBR",
+                "RGBRRRB",
+                "GGRYGGG",
+                "G1RRG1G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "a031a852f25c4589f90ff8a7e5c28b821ff5cc02f59f2345e65b44d523bb1190",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GYGRBBR",
+                "GBYR...",
+                "B...BBR",
+                "RGB...B",
+                "GGRY...",
+                "G1RRG.G",
+                "Y11111Y"
+              ],
+              "grid_sha256": "f08e194b4901e2e0f667772bc13d31e530c3c2f7e1494ffd242dee8e01c51e2d",
+              "cleared": [
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  6,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  5,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "G......",
+                "GYG....",
+                "BBYR..R",
+                "RGBRB.R",
+                "GGRYBBB",
+                "G1RRGBG",
+                "Y11111Y"
+              ],
+              "grid_sha256": "347c92e61f59cfdb8452f399d12d9e69b00d51ef6b40dd9b9aab31cae365cb43",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBYYRG",
+                "GYGBBGB",
+                "BBYRBBR",
+                "RGBRBBR",
+                "GGRYBBB",
+                "G1RRGBG",
+                "Y11111Y"
+              ],
+              "grid_sha256": "4e11206630281edb7662b305f03460f132a3411ba40376dd4f6f4026344e37fc",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBYYRG",
+                "GYGB.GB",
+                "BBYR..R",
+                "RGBR..R",
+                "GGRY...",
+                "G1RRG.G",
+                "Y1111.Y"
+              ],
+              "grid_sha256": "a2355300a58e1b7a3e328671e9024f9a9922c610b72837f10092eec2c90a64e1",
+              "cleared": [
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  6,
+                  4
+                ],
+                [
+                  5,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  5,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRBY...",
+                "GYGB..G",
+                "BBYR..B",
+                "RGBR..R",
+                "GGRYY.R",
+                "G1RRGRG",
+                "Y1111GY"
+              ],
+              "grid_sha256": "1c37853712b85cbb7fa00e73e6ce122902385f6cbc48f9aa491f45479513feb5",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBYBBR",
+                "GYGBRGG",
+                "BBYRRGB",
+                "RGBRYRR",
+                "GGRYYRR",
+                "G1RRGRG",
+                "Y1111GY"
+              ],
+              "grid_sha256": "ce2415c27e2ae55708b7b630fb9ad38f5ef2a7a10df7f183a332e764e2cf2356",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBYBBR",
+                "GYGBRGG",
+                "BBYRRGB",
+                "RGBRY.R",
+                "GGRYY.R",
+                "G1RRG.G",
+                "Y1111GY"
+              ],
+              "grid_sha256": "6617dc03877bfb6638d706a356a91fd185c86e49c9e77e9675e8b9cb77e0cda9",
+              "cleared": [
+                [
+                  5,
+                  3
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  5,
+                  5
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRBYB.R",
+                "GYGBR.G",
+                "BBYRR.B",
+                "RGBRYBR",
+                "GGRYYGR",
+                "G1RRGGG",
+                "Y1111GY"
+              ],
+              "grid_sha256": "b1d2192775b4f568cd113bfe572d81467c0091e42a2a0ddd41802af9b7ca377e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBYBYR",
+                "GYGBRRG",
+                "BBYRRRB",
+                "RGBRYBR",
+                "GGRYYGR",
+                "G1RRGGG",
+                "Y1111GY"
+              ],
+              "grid_sha256": "f37e02f4360fbb1fbb296ca780fedf4b4e467f63569cd213c59a3916025ba1b0",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBYBYR",
+                "GYGBRRG",
+                "BBY...B",
+                "RGBRYBR",
+                "GGRYY.R",
+                "G1RR...",
+                "Y111..Y"
+              ],
+              "grid_sha256": "68fdfbb28d82205fb7fb94076ec434c8d35cf95c8f9d68b626eff6c99247748e",
+              "cleared": [
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  6,
+                  5
+                ],
+                [
+                  5,
+                  6
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  4,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRB....",
+                "GYGY..R",
+                "BBYB..G",
+                "RGBRB.B",
+                "GGRYRYR",
+                "G1RRYRR",
+                "Y111YBY"
+              ],
+              "grid_sha256": "460cb5356cad09d09fe527ab71e0047abdde8db48b421e61760e0f9c794a3624",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRYRR",
+                "GYGYBYR",
+                "BBYBGRG",
+                "RGBRBRB",
+                "GGRYRYR",
+                "G1RRYRR",
+                "Y111YBY"
+              ],
+              "grid_sha256": "44b276b47c617b7e2fa15d317459d9f8fb9310c1666a1101c9c2a77644d56130",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            4,
+            5
+          ],
+          "Cascades": 3,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 17,
+            "target_remaining": 1,
+            "random_state": 679118214,
+            "grid": [
+              "YBGYYBG",
+              "GBBRGYB",
+              "GRBGYGR",
+              "BYRRYYG",
+              "RBBRBRB",
+              "GGYYGRR",
+              "Y1RRYBY"
+            ],
+            "grid_sha256": "e9e9e297b61870949f7353dc5f3dfcb95a166fdb608a18e84739e7e0e9ea7d0b"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GRBRYRR",
+                "GYGYBYR",
+                "BBYBGRG",
+                "RGBRBRB",
+                "GGRYYYR",
+                "G1RRRRR",
+                "Y111YBY"
+              ],
+              "grid_sha256": "96e6b2517d2d79f1e6fa5e571c13e3680db265734e9ac72418843b3f4446a93f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRYRR",
+                "GYGYBYR",
+                "BBYBGRG",
+                "RGBRBRB",
+                "GGR...R",
+                "G......",
+                "Y1..YBY"
+              ],
+              "grid_sha256": "403415fe6cb3798b571505088c53667ee39e7fae1d5eacfcd3f12dcc86d06b15",
+              "cleared": [
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  6,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  6
+                ],
+                [
+                  3,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "G......",
+                "GR....R",
+                "BYB.YRR",
+                "RBGRBYG",
+                "GGYYGRB",
+                "GGBBBRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "85fec95e8d76a6f90856e9edf98917530f43eeef2ad42c1a5190aa4c14a1d3a0",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBRYYB",
+                "GRRGRGR",
+                "BYBRYRR",
+                "RBGRBYG",
+                "GGYYGRB",
+                "GGBBBRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "0cb505bdf50b91e35f3d2bc84cee7ede07494f8bdfcec95507a0f8f1aef70536",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBRYYB",
+                "GRRGRGR",
+                "BYBRYRR",
+                "RBGRBYG",
+                "GGYYGRB",
+                "GG...RR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "124aa516ff786108abafb82a6613e03ef9bb2427386b26c5e1ed4a82515423d9",
+              "cleared": [
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GB...YB",
+                "GRBRYGR",
+                "BYRGRRR",
+                "RBBRYYG",
+                "GGGRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "1adb7a932eef6db209c681fcfff73a7cab6d8c9a1e42b2acad15fa251ef915ab",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBYGYB",
+                "GRBRYGR",
+                "BYRGRRR",
+                "RBBRYYG",
+                "GGGRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "63b2aa53971f8faded1b3bfdf61b32c3972ce7ee6702b1b487f27377ffad0cae",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBYGYB",
+                "GRBRYGR",
+                "BYRG...",
+                "RBBRYYG",
+                "...RBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "ead8aa3ff22e5ad880ae46fb5d425c18c05e24e6d2f85d07c2e0624b25e1062a",
+              "cleared": [
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "...Y...",
+                "GBBRGYB",
+                "GRBGYGR",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "bed1e403bc930a11c3cd7a1f1a5e84b0e66c5593cefc10f85ca50df8b72ab0e4",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBGYYBG",
+                "GBBRGYB",
+                "GRBGYGR",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "e9e9e297b61870949f7353dc5f3dfcb95a166fdb608a18e84739e7e0e9ea7d0b",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            1
+          ],
+          "to": [
+            4,
+            2
+          ],
+          "Cascades": 5,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 16,
+            "target_remaining": 1,
+            "random_state": 2378148311,
+            "grid": [
+              "YBYGGRG",
+              "GBBGRBB",
+              "GRBRYYR",
+              "BYRBYYG",
+              "RBBGGRB",
+              "GGYGGRR",
+              "Y1RYYBY"
+            ],
+            "grid_sha256": "87a228d76d82fd643d6ed22ca98e91773f803e42a5af15ac73ecdff9c54437be"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "YBGYYBG",
+                "GBBRYYB",
+                "GRBGGGR",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "15117b4e12d133d4cca0696d7bd8b8d3afe06573e30ce7e2cda3562064143f91",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBGYYBG",
+                "GBBRYYB",
+                "GRB...R",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "2f328bc0728f669075488b7f53743dab3e5a1419d6cf78e2493bb3431c72edde",
+              "cleared": [
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "YBG...G",
+                "GBBYYBB",
+                "GRBRYYR",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "dc1b0303f26b1837e5d7b1e29079f3c178a91421db0cd730a8cd1be1af6a3e29",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBGYBRG",
+                "GBBYYBB",
+                "GRBRYYR",
+                "BYRRYYG",
+                "RBBRBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "46a19e5387f911ad4e37c56fe4df871263b3551c3a2c8aa21ca91e772930f240",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBGYBRG",
+                "GBBY.BB",
+                "GRB..YR",
+                "BYR..YG",
+                "RBB.BRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "6b01f65aab38ed8f6885902969b2c9b15e03966ec3000b60756d1a1bd3a68f8b",
+              "cleared": [
+                [
+                  4,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "YBG..RG",
+                "GBB..BB",
+                "GRB..YR",
+                "BYRYBYG",
+                "RBBYBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "bddbd5cd9390115d278a86f9396e9428c9826cba5eba8f1a25f93c775d67591e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBGGGRG",
+                "GBBBGBB",
+                "GRBRGYR",
+                "BYRYBYG",
+                "RBBYBRB",
+                "GGYYGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "59fc15ff551c582d747d39e47ce4472a3e9df8944aab16d3ac021e57aedadf91",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YB...RG",
+                "G....BB",
+                "GRBR.YR",
+                "BYR.BYG",
+                "RBB.BRB",
+                "GGY.GRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "2bebb0065c04747623c7ad6d892d2a879c12941db08e038799d75eb3a817d186",
+              "cleared": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y....RG",
+                "GB...BB",
+                "GRB..YR",
+                "BYR.BYG",
+                "RBB.BRB",
+                "GGYRGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "7bffe2cf2359f5905bfd6479b425760aac59e6a4041cb5aaa302c0742e19c09c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBYBYRG",
+                "GBBGGBB",
+                "GRBGBYR",
+                "BYRYBYG",
+                "RBBRBRB",
+                "GGYRGRR",
+                "Y1RRYBY"
+              ],
+              "grid_sha256": "b7ad1fb27ccb6ae0012ab77cee0114c118c941afb577007574f0ea6e1be47e64",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBYBYRG",
+                "GBBGGBB",
+                "GRBG.YR",
+                "BYRY.YG",
+                "RBB..RB",
+                "GGY.GRR",
+                "Y1R.YBY"
+              ],
+              "grid_sha256": "1db601da277258facfc941669c69b9548fb074f47b8a89797e1b26417497e862",
+              "cleared": [
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  3,
+                  6
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "YBY..RG",
+                "GBB..BB",
+                "GRB..YR",
+                "BYRBYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "1b569218ad273f55cc343adeafd86c8e8571a943ed15ad08591f33fdc6ae1ca2",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBYGRRG",
+                "GBBGRBB",
+                "GRBRRYR",
+                "BYRBYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "42779d7efec26249b0cb07e2139bd38e4bfb4558952e8dab505b3dabd7c6ff6e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBYG.RG",
+                "GBBG.BB",
+                "GRBR.YR",
+                "BYRBYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "422b98ec3b4bc7f844149f8495bc7de68e2eb8639e8d694ed918323700ef7339",
+              "cleared": [
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "YBYG.RG",
+                "GBBG.BB",
+                "GRBR.YR",
+                "BYRBYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "422b98ec3b4bc7f844149f8495bc7de68e2eb8639e8d694ed918323700ef7339",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBYGGRG",
+                "GBBGRBB",
+                "GRBRYYR",
+                "BYRBYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "87a228d76d82fd643d6ed22ca98e91773f803e42a5af15ac73ecdff9c54437be",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            2,
+            3
+          ],
+          "to": [
+            3,
+            3
+          ],
+          "Cascades": 9,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "won",
+            "moves_remaining": 15,
+            "target_remaining": 0,
+            "random_state": 2872573065,
+            "grid": [
+              "YBGBGBG",
+              "GYGBGRB",
+              "GGBGRBR",
+              "BYRBYYG",
+              "RBYGGRB",
+              "GYYGGRR",
+              "YRRYYBY"
+            ],
+            "grid_sha256": "9773cc2fcc1413701062321f938f45ea3a3d816000e0b580a58a2b8d0c41bea5"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "YBYGGRG",
+                "GBBGRBB",
+                "GRBRYYR",
+                "BYBRYYG",
+                "RBBGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "201aa9576c23a8e77b7854067609c7e9ecf5be388c7a78cb67836b78f7a3f441",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBYGGRG",
+                "GB.GRBB",
+                "GR.RYYR",
+                "BY.RYYG",
+                "RB.GGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "db7a613fd171f6846f006226a561f222ec9e9640a26dcb9a2e67f9b6bd02e6d2",
+              "cleared": [
+                [
+                  2,
+                  1
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  2,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "YB.GGRG",
+                "GB.GRBB",
+                "GR.RYYR",
+                "BY.RYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "e13e2f2fe537a22fcb344b61148ff7f45344e647c347706541862e493c2d9293",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBBGGRG",
+                "GBYGRBB",
+                "GRRRYYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "28d72af63f16f1efb88370ed1662a0399d886324520a901a6d7af45f31d9a3cc",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBBGGRG",
+                "GBYGRBB",
+                "G...YYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "45ea77a85330d03a0396fe7396e8aa1694baa067b6c14b1821d9214e3cc28298",
+              "cleared": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y...GRG",
+                "GBBGRBB",
+                "GBYGYYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "28a6a91926657b5f86369508fc92f46e2d8c08d93d4589801d3a11b2f696c2cb",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBRGGRG",
+                "GBBGRBB",
+                "GBYGYYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "f19206420541d91ddc58b4aee7acec206da3d9b2058685a324eca4e0b2981346",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "Y.R.GRG",
+                "G.B.RBB",
+                "G.Y.YYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "02db69e2e2516d930908415a305bec44686a816b3ba2a170635cd4e24772ea2e",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y.R.GRG",
+                "G.B.RBB",
+                "G.Y.YYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "02db69e2e2516d930908415a305bec44686a816b3ba2a170635cd4e24772ea2e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBRRGRG",
+                "GYBRRBB",
+                "GYYYYYR",
+                "BYRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "8b707afb974b6fc2b7ab19f84b3a4ce44771aa244d8de4b8f350bad15defa71f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBRRGRG",
+                "G.BRRBB",
+                "G.....R",
+                "B.RRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "65745c1cf5c3d94deb35e2727f2f01fc889fdb245b475cfcb289c1eb0257e5db",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y.....G",
+                "G.RRGRB",
+                "G.BRRBR",
+                "BBRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "1d237673a4a81eec3d1c79003df7ad57ebcfdeb6ffd49a03e639036e982913f1",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YRBBGBG",
+                "GGRRGRB",
+                "GBBRRBR",
+                "BBRRYYG",
+                "RBYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "09e48c9c190f986889f4870df34b31162c4e543c26c6f20fadb2579b5acd57ce",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YRBBGBG",
+                "GGR.GRB",
+                "G.B.RBR",
+                "B.R.YYG",
+                "R.YGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "f034918b2fb1299c0c5db29367a706d8a9415fc8741b4083481e5c6b56be68ed",
+              "cleared": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y.B.GBG",
+                "G.R.GRB",
+                "G.B.RBR",
+                "BRRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "b3ee814728b2f2ae0f28bb528587799e68cec49c3957cdc3dd37a3781ddf82dc",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YYBGGBG",
+                "GYRRGRB",
+                "GYBBRBR",
+                "BRRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "fe6a1b66a7a7b6722b037132c01649a406813185780c816728a5c486b177377c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "Y.BGGBG",
+                "G.RRGRB",
+                "G.BBRBR",
+                "BRRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "db5c2994144697f5879461f1310be09ae13585b2b529990042319cd52725ee0b",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y.BGGBG",
+                "G.RRGRB",
+                "G.BBRBR",
+                "BRRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "db5c2994144697f5879461f1310be09ae13585b2b529990042319cd52725ee0b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YGBGGBG",
+                "GRRRGRB",
+                "GRBBRBR",
+                "BRRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "39c1cd0700c7e86b7fff3825b4d45d80ee243e2301e08599dd12cd0ee798cba8",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YGBGGBG",
+                "G...GRB",
+                "G.BBRBR",
+                "B.RBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "2b1123c4e3d28a4d7947c9e6d53963d10f0f464d68e3d090b3162cf2908cedc2",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y...GBG",
+                "G.BGGRB",
+                "G.BBRBR",
+                "BGRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "67743598fe04ff42464ca157c474b87501861570644bfbd7844ea859426222f8",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBGBGBG",
+                "GYBGGRB",
+                "GRBBRBR",
+                "BGRBYYG",
+                "RGYGGRB",
+                "GGYGGRR",
+                "Y1RYYBY"
+              ],
+              "grid_sha256": "f110a38376db72b736e2ec603ae9b52ded022499cc4f43b1030b16ba11505c76",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YBGBGBG",
+                "GYBGGRB",
+                "GRBBRBR",
+                "B.RBYYG",
+                "R.YGGRB",
+                "G.YGGRR",
+                "Y.RYYBY"
+              ],
+              "grid_sha256": "c77a53f90bae7307142b2b487534b6f3f1b2e02aac250ccb499f30c9b33fbb8c",
+              "cleared": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  1,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y.GBGBG",
+                "G.BGGRB",
+                "G.BBRBR",
+                "B.RBYYG",
+                "RBYGGRB",
+                "GYYGGRR",
+                "YRRYYBY"
+              ],
+              "grid_sha256": "b2173b2e4602f4559e715cbe72b2aebf07c72a208c9622b7743e47b81e421c9d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YYGBGBG",
+                "GGBGGRB",
+                "GBBBRBR",
+                "BYRBYYG",
+                "RBYGGRB",
+                "GYYGGRR",
+                "YRRYYBY"
+              ],
+              "grid_sha256": "cdc4a947dd52d56f8ccfd3b789edde13280c11239bee294c2db4aa2d07f7db12",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "YYGBGBG",
+                "GGBGGRB",
+                "G...RBR",
+                "BYRBYYG",
+                "RBYGGRB",
+                "GYYGGRR",
+                "YRRYYBY"
+              ],
+              "grid_sha256": "55da4d462522a2bc1b24e2f5653f6b2831a2582234ac01dd3aa4a790d1e470f5",
+              "cleared": [
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "Y...GBG",
+                "GYGBGRB",
+                "GGBGRBR",
+                "BYRBYYG",
+                "RBYGGRB",
+                "GYYGGRR",
+                "YRRYYBY"
+              ],
+              "grid_sha256": "220a32829dc2e76596f4633007a8203ecb7105b53dbb5b796ca829d5a9308b75",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YBGBGBG",
+                "GYGBGRB",
+                "GGBGRBR",
+                "BYRBYYG",
+                "RBYGGRB",
+                "GYYGGRR",
+                "YRRYYBY"
+              ],
+              "grid_sha256": "9773cc2fcc1413701062321f938f45ea3a3d816000e0b580a58a2b8d0c41bea5",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        }
+      ],
+      "result": {
+        "won": true,
+        "stars": 3
+      }
+    },
+    {
+      "level_id": 3,
+      "seed": 641203,
+      "initial_moves": 24,
+      "initial": {
+        "phase": "playing",
+        "moves_remaining": 24,
+        "target_remaining": 14,
+        "random_state": 1055444939,
+        "grid": [
+          "RYYRRGB",
+          "YGGRRGB",
+          "GGRYBBY",
+          "YBBRBGB",
+          "YGGBGGY",
+          "1212121",
+          "1111111"
+        ],
+        "grid_sha256": "f9d0a71be7fdca588290fb236d010c88c7cfc535d57f9a9f56f9f94ef1361266"
+      },
+      "moves": [
+        {
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "Cascades": 3,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 23,
+            "target_remaining": 11,
+            "random_state": 4151835897,
+            "grid": [
+              "RYRGBGB",
+              "YYGYGGB",
+              "GGBBRBY",
+              "YGYRBGB",
+              "YBGRYGY",
+              "11BYR21",
+              "1111111"
+            ],
+            "grid_sha256": "aa5862a4525f29d180318d37fe4402a3a52e82ff04ca798b9b76a53de5ec62b7"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "RYYRRGB",
+                "YGGRRGB",
+                "GGRYBBY",
+                "YBBRBGB",
+                "YGGGBGY",
+                "1212121",
+                "1111111"
+              ],
+              "grid_sha256": "e19f2285ddf35a50345e8641c855a4a0cff10c5416d408f72ccadf40d275c10b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RYYRRGB",
+                "YGGRRGB",
+                "GGRY.BY",
+                "YBBR.GB",
+                "Y....GY",
+                "11.1.21",
+                "1111111"
+              ],
+              "grid_sha256": "bca4180f09dc728bd7e0761940391714a3a1b4f37b5084ef49aaee8a4f75013f",
+              "cleared": [
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "R....GB",
+                "YY.R.GB",
+                "GGYR.BY",
+                "YGGY.GB",
+                "YBRRRGY",
+                "11B1R21",
+                "1111111"
+              ],
+              "grid_sha256": "76eb9f0c93ca6b8c0875c0e1e8772ae4497e7cb7ccc584595279f619f6fdfd2b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RYGBGGB",
+                "YYBRRGB",
+                "GGYRBBY",
+                "YGGYYGB",
+                "YBRRRGY",
+                "11B1R21",
+                "1111111"
+              ],
+              "grid_sha256": "4a60a36d6a365283277e3f4479ac55940cf0507bb7e14b989684a58538493d6a",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RYGBGGB",
+                "YYBRRGB",
+                "GGYRBBY",
+                "YGGYYGB",
+                "YB...GY",
+                "11B.R21",
+                "1111111"
+              ],
+              "grid_sha256": "f02484174529a12a2c4d7c79a915d303b8108b67b11090f3ddd8ef8131b893c5",
+              "cleared": [
+                [
+                  2,
+                  4
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  3,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RY...GB",
+                "YYG.GGB",
+                "GGBBRBY",
+                "YGYRBGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "1a05cb3d5e71a488008994d74de0f92f30077aab089957879bbef6e4b32d346a",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RYRRRGB",
+                "YYGYGGB",
+                "GGBBRBY",
+                "YGYRBGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "43a041185ea67f3ed644bfd0ddf8fa0bc5a6ba2e0a7e3afa160ee8011534cc81",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RY...GB",
+                "YYGYGGB",
+                "GGBBRBY",
+                "YGYRBGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "2b6c8fc1c3c3f0faa05c7a0b18d2ae6413914ea0a5e5e36f948804c0f7094d76",
+              "cleared": [
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RY...GB",
+                "YYGYGGB",
+                "GGBBRBY",
+                "YGYRBGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "2b6c8fc1c3c3f0faa05c7a0b18d2ae6413914ea0a5e5e36f948804c0f7094d76",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RYRGBGB",
+                "YYGYGGB",
+                "GGBBRBY",
+                "YGYRBGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "aa5862a4525f29d180318d37fe4402a3a52e82ff04ca798b9b76a53de5ec62b7",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            2
+          ],
+          "to": [
+            4,
+            3
+          ],
+          "Cascades": 3,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 22,
+            "target_remaining": 10,
+            "random_state": 3139683205,
+            "grid": [
+              "GBBGRYB",
+              "YGBGBGB",
+              "YBRYGBY",
+              "GGYRRBB",
+              "YBGRYRY",
+              "R1BYR11",
+              "1111111"
+            ],
+            "grid_sha256": "51ddbfe6a7b456bba921f8228a642207959cdc64de5bc51e7b339dd573bf8dd0"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "RYRGBGB",
+                "YYGYGGB",
+                "GGBBBBY",
+                "YGYRRGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "f89520921b6b0b7c05bd115dc5c6f380ac96af4be9201d4285dde49f78fe6c54",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RYRGBGB",
+                "YYGYGGB",
+                "GG....Y",
+                "YGYRRGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "718c07e523c4fd04b8801c757d6bd932f3aaf180c38d264cd17aa59b2b85c7fa",
+              "cleared": [
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "RY....B",
+                "YYRGBGB",
+                "GGGYGGY",
+                "YGYRRGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "b10dc970d9905d825f583c957d0b5dea47dfc6193a9dd3e8d8cbe9f6daa4a35e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "RYBGRRB",
+                "YYRGBGB",
+                "GGGYGGY",
+                "YGYRRGB",
+                "YBGRYGY",
+                "11BYR21",
+                "1111111"
+              ],
+              "grid_sha256": "c5992980a19ddf8065d8e343d9d7bb2670a133366b49a84f76eaa0782291042d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "RYBGRRB",
+                "YYRGB.B",
+                "...YG.Y",
+                "YGYRR.B",
+                "YBGRY.Y",
+                "11BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "7e6a98efe2103d3667be5cc83f4400799ad3d822be3c0b44312f8808422ec8de",
+              "cleared": [
+                [
+                  5,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  5,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  5,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "...GR.B",
+                "RYBGB.B",
+                "YYRYG.Y",
+                "YGYRR.B",
+                "YBGRYRY",
+                "11BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "5a39bc8d32d91a0e091a3595e7794ba8a804a963cb443fd98e4cac6378ec5000",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "YYBGRGB",
+                "RYBGBGB",
+                "YYRYGGY",
+                "YGYRRGB",
+                "YBGRYRY",
+                "11BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "db2801cd44bf852f94b97a97738b25cf26bdfdc44dc53dee798e96dbc0de8e50",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "Y.BGR.B",
+                "R.BGB.B",
+                "..RYG.Y",
+                ".GYRR.B",
+                ".BGRYRY",
+                ".1BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "ec1356272b17469d6f007abfb6a408d9f602763d83abdaa844119d83319f9224",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  5,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  0,
+                  2
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  0,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  0,
+                  4
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  0,
+                  5
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "..BGR.B",
+                "..BGB.B",
+                "..RYG.Y",
+                ".GYRR.B",
+                "YBGRYRY",
+                "R1BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "bb6f5d13504e1a43cdc55808124f8547fd0c084a809ea799d3ca6e612b992aba",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBGRYB",
+                "YGBGBGB",
+                "YBRYGBY",
+                "GGYRRBB",
+                "YBGRYRY",
+                "R1BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "51ddbfe6a7b456bba921f8228a642207959cdc64de5bc51e7b339dd573bf8dd0",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            3,
+            4
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "Cascades": 2,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 21,
+            "target_remaining": 8,
+            "random_state": 341041051,
+            "grid": [
+              "GBBGRYB",
+              "YGBGYYB",
+              "YBRYYGY",
+              "GGYRGBB",
+              "YBGYYBY",
+              "R1BYBR1",
+              "1111G11"
+            ],
+            "grid_sha256": "28e702eb776bc4dfb98e912ab5abcb9e6576609df494fe62f5d7cd3ea0ef020e"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GBBGRYB",
+                "YGBGBGB",
+                "YBRYGBY",
+                "GGYRRBB",
+                "YBGYRRY",
+                "R1BYR11",
+                "1111111"
+              ],
+              "grid_sha256": "ba7bef65323b09f92af95fa97bd6e89bfa4bf2a3eaa300d38caad0a53637f21f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBGRYB",
+                "YGBGBGB",
+                "YBRYGBY",
+                "GGYR.BB",
+                "YBGY.RY",
+                "R1BY..1",
+                "1111.11"
+              ],
+              "grid_sha256": "9e8ddced7120d2d7142fbc6a1afcf730689e2851e804cb8e020651aef14d4a63",
+              "cleared": [
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  5,
+                  5
+                ],
+                [
+                  4,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GBBG..B",
+                "YGBG.YB",
+                "YBRY.GY",
+                "GGYR.BB",
+                "YBGYRBY",
+                "R1BYBR1",
+                "1111G11"
+              ],
+              "grid_sha256": "f7e8b7a0fd93b39533d3200e5e07ab0b62a51333795997d24e69eab3b892800b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBGRYB",
+                "YGBGRYB",
+                "YBRYRGY",
+                "GGYRRBB",
+                "YBGYRBY",
+                "R1BYBR1",
+                "1111G11"
+              ],
+              "grid_sha256": "dec9cd19a92445252184d03764ae99d0133e2a7fe19597d81321120b7acfb5ee",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBG.YB",
+                "YGBG.YB",
+                "YBRY.GY",
+                "GGYR.BB",
+                "YBGY.BY",
+                "R1BYBR1",
+                "1111G11"
+              ],
+              "grid_sha256": "2dd5b7f83d2b294784124553624faad82f0093621f58c5790fa9a05163c7f675",
+              "cleared": [
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GBBG.YB",
+                "YGBG.YB",
+                "YBRY.GY",
+                "GGYR.BB",
+                "YBGY.BY",
+                "R1BYBR1",
+                "1111G11"
+              ],
+              "grid_sha256": "2dd5b7f83d2b294784124553624faad82f0093621f58c5790fa9a05163c7f675",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBGRYB",
+                "YGBGYYB",
+                "YBRYYGY",
+                "GGYRGBB",
+                "YBGYYBY",
+                "R1BYBR1",
+                "1111G11"
+              ],
+              "grid_sha256": "28e702eb776bc4dfb98e912ab5abcb9e6576609df494fe62f5d7cd3ea0ef020e",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            5
+          ],
+          "to": [
+            5,
+            5
+          ],
+          "Cascades": 5,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 20,
+            "target_remaining": 6,
+            "random_state": 2579517963,
+            "grid": [
+              "GRBRBRY",
+              "YRYYRBB",
+              "YYGYGYR",
+              "GBRBYBY",
+              "YBGRGRB",
+              "R1BYRYY",
+              "1111GG1"
+            ],
+            "grid_sha256": "0a32a732e357de46cf767b72e7c9432620323d9c79a472e5fd16cb53292e8b30"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GBBGRYB",
+                "YGBGYYB",
+                "YBRYYGY",
+                "GGYRGBB",
+                "YBGYYBY",
+                "R1BYRB1",
+                "1111G11"
+              ],
+              "grid_sha256": "d4a952abf9e352cfd6a8dae2f8ea21b32fb00abb3f28c26e3efeba2e4991f276",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBGRYB",
+                "YGBGYYB",
+                "YBRYYGY",
+                "GGYRG.B",
+                "YBGYY.Y",
+                "R1BYR..",
+                "1111G.1"
+              ],
+              "grid_sha256": "f93c99454c5825f73535f1eef7a745f56e32ec027350efd31254b43bcf81c895",
+              "cleared": [
+                [
+                  5,
+                  3
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  5,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  6,
+                  5
+                ],
+                [
+                  5,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GBBGR..",
+                "YGBGY.B",
+                "YBRYY.B",
+                "GGYRG.Y",
+                "YBGYYYB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "60306183f2dd1f514d7905eaa6310cd4bd6ddacbbdde796bcd3674d597e1397c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBGRYB",
+                "YGBGYRB",
+                "YBRYYBB",
+                "GGYRGRY",
+                "YBGYYYB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "85ab9c05a6ecb1d9d95a1490d8ee2b61ccd1bdc0ab80e8f77dfbe285f704aee9",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBBGRY.",
+                "YGBGYR.",
+                "YBRYYB.",
+                "GGYRGRY",
+                "YBG...B",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "825ea82985f5dc2330ebf7ee4c301d20fbda699e72b4a2a39f1aadf86b10937b",
+              "cleared": [
+                [
+                  6,
+                  0
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GBB....",
+                "YGBGRY.",
+                "YBRGYR.",
+                "GGYYYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "9b547514f2bb4c2aa1ceb8d9577971263a22576cff7c2390e44f9a0fedb1a67d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBGGBB",
+                "YGBGRYR",
+                "YBRGYRR",
+                "GGYYYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "8d0aef005c6a9933fc9a01cd40df3a4e3606aef90490caad0792c86a3ae94f62",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBB.GBB",
+                "YGB.RYR",
+                "YBR.YRR",
+                "GG...BY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "992eafae3e3a44e775ff9de187192f00df6a99f98f4815b9807013296c053e6d",
+              "cleared": [
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  2,
+                  3
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GB...BB",
+                "YGB.GYR",
+                "YBB.RRR",
+                "GGR.YBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "f0e3643b7da4cdeef02a70e7a04f2af8e9351acee550d81ce18c55eea39896bf",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBBBGBB",
+                "YGBGGYR",
+                "YBBBRRR",
+                "GGRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "4e1a12dedb51c892a15c44053af217bfe33a23e9607a6b39658d2280764c29c1",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "G...GBB",
+                "YG.GGYR",
+                "Y......",
+                "GGRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "f0476811d025ab3149d9cce7dc2ff4924f2019bdb6c19fe1b1230460825a9008",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "G......",
+                "Y...GBB",
+                "YG.GGYR",
+                "GGRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "f5a2daf7c8778ddbde93f0679772830e568335caf986703be74789785f09c1ed",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBYYRRY",
+                "YGGYGBB",
+                "YGGGGYR",
+                "GGRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "b68a2240aadf670a4b80bc18c16f66ef6a30f710df03c43c3c11d12011480e71",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBYYRRY",
+                "Y.GYGBB",
+                "Y....YR",
+                "G.RBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "dd65852e1ab199895748c6b16e34c9f6440683d6b84d051ba878c0019247eccd",
+              "cleared": [
+                [
+                  1,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ],
+                [
+                  3,
+                  2
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  1,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "G....RY",
+                "Y.YYRBB",
+                "Y.GYGYR",
+                "GBRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "a067a36feb7bd7afa0912f3176a1a00ab113bc0e3ba6618ff29b433aa5389f43",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRBRY",
+                "YRYYRBB",
+                "YYGYGYR",
+                "GBRBYBY",
+                "YBGRGRB",
+                "R1BYRYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "0a32a732e357de46cf767b72e7c9432620323d9c79a472e5fd16cb53292e8b30",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            3,
+            5
+          ],
+          "to": [
+            4,
+            5
+          ],
+          "Cascades": 1,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 19,
+            "target_remaining": 5,
+            "random_state": 3077589474,
+            "grid": [
+              "GRBRYGB",
+              "YRYYBRG",
+              "YYGYRBY",
+              "GBRBGYB",
+              "YBGRYBR",
+              "R1BRGRY",
+              "1111GGB"
+            ],
+            "grid_sha256": "8aca4886e245a38516841ebc08b1971225706ad0c0e43e03d6f92f80d88d1a81"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GRBRBRY",
+                "YRYYRBB",
+                "YYGYGYR",
+                "GBRBYBY",
+                "YBGRGRB",
+                "R1BRYYY",
+                "1111GG1"
+              ],
+              "grid_sha256": "f3501e8face426830405744cde7b0f23f22de00ca2eff31074912d56fbc3106b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRBRY",
+                "YRYYRBB",
+                "YYGYGYR",
+                "GBRBYBY",
+                "YBGRGRB",
+                "R1BR...",
+                "1111GG."
+              ],
+              "grid_sha256": "629532950dc2fa3ca85645638f1b340ab6c70abb3c425d73c2c8165d57eaaa0c",
+              "cleared": [
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  5
+                ],
+                [
+                  6,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  6,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRBR...",
+                "YRYYBR.",
+                "YYGYRBY",
+                "GBRBGYB",
+                "YBGRYBR",
+                "R1BRGRY",
+                "1111GGB"
+              ],
+              "grid_sha256": "1917ab58fae8156c1ce54cd468e4c13ca28ca5cb855886379bca8720ed8eb85f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRYGB",
+                "YRYYBRG",
+                "YYGYRBY",
+                "GBRBGYB",
+                "YBGRYBR",
+                "R1BRGRY",
+                "1111GGB"
+              ],
+              "grid_sha256": "8aca4886e245a38516841ebc08b1971225706ad0c0e43e03d6f92f80d88d1a81",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            3
+          ],
+          "to": [
+            4,
+            4
+          ],
+          "Cascades": 2,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 18,
+            "target_remaining": 4,
+            "random_state": 1993380806,
+            "grid": [
+              "GRBRYGB",
+              "YRYBRGG",
+              "YYGYGRY",
+              "GBRRGGB",
+              "YBGRBRR",
+              "R1BYGBY",
+              "111RYGB"
+            ],
+            "grid_sha256": "3ef273c940d7de71ce61858cc0e0fecb0532f01f8d2b7c1ba03df58da94a9481"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GRBRYGB",
+                "YRYYBRG",
+                "YYGYRBY",
+                "GBRBYYB",
+                "YBGRGBR",
+                "R1BRGRY",
+                "1111GGB"
+              ],
+              "grid_sha256": "7d009d70ee2da9c7dd0b98b01f7edc0be9f82677f73ba705e628420f536ea8db",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRYGB",
+                "YRYYBRG",
+                "YYGYRBY",
+                "GBRBYYB",
+                "YBGR.BR",
+                "R1BR.RY",
+                "111..GB"
+              ],
+              "grid_sha256": "3228f6baf64982a81bad4dd0a24ac86ab034bfeb0e0384cd4036581787f11eb9",
+              "cleared": [
+                [
+                  4,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  3,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRB..GB",
+                "YRYR.RG",
+                "YYGY.BY",
+                "GBRYYYB",
+                "YBGBBBR",
+                "R1BRRRY",
+                "111RYGB"
+              ],
+              "grid_sha256": "8b962008dbc8f4cfbe1c366c0cafd14681ced580bcaec41bbc8abdf99a37652c",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRYGB",
+                "YRYRYRG",
+                "YYGYYBY",
+                "GBRYYYB",
+                "YBGBBBR",
+                "R1BRRRY",
+                "111RYGB"
+              ],
+              "grid_sha256": "d226a070a171104e3759e942d68327764d30a2abbbd67cc632445290822a879a",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBR.GB",
+                "YRYR.RG",
+                "YYGY.BY",
+                "GBR...B",
+                "YBG...R",
+                "R1B...Y",
+                "111RYGB"
+              ],
+              "grid_sha256": "975121ed1b0e4529fde065e1d0d7da9f0481cb8eb534e116f840f5ac0e8eac3b",
+              "cleared": [
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  3,
+                  3
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  5
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRB...B",
+                "YRY...G",
+                "YYG...Y",
+                "GBRR.GB",
+                "YBGR.RR",
+                "R1BY.BY",
+                "111RYGB"
+              ],
+              "grid_sha256": "bbfca98072020ccdf7b0b8fac6cffc7074e3ef993754d65ce18356ae7f3bbc8b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRYGB",
+                "YRYBRGG",
+                "YYGYGRY",
+                "GBRRGGB",
+                "YBGRBRR",
+                "R1BYGBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "3ef273c940d7de71ce61858cc0e0fecb0532f01f8d2b7c1ba03df58da94a9481",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            4,
+            4
+          ],
+          "to": [
+            4,
+            5
+          ],
+          "Cascades": 2,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 17,
+            "target_remaining": 4,
+            "random_state": 3721371244,
+            "grid": [
+              "GRBRYBR",
+              "YRYRGGB",
+              "YYGBBGG",
+              "GBRYBRY",
+              "YBGRYGB",
+              "R1BYBBY",
+              "111RYGB"
+            ],
+            "grid_sha256": "636065937d59275facbbad8d42b6623d1f678b4fa5ac1066c0d453122776da06"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GRBRYGB",
+                "YRYBRGG",
+                "YYGYGRY",
+                "GBRRGGB",
+                "YBGRGRR",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "34da904dfe5a76188dcfda835a30e042975e0ad118bd771cc4fb3211db634bdd",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRYGB",
+                "YRYBRGG",
+                "YYGY.RY",
+                "GBRR.GB",
+                "YBGR.RR",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "989063943ea806b938bcbe82b526532986c1671830d9f6794af4e08e3a246fae",
+              "cleared": [
+                [
+                  4,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRBR.GB",
+                "YRYB.GG",
+                "YYGY.RY",
+                "GBRRYGB",
+                "YBGRRRR",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "8965024820849bb56353142fa0477fb2130ad5cf0e9e6b3af0efba780071fa60",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRGGB",
+                "YRYBBGG",
+                "YYGYBRY",
+                "GBRRYGB",
+                "YBGRRRR",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "9b8720355bf8c1b6ef870e8b955b54e8b503f6682e45db7769153d55dfcaa6cf",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRGGB",
+                "YRYBBGG",
+                "YYGYBRY",
+                "GBRRYGB",
+                "YBG....",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "8dfb52da7cc343492993c1d9891dbcfc08e0ec12dfda575441154c1e75632eac",
+              "cleared": [
+                [
+                  3,
+                  4
+                ],
+                [
+                  4,
+                  4
+                ],
+                [
+                  5,
+                  4
+                ],
+                [
+                  6,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRB....",
+                "YRYRGGB",
+                "YYGBBGG",
+                "GBRYBRY",
+                "YBGRYGB",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "9086dca117398c4800a0c04bda9a08a498a4e16041a4dc2154b969cf1a085b76",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRYBR",
+                "YRYRGGB",
+                "YYGBBGG",
+                "GBRYBRY",
+                "YBGRYGB",
+                "R1BYBBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "636065937d59275facbbad8d42b6623d1f678b4fa5ac1066c0d453122776da06",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            3,
+            5
+          ],
+          "to": [
+            4,
+            5
+          ],
+          "Cascades": 9,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "playing",
+            "moves_remaining": 16,
+            "target_remaining": 2,
+            "random_state": 1244353986,
+            "grid": [
+              "BGBYRBB",
+              "YRYBYYB",
+              "YBGGRBG",
+              "GYYBRBG",
+              "YBGYYRB",
+              "RBRRGGY",
+              "11GRBGB"
+            ],
+            "grid_sha256": "b7beefa7aaee4870edc6aff149ee08921bf247a22c9e184c9bb839ec7b759d05"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "GRBRYBR",
+                "YRYRGGB",
+                "YYGBBGG",
+                "GBRYBRY",
+                "YBGRYGB",
+                "R1BBYBY",
+                "111RYGB"
+              ],
+              "grid_sha256": "a3b446542390370c013d87d010de88266830f4b33523724ba0ae6468acb81f0e",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRYBR",
+                "YRYRGGB",
+                "YYGBBGG",
+                "GBRYBRY",
+                "YBGR.GB",
+                "R1BB.BY",
+                "111R.GB"
+              ],
+              "grid_sha256": "c5fbd5347463c35ba358880609ef039b47f180caa491f4fad12d9107eef1b884",
+              "cleared": [
+                [
+                  4,
+                  4
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  4,
+                  6
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "GRBR.BR",
+                "YRYR.GB",
+                "YYGB.GG",
+                "GBRYYRY",
+                "YBGRGGB",
+                "R1BBBBY",
+                "111RBGB"
+              ],
+              "grid_sha256": "82f644e1c2536b9f8e84154e792406e5fd72545bdcff3a92aed3e72724818aa1",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GRBRBBR",
+                "YRYRRGB",
+                "YYGBYGG",
+                "GBRYYRY",
+                "YBGRGGB",
+                "R1BBBBY",
+                "111RBGB"
+              ],
+              "grid_sha256": "5fcc23c05af1700af220fb7318fc0ca2045111f9ece5b35f764cb98ed8fc7360",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GRBRBBR",
+                "YRYRRGB",
+                "YYGBYGG",
+                "GBRYYRY",
+                "YBGRGGB",
+                "R.....Y",
+                "11.RBGB"
+              ],
+              "grid_sha256": "024651b517efac19a4488510eefdd6645c93f959196ed5a0283bf7452a06f9a6",
+              "cleared": [
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ],
+                [
+                  4,
+                  5
+                ],
+                [
+                  5,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "G.....R",
+                "YR.RBBB",
+                "YRBRRGG",
+                "GYYBYGY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "90b8156e712028fac7ebdea9be94228f2aab74c525f06d44bd3d30aac25621f7",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GGGRRGR",
+                "YRYRBBB",
+                "YRBRRGG",
+                "GYYBYGY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "0c782b3da7eb6073e291895fd2192d33dd20685f5c442c539dd61f327aae7772",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "....RGR",
+                "YRY....",
+                "YRB.RGG",
+                "GYYBYGY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "3bfcd868017faefb733a2c602d79330b091984c9b927d2957a04b738fcf3986d",
+              "cleared": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  3,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                ".......",
+                "YRY.RGR",
+                "YRB.RGG",
+                "GYYBYGY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "5c0786308850ab2f3989d4a67ff978501555777d1afa5c50db3f172659afe8f0",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGBGYYR",
+                "YRYYRGR",
+                "YRBGRGG",
+                "GYYBYGY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "e828cf47bc96fbf9bbacec2e7d87fd7906a6ba33a6c7f7818aa44602a5768c66",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BGBGYYR",
+                "YRYYR.R",
+                "YRBGR.G",
+                "GYYBY.Y",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "567683296c051c003f36318e8c1f8924835fc965ed4f4134091b89e2d4d80699",
+              "cleared": [
+                [
+                  5,
+                  1
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  5,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BGBGY.R",
+                "YRYYR.R",
+                "YRBGR.G",
+                "GYYBYYY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "1d8a30c54c030979ca0cf33d886038a64ffaa5e5f39bd91e6167bb5248086e4d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGBGYGR",
+                "YRYYRBR",
+                "YRBGRBG",
+                "GYYBYYY",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "2850d45e48e1062f7038711d3106597b9a33421c959c3a08f1b090f3955f38f5",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BGBGYGR",
+                "YRYYRBR",
+                "YRBGRBG",
+                "GYYB...",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "1e4d47ae7831d922eb9bdd4be9fb48099ab3652d29fb4e8f1b855bca11a9f533",
+              "cleared": [
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ],
+                [
+                  6,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BGBG...",
+                "YRYYYGR",
+                "YRBGRBR",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "f1363ce0cc64da134a112f05f79c17528bdcb79e4296200385106b09b96eb6a9",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGBGGYR",
+                "YRYYYGR",
+                "YRBGRBR",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "ca99d3abf30caae8e62a9c4d103ca82019fa39481e75231095bf429e3e1c89a4",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BGBGGY.",
+                "YR...G.",
+                "YRBGRB.",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "94693fe6c047d00187d12b573c405cb24be609448ac7a0a8e443ac8e6ec34e5a",
+              "cleared": [
+                [
+                  6,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  6,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BG...Y.",
+                "YRBGGG.",
+                "YRBGRB.",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "e543578db641c1b209e02f4417cb4797ce3d6c7c41c5377e81c4ed3fa7414c1d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGGBYYB",
+                "YRBGGGB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "bebf5eb1ead53c7f52f0a6100a15c920296f6d51dc8a618772ef247c634c8499",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BGGBYYB",
+                "YRB...B",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "5d8c606d648ca53c5d442845ea09560f39c4f413f281d2fcd8532e1ae60d9408",
+              "cleared": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BGG...B",
+                "YRBBYYB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "42187e03c75d48447ead7e2214f9bee8954cecdaaa285b719426c474063ffb53",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGGGRBB",
+                "YRBBYYB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "3a688830e683224f6f1c5dff994fe0dee0c9f10a9823c3e2bd3c14a66d9b5c41",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "B...RBB",
+                "YRBBYYB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "cb1e7fd799825b7e1a5d090c5995d8f96cd52f9bcbd9b6f37e9e432984034aa2",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "B...RBB",
+                "YRBBYYB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "cb1e7fd799825b7e1a5d090c5995d8f96cd52f9bcbd9b6f37e9e432984034aa2",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BRBYRBB",
+                "YRBBYYB",
+                "YRBGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "85eaad390136cba298f00aca66c45f3b45327c44a0c3b622a9da159940721e41",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "B..YRBB",
+                "Y..BYYB",
+                "Y..GRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "21299bc5b18c7732fe16a84f43880dc8e7bb26da5c1dd46d527b9daf8b696ce6",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  1,
+                  1
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  1,
+                  2
+                ],
+                [
+                  2,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "B..YRBB",
+                "Y..BYYB",
+                "Y..GRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "21299bc5b18c7732fe16a84f43880dc8e7bb26da5c1dd46d527b9daf8b696ce6",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BGBYRBB",
+                "YRYBYYB",
+                "YBGGRBG",
+                "GYYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "b7beefa7aaee4870edc6aff149ee08921bf247a22c9e184c9bb839ec7b759d05",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        },
+        {
+          "from": [
+            1,
+            2
+          ],
+          "to": [
+            1,
+            3
+          ],
+          "Cascades": 7,
+          "Reshuffles": 0,
+          "state": {
+            "phase": "won",
+            "moves_remaining": 15,
+            "target_remaining": 0,
+            "random_state": 1574494032,
+            "grid": [
+              "BYGBBYY",
+              "BYYGRGG",
+              "GBGBYBR",
+              "YYBGYRG",
+              "BRYBBRB",
+              "YBGYGGY",
+              "YYGRBGB"
+            ],
+            "grid_sha256": "e304636182b6c885a677b6da8707aeca53f2dbe92210d3fb8d5cdd3aabac0422"
+          },
+          "steps": [
+            {
+              "kind": "Swap",
+              "grid": [
+                "BGBYRBB",
+                "YRYBYYB",
+                "YYGGRBG",
+                "GBYBRBG",
+                "YBGYYRB",
+                "RBRRGGY",
+                "11GRBGB"
+              ],
+              "grid_sha256": "ed5ecc2b997c1203f4304c62bc65727ec136e96bf5f887cd2c3a14f6eed3d43f",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BGBYRBB",
+                "YRYBYYB",
+                "YYGGRBG",
+                "G.YBRBG",
+                "Y.GYYRB",
+                "R.RRGGY",
+                "1.GRBGB"
+              ],
+              "grid_sha256": "62e0aa2b00f86c14bbead5c585cca11ac0fb3614fef385815b5cef331b6b43cb",
+              "cleared": [
+                [
+                  1,
+                  3
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  1,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  1,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "B.BYRBB",
+                "Y.YBYYB",
+                "Y.GGRBG",
+                "G.YBRBG",
+                "YGGYYRB",
+                "RRRRGGY",
+                "1YGRBGB"
+              ],
+              "grid_sha256": "49e66b4ff95ebc55ffc36d60348b984004f6f7249cc8f610deb648aa81a9e0c2",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYBYRBB",
+                "YRYBYYB",
+                "YBGGRBG",
+                "GYYBRBG",
+                "YGGYYRB",
+                "RRRRGGY",
+                "1YGRBGB"
+              ],
+              "grid_sha256": "c2957086f183c92ef89ed6fb19664a973afa6c07c98077441216e1ee7656313d",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BYBYRBB",
+                "YRYBYYB",
+                "YBGGRBG",
+                "GYYBRBG",
+                "YGGYYRB",
+                "....GGY",
+                ".YGRBGB"
+              ],
+              "grid_sha256": "255531db331d5d2bdcc62d9c0a306ccc0b35dce3a6abf40de7710f616ed9d1de",
+              "cleared": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  5
+                ],
+                [
+                  3,
+                  5
+                ]
+              ],
+              "damaged_boxes": [
+                [
+                  0,
+                  6
+                ]
+              ]
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "....RBB",
+                ".YBYYYB",
+                "BRYBRBG",
+                "YBGGRBG",
+                "YYYBYRB",
+                "GGGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "4e79a96d89e7c2d7cde6e889b1df51f8eac883cdc9c19a3ca9c3ce023b54ba24",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "GBGBRBB",
+                "YYBYYYB",
+                "BRYBRBG",
+                "YBGGRBG",
+                "YYYBYRB",
+                "GGGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "1418c870347a869e89a32632f6a468899e82e16f7f600287ce88155f90b1b00b",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "GBGBRBB",
+                "YYB...B",
+                "BRYBRBG",
+                "YBGGRBG",
+                "...BYRB",
+                "...YGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "7a9c4317da884905d5e4c0e5a5619026fc22cff2685fb445605f837f050537dc",
+              "cleared": [
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  0,
+                  4
+                ],
+                [
+                  1,
+                  4
+                ],
+                [
+                  2,
+                  4
+                ],
+                [
+                  0,
+                  5
+                ],
+                [
+                  1,
+                  5
+                ],
+                [
+                  2,
+                  5
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "......B",
+                "...BRBB",
+                "GBGBRBG",
+                "YYBGRBG",
+                "BRYBYRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "c2a63e0f3486d29a1ff3b24caf401e6cf08dc78f7bf7f52f6cce4c914ad676a3",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYYGYRB",
+                "BYBBRBB",
+                "GBGBRBG",
+                "YYBGRBG",
+                "BRYBYRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "104af7080574d709fffa07f43532fc23362707dddb60385431979480ef626ba0",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BYYGYRB",
+                "BYBB..B",
+                "GBGB..G",
+                "YYBG..G",
+                "BRYBYRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "162c63273a223823a7412d4db44f4b8ac835440fc90e5ca75d7722859408df23",
+              "cleared": [
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  5,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BYYG..B",
+                "BYBB..B",
+                "GBGB..G",
+                "YYBGYRG",
+                "BRYBYRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "6c296da002189c346819613dac92d3eb7c823b97d51d5ec6d5db9b25433344da",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYYGBYB",
+                "BYBBBYB",
+                "GBGBYYG",
+                "YYBGYRG",
+                "BRYBYRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "f6de910c314769f96400c8d1e954b8aaf01bb64ecbbd1fb9f92dc24e8fb655f2",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BYYGB.B",
+                "BY....B",
+                "GBGB..G",
+                "YYBG.RG",
+                "BRYB.RB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "570c5cd1f94d88035f6cafdee8399ffd389a80a098a1d268f3b2c0bf36b4454b",
+              "cleared": [
+                [
+                  5,
+                  0
+                ],
+                [
+                  2,
+                  1
+                ],
+                [
+                  3,
+                  1
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  5,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ],
+                [
+                  4,
+                  4
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BY....B",
+                "BYYG..B",
+                "GBGB..G",
+                "YYBG.RG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "eb1a6817734733e2b52c323d9f1e1f2a369d7f1dc5c48b962ac3e883a01dfed8",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYYYYGB",
+                "BYYGRBB",
+                "GBGBGGG",
+                "YYBGRRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "77e65374d8d30c64da42ba58b787656ee422b6e608c94759192a505d2b6e2ed6",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "B....GB",
+                "BYYGRBB",
+                "GBGB...",
+                "YYBGRRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "f1f228809064c423ed2f1cf56fab1dc10f4c1fc7d52c7bc893f7473cf8c039a8",
+              "cleared": [
+                [
+                  1,
+                  0
+                ],
+                [
+                  2,
+                  0
+                ],
+                [
+                  3,
+                  0
+                ],
+                [
+                  4,
+                  0
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  5,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "B......",
+                "BYYG.GB",
+                "GBGBRBB",
+                "YYBGRRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "242aff9857d3f69aab46f442e85210ec883992783509d899774c35db0a3516da",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYGBYYB",
+                "BYYGRGB",
+                "GBGBRBB",
+                "YYBGRRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "8de52fd577ad3d7b0265f0af08020a57174f83a0b5385dd9e2171cc88881bf02",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Clear",
+              "grid": [
+                "BYGBYY.",
+                "BYYG.G.",
+                "GBGB.B.",
+                "YYBG.RG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "3f478dc4e95c37a0753d167806b5f81e72a407e5273bdc73b7ddc8a3d16ce3ce",
+              "cleared": [
+                [
+                  6,
+                  0
+                ],
+                [
+                  4,
+                  1
+                ],
+                [
+                  6,
+                  1
+                ],
+                [
+                  4,
+                  2
+                ],
+                [
+                  6,
+                  2
+                ],
+                [
+                  4,
+                  3
+                ]
+              ],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Fall",
+              "grid": [
+                "BYGB.Y.",
+                "BYYG.G.",
+                "GBGB.B.",
+                "YYBGYRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "6f76d9b63ed0abd5014d84ab5c95d5d42c268c49e47f413d3f236ef76dad65fa",
+              "cleared": [],
+              "damaged_boxes": []
+            },
+            {
+              "kind": "Refill",
+              "grid": [
+                "BYGBBYY",
+                "BYYGRGG",
+                "GBGBYBR",
+                "YYBGYRG",
+                "BRYBBRB",
+                "YBGYGGY",
+                "YYGRBGB"
+              ],
+              "grid_sha256": "e304636182b6c885a677b6da8707aeca53f2dbe92210d3fb8d5cdd3aabac0422",
+              "cleared": [],
+              "damaged_boxes": []
+            }
+          ]
+        }
+      ],
+      "result": {
+        "won": true,
+        "stars": 3
+      }
+    }
+  ]
+}

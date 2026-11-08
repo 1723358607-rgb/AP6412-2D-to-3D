@@ -4,11 +4,14 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
+**Step5 A preparation is ready; 2D is not frozen.** Actual class maps, design notes, source fingerprints and 3-level rule references are saved. The reference records 16 accepted swaps and 217 actual presenter steps; two runs match exactly. Mac build and Step0–4/UI-demo regression pass. See [Step5 evidence](docs/evidence/member-a/step-5.md) and [two-person acceptance checklist](docs/evidence/member-a/step-5-acceptance.md). B persistence, original UI result/progress binding, human acceptance and full raw AI exports remain pending.
+
+
 Step4 gameplay and actual UI integration are implemented. F5 opens B's Crystal Garden home/level/game pages and assets, connected to actual swaps, boxes, wins/losses, earned stars and current-session unlocks. Dead boards recover through bounded deterministic piece-preserving shuffle. Level2 seed is now641209; move budgets and star rules are unchanged.
 
 **Progress is currently session-only and resets on close.** B's persistent store and original UI result/progress binding remain pending. No 2D baseline tag has been created. See [Step4 evidence, screenshots and exact manual replay](docs/evidence/member-a/step-4.md) and [B handoff](docs/alignment/HANDOFF_UI.md).
 
-Build:0 warnings/errors. Step0–4 and B original UI demo checks passed, including real X11/software OpenGL rendering and input. The cloud editor import logged a GodotTools/MSBuild exception, and audio fell back to Dummy; Mac/teammate manual acceptance is pending. This cloud run did not update the old Mac working copy.
+Build:0 warnings/errors. Step0–4 and B original UI demo checks passed, including real X11/software OpenGL rendering and input. The cloud editor import logged a GodotTools/MSBuild exception, and audio fell back to Dummy; Mac/teammate manual acceptance is pending. The earlier local Mac unfinished merge has since been backed up/resolved; its member-a copy is synced and current Mac checks are recorded in Step5.
 
 - Engine: Godot4.7.2 Mono/.NET, C#; exact build `4.7.2.stable.mono.official.ed1daf0bf`.
 - Project: net8.0 / Godot.NET.Sdk4.7.2. Tested SDK8.0.427 on Linux and previously10.0.302 on macOS arm64; teammate version pending.
@@ -79,9 +82,9 @@ From repository root, with GODOT pointing to your executable:
 "$GODOT" --headless --path game --fixed-fps 60 -- --step4-smoke-test
 ```
 
-Expected `[STEP4_SMOKE_PASS]` and exit0. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
+Expected `[STEP4_SMOKE_PASS]` and exit0. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. `--rule-reference` records actual rule/session/presenter states; after building, `python3 tools/verify-2d-reference.py --godot "$GODOT"` compares them with the provisional archive without updating it. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
 
-If the old Mac checkout has an unfinished merge, preserve it and its uncommitted work; do not blindly pull/reset. For immediate play, download the full main ZIP into a **new folder** and import its game/project.godot. Cloud/GitHub updates do not themselves resolve a local Mac merge.
+The known Mac unfinished merge was resolved after verified backup and stash preservation. Its existing checkout can be used directly. If a new unfinished merge appears, inspect and preserve it before pulling; ZIP copies are only an alternative for a separate play copy.
 
 ### UI teammate handoff
 
