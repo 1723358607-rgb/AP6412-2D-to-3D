@@ -49,78 +49,92 @@ public partial class HomeScreen : Control
         CrystalGardenUi.FullRect(dim);
         overlay.AddChild(dim);
 
-        var panel = new PanelContainer
-        {
-            Name = "SettingsPanel",
-            Position = new Vector2(660, 280),
-            Size = new Vector2(600, 520),
-        };
-        var style = new StyleBoxFlat
-        {
-            BgColor = new Color("e9c8ff"),
-            BorderColor = new Color("f8d874"),
-            CornerRadiusTopLeft = 38,
-            CornerRadiusTopRight = 38,
-            CornerRadiusBottomLeft = 38,
-            CornerRadiusBottomRight = 38,
-            BorderWidthLeft = 8,
-            BorderWidthTop = 8,
-            BorderWidthRight = 8,
-            BorderWidthBottom = 8,
-            ShadowColor = new Color(0.25f, 0.05f, 0.38f, 0.45f),
-            ShadowSize = 18,
-        };
-        panel.AddThemeStyleboxOverride("panel", style);
-        overlay.AddChild(panel);
+        CrystalGardenUi.Texture("SettingsFrame", "levels/level_card_blank.png", overlay,
+            new Rect2(610, 150, 700, 760));
+        StyledLabel("SettingsTitle", "SETTINGS", overlay, new Rect2(710, 335, 500, 54), 34,
+            CrystalTypography.Bold(), HorizontalAlignment.Center, new Color("4a285f"));
 
-        var margin = new MarginContainer();
-        margin.AddThemeConstantOverride("margin_left", 72);
-        margin.AddThemeConstantOverride("margin_right", 72);
-        margin.AddThemeConstantOverride("margin_top", 52);
-        margin.AddThemeConstantOverride("margin_bottom", 48);
-        panel.AddChild(margin);
-
-        var column = new VBoxContainer { Alignment = BoxContainer.AlignmentMode.Center };
-        column.AddThemeConstantOverride("separation", 30);
-        margin.AddChild(column);
-
-        var title = new Label { Text = "SETTINGS", HorizontalAlignment = HorizontalAlignment.Center };
-        title.AddThemeFontSizeOverride("font_size", 52);
-        title.AddThemeColorOverride("font_color", new Color("5c267e"));
-        column.AddChild(title);
-
-        column.AddChild(CreateToggle("SoundToggle", "Sound Effects", true));
-        column.AddChild(CreateToggle("MusicToggle", "Music", true));
+        AddSettingRow(overlay, "Sound Effects", "SoundToggle", new Rect2(720, 430, 480, 76));
+        AddSettingRow(overlay, "Music", "MusicToggle", new Rect2(720, 525, 480, 76));
 
         var close = new Button
         {
             Name = "CloseSettingsButton",
             Text = "CLOSE",
-            CustomMinimumSize = new Vector2(300, 82),
+            Position = new Vector2(810, 650),
+            Size = new Vector2(300, 72),
             MouseDefaultCursorShape = CursorShape.PointingHand,
         };
-        close.AddThemeFontSizeOverride("font_size", 32);
+        close.AddThemeFontOverride("font", CrystalTypography.Bold());
+        close.AddThemeFontSizeOverride("font_size", 21);
         close.AddThemeColorOverride("font_color", new Color("fff4dd"));
+        close.AddThemeColorOverride("font_hover_color", Colors.White);
+        close.AddThemeColorOverride("font_pressed_color", Colors.White);
+        close.AddThemeColorOverride("font_focus_color", new Color("fff4dd"));
+        close.AddThemeColorOverride("font_disabled_color", new Color("c8b7cf"));
         close.AddThemeStyleboxOverride("normal", PurpleButtonStyle(new Color("7b3db2")));
         close.AddThemeStyleboxOverride("hover", PurpleButtonStyle(new Color("9352c9")));
         close.Pressed += CloseSettings;
-        column.AddChild(close);
+        close.AddThemeStyleboxOverride("pressed", PurpleButtonStyle(new Color("5c267e")));
+        overlay.AddChild(close);
         return overlay;
     }
 
-    private static CheckButton CreateToggle(string name, string text, bool pressed)
+    private static void AddSettingRow(Control parent, string text, string toggleName, Rect2 rect)
     {
-        var toggle = new CheckButton
+        var panel = new Panel
+        {
+            Name = $"{toggleName}Row",
+            Position = rect.Position,
+            Size = rect.Size,
+            MouseFilter = MouseFilterEnum.Ignore,
+        };
+        panel.AddThemeStyleboxOverride("panel", new StyleBoxFlat
+        {
+            BgColor = new Color(0.34f, 0.13f, 0.47f, 0.76f),
+            BorderColor = new Color(0.91f, 0.77f, 0.43f, 0.7f),
+            BorderWidthLeft = 2,
+            BorderWidthTop = 2,
+            BorderWidthRight = 2,
+            BorderWidthBottom = 2,
+            CornerRadiusTopLeft = 20,
+            CornerRadiusTopRight = 20,
+            CornerRadiusBottomLeft = 20,
+            CornerRadiusBottomRight = 20,
+        });
+        parent.AddChild(panel);
+        StyledLabel($"{toggleName}Label", text.ToUpperInvariant(), parent,
+            new Rect2(rect.Position + new Vector2(28, 8), new Vector2(310, 60)), 21,
+            CrystalTypography.SemiBold(), HorizontalAlignment.Left, new Color("fff4dd"));
+        var toggle = new CrystalToggle
+        {
+            Name = toggleName,
+            ToggleMode = true,
+            ButtonPressed = true,
+            Position = rect.Position + new Vector2(rect.Size.X - 104, 19),
+            Size = new Vector2(76, 38),
+        };
+        parent.AddChild(toggle);
+    }
+
+    private static void StyledLabel(string name, string text, Control parent, Rect2 rect, int size,
+        Font font, HorizontalAlignment alignment, Color color)
+    {
+        var label = new Label
         {
             Name = name,
             Text = text,
-            ButtonPressed = pressed,
-            CustomMinimumSize = new Vector2(420, 70),
-            MouseDefaultCursorShape = CursorShape.PointingHand,
+            Position = rect.Position,
+            Size = rect.Size,
+            HorizontalAlignment = alignment,
+            VerticalAlignment = VerticalAlignment.Center,
+            MouseFilter = MouseFilterEnum.Ignore,
         };
-        toggle.AddThemeFontSizeOverride("font_size", 30);
-        toggle.AddThemeColorOverride("font_color", new Color("5c267e"));
-        return toggle;
+        label.AddThemeFontOverride("font", font);
+        label.AddThemeFontSizeOverride("font_size", size);
+        label.AddThemeColorOverride("font_color", color);
+        label.AddThemeConstantOverride("outline_size", 0);
+        parent.AddChild(label);
     }
 
     private static StyleBoxFlat PurpleButtonStyle(Color color) => new()

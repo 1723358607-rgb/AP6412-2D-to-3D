@@ -6,8 +6,6 @@ namespace AP6412Match3.Ui;
 /// <summary>Crystal Garden result presentation. It displays core results without recalculating them.</summary>
 public partial class ResultScreen : Control
 {
-    private const string FontPath = "res://assets/fonts/Cinzel-VariableFont_wght.ttf";
-
     [Signal] public delegate void RetryRequestedEventHandler();
     [Signal] public delegate void LevelsRequestedEventHandler();
     [Signal] public delegate void NextRequestedEventHandler();
@@ -49,38 +47,50 @@ public partial class ResultScreen : Control
         AddChild(veil);
 
         CrystalGardenUi.Texture("ResultFrame", "levels/level_card_blank.png", this,
-            new Rect2(570, 92, 780, 850));
+            new Rect2(570, 64, 780, 930));
 
-        StyledLabel("ResultTitle", won ? "LEVEL COMPLETE!" : "TRY AGAIN", new Rect2(650, 198, 620, 90), 52);
-        StyledLabel("LevelLabel", $"LEVEL {level}", new Rect2(730, 286, 460, 58), 34, new Color("f7df9a"));
+        // The frame artwork reserves its upper area for the crystal ornament.
+        StyledLabel("ResultTitle", won ? "LEVEL COMPLETE!" : "TRY AGAIN",
+            new Rect2(650, 315, 620, 48), 34, CrystalTypography.Bold(), new Color("4a285f"));
+        StyledLabel("LevelLabel", $"LEVEL {level}",
+            new Rect2(730, 382, 460, 40), 25, CrystalTypography.SemiBold(), new Color("5b3373"));
 
         for (int index = 0; index < 3; index++)
         {
             string texture = index < stars ? "levels/star_earned.png" : "levels/star_unearned.png";
             CrystalGardenUi.Texture($"EarnedStar{index + 1}", texture, this,
-                new Rect2(762 + index * 138, 355, 120, 120));
+                new Rect2(790 + index * 115, 430, 100, 100));
         }
 
-        AddStatPanel("MovesPanel", "MOVES LEFT", movesRemaining.ToString(), new Rect2(680, 500, 270, 132));
-        AddStatPanel("RunPanel", "THIS RUN", $"{stars}/3", new Rect2(960, 500, 270, 132));
-        StyledLabel("ResultDetail",
-            $"LEVEL {level}   ·   MOVES LEFT {movesRemaining}\nTHIS RUN {stars}/3   ·   BEST {_bestStars}/3",
-            new Rect2(660, 642, 600, 80), 24, new Color("fff4dd"));
+        AddStatPanel("MovesPanel", "MOVES LEFT", movesRemaining.ToString(), new Rect2(680, 530, 270, 105));
+        AddStatPanel("RunPanel", "THIS RUN", $"{stars}/3", new Rect2(970, 530, 270, 105));
+        StyledLabel("BestHeading", "BEST", new Rect2(825, 642, 130, 44), 21,
+            CrystalTypography.SemiBold(), new Color("5b3373"));
+        StyledLabel("BestValue", $"{_bestStars}/3", new Rect2(955, 642, 140, 44), 29,
+            CrystalTypography.Bold(), new Color("4a285f"));
+        // Preserve the integration-test data contract without reintroducing duplicate visible copy.
+        var resultDetail = new Label
+        {
+            Name = "ResultDetail",
+            Text = $"LEVEL {level} · MOVES LEFT {movesRemaining} · THIS RUN {stars}/3 · BEST {_bestStars}/3",
+            Visible = false,
+        };
+        AddChild(resultDetail);
 
         if (won && level < 3)
         {
-            StyledButton("RetryButton", "RETRY", new Rect2(590, 755, 235, 74),
+            StyledButton("RetryButton", "RETRY", new Rect2(700, 695, 250, 62), 21,
                 () => EmitSignal(SignalName.RetryRequested));
-            StyledButton("LevelsButton", "LEVELS", new Rect2(842, 755, 235, 74),
+            StyledButton("LevelsButton", "LEVELS", new Rect2(970, 695, 250, 62), 21,
                 () => EmitSignal(SignalName.LevelsRequested));
-            StyledButton("NextButton", "NEXT LEVEL", new Rect2(1094, 755, 235, 74),
+            StyledButton("NextButton", "NEXT LEVEL", new Rect2(835, 768, 250, 62), 20,
                 () => EmitSignal(SignalName.NextRequested));
         }
         else
         {
-            StyledButton("RetryButton", "RETRY", new Rect2(690, 755, 250, 74),
+            StyledButton("RetryButton", "RETRY", new Rect2(700, 715, 250, 64), 21,
                 () => EmitSignal(SignalName.RetryRequested));
-            StyledButton("LevelsButton", "LEVELS", new Rect2(980, 755, 250, 74),
+            StyledButton("LevelsButton", "LEVELS", new Rect2(970, 715, 250, 64), 21,
                 () => EmitSignal(SignalName.LevelsRequested));
         }
     }
@@ -102,12 +112,15 @@ public partial class ResultScreen : Control
             CornerRadiusBottomRight = 22,
         });
         AddChild(panel);
-        StyledLabel($"{name}Heading", heading, new Rect2(rect.Position + new Vector2(8, 8), new Vector2(rect.Size.X - 16, 42)), 20,
-            new Color("f7df9a"));
-        StyledLabel($"{name}Value", value, new Rect2(rect.Position + new Vector2(8, 45), new Vector2(rect.Size.X - 16, 72)), 42);
+        StyledLabel($"{name}Heading", heading,
+            new Rect2(rect.Position + new Vector2(8, 7), new Vector2(rect.Size.X - 16, 34)), 19,
+            CrystalTypography.SemiBold(), new Color("fff4dd"));
+        StyledLabel($"{name}Value", value,
+            new Rect2(rect.Position + new Vector2(8, 38), new Vector2(rect.Size.X - 16, 58)), 31,
+            CrystalTypography.Bold(), Colors.White);
     }
 
-    private void StyledButton(string name, string text, Rect2 rect, Action action)
+    private void StyledButton(string name, string text, Rect2 rect, int fontSize, Action action)
     {
         var button = new Button
         {
@@ -119,10 +132,13 @@ public partial class ResultScreen : Control
             MouseDefaultCursorShape = CursorShape.PointingHand,
             PivotOffset = rect.Size / 2f,
         };
-        button.AddThemeFontOverride("font", CinzelBold());
-        button.AddThemeFontSizeOverride("font_size", text == "NEXT LEVEL" ? 21 : 24);
+        button.AddThemeFontOverride("font", CrystalTypography.Bold());
+        button.AddThemeFontSizeOverride("font_size", fontSize);
         button.AddThemeColorOverride("font_color", new Color("fff4dd"));
         button.AddThemeColorOverride("font_hover_color", Colors.White);
+        button.AddThemeColorOverride("font_pressed_color", Colors.White);
+        button.AddThemeColorOverride("font_focus_color", new Color("fff4dd"));
+        button.AddThemeColorOverride("font_disabled_color", new Color("c8b7cf"));
         button.AddThemeStyleboxOverride("normal", ButtonStyle(new Color("71329b")));
         button.AddThemeStyleboxOverride("hover", ButtonStyle(new Color("8d48b9")));
         button.AddThemeStyleboxOverride("pressed", ButtonStyle(new Color("5c267e")));
@@ -132,7 +148,7 @@ public partial class ResultScreen : Control
         AddChild(button);
     }
 
-    private void StyledLabel(string name, string text, Rect2 rect, int fontSize, Color? color = null)
+    private void StyledLabel(string name, string text, Rect2 rect, int fontSize, Font font, Color color)
     {
         var label = new Label
         {
@@ -144,19 +160,12 @@ public partial class ResultScreen : Control
             VerticalAlignment = VerticalAlignment.Center,
             MouseFilter = MouseFilterEnum.Ignore,
         };
-        label.AddThemeFontOverride("font", CinzelBold());
+        label.AddThemeFontOverride("font", font);
         label.AddThemeFontSizeOverride("font_size", fontSize);
-        label.AddThemeColorOverride("font_color", color ?? new Color("fff4dd"));
-        label.AddThemeColorOverride("font_outline_color", new Color("4d1f69"));
-        label.AddThemeConstantOverride("outline_size", fontSize >= 40 ? 4 : 2);
+        label.AddThemeColorOverride("font_color", color);
+        label.AddThemeConstantOverride("outline_size", 0);
         AddChild(label);
     }
-
-    private static FontVariation CinzelBold() => new()
-    {
-        BaseFont = GD.Load<FontFile>(FontPath),
-        VariationOpentype = new Godot.Collections.Dictionary { ["wght"] = 700 },
-    };
 
     private static StyleBoxFlat ButtonStyle(Color color) => new()
     {
