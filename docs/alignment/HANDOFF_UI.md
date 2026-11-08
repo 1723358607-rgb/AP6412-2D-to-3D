@@ -1,3 +1,5 @@
+> 2026-11-09：A已准备第5步资料及完整规则参考，三关自动回归通过；远端没有B新存档提交。请先完成下面第1—5项，再按docs/evidence/member-a/step-5-acceptance.md从干净副本填写B实际验收。不要提前创建2d-baseline，也不要只加ProgressStore空壳而保留演示选关。
+
 # 第4步后，B下一轮接入清单（2026-11-08）
 
 请先同步main到你自己的工作分支，保留已有修改。B的Crystal Garden三页/贴图/格心校准已整合，原ui/文件未被A改写；BoardView2D合并保留双方贡献。A新增app/integration临时适配器接入真实选关/星数/结果，RAM-only，不是正式存档。详见 [第4步证据](../evidence/member-a/step-4.md)。
