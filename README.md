@@ -4,12 +4,12 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-**Step5 A preparation is ready; 2D is not frozen.** Actual class maps, design notes, source fingerprints and 3-level rule references are saved. The reference records 16 accepted swaps and 217 actual presenter steps; two runs match exactly. Mac build and Step0–4/UI-demo regression pass. See [Step5 evidence](docs/evidence/member-a/step-5.md) and [two-person acceptance checklist](docs/evidence/member-a/step-5-acceptance.md). B persistence, original UI result/progress binding, human acceptance and full raw AI exports remain pending.
+**The integrated 2D candidate is playable but not frozen.** A's class maps, rule reference and three-level gameplay evidence are ready. B's persistent ProgressStore and Crystal Garden result screen are implemented on `codex/member-b-progress-store`; build, isolated persistence, Step4 UI and Crystal UI checks pass. Human acceptance, PR review/merge and full raw AI exports remain before the 2D baseline.
 
 
-Step4 gameplay and actual UI integration are implemented. F5 opens B's Crystal Garden home/level/game pages and assets, connected to actual swaps, boxes, wins/losses, earned stars and current-session unlocks. Dead boards recover through bounded deterministic piece-preserving shuffle. Level2 seed is now641209; move budgets and star rules are unchanged.
+Step4 gameplay and actual UI integration are implemented. F5 opens B's Crystal Garden home/level/game/result pages and assets, connected to actual swaps, boxes, wins/losses, earned stars and persistent unlocks. Dead boards recover through bounded deterministic piece-preserving shuffle. Level2 seed is now641209; move budgets and star rules are unchanged.
 
-**Progress is currently session-only and resets on close.** B's persistent store and original UI result/progress binding remain pending. No 2D baseline tag has been created. See [Step4 evidence, screenshots and exact manual replay](docs/evidence/member-a/step-4.md) and [B handoff](docs/alignment/HANDOFF_UI.md).
+**Progress is saved under Godot `user://` and survives application restarts.** Best stars, completions and unlocks are stored separately for 2D and 3D; missing or damaged files recover safely. No 2D baseline tag has been created. See [Step4 evidence](docs/evidence/member-a/step-4.md), [B handoff](docs/alignment/HANDOFF_UI.md) and the [two-person acceptance checklist](docs/evidence/member-a/step-5-acceptance.md).
 
 Build:0 warnings/errors. Step0–4 and B original UI demo checks passed, including real X11/software OpenGL rendering and input. The cloud editor import logged a GodotTools/MSBuild exception, and audio fell back to Dummy; Mac/teammate manual acceptance is pending. The earlier local Mac unfinished merge has since been backed up/resolved; its member-a copy is synced and current Mac checks are recorded in Step5.
 
@@ -70,7 +70,7 @@ dotnet restore AP6412Match3.csproj
 dotnet build AP6412Match3.sln --no-restore
 ```
 
-Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock next level and see actual current/best stars. Retry/Levels/Next use real gameplay. Closing the app resets the current temporary progress.
+Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock the next level and save actual best stars. Retry/Levels/Next use real gameplay. Closing and reopening the app restores the saved stars and unlocks.
 
 For a quick deterministic win, start/retry level1, then swap **row6/col3↔row6/col4**, wait, then **row5/col4↔row5/col5** (1-based). Expect victory,13 moves,3 stars. See [Step4](docs/evidence/member-a/step-4.md) for all three replays and edge cases.
 
@@ -88,7 +88,7 @@ The known Mac unfinished merge was resolved after verified backup and stash pres
 
 ### UI teammate handoff
 
-B retains `ui/`, `progress/`, `tests/ui/`. Implement `ProgressStoreBridge` at `res://progress/ProgressStore.tscn` **together with** original UI snapshot-backed level selection and real result pages. Adding the store scene switches off A's temporary app adapter, so do not deliver an empty store shell alone. Keep input propagation, measured BoardHost alignment and A box-damage rendering. See [CONTRACT](docs/alignment/CONTRACT.md) and [current checklist](docs/alignment/HANDOFF_UI.md).
+B retains `ui/`, `progress/`, `tests/ui/`. `res://progress/ProgressStore.tscn` now supplies persistent best stars and unlocks; `ResultScreen` owns the Crystal Garden result presentation while A's `IntegratedUi` continues to forward the agreed bridge signals. Input propagation, measured BoardHost alignment and A's box-damage rendering remain unchanged. See [CONTRACT](docs/alignment/CONTRACT.md) and [current checklist](docs/alignment/HANDOFF_UI.md).
 
 ## Submission checklist
 

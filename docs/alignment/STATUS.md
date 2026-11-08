@@ -1,8 +1,10 @@
 # 当前状态（2026-11-09，新加坡）
 
+Member B的`codex/member-b-progress-store`已实现`ProgressStore.tscn`、2D/3D分文件、最高星数/通关/解锁持久化、损坏文件安全恢复和正式Crystal Garden ResultScreen。用户已在macOS人工确认第一关三星、第二关解锁、第三关保持锁定以及关闭重开后进度恢复；隔离自动检查、Step4 UI与Crystal UI检查通过。该工作仍待PR审查合入main，尚未创建`2d-baseline`。
+
 A第5步可做部分已完成：实际类图、设计理由、源码/类型清单、三关逐步规则参考、双方验收单。Mac构建0警告0错误，参考两次一致，比较脚本通过，第0—4步与B原UI演示均通过。详见 [第5步证据](../evidence/member-a/step-5.md)。
 
-本地此前MERGE_HEAD已在上一轮备份、保存草稿后解除；当前本机已同步第四步正式版本。本轮B分支/主分支没有新存档提交，仍只有RAM进度。正式ProgressStore、原版选关/结算接线、双方人工验收与完整AI原始导出仍缺。第5步未冻结，没有创建2d-baseline，没有开始3D。
+此前RAM-only状态已由上方Member B实现取代。当前仍缺PR合并、双方剩余人工验收与完整AI原始导出。第5步未冻结，没有创建2d-baseline，没有开始3D。
 
 以下为历史状态；当前以本段及第5步证据为准。
 

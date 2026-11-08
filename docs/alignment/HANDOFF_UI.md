@@ -1,4 +1,4 @@
-> 2026-11-09：A已准备第5步资料及完整规则参考，三关自动回归通过；远端没有B新存档提交。请先完成下面第1—5项，再按docs/evidence/member-a/step-5-acceptance.md从干净副本填写B实际验收。不要提前创建2d-baseline，也不要只加ProgressStore空壳而保留演示选关。
+> 2026-11-09完成更新：Member B已在`codex/member-b-progress-store`实现正式ProgressStore、真实选关数据和Crystal Garden ResultScreen，并通过隔离存档、重启恢复、Step4 UI与Crystal UI检查。用户已人工确认第一关三星、第二关解锁、第三关锁定及关闭重开恢复。下方第4步后清单保留为历史交接记录；当前待PR审查、剩余双方验收和2D冻结决定。
 
 # 第4步后，B下一轮接入清单（2026-11-08）
 
