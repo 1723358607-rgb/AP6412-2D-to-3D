@@ -24,7 +24,7 @@ public static class StepOneSmokeCheck
             for (int column = 0; column < 7; column++)
             {
                 BoardCell cell = board.GetCell(new GridPosition(column, row));
-                bool expectedBox = row == 6 && column is >= 1 and <= 5;
+                bool expectedBox = level.Boxes.Any(b => b.Column == column && b.Row == row);
                 Require((cell.Kind == CellKind.Box) == expectedBox, $"Wrong box at ({column},{row}).");
                 if (cell.Kind == CellKind.Box)
                 {
@@ -53,13 +53,15 @@ public static class StepOneSmokeCheck
                 Require(!HasMatch(generator.CreateInitialBoard(sample)), $"Opening match for seed {seed}.");
             }
 
+            var blockedBox = new GridPosition(level.Boxes[0].Column, level.Boxes[0].Row);
+            var besideBox = new GridPosition(blockedBox.Column > 0 ? blockedBox.Column - 1 : 1, blockedBox.Row);
             var a = new GridPosition(0, 0);
             Require(board.ValidateSwap(a, new GridPosition(1, 0)) == SwapValidation.Accepted, "Adjacent ordinary pieces rejected.");
             Require(board.ValidateSwap(a, new GridPosition(1, 1)) == SwapValidation.NotAdjacent, "Diagonal accepted.");
             Require(board.ValidateSwap(a, new GridPosition(6, 0)) == SwapValidation.NotAdjacent, "Distant cells accepted.");
             Require(board.ValidateSwap(a, a) == SwapValidation.NotAdjacent, "Same-cell swap accepted.");
             Require(board.ValidateSwap(a, new GridPosition(-1, 0)) == SwapValidation.OutOfBounds, "Out-of-bounds accepted.");
-            Require(board.ValidateSwap(new GridPosition(1, 5), new GridPosition(1, 6)) == SwapValidation.Blocked, "Box swap accepted.");
+            Require(board.ValidateSwap(besideBox, blockedBox) == SwapValidation.Blocked, "Box swap accepted.");
             var sparse = new BoardModel(new BoardCell[,] { { BoardCell.Piece(PieceColor.Red) }, { default } });
             Require(sparse.ValidateSwap(new GridPosition(0, 0), new GridPosition(1, 0)) == SwapValidation.Blocked, "Empty cell swap accepted.");
 
@@ -69,7 +71,7 @@ public static class StepOneSmokeCheck
             Require(interaction.Click(a) == SelectionOutcome.Deselected, "Deselect failed.");
             interaction.Click(a);
             Require(interaction.Click(new GridPosition(1, 1)) == SelectionOutcome.NotAdjacent && interaction.Selected == a, "Invalid click should preserve selection.");
-            Require(interaction.Click(new GridPosition(1, 6)) == SelectionOutcome.Blocked && interaction.Selected == a, "Box click should preserve selection.");
+            Require(interaction.Click(blockedBox) == SelectionOutcome.Blocked && interaction.Selected == a, "Box click should preserve selection.");
             Require(interaction.Click(new GridPosition(-1, 0)) == SelectionOutcome.OutOfBounds, "Outside selection accepted.");
             Require(interaction.Click(new GridPosition(1, 0)) == SelectionOutcome.RequestAccepted, "Request not recorded.");
             Require(interaction.AcceptedRequestCount == 1 && interaction.Selected is null, "Accepted request lifecycle wrong.");

@@ -4,19 +4,14 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-**Step5 A preparation is ready; 2D is not frozen.** Actual class maps, design notes, source fingerprints and 3-level rule references are saved. The reference records 16 accepted swaps and 217 actual presenter steps; two runs match exactly. Mac build and Step0–4/UI-demo regression pass. See [Step5 evidence](docs/evidence/member-a/step-5.md) and [two-person acceptance checklist](docs/evidence/member-a/step-5-acceptance.md). B persistence, original UI result/progress binding, human acceptance and full raw AI exports remain pending.
+**Distributed box layouts v2 are playable.** Targets now occupy upper, middle and lower regions; every starting region has a directly box-damaging swap. Counts5/10/14, three double-layer boxes, budgets15/20/24 and star rules are unchanged. Seeds641224/641454/641326 avoid one-move wins; verified example wins use3/5/8 swaps.
 
+See [current layout, exact click replays and checks](docs/evidence/member-a/layout-v2.md). Build0 warnings/errors, Step0–4/UI-demo regressions and current rule-reference comparison pass. The updated reference contains16 swaps and193 actual presenter steps. Old Step4/5 references are retained as history; current-rule-reference.json selects the active archive.
 
-Step4 gameplay and actual UI integration are implemented. F5 opens B's Crystal Garden home/level/game pages and assets, connected to actual swaps, boxes, wins/losses, earned stars and current-session unlocks. Dead boards recover through bounded deterministic piece-preserving shuffle. Level2 seed is now641209; move budgets and star rules are unchanged.
+B's progress/result PR #10 is open and not integrated in this layout change. Main currently still uses real session-only progress, reset on close. Mac graphical launch returned-6 this turn; new visual/manual acceptance is pending. No 2D baseline or 3D implementation yet.
 
-**Progress is currently session-only and resets on close.** B's persistent store and original UI result/progress binding remain pending. No 2D baseline tag has been created. See [Step4 evidence, screenshots and exact manual replay](docs/evidence/member-a/step-4.md) and [B handoff](docs/alignment/HANDOFF_UI.md).
-
-Build:0 warnings/errors. Step0–4 and B original UI demo checks passed, including real X11/software OpenGL rendering and input. The cloud editor import logged a GodotTools/MSBuild exception, and audio fell back to Dummy; Mac/teammate manual acceptance is pending. The earlier local Mac unfinished merge has since been backed up/resolved; its member-a copy is synced and current Mac checks are recorded in Step5.
-
-- Engine: Godot4.7.2 Mono/.NET, C#; exact build `4.7.2.stable.mono.official.ed1daf0bf`.
-- Project: net8.0 / Godot.NET.Sdk4.7.2. Tested SDK8.0.427 on Linux and previously10.0.302 on macOS arm64; teammate version pending.
-- A @1723358607-rgb: gameplay / member-a. B @Sherylshiy: UI, visuals and progress / member-b; original Crystal Garden work preserved through its source branch and PR #5.
-- Group number and human names: TBD.
+- Godot4.7.2 Mono/.NET, exact4.7.2.stable.mono.official.ed1daf0bf, C#, net8.0. Mac verified SDK10.0.302.
+- A @1723358607-rgb: gameplay. B @Sherylshiy: UI/visuals/progress. Group number and names pending.
 
 ## 项目对齐与下一步
 
@@ -72,7 +67,7 @@ dotnet build AP6412Match3.sln --no-restore
 
 Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock next level and see actual current/best stars. Retry/Levels/Next use real gameplay. Closing the app resets the current temporary progress.
 
-For a quick deterministic win, start/retry level1, then swap **row6/col3↔row6/col4**, wait, then **row5/col4↔row5/col5** (1-based). Expect victory,13 moves,3 stars. See [Step4](docs/evidence/member-a/step-4.md) for all three replays and edge cases.
+For a deterministic level1 win, start/retry, then swap **row4/col3↔row5/col3**, **row6/col4↔row7/col4**, **row6/col4↔row6/col5** (1-based). Wait after each move. Expect12 moves remaining and3 stars. See [layout v2](docs/evidence/member-a/layout-v2.md) for all replays.
 
 Independent A development harness: open `res://presentation/2d/GameplayLoop.tscn`, F6; 1/2/3 select test levels, R retries, N advances after victory, Esc exits. It never persists progress. Historical BoardPrototype remains request-only.
 

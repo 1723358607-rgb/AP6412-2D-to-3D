@@ -37,10 +37,13 @@ def main():
     if len(lines) != 1 or "[RULE_REFERENCE_PASS]" not in output:
         raise RuntimeError("Game did not emit one complete successful reference")
     current = json.loads(lines[0])
-    saved = json.loads((root / "docs/evidence/member-a/step-5-rule-reference.json").read_text())
+    index = json.loads((root / "docs/evidence/member-a/current-rule-reference.json").read_text())
+    saved = json.loads((root / index["reference_path"]).read_text())
     if current != saved:
         raise RuntimeError("Rule reference changed: inspect the real diff; do not overwrite the baseline")
-    print("REFERENCE_COMPARE_PASS: all 3 openings, 16 swaps, 217 presenter steps, RNG and results match.")
+    swaps = sum(len(level["moves"]) for level in current["levels"])
+    steps = sum(len(move["steps"]) for level in current["levels"] for move in level["moves"])
+    print(f"REFERENCE_COMPARE_PASS: 3 openings, {swaps} swaps, {steps} presenter steps, RNG and results match.")
     return 0
 
 

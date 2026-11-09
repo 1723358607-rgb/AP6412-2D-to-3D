@@ -8,15 +8,16 @@ using AP6412Match3.Gameplay;
 namespace AP6412Match3.Tests.Gameplay;
 
 /// <summary>Records actual GameSession/presenter states for future 3D comparison.
-/// Test-only: reads archived Step4 moves from the complete repository, writes no player files.</summary>
+/// Test-only: reads the selected archived moves from the complete repository, writes no player files.</summary>
 public static class RuleReferenceCheck
 {
     public static async Task<int> Run()
     {
         try
         {
-            string path = System.IO.Path.GetFullPath(System.IO.Path.Combine(
-                ProjectSettings.GlobalizePath("res://"), "..", "docs", "evidence", "member-a", "step-4-replays.json"));
+            string root = System.IO.Path.GetFullPath(System.IO.Path.Combine(ProjectSettings.GlobalizePath("res://"), ".."));
+            using var index = JsonDocument.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(root, "docs/evidence/member-a/current-rule-reference.json")));
+            string path = System.IO.Path.Combine(root, index.RootElement.GetProperty("replays_path").GetString()!);
             using var source = JsonDocument.Parse(System.IO.File.ReadAllText(path));
             var levels = new List<object>();
             int accepted = 0, presented = 0;
@@ -48,7 +49,7 @@ public static class RuleReferenceCheck
                         Require(snapshot["moves_remaining"].AsInt32() == move.GetProperty("remaining").GetInt32()
                             && snapshot["target_remaining"].AsInt32() == move.GetProperty("targets").GetInt32()
                             && resolution.Cascades == move.GetProperty("cascades").GetInt32()
-                            && resolution.Reshuffles == move.GetProperty("reshuffles").GetInt32(), "Step4 replay diverged.");
+                            && resolution.Reshuffles == move.GetProperty("reshuffles").GetInt32(), "Archived replay diverged.");
                         Require(recorder.Steps.Count == resolution.Steps.Count, "Presenter missed a rule step.");
                         moves.Add(new { from = Position(from), to = Position(to), resolution.Cascades, resolution.Reshuffles,
                             state = State(session, resolution.NextRandomState), steps = recorder.Steps.ToArray() });
