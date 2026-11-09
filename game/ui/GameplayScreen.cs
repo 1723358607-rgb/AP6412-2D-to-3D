@@ -62,7 +62,7 @@ public partial class GameplayScreen : Control
     {
         Texture("GoalMovesPanel", $"{GameplayAssets}/hud_goal_moves_panel.png", this,
             new Rect2(68, 150, 390, 676));
-        _levelValue = StyledLabel("LevelValue", "LEVEL 1", this, new Rect2(105, 220, 315, 70), 48, "fff4dd");
+        _levelValue = StyledLabel("LevelValue", "LEVEL 1", this, new Rect2(123, 245, 315, 70), 48, "fff4dd");
         Texture("GoalCrate", $"{GameplayAssets}/obstacle_wooden_crate.png", this,
             new Rect2(154, 416, 106, 90));
         _goalValue = StyledLabel("GoalValue", "5", this, new Rect2(260, 423, 112, 78), 58, "543375");
@@ -113,8 +113,9 @@ public partial class GameplayScreen : Control
         for (int index = 0; index < 3; index++)
         {
             TextureRect star = Texture($"ProgressStar{index + 1}", $"{UiAssets}/levels/star_unearned.png", this,
-                new Rect2(815 + index * 105, 869, 78, 78));
+                new Rect2(815 + index * 105, 894, 78, 78));
             star.Modulate = new Color(1, 1, 1, 0.96f);
+            star.ZIndex = 2;
         }
     }
 
