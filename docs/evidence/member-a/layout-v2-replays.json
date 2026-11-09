@@ -1,0 +1,199 @@
+{
+  "coordinates": "zero-based col,row",
+  "layout_revision": "distributed-boxes-v2",
+  "replays": [
+    {
+      "level_id": 1,
+      "seed": 641224,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 12,
+        "moves": [
+          {
+            "from_col": 2,
+            "from_row": 3,
+            "to_col": 2,
+            "to_row": 4,
+            "remaining": 14,
+            "targets": 2,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 5,
+            "to_col": 3,
+            "to_row": 6,
+            "remaining": 13,
+            "targets": 1,
+            "cascades": 3,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 5,
+            "to_col": 4,
+            "to_row": 5,
+            "remaining": 12,
+            "targets": 0,
+            "cascades": 3,
+            "reshuffles": 0
+          }
+        ]
+      }
+    },
+    {
+      "level_id": 2,
+      "seed": 641454,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 15,
+        "moves": [
+          {
+            "from_col": 6,
+            "from_row": 2,
+            "to_col": 6,
+            "to_row": 3,
+            "remaining": 19,
+            "targets": 5,
+            "cascades": 4,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 4,
+            "to_col": 5,
+            "to_row": 4,
+            "remaining": 18,
+            "targets": 5,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 0,
+            "to_col": 4,
+            "to_row": 1,
+            "remaining": 17,
+            "targets": 2,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 4,
+            "from_row": 3,
+            "to_col": 5,
+            "to_row": 3,
+            "remaining": 16,
+            "targets": 1,
+            "cascades": 6,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 2,
+            "from_row": 5,
+            "to_col": 3,
+            "to_row": 5,
+            "remaining": 15,
+            "targets": 0,
+            "cascades": 5,
+            "reshuffles": 0
+          }
+        ]
+      }
+    },
+    {
+      "level_id": 3,
+      "seed": 641326,
+      "replay": {
+        "won": true,
+        "stars": 3,
+        "remaining": 16,
+        "moves": [
+          {
+            "from_col": 6,
+            "from_row": 2,
+            "to_col": 6,
+            "to_row": 3,
+            "remaining": 23,
+            "targets": 7,
+            "cascades": 5,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 2,
+            "from_row": 0,
+            "to_col": 3,
+            "to_row": 0,
+            "remaining": 22,
+            "targets": 4,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 1,
+            "to_col": 3,
+            "to_row": 2,
+            "remaining": 21,
+            "targets": 3,
+            "cascades": 2,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 2,
+            "from_row": 3,
+            "to_col": 3,
+            "to_row": 3,
+            "remaining": 20,
+            "targets": 2,
+            "cascades": 4,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 2,
+            "from_row": 0,
+            "to_col": 2,
+            "to_row": 1,
+            "remaining": 19,
+            "targets": 2,
+            "cascades": 1,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 3,
+            "to_col": 3,
+            "to_row": 4,
+            "remaining": 18,
+            "targets": 2,
+            "cascades": 8,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 3,
+            "from_row": 2,
+            "to_col": 3,
+            "to_row": 3,
+            "remaining": 17,
+            "targets": 1,
+            "cascades": 7,
+            "reshuffles": 0
+          },
+          {
+            "from_col": 1,
+            "from_row": 4,
+            "to_col": 1,
+            "to_row": 5,
+            "remaining": 16,
+            "targets": 0,
+            "cascades": 3,
+            "reshuffles": 0
+          }
+        ]
+      }
+    }
+  ]
+}

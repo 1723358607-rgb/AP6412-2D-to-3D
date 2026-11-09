@@ -1,0 +1,3 @@
+Harness observation: native macOS Godot graphical run attempted with --step4-smoke-test --capture-layout-v2.
+Process return code: -6 (SIGABRT). stdout bytes: 0. stderr bytes: 0. No capture files produced.
+This is a failed graphical launch, not a passing screenshot/UI-appearance check.

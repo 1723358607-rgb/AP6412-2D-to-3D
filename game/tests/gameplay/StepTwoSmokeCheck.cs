@@ -61,7 +61,8 @@ public static class StepTwoSmokeCheck
             Require(Moves(session) == 15 && Dump(session.CurrentBoard!) == beforeInvalid, "Invalid swap changed board/moves.");
             GD.Print($"[STEP2_INVALID] from={pair.From}; to={pair.To}; moves=15->15; board unchanged; RNG not consumed.");
             Require(await session.RequestSwapAsync(new(-1, 0), new(0, 0)) == SwapAttemptStatus.Invalid, "Outside swap accepted.");
-            Require(await session.RequestSwapAsync(new(1, 5), new(1, 6)) == SwapAttemptStatus.Invalid, "Box swap accepted.");
+            var box = level.Boxes[0];
+            Require(await session.RequestSwapAsync(new(box.Column, box.Row), new(box.Column, box.Row + 1)) == SwapAttemptStatus.Invalid, "Box swap accepted.");
             Require(await session.RequestSwapAsync(new(0, 0), new(1, 1)) == SwapAttemptStatus.Invalid, "Diagonal accepted.");
             Require(await session.RequestSwapAsync(OpeningFrom, OpeningTo) == SwapAttemptStatus.Accepted, "Session rejected opening.");
             Require(Moves(session) == 14 && Dump(session.CurrentBoard!) == Dump(accepted.FinalBoard), "Session/RNG differs after invalid swap.");

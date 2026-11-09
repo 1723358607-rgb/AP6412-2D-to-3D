@@ -1,0 +1,294 @@
+{
+  "LAYOUT_BEFORE": [
+    {
+      "level_id": 1,
+      "feedback": {
+        "boxes_by_band": [
+          0,
+          0,
+          5
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 8,
+            "immediate_box_hit_moves": 0,
+            "max_boxes_hit_first_wave": 0
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 8,
+            "immediate_box_hit_moves": 0,
+            "max_boxes_hit_first_wave": 0
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 1,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 1
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 1,
+        "seed": 641201,
+        "initial_moves": 15,
+        "trials": 128,
+        "random_wins": 46,
+        "random_stars": [
+          82,
+          12,
+          18,
+          16
+        ],
+        "greedy_won": true,
+        "greedy_moves": 2,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 0
+      }
+    },
+    {
+      "level_id": 2,
+      "feedback": {
+        "boxes_by_band": [
+          0,
+          0,
+          10
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 3,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 1
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 5,
+            "immediate_box_hit_moves": 3,
+            "max_boxes_hit_first_wave": 1
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 0,
+            "immediate_box_hit_moves": 0,
+            "max_boxes_hit_first_wave": 0
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 2,
+        "seed": 641209,
+        "initial_moves": 20,
+        "trials": 128,
+        "random_wins": 48,
+        "random_stars": [
+          80,
+          17,
+          19,
+          12
+        ],
+        "greedy_won": true,
+        "greedy_moves": 5,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 0
+      }
+    },
+    {
+      "level_id": 3,
+      "feedback": {
+        "boxes_by_band": [
+          0,
+          0,
+          14
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 5,
+            "immediate_box_hit_moves": 2,
+            "max_boxes_hit_first_wave": 1
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 10,
+            "immediate_box_hit_moves": 2,
+            "max_boxes_hit_first_wave": 4
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 0,
+            "immediate_box_hit_moves": 0,
+            "max_boxes_hit_first_wave": 0
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 3,
+        "seed": 641203,
+        "initial_moves": 24,
+        "trials": 128,
+        "random_wins": 20,
+        "random_stars": [
+          108,
+          11,
+          3,
+          6
+        ],
+        "greedy_won": true,
+        "greedy_moves": 9,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 0
+      }
+    }
+  ],
+  "LAYOUT_AFTER": [
+    {
+      "level_id": 1,
+      "feedback": {
+        "boxes_by_band": [
+          1,
+          3,
+          1
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 6,
+            "immediate_box_hit_moves": 6,
+            "max_boxes_hit_first_wave": 2
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 4,
+            "immediate_box_hit_moves": 4,
+            "max_boxes_hit_first_wave": 2
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 1,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 2
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 1,
+        "seed": 641224,
+        "initial_moves": 15,
+        "trials": 128,
+        "random_wins": 120,
+        "random_stars": [
+          8,
+          3,
+          12,
+          105
+        ],
+        "greedy_won": true,
+        "greedy_moves": 3,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 0
+      }
+    },
+    {
+      "level_id": 2,
+      "feedback": {
+        "boxes_by_band": [
+          4,
+          2,
+          4
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 1,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 2
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 8,
+            "immediate_box_hit_moves": 7,
+            "max_boxes_hit_first_wave": 4
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 1,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 2
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 2,
+        "seed": 641454,
+        "initial_moves": 20,
+        "trials": 128,
+        "random_wins": 118,
+        "random_stars": [
+          10,
+          7,
+          13,
+          98
+        ],
+        "greedy_won": true,
+        "greedy_moves": 5,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 0
+      }
+    },
+    {
+      "level_id": 3,
+      "feedback": {
+        "boxes_by_band": [
+          4,
+          6,
+          4
+        ],
+        "bands": [
+          {
+            "region": "upper_rows_1_2",
+            "legal_moves": 3,
+            "immediate_box_hit_moves": 3,
+            "max_boxes_hit_first_wave": 2
+          },
+          {
+            "region": "middle_rows_3_5",
+            "legal_moves": 3,
+            "immediate_box_hit_moves": 3,
+            "max_boxes_hit_first_wave": 2
+          },
+          {
+            "region": "lower_rows_6_7",
+            "legal_moves": 1,
+            "immediate_box_hit_moves": 1,
+            "max_boxes_hit_first_wave": 1
+          }
+        ]
+      },
+      "balance": {
+        "level_id": 3,
+        "seed": 641326,
+        "initial_moves": 24,
+        "trials": 128,
+        "random_wins": 113,
+        "random_stars": [
+          15,
+          14,
+          33,
+          66
+        ],
+        "greedy_won": true,
+        "greedy_moves": 8,
+        "greedy_stars": 3,
+        "one_move_wins": 0,
+        "total_reshuffles": 1
+      }
+    }
+  ]
+}

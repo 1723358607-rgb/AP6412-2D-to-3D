@@ -4,12 +4,32 @@
   "width": 7,
   "height": 7,
   "initial_moves": 15,
-  "seed": 641201,
+  "seed": 641224,
   "boxes": [
-    { "column": 1, "row": 6, "layers": 1 },
-    { "column": 2, "row": 6, "layers": 1 },
-    { "column": 3, "row": 6, "layers": 1 },
-    { "column": 4, "row": 6, "layers": 1 },
-    { "column": 5, "row": 6, "layers": 1 }
+    {
+      "column": 2,
+      "row": 1,
+      "layers": 1
+    },
+    {
+      "column": 5,
+      "row": 2,
+      "layers": 1
+    },
+    {
+      "column": 1,
+      "row": 3,
+      "layers": 1
+    },
+    {
+      "column": 4,
+      "row": 4,
+      "layers": 1
+    },
+    {
+      "column": 2,
+      "row": 5,
+      "layers": 1
+    }
   ]
 }
