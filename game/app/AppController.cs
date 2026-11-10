@@ -5,6 +5,7 @@ using AP6412Match3.Tests.Gameplay;
 using AP6412Match3.Core;
 using AP6412Match3.Presentation;
 using AP6412Match3.App.Integration;
+using AP6412Match3.Tests.Ui;
 using GDictionary = Godot.Collections.Dictionary;
 
 namespace AP6412Match3.App;
@@ -66,6 +67,27 @@ public partial class AppController : Node
             return;
         }
 
+        if (OS.GetCmdlineUserArgs().Contains("--progress-store-test"))
+        {
+            GetTree().Quit(ProgressStoreSmokeCheck.Run("full"));
+            return;
+        }
+        if (OS.GetCmdlineUserArgs().Contains("--integration-audit"))
+        {
+            GetTree().Quit(IntegrationReadinessCheck.Run(this));
+            return;
+        }
+        if (OS.GetCmdlineUserArgs().Contains("--progress-store-restart-write"))
+        {
+            GetTree().Quit(ProgressStoreSmokeCheck.Run("write"));
+            return;
+        }
+        if (OS.GetCmdlineUserArgs().Contains("--progress-store-restart-read"))
+        {
+            GetTree().Quit(ProgressStoreSmokeCheck.Run("read"));
+            return;
+        }
+
         if (OS.GetCmdlineUserArgs().Contains("--gameplay-smoke-test"))
         {
             RunGameplayChecks();
@@ -118,8 +140,11 @@ public partial class AppController : Node
             return;
         }
 
-        bool runtimeFallback = !ResourceLoader.Exists(ProgressScenePath) && !OS.GetCmdlineUserArgs().Contains("--ui-smoke-test");
-        Node uiNode = GD.Load<PackedScene>(runtimeFallback ? "res://app/integration/IntegratedUi.tscn" : UiScenePath).Instantiate();
+        bool isolatedUiDemo = OS.GetCmdlineUserArgs().Contains("--ui-smoke-test");
+        bool runtimeFallback = !ResourceLoader.Exists(ProgressScenePath) && !isolatedUiDemo;
+        // Normal play keeps the already-integrated Crystal Garden result/progress UI.
+        // The original GameUiRoot remains available for its isolated visual smoke test.
+        Node uiNode = GD.Load<PackedScene>(isolatedUiDemo ? UiScenePath : "res://app/integration/IntegratedUi.tscn").Instantiate();
         if (uiNode is not GameUiBridge ui)
         {
             uiNode.Free();

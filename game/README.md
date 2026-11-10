@@ -1,11 +1,13 @@
 # Shared Godot project
 
-Godot4.7.2 Mono/.NET, C#, net8.0. Import the complete repository's project.godot, build AP6412Match3.sln, F5 starts real Crystal Garden gameplay.
+Godot4.7.2 Mono/.NET, C#, net8.0. Import this project.godot from the complete repository, build AP6412Match3.sln and F5.
 
-Current distributed-box layouts v2: upper/middle/lower targets, counts5/10/14, three double-layer boxes, budgets15/20/24 unchanged. Seeds641224/641454/641326; example wins3/5/8 swaps. See ../docs/evidence/member-a/layout-v2.md for exact moves, diagram, diagnostics and real checks. Current rule archive is selected by current-rule-reference.json; older Step4/5 records remain historical.
+The integrated candidate uses B's persistent ProgressStore/ResultScreen and settings UI through A's application bridge. Actual highest stars/unlocks survive restart in per-mode crystal_garden_progress_2d.json /3d.json. Corrupt bytes are backed up before safe recovery; user saves are not reset for tests.
 
-Build and Step0–4/UI-demo checks pass; 16 swaps/193 presenter steps replay identically and compare to the new archive. Native Mac graphical launch returned-6; new manual visuals/audio/export are unverified. B PR #10 is open, not part of this layout integration; current main progress is still session-only. No frozen2D tag or3D implementation.
+A layouts v2 and rules remain unchanged: seeds641224/641454/641326, box counts5/10/14, budgets15/20/24; example wins3/5/8 swaps. Exact moves: ../docs/evidence/member-a/layout-v2.md. Integration/build/test evidence: integration-20261110.md beside it.
 
-Use tools/verify-2d-reference.py after building. --layout-study runs distribution/direct-reward diagnostics; --layout-study --layout-seed-scan is test-only candidate scanning. The independent GameplayLoop scene remains available with F6; it does not save progress.
+Mac build0 warnings/errors and progress/audit/restart/Step0–4/UI/reference checks pass. Human visual/play acceptance remains; no frozen2D or3D yet. Settings toggles are UI state only; audio/export was not validated.
 
-A owns core/gameplay/data/presentation/app integration/tests/gameplay; B owns ui/progress/tests/ui. Preserve both contributions and actual original history. Read alignment/HANDOFF_UI.md before integration.
+Store/UI tests require a fresh AP6412_PROGRESS_STORE_DIR for each independent test. Use the same isolated directory for restart-write then restart-read. --integration-audit checks source retention/canonical unlocks/visible result UI. Rule-only --rule-reference writes no saves. Never delete real user:// progress for tests.
+
+Read alignment/HANDOFF_UI and NEXT_3D before working. Preserve B original contributions and A integration corrections separately.

@@ -15,6 +15,8 @@ public static class StepFourSmokeCheck
     {
         try
         {
+            Require(!string.IsNullOrWhiteSpace(OS.GetEnvironment("AP6412_PROGRESS_STORE_DIR")),
+                "Integrated UI tests require AP6412_PROGRESS_STORE_DIR and must not use real player data.");
             CheckRecovery(); CheckMoveOracle();
             for(int id=1;id<=3;id++)
                 GD.Print("[BALANCE_FINAL] "+System.Text.Json.JsonSerializer.Serialize(BalanceStudy.Measure(BalanceStudy.Load(id),128)));
@@ -75,7 +77,7 @@ public static class StepFourSmokeCheck
             Press(ui.CurrentScreen(),"BackButton");Press(ui.CurrentScreen(),"ConfirmLeaveButton");await Frames(app,3);
             Require(ui.CurrentPage=="select"&&session.CurrentBoard is null&&app.GetNodeOrNull<BoardView2D>("BoardView2D") is not null,"Leave lost the board presenter.");
             Press(ui.CurrentScreen(),"BackButton");Require(ui.CurrentPage=="start","Back to home failed.");
-            GD.Print("[STEP4_UI_PASS] Reused B home/select/gameplay and art; actual viewport swaps, modal filtering, wins, stars, all three levels, failure/retry/leave and presenter lifetime. Session-only progress, no persistence claim.");
+            GD.Print("[STEP4_UI_PASS] Reused B home/select/gameplay/result and art; actual viewport swaps, modal filtering, wins, stars, all three levels, failure/retry/leave, presenter lifetime and isolated persistent progress.");
             GD.Print("[STEP4_SMOKE_PASS] Deterministic dead-board recovery, bounded errors, move oracle, balance diagnostics and integrated UI.");
             return 0;
         }

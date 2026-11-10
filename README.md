@@ -4,14 +4,13 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status
 
-**Distributed box layouts v2 are playable.** Targets now occupy upper, middle and lower regions; every starting region has a directly box-damaging swap. Counts5/10/14, three double-layer boxes, budgets15/20/24 and star rules are unchanged. Seeds641224/641454/641326 avoid one-move wins; verified example wins use3/5/8 swaps.
+**The integrated 2D candidate now saves progress.** B's formal ProgressStore, ResultScreen and settings UI are integrated with A's distributed layouts v2 and application bridge. Earned best stars/unlocks survive restart; 2D/3D files are isolated. A's review adds corrupt-source preservation, canonical unlocks, safe temporary-file replacement and the final GARDEN COMPLETE title. Original B commits remain traceable.
 
-See [current layout, exact click replays and checks](docs/evidence/member-a/layout-v2.md). Build0 warnings/errors, Step0–4/UI-demo regressions and current rule-reference comparison pass. The updated reference contains16 swaps and193 actual presenter steps. Old Step4/5 references are retained as history; current-rule-reference.json selects the active archive.
+Mac build0 warnings/errors; progress/restart/audit, Step0–4/UI demo, layout diagnostics and current rule reference all pass. See [integration evidence and actual limits](docs/evidence/member-a/integration-20261110.md). Human play/visual acceptance is still pending; no2d-baseline or3D implementation yet.
 
-B's progress/result PR #10 is open and not integrated in this layout change. Main currently still uses real session-only progress, reset on close. Mac graphical launch returned-6 this turn; new visual/manual acceptance is pending. No 2D baseline or 3D implementation yet.
+Counts5/10/14, three double layers, budgets15/20/24, seeds641224/641454/641326 and star rules are unchanged. Example wins use3/5/8 swaps; the16-swap/193-step rule archive still matches. See [exact layout/replays](docs/evidence/member-a/layout-v2.md).
 
-- Godot4.7.2 Mono/.NET, exact4.7.2.stable.mono.official.ed1daf0bf, C#, net8.0. Mac verified SDK10.0.302.
-- A @1723358607-rgb: gameplay. B @Sherylshiy: UI/visuals/progress. Group number and names pending.
+Godot4.7.2 Mono, C#, net8.0; Mac SDK10.0.302. A @1723358607-rgb gameplay/integration; B @Sherylshiy UI/visuals/progress. Group number/names/raw AI exports remain to supply.
 
 ## 项目对齐与下一步
 
@@ -65,7 +64,7 @@ dotnet restore AP6412Match3.csproj
 dotnet build AP6412Match3.sln --no-restore
 ```
 
-Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock next level and see actual current/best stars. Retry/Levels/Next use real gameplay. Closing the app resets the current temporary progress.
+Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock the next level and save actual best stars. Retry/Levels/Next use real gameplay. Closing and reopening the app restores the saved stars and unlocks.
 
 For a deterministic level1 win, start/retry, then swap **row4/col3↔row5/col3**, **row6/col4↔row7/col4**, **row6/col4↔row6/col5** (1-based). Wait after each move. Expect12 moves remaining and3 stars. See [layout v2](docs/evidence/member-a/layout-v2.md) for all replays.
 
@@ -74,7 +73,7 @@ Independent A development harness: open `res://presentation/2d/GameplayLoop.tscn
 From repository root, with GODOT pointing to your executable:
 
 ```sh
-"$GODOT" --headless --path game --fixed-fps 60 -- --step4-smoke-test
+AP6412_PROGRESS_STORE_DIR="$(mktemp -d)" "$GODOT" --headless --path game --fixed-fps 60 -- --step4-smoke-test
 ```
 
 Expected `[STEP4_SMOKE_PASS]` and exit0. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. `--rule-reference` records actual rule/session/presenter states; after building, `python3 tools/verify-2d-reference.py --godot "$GODOT"` compares them with the provisional archive without updating it. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
@@ -83,7 +82,7 @@ The known Mac unfinished merge was resolved after verified backup and stash pres
 
 ### UI teammate handoff
 
-B retains `ui/`, `progress/`, `tests/ui/`. Implement `ProgressStoreBridge` at `res://progress/ProgressStore.tscn` **together with** original UI snapshot-backed level selection and real result pages. Adding the store scene switches off A's temporary app adapter, so do not deliver an empty store shell alone. Keep input propagation, measured BoardHost alignment and A box-damage rendering. See [CONTRACT](docs/alignment/CONTRACT.md) and [current checklist](docs/alignment/HANDOFF_UI.md).
+Formal B UI/store are now connected. Sync the integrated main into your own branch and complete the [manual acceptance checklist](docs/evidence/member-a/step-5-acceptance.md). Keep your actual results distinct from A's automated review. B owns ui/progress/tests/ui; A's small integration corrections are credited in the integration evidence. Read [next3D tasks](docs/alignment/NEXT_3D.md) after the2D freeze.
 
 ## Submission checklist
 
