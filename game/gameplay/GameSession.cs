@@ -21,6 +21,13 @@ public partial class GameSession : Node
     private readonly MatchResolver _resolver = new();
 
     public bool IsGameplayImplemented => true;
+    public string Mode { get; private set; } = "2d";
+    public void ConfigureMode(string mode)
+    {
+        if (mode is not ("2d" or "3d")) throw new ArgumentException(nameof(mode));
+        if (_phase != "idle") throw new InvalidOperationException("Leave the current session before changing mode.");
+        Mode = mode;
+    }
     public bool IsBusy => _phase == "resolving";
     public BoardModel? CurrentBoard { get; private set; }
     public SwapResolution? LastResolution { get; private set; }
@@ -35,7 +42,7 @@ public partial class GameSession : Node
         ["moves_remaining"] = _moves,
         ["target_total"] = _level?.Boxes.Length ?? 0,
         ["target_remaining"] = CountBoxes(),
-        ["mode"] = "2d",
+        ["mode"] = Mode,
     };
 
     public void AttachPresenter(IBoardPresenter? presenter)

@@ -1,0 +1,18 @@
+{
+  "date_singapore": "2026-11-10",
+  "status": "isolated-3d-prototype; human-2d-acceptance-still-pending",
+  "two_d_reference_commit": "a067c5f50546b9b8a1ca12479e56eb36c0acfdcd",
+  "two_d_frozen_tag": null,
+  "source_hashes": {
+    "game/core/BoardCell.cs": "ed581c66445513fd6d423c59189852860461063a925b703ac6843c14a0f9b201",
+    "game/core/BoardGenerator.cs": "bd9a2c77680b79597eab148ab5356d9ed9143668d6a498cd7ec21b789ef351b3",
+    "game/core/BoardInteraction.cs": "80f2c717f52704fe0b3be299a2c16b3f637f9e67dc5e1822c5cbf3530d447bd8",
+    "game/core/BoardModel.cs": "61fbe347dcd642f368bd08dfe02c9afb98ba32bc346243886f32e8754879a9eb",
+    "game/core/BoardMoves.cs": "e0d0d1981ab73832610ac75d9e850b7a6d22fd013685858d4efa06f49961174d",
+    "game/core/BoardResolution.cs": "980b6c7810ab344b566507a5b0b72e94f41297b1b71fd34e1a5e5619da2a6d7f",
+    "game/core/LevelDefinition.cs": "05d8d89761bcd6cf2855ff70e2fa924a1244ddb1f7d32f7879f42658bf5e8375",
+    "game/core/LevelRules.cs": "1fe95a7b7f80f6c870815a581f5466b75edab47d45aba93028e69016c90ba267",
+    "game/core/MatchResolver.cs": "69fde73a93c92fd04ace9aff61a9689c9cc7e8105b1c0cee39713b086bb4a411"
+  },
+  "rule_reference_sha256": "d50e1ebe99f9a9653dcc2a969a2a76fc8a6e17a28299dfdaa40cd0e27344175c"
+}

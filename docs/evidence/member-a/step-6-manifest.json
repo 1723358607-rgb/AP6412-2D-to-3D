@@ -1,0 +1,45 @@
+{
+  "status": "isolated-3d-preview-not-final",
+  "base_2d_commit": "a067c5f50546b9b8a1ca12479e56eb36c0acfdcd",
+  "formal_2d_tag": null,
+  "files": [
+    {
+      "path": "game/app/AppController.cs",
+      "sha256": "23ca199140a0be8fe52844a71b5c2cc0dfe1ac6c639b094d846a93e872906390"
+    },
+    {
+      "path": "game/app/Main3D.tscn",
+      "sha256": "2467262186470f10c99f574a234675813f72e571e5ca1911bdaea8a6e5dcb3e2"
+    },
+    {
+      "path": "game/gameplay/GameSession.cs",
+      "sha256": "4083812e1c2d20b7247640ebe06d9fe86fe49d0bd38d9986c852e94c453a2a95"
+    },
+    {
+      "path": "game/presentation/3d/BoardView3D.cs",
+      "sha256": "64d743dc534181aa1b818b9884fbaf4892c5ea5a09210cf05a022e4638c82dc4"
+    },
+    {
+      "path": "game/presentation/3d/GemMeshes.cs",
+      "sha256": "178796594e1d2260f20c262a76d44b5a79069cf828a3ad9a591657cf047d200d"
+    },
+    {
+      "path": "game/tests/gameplay/StepSixSmokeCheck.cs",
+      "sha256": "b441974e053fa1b4505457e2859fdb22a5d1296b19e7f552623bb7b2247b2a4c"
+    },
+    {
+      "path": "game/project.godot",
+      "sha256": "ed23eff0fd2e34c163e9a8055b01888bfb9e4b3ebec630b937b28e03830dcd4a"
+    }
+  ],
+  "checks": {
+    "build": 0,
+    "3d_mesh_ray_equivalence_ui": 0,
+    "3d_separate_process_restart": 0,
+    "2d_step0_to4_audit_store_ui_reference": 0
+  },
+  "rule_reference_sha256": "d50e1ebe99f9a9653dcc2a969a2a76fc8a6e17a28299dfdaa40cd0e27344175c",
+  "rendered_image_verified": false,
+  "human_play_verified": false,
+  "final_tags_created": false
+}
