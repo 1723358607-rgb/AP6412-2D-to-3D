@@ -50,7 +50,7 @@ public partial class ResultScreen : Control
             new Rect2(570, 64, 780, 930));
 
         // The frame artwork reserves its upper area for the crystal ornament.
-        StyledLabel("ResultTitle", won ? "LEVEL COMPLETE!" : "TRY AGAIN",
+        StyledLabel("ResultTitle", won ? level == 3 ? "GARDEN COMPLETE!" : "LEVEL COMPLETE!" : "TRY AGAIN",
             new Rect2(650, 315, 620, 48), 34, CrystalTypography.Bold(), new Color("4a285f"));
         StyledLabel("LevelLabel", $"LEVEL {level}",
             new Rect2(730, 382, 460, 40), 25, CrystalTypography.SemiBold(), new Color("5b3373"));

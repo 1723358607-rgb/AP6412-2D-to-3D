@@ -72,6 +72,11 @@ public partial class AppController : Node
             GetTree().Quit(ProgressStoreSmokeCheck.Run("full"));
             return;
         }
+        if (OS.GetCmdlineUserArgs().Contains("--integration-audit"))
+        {
+            GetTree().Quit(IntegrationReadinessCheck.Run(this));
+            return;
+        }
         if (OS.GetCmdlineUserArgs().Contains("--progress-store-restart-write"))
         {
             GetTree().Quit(ProgressStoreSmokeCheck.Run("write"));

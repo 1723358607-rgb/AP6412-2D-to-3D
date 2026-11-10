@@ -1,0 +1,456 @@
+{
+  "status": "integrated-2d-candidate-not-frozen",
+  "date_singapore": "2026-11-10",
+  "main_before": "62277769151a7e278b7d8822f6d3605ad981bc21",
+  "b_head": "3fe78a5962ddb1c2633be1f4f744b68d4409657d",
+  "files": [
+    {
+      "path": "game/AP6412Match3.csproj",
+      "sha256": "05e6122205f006d2ef2e3e8c0be437a656e2afaa9ddc258ebb927440f8656a74"
+    },
+    {
+      "path": "game/AP6412Match3.sln",
+      "sha256": "00570e531c1693367a60c78ed2addd9f095504fe7a6d70b3131f9cb3b8f475a0"
+    },
+    {
+      "path": "game/app/AppController.cs",
+      "sha256": "aad6f1830c34ae2f93f8f20df5725b82192d106320bcc49e1aa3d7ff57e17e5f"
+    },
+    {
+      "path": "game/app/AppController.cs.uid",
+      "sha256": "c4b1da2eb8058fdec88060716c0cf06aa159491554a7b76f9734c4823647b7a2"
+    },
+    {
+      "path": "game/app/Main.tscn",
+      "sha256": "4581977bdac1ab71c976ca303db4319169e87f7c6b97d2d7972218a1ad5a82b7"
+    },
+    {
+      "path": "game/app/contracts/GameUiBridge.cs",
+      "sha256": "a50736a07ba8435a629eab652e10749d9b1295b457cf5a1745c5070824b9912c"
+    },
+    {
+      "path": "game/app/contracts/GameUiBridge.cs.uid",
+      "sha256": "dc9777542669736d6c46e40a437aa30eb89086030d1e8eb35d5b6ffbaa0aba8a"
+    },
+    {
+      "path": "game/app/contracts/ProgressStoreBridge.cs",
+      "sha256": "fefe7a2234f1fb91e4bf5dbed4580bf38ab1d33fff138df39af3e50b39a1908a"
+    },
+    {
+      "path": "game/app/contracts/ProgressStoreBridge.cs.uid",
+      "sha256": "676de7afc4e5743aad2dbc25cb8f0bc183766e9179ae7909cf66d2093f835c49"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.cs",
+      "sha256": "631ce11e5e230cf9e7c1e0ea95adbd85614fb5b3f14ca3aea2d7fdbb9649fbe9"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.cs.uid",
+      "sha256": "12ea3b5413d6e577be884ddf06996c0448f0b3aa8699ddbece7c4108f0be55d4"
+    },
+    {
+      "path": "game/app/integration/IntegratedUi.tscn",
+      "sha256": "da33cbbe10d1425196d771c50335d7176358db489bdca72039e422855052c6ad"
+    },
+    {
+      "path": "game/app/integration/RuntimeProgressBridge.cs",
+      "sha256": "ad2b0301e2275f386d36ba546cda2c25aa0a5860bb1c968b83cfb018840c5806"
+    },
+    {
+      "path": "game/app/integration/RuntimeProgressBridge.cs.uid",
+      "sha256": "0b8a022ceedc431e7145105a6b1c1c22617c7583e9cffef81d58d3f869c41b38"
+    },
+    {
+      "path": "game/core/BoardCell.cs",
+      "sha256": "ed581c66445513fd6d423c59189852860461063a925b703ac6843c14a0f9b201"
+    },
+    {
+      "path": "game/core/BoardCell.cs.uid",
+      "sha256": "cf8770567bd01677e8ab6028bbad19f5f83f0fa637188ebb5b5dbcf2f66cee08"
+    },
+    {
+      "path": "game/core/BoardGenerator.cs",
+      "sha256": "bd9a2c77680b79597eab148ab5356d9ed9143668d6a498cd7ec21b789ef351b3"
+    },
+    {
+      "path": "game/core/BoardGenerator.cs.uid",
+      "sha256": "3dfc279fe792974de0bfacc4b1b2a80e817f0adeebe7d594db4e48d34dcbfea0"
+    },
+    {
+      "path": "game/core/BoardInteraction.cs",
+      "sha256": "80f2c717f52704fe0b3be299a2c16b3f637f9e67dc5e1822c5cbf3530d447bd8"
+    },
+    {
+      "path": "game/core/BoardInteraction.cs.uid",
+      "sha256": "a542d3d877d5307897e2ebda7bd8f3795ca8a4bd7cc22aefd1f4b54d143a71d2"
+    },
+    {
+      "path": "game/core/BoardModel.cs",
+      "sha256": "61fbe347dcd642f368bd08dfe02c9afb98ba32bc346243886f32e8754879a9eb"
+    },
+    {
+      "path": "game/core/BoardModel.cs.uid",
+      "sha256": "5c7303ce2a37c10648d4e1c5ac9e24f4fa7621f5be6cf0655608c38ef144d967"
+    },
+    {
+      "path": "game/core/BoardMoves.cs",
+      "sha256": "e0d0d1981ab73832610ac75d9e850b7a6d22fd013685858d4efa06f49961174d"
+    },
+    {
+      "path": "game/core/BoardMoves.cs.uid",
+      "sha256": "229a9857d7e68e2dfcfd19a6ab1f6965f12251a4222748c5471a7dd35bd6380f"
+    },
+    {
+      "path": "game/core/BoardResolution.cs",
+      "sha256": "980b6c7810ab344b566507a5b0b72e94f41297b1b71fd34e1a5e5619da2a6d7f"
+    },
+    {
+      "path": "game/core/BoardResolution.cs.uid",
+      "sha256": "989e487be8016408151096d36218ad7739fecf1e4c9e9fb09677ce7268350800"
+    },
+    {
+      "path": "game/core/LevelDefinition.cs",
+      "sha256": "05d8d89761bcd6cf2855ff70e2fa924a1244ddb1f7d32f7879f42658bf5e8375"
+    },
+    {
+      "path": "game/core/LevelDefinition.cs.uid",
+      "sha256": "b5346ea1e0f30c105f12240fb88a68a0b1df152230c410a13afdcbbc545b7777"
+    },
+    {
+      "path": "game/core/LevelRules.cs",
+      "sha256": "1fe95a7b7f80f6c870815a581f5466b75edab47d45aba93028e69016c90ba267"
+    },
+    {
+      "path": "game/core/LevelRules.cs.uid",
+      "sha256": "49bae3254e1df7adfc9ce1a353d183bc5cd28be38a57221f1b44999026c828ab"
+    },
+    {
+      "path": "game/core/MatchResolver.cs",
+      "sha256": "69fde73a93c92fd04ace9aff61a9689c9cc7e8105b1c0cee39713b086bb4a411"
+    },
+    {
+      "path": "game/core/MatchResolver.cs.uid",
+      "sha256": "08264c2993942bfdefd31b801c424749882a5102209e494916b3fbcff3132e57"
+    },
+    {
+      "path": "game/data/levels/level_01.json",
+      "sha256": "46437cad2b3d106c7238dcc7136010c5d05fc6577591f5ecfa2d2092e67445dd"
+    },
+    {
+      "path": "game/data/levels/level_02.json",
+      "sha256": "6daab60889eb5080a6bfa2d798b3585e586109c7a03708401c4437c050c917ad"
+    },
+    {
+      "path": "game/data/levels/level_03.json",
+      "sha256": "ebcc6a3048c5d81ad77144603633ece92dc31d75c54b5427ca5fe90e92e82a7f"
+    },
+    {
+      "path": "game/gameplay/GameSession.cs",
+      "sha256": "0ef1b07116c1350a92e22b78fc04c16a80949a340e813977ced78aeca816e34c"
+    },
+    {
+      "path": "game/gameplay/GameSession.cs.uid",
+      "sha256": "07718617afdd0f968b2b401a5275c852a5d560d8f12da3c344cecc24fbad9189"
+    },
+    {
+      "path": "game/gameplay/IBoardPresenter.cs",
+      "sha256": "88b27271f2a1da6c23f3a93b7b30eea308434543bbf30a48769d4cc8d74b04ef"
+    },
+    {
+      "path": "game/gameplay/IBoardPresenter.cs.uid",
+      "sha256": "aa56e8fb1c69244b4b7852fc16ac58c6f19f48a0af96e155a28f195fd717fb7a"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototype.tscn",
+      "sha256": "4f3421a0e4cdbf13be992bc8e33f6b8f9e64e37909419e91cfac725441f59481"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototypeRunner.cs",
+      "sha256": "69c65014ef92c395eee60d409b5c01917421b23002bdeb9d481d8f32b883e24c"
+    },
+    {
+      "path": "game/presentation/2d/BoardPrototypeRunner.cs.uid",
+      "sha256": "d0d5a03d010afe912193ee8051790f250b9f4d13e78d07071dda3022ea568d48"
+    },
+    {
+      "path": "game/presentation/2d/BoardView2D.cs",
+      "sha256": "eaab19e176f182f74d334de0737e150fc9dbdc1c46bd7597c52e2fb7e2bbfa70"
+    },
+    {
+      "path": "game/presentation/2d/BoardView2D.cs.uid",
+      "sha256": "727a7677f55a7d2bb1221cbf5e176c0e393ebfe8c5c7461684ed6ad9534016d8"
+    },
+    {
+      "path": "game/presentation/2d/CrystalGardenBoardLayout.cs",
+      "sha256": "bfd4d25cbea6363bf1d5e0e2c9f12ab283121f06d1e8917bb36e142a00b53821"
+    },
+    {
+      "path": "game/presentation/2d/CrystalGardenBoardLayout.cs.uid",
+      "sha256": "3ca513cfa571ea135e28e8875cf11d5812c16d19877bea9ecf0a7b1af17f3796"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoop.tscn",
+      "sha256": "64105c97d40b15a3d03c28a9d994d7eaf4a9cdad2c3175af74d18fd8777d0fae"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoopRunner.cs",
+      "sha256": "077ad46d2028d8891b371e859480506e7e33ae1ab46f2c9bb0536121dc3bc51e"
+    },
+    {
+      "path": "game/presentation/2d/GameplayLoopRunner.cs.uid",
+      "sha256": "248ecd8f86d8365e0b69e1a0a2dd068f65e690f9b12a4a88d5cbc22de40da558"
+    },
+    {
+      "path": "game/presentation/3d/BoardView3D.cs",
+      "sha256": "4c8c1f4576957ef09d5ec9ffce5fcdb9f7314272368ba5619946b9a78f3df25c"
+    },
+    {
+      "path": "game/presentation/3d/BoardView3D.cs.uid",
+      "sha256": "8e4c98ea25fc25fd0ef61b64edd6e75d6bb78417810fa439a12e955252985308"
+    },
+    {
+      "path": "game/progress/ProgressStore.cs",
+      "sha256": "b0bd01437c2e039c2ae07f0a7f5b98892cacd91bbf88c7b39b7f041cb977fa8b"
+    },
+    {
+      "path": "game/progress/ProgressStore.cs.uid",
+      "sha256": "9285dabffe2a559eb74881beadac0e61be6e2811ac73a8f8c82989344f5c1ef4"
+    },
+    {
+      "path": "game/progress/ProgressStore.tscn",
+      "sha256": "629cb5ade4f7793475c6cca35b12455efab20395b77e87adc05865e083bbf26b"
+    },
+    {
+      "path": "game/project.godot",
+      "sha256": "8b622d5b5034a6c6a89ca730eae282d5e54aad6b6cecd9f8e0ad2adfd8532660"
+    },
+    {
+      "path": "game/tests/gameplay/BalanceStudy.cs",
+      "sha256": "077902bfb27365c01bdf52aefdba3c054366d18cc5da1af56c318259b7a3b0b0"
+    },
+    {
+      "path": "game/tests/gameplay/BalanceStudy.cs.uid",
+      "sha256": "7e552328828a2a2654b59371fd2ab0a8be2eb89e04b26cd331d7b272c1b9473d"
+    },
+    {
+      "path": "game/tests/gameplay/IntegrationReadinessCheck.cs",
+      "sha256": "a2651adbbd4209fb3777d12b7dd920253351947373dcecf2d6119980d636b944"
+    },
+    {
+      "path": "game/tests/gameplay/LayoutStudy.cs",
+      "sha256": "43d260af9f7cce84b38a97bb979644763e953995f162b0ef4660121fb7de39be"
+    },
+    {
+      "path": "game/tests/gameplay/LayoutStudy.cs.uid",
+      "sha256": "10b15e3f3ff3eea545d80cd164b6f879e40d11f6647a9cf73282de51419a9cc7"
+    },
+    {
+      "path": "game/tests/gameplay/RuleReferenceCheck.cs",
+      "sha256": "aefd93bca905ae01c93ebe611315e999f3a3ed9365f030781fa97fce9ec8791d"
+    },
+    {
+      "path": "game/tests/gameplay/RuleReferenceCheck.cs.uid",
+      "sha256": "59b108e35fa2aaf78df9d54f42bb7989ff6c403e7a34c4b6bfda31a2d376547a"
+    },
+    {
+      "path": "game/tests/gameplay/StepFourSmokeCheck.cs",
+      "sha256": "f4307bda24ea83c30c16f68281bd56222d3845e30ff798e16f2644d9f8cd13ae"
+    },
+    {
+      "path": "game/tests/gameplay/StepFourSmokeCheck.cs.uid",
+      "sha256": "abab3a939c29db6dad511a35db91d1f3cf2bd95cb0f15365fd7838eb0b1323e5"
+    },
+    {
+      "path": "game/tests/gameplay/StepOneSmokeCheck.cs",
+      "sha256": "acfcdec3f03f01e08b3052fd152b2a5e95ba7b11ec969bff4232743d2da3aabb"
+    },
+    {
+      "path": "game/tests/gameplay/StepOneSmokeCheck.cs.uid",
+      "sha256": "822b5ee428947202a4c10dd657320ba2f316bcb897a780b117d7b44bdd2ce518"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeProgressProbe.cs",
+      "sha256": "d72ec42d40d8888548dd98b2931b6c6c9d692b8677e0f511f6a7d8c85eab9597"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeProgressProbe.cs.uid",
+      "sha256": "2eb5e9d10c45bc4007bac36a19e4ecf5e5ea4c0758a1c864c4178416c529e58d"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeSmokeCheck.cs",
+      "sha256": "2f4dc5a3eabf9aa80ded89698439d7c74fd31f548234acb89927ec41cbceecc5"
+    },
+    {
+      "path": "game/tests/gameplay/StepThreeSmokeCheck.cs.uid",
+      "sha256": "aad1a15521bcb8a51c15696516d174a95c7efdbbec36215703aae9687d7fdde2"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoSmokeCheck.cs",
+      "sha256": "9c616cf672afe4ee6bbbf384c6743da9a05bcd7e1cd1d58ec21a25b9dbf29f1f"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoSmokeCheck.cs.uid",
+      "sha256": "ccbb2f7764e2085eb25a94d5ddbb4eeb9a96de9b5fa37045486ec5a1962813fa"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoUiProbe.cs",
+      "sha256": "993bb41c45f9eb9f8264ede2a8b7121750d830b3262cf4876f1a1b4226f46282"
+    },
+    {
+      "path": "game/tests/gameplay/StepTwoUiProbe.cs.uid",
+      "sha256": "8f5907392275689d63c11b52c285cc8148ef5d5679d02c139c16b711a0d37edf"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroSmokeCheck.cs",
+      "sha256": "c4083b6c5dd6342f9c2d66e6068dec3710e3239e7c2b2a7d60799e09d29b5c35"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroSmokeCheck.cs.uid",
+      "sha256": "1f7018d36bc89ae88205f9305d5c763d3fc6dbfc7665e260ad756258bc343ada"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroUiProbe.cs",
+      "sha256": "df551efbff47142400869b17ae7679ca8df4d0568ad7e2dacf5e4242cd7db3c8"
+    },
+    {
+      "path": "game/tests/gameplay/StepZeroUiProbe.cs.uid",
+      "sha256": "d0ab7102b922af509d0239bf1a6d03d92a6182ff1da562d57405b7606dbba2e0"
+    },
+    {
+      "path": "game/tests/ui/ProgressStoreSmokeCheck.cs",
+      "sha256": "ddbfa4077caa85c235c6ccd841529374491a472738bd384373d0ccd1996bbf2d"
+    },
+    {
+      "path": "game/tests/ui/ProgressStoreSmokeCheck.cs.uid",
+      "sha256": "2f57df420379db62b0278d56d81cecb8161dc77040398d4dbe7a16f6462a0f22"
+    },
+    {
+      "path": "game/ui/CrystalGardenUi.cs",
+      "sha256": "22e4c9315d6cc513f2db06443aa96ae092d2d2b79add242df10925c55202ae36"
+    },
+    {
+      "path": "game/ui/CrystalGardenUi.cs.uid",
+      "sha256": "128293605164d9ba4190b04f3507f8b901c03e3f6948115f4a01422bdeb8f4e3"
+    },
+    {
+      "path": "game/ui/CrystalToggle.cs",
+      "sha256": "37bb826d94a6edfb286414eb5ddd93434ea1c692c79e977b33572ccafc17c7f5"
+    },
+    {
+      "path": "game/ui/CrystalToggle.cs.uid",
+      "sha256": "d040addc2ec0c79ec14b3a25a711190322c42fbca8794410759c3f6ed96b3e21"
+    },
+    {
+      "path": "game/ui/CrystalTypography.cs",
+      "sha256": "4987afacc158c02632b17da71524d65011b3ecc8dbe7568f6b8b8ad7819daf84"
+    },
+    {
+      "path": "game/ui/CrystalTypography.cs.uid",
+      "sha256": "f1412d5c14383e4b9790080e243fa15164b4b0284f8208e1e769b18d9357592d"
+    },
+    {
+      "path": "game/ui/GameUiRoot.cs",
+      "sha256": "3b23187b1123426bf41d84d3c4484e39998ec4fad610acd84c5529451563ddf1"
+    },
+    {
+      "path": "game/ui/GameUiRoot.cs.uid",
+      "sha256": "5ae8ee74a3956e4d0cfc5e8b95a5fc2018c17189d04d58d26db0038322d9289f"
+    },
+    {
+      "path": "game/ui/GameUiRoot.tscn",
+      "sha256": "6a5d70a74690e13c3a71b4ffba480436494d5ca054f73e5cb6cff249ac04087c"
+    },
+    {
+      "path": "game/ui/GameplayScreen.cs",
+      "sha256": "49778f863a8c8ba0f02ea1d7a2cae4c8005646cf873b7c5e230122c979ea0097"
+    },
+    {
+      "path": "game/ui/GameplayScreen.cs.uid",
+      "sha256": "5324c6cc95a204f38bfafcca5109996a7c7eacb6c61b31029c04e1c332bfcc31"
+    },
+    {
+      "path": "game/ui/GameplayScreen.tscn",
+      "sha256": "995dc37406b7a428bae2b66a74e57e411c2e38a70044c16718bf31118976d557"
+    },
+    {
+      "path": "game/ui/HomeScreen.cs",
+      "sha256": "4c7597c85f91012056bde2ce703bff8ab71a88ecb144db3a8e7e2f792ea52a44"
+    },
+    {
+      "path": "game/ui/HomeScreen.cs.uid",
+      "sha256": "e79ff5b1b7259904ecbbd10c3955681d492972cf3b130aefd53a0448e44a04f8"
+    },
+    {
+      "path": "game/ui/HomeScreen.tscn",
+      "sha256": "7180aecadaa85ff175abfb939b3ebb285c456d1dccbc1e057567b7baf143a57a"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.cs",
+      "sha256": "5803a9d6bdb11d922c64726b87b63377ed298ca26fe60c8034ee2308aac7fa89"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.cs.uid",
+      "sha256": "c57ff35aef2eb251c12d611764b038d393cbc2800a1a0e7a8212ac55f296234e"
+    },
+    {
+      "path": "game/ui/LevelPlaceholderScreen.tscn",
+      "sha256": "c28a5f87ba2e1e09c29c2a40c2f0c7dbb7c8d9bb1f45e0f6cad59a376bdfc10c"
+    },
+    {
+      "path": "game/ui/LevelProgressProvider.cs",
+      "sha256": "a3d67dad3b828eb25cd7c3c69fb3710bdee08c4575bc5891112f580dca3b9e3f"
+    },
+    {
+      "path": "game/ui/LevelProgressProvider.cs.uid",
+      "sha256": "c96f316565835c05e825e292352e31782af355ff8602bc56d1f06946b828432b"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.cs",
+      "sha256": "ebaaf8dfa2b71ba7acdd51c0f5349ec0df45778fef191c4ea03257bec1d0901e"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.cs.uid",
+      "sha256": "11b2d216a281bbbb9b80cbbd8f2921449005b2837be2e47afe8ef3aaa98a8d86"
+    },
+    {
+      "path": "game/ui/LevelSelectionScreen.tscn",
+      "sha256": "55d12bd21fc12d2829aa6e6503e0e15c8b90fa7b13570a2122d69e8a50ba9fdc"
+    },
+    {
+      "path": "game/ui/ResultScreen.cs",
+      "sha256": "f1fb9ab8ed37d84b4dfcd56345244ec971b45e496506188548b3476face04192"
+    },
+    {
+      "path": "game/ui/ResultScreen.cs.uid",
+      "sha256": "35c9661f6c1519014cdac819f6a0e488e5536919fa309fc210cdd206e66a533b"
+    },
+    {
+      "path": "game/ui/ResultScreen.tscn",
+      "sha256": "ce0a1382f9c3717620977d7ddba89edb78779681580c0bf84da84a80e47908e5"
+    }
+  ],
+  "checks": {
+    "b-original-build": 0,
+    "b-original-progress": 0,
+    "b-original-ui": 0,
+    "final-build": 0,
+    "audit": 0,
+    "progress": 0,
+    "restart-write": 0,
+    "restart-read": 0,
+    "step4": 0,
+    "step3": 0,
+    "step2": 0,
+    "step1": 0,
+    "step0": 0,
+    "ui-demo": 0,
+    "layout": 0,
+    "reference": 0,
+    "reference-compare": 0
+  },
+  "audit_before_expected_exit": 1,
+  "manual_acceptance_complete": false,
+  "tag_created": false,
+  "three_d_implemented": false,
+  "rule_reference_sha256": "d50e1ebe99f9a9653dcc2a969a2a76fc8a6e17a28299dfdaa40cd0e27344175c"
+}

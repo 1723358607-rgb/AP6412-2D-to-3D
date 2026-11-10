@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.mono.official.ed1daf0bf - https://godotengine.org
+
+[BOOTSTRAP_OK] Godot 4.7.2-stable (official); C#; mode=2d; phase=idle
+WARNING: Progress file '/Users/zlz/Documents/Codex/2026-11-06/new-chat/work/integration-20261110/before-audit-w192sdnx/crystal_garden_progress_3d.json' is invalid; defaults restored. 'n' is an invalid start of a property name. Expected a '"'. Path: $ | LineNumber: 0 | BytePositionInLine: 1.
+     at: void AP6412Match3.Progress.ProgressStore.LoadProgress(string) (res://progress/ProgressStore.cs:36)
+     C# backtrace (most recent call first):
+         [0] void Godot.GD.PushWarning(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:396)
+         [1] void AP6412Match3.Progress.ProgressStore.LoadProgress(string) (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/progress/ProgressStore.cs:36)
+         [2] int AP6412Match3.Tests.Gameplay.IntegrationReadinessCheck.Run(Godot.Node) (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/tests/gameplay/IntegrationReadinessCheck.cs:24)
+         [3] void AP6412Match3.App.AppController._Ready() (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/app/AppController.cs:77)
+         [4] bool Godot.Node.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/Node.cs:2660)
+         [5] bool AP6412Match3.App.AppController.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/AP6412Match3.App.AppController_ScriptMethods.generated.cs:240)
+         [6] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+ERROR: [INTEGRATION_AUDIT_FAIL] System.InvalidOperationException: Corrupt source was overwritten without preserving its bytes.
+   at AP6412Match3.Tests.Gameplay.IntegrationReadinessCheck.Require(Boolean value, String message) in /Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/tests/gameplay/IntegrationReadinessCheck.cs:line 82
+   at AP6412Match3.Tests.Gameplay.IntegrationReadinessCheck.Run(Node host) in /Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/tests/gameplay/IntegrationReadinessCheck.cs:line 27
+   at: int AP6412Match3.Tests.Gameplay.IntegrationReadinessCheck.Run(Godot.Node) (res://tests/gameplay/IntegrationReadinessCheck.cs:27)
+   C# backtrace (most recent call first):
+       [0] void Godot.GD.PushError(string) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/GD.cs:366)
+       [1] int AP6412Match3.Tests.Gameplay.IntegrationReadinessCheck.Run(Godot.Node) (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/tests/gameplay/IntegrationReadinessCheck.cs:27)
+       [2] void AP6412Match3.App.AppController._Ready() (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/app/AppController.cs:77)
+       [3] bool Godot.Node.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Generated/GodotObjects/Node.cs:2660)
+       [4] bool AP6412Match3.App.AppController.InvokeGodotClassMethod(Godot.NativeInterop.godot_string_name&, Godot.NativeInterop.NativeVariantPtrArgs, Godot.NativeInterop.godot_variant&) (/Users/zlz/Documents/Codex/2026-11-06/new-chat/AP6412-2D-to-3D/game/.godot/mono/temp/obj/Debug/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/AP6412Match3.App.AppController_ScriptMethods.generated.cs:240)
+       [5] Godot.NativeInterop.godot_bool Godot.Bridge.CSharpInstanceBridge.Call(nint, Godot.NativeInterop.godot_string_name*, Godot.NativeInterop.godot_variant**, int, Godot.NativeInterop.godot_variant_call_error*, Godot.NativeInterop.godot_variant*) (/root/godot/modules/mono/glue/GodotSharp/GodotSharp/Core/Bridge/CSharpInstanceBridge.cs:24)
+WARNING: 1 ObjectDB instance was leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)

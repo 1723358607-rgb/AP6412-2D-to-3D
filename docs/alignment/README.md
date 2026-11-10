@@ -36,10 +36,8 @@
 
 用户已授权A侧AI在每轮项目任务中处理检查、拉取/同步、提交、推送和PR整合；保留本地与队友修改，不在未发起任务时后台同步。B侧AI在自己的member-b上处理本地工作，不能同时向member-a写代码。
 
-## 当前交付：布局v2、持久化与正式结算已整合，2D待最终验收
+## 当前交付：正式2D联合候选，待双方最后人工验收
 
-唯一工程game/project.godot，默认app/Main.tscn。A的三关真实玩法、死局恢复和分散木箱布局v2已与B的Crystal Garden页面/素材、分模式永久ProgressStore及正式ResultScreen整合。当前种子641224/641454/641326，示例3/5/8步通关，保持箱数、预算和星级规则。
+A布局v2与B正式ProgressStore/ResultScreen/设置UI已接入并在Mac复测。关闭重开可恢复成绩，模式分文件；A补坏文件保留、规范解锁与末关提示。规则/布局/星级保持不变，3/5/8步示例及16交换193步骤参考保留。
 
-A的最新布局、逐格路径和规则参考见 [布局v2证据](../evidence/member-a/layout-v2.md)。正式存档、结果/选关绑定及B的旧布局重启人工验证已完成；layout-v2双方人工验收、PR合并及完整AI日志尚缺，因此没有冻结标签、没有进入3D。
-
-按 [人工验收单](../evidence/member-a/step-5-acceptance.md) 实际试玩；以正式main提交及双方记录为依据再冻结。
+见 [联合证据](../evidence/member-a/integration-20261110.md) 和 [双方验收单](../evidence/member-a/step-5-acceptance.md)。技术检查通过不代替人工体验；当前没有冻结2D或进入3D。双方本版试玩通过后再创建标签，按 [3D阶段任务](NEXT_3D.md) 继续。

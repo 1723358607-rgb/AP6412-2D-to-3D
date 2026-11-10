@@ -16,11 +16,14 @@ public partial class ProgressStore : ProgressStoreBridge
     private readonly bool[] _unlocked = new bool[3];
     private string _mode = "2d";
     private bool _loaded;
+    private bool _saveBlocked;
 
     public override void LoadProgress(string mode)
     {
         ValidateMode(mode);
         _mode = mode;
+        _loaded = false;
+        _saveBlocked = false;
         ResetToDefaults();
 
         string path = StoragePath(mode);
@@ -38,12 +41,13 @@ public partial class ProgressStore : ProgressStoreBridge
                 data.BestStars is null || data.Completed is null || data.Unlocked is null ||
                 data.BestStars.Length != 3 || data.Completed.Length != 3 || data.Unlocked.Length != 3)
                 throw new InvalidDataException("Unsupported or incomplete progress data.");
+            if (data.BestStars.Any(stars => stars is < 0 or > 3))
+                throw new InvalidDataException("Saved stars must be within 0–3.");
 
             for (int index = 0; index < 3; index++)
             {
-                _bestStars[index] = Math.Clamp(data.BestStars[index], 0, 3);
-                _completed[index] = data.Completed[index] || _bestStars[index] > 0;
-                _unlocked[index] = data.Unlocked[index];
+                _bestStars[index] = data.BestStars[index];
+                _completed[index] = _bestStars[index] > 0;
             }
             NormalizeUnlocks();
             _loaded = true;
@@ -53,6 +57,16 @@ public partial class ProgressStore : ProgressStoreBridge
             GD.PushWarning($"Progress file '{path}' is invalid; defaults restored. {exception.Message}");
             ResetToDefaults();
             _loaded = true;
+            // Preserve exact invalid bytes before replacing the active file.
+            // If preservation fails, keep usable RAM defaults without overwriting the source.
+            string physical = ProjectSettings.GlobalizePath(path);
+            try
+            {
+                if (System.IO.File.Exists(physical))
+                    System.IO.File.Copy(physical, physical + ".corrupt-" + Guid.NewGuid().ToString("N"), overwrite: false);
+            }
+            catch (IOException backupError) { _saveBlocked = true; GD.PushWarning("Invalid progress could not be backed up; disk writes disabled: " + backupError.Message); }
+            catch (UnauthorizedAccessException backupError) { _saveBlocked = true; GD.PushWarning("Invalid progress could not be backed up; disk writes disabled: " + backupError.Message); }
             Save();
         }
     }
@@ -127,6 +141,7 @@ public partial class ProgressStore : ProgressStoreBridge
 
     private void Save()
     {
+        if (_saveBlocked) return;
         var data = new SaveData
         {
             SchemaVersion = SchemaVersion,
@@ -135,10 +150,15 @@ public partial class ProgressStore : ProgressStoreBridge
             Completed = [.. _completed],
             Unlocked = [.. _unlocked],
         };
-        using Godot.FileAccess? file = Godot.FileAccess.Open(StoragePath(_mode), Godot.FileAccess.ModeFlags.Write);
-        if (file is null)
-            throw new IOException($"Unable to open progress file: {Godot.FileAccess.GetOpenError()}");
-        file.StoreString(JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true }));
+        string path = ProjectSettings.GlobalizePath(StoragePath(_mode));
+        string temporary = path + ".tmp-" + Guid.NewGuid().ToString("N");
+        try
+        {
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(path)!);
+            System.IO.File.WriteAllText(temporary, JsonSerializer.Serialize(data, new JsonSerializerOptions { WriteIndented = true }));
+            System.IO.File.Move(temporary, path, overwrite: true);
+        }
+        finally { if (System.IO.File.Exists(temporary)) System.IO.File.Delete(temporary); }
     }
 
     private void ResetToDefaults()
@@ -152,8 +172,8 @@ public partial class ProgressStore : ProgressStoreBridge
     private void NormalizeUnlocks()
     {
         _unlocked[0] = true;
-        _unlocked[1] = _unlocked[1] || _completed[0];
-        _unlocked[2] = _unlocked[2] || _completed[1];
+        _unlocked[1] = _bestStars[0] > 0;
+        _unlocked[2] = _bestStars[1] > 0;
     }
 
     private void EnsureLoaded()

@@ -1,3 +1,5 @@
+> 2026-11-10联合候选：正常F5挂载B ProgressStore及A IntegratedUi→B页面/ResultScreen；正式文件名沿用B的user://crystal_garden_progress_2d.json和crystal_garden_progress_3d.json。损坏原字节保存为.corrupt-GUID后恢复；解锁由上一关最高星数>0推导。旧文件名和“持久化待交付”描述为历史，当前公共桥接签名/规则不变。
+
 > 2026-11-09完成补充：公共桥接方法/字典/信号未改。B的正式ProgressStore现由AppController挂载；生产流程继续复用A的IntegratedUi桥接，但选关数据来自B存档，结算视觉由B的ResultScreen提供。RuntimeProgressBridge仅保留为缺少正式场景时的旧回退。BoardHost和BoardView2D格心映射未改。下方第4步前状态保留为历史说明。
 
 # 接口与文件归属 v1.3 — Godot Mono / C#
@@ -168,7 +170,7 @@ B 的 `game/progress/ProgressStore.cs` 继承 `ProgressStoreBridge`，根 Node �
 ```
 
 - 第一关始终解锁；2/3 关由上一关 best_stars>0 推导，避免两个状态源不一致。
-- 按 mode 分别保存到 `user://progress_2d.json` 和 `user://progress_3d.json`。
+- 按 mode 分别保存到 `user://crystal_garden_progress_2d.json` 和 `user://crystal_garden_progress_3d.json`。
 - 不在存档中重新计算本次星数，只做格式验证、最高值更新和持久化。
 - 忽略失败结果对成绩的覆盖；保留最高星数；同一结果重复记录不降低或重复累加成绩。
 - 缺失存档使用初始状态；损坏存档不崩溃，保留损坏文件以便诊断，使用安全初始状态继续。测试使用单独测试存档路径，不删除真实玩家成绩。

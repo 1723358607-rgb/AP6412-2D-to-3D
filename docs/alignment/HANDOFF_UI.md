@@ -1,3 +1,5 @@
+> 2026-11-10 A复核接入：正式ProgressStore/ResultScreen已在联合候选复测通过。A另补保留坏文件、只按best_stars推导解锁、非法星数恢复及末关GARDEN COMPLETE，详见integration-20261110.md；保留你的原提交，无需另写存档。请同步最终main后按新版3/5/8步与重启流程填写自己的人工记录。下一阶段计划为NEXT_3D.md，尚未冻结标签或开始3D。
+
 > 2026-11-10整合更新：A的分散木箱布局v2与B的正式ProgressStore、真实选关数据、Crystal Garden ResultScreen/Settings已在`codex/member-b-progress-store`合并验证。布局种子为641224/641454/641326，新路径3/5/8步；旧L1路径及旧布局人工结果只作历史记录。下方第4步后清单保留为历史交接记录；当前待PR #10审查、双方按layout-v2重新人工验收和2D冻结决定。
 
 # 第4步后，B下一轮接入清单（2026-11-08）
