@@ -4,56 +4,56 @@
   "width": 7,
   "height": 7,
   "initial_moves": 20,
-  "seed": 641209,
+  "seed": 641454,
   "boxes": [
     {
       "column": 1,
-      "row": 5,
+      "row": 1,
       "layers": 1
     },
     {
       "column": 2,
-      "row": 5,
-      "layers": 1
-    },
-    {
-      "column": 3,
-      "row": 5,
+      "row": 1,
       "layers": 1
     },
     {
       "column": 4,
-      "row": 5,
+      "row": 1,
       "layers": 1
     },
     {
       "column": 5,
-      "row": 5,
+      "row": 1,
+      "layers": 1
+    },
+    {
+      "column": 2,
+      "row": 3,
+      "layers": 1
+    },
+    {
+      "column": 4,
+      "row": 3,
       "layers": 1
     },
     {
       "column": 1,
-      "row": 6,
+      "row": 5,
       "layers": 1
     },
     {
       "column": 2,
-      "row": 6,
-      "layers": 1
-    },
-    {
-      "column": 3,
-      "row": 6,
+      "row": 5,
       "layers": 1
     },
     {
       "column": 4,
-      "row": 6,
+      "row": 5,
       "layers": 1
     },
     {
       "column": 5,
-      "row": 6,
+      "row": 5,
       "layers": 1
     }
   ]

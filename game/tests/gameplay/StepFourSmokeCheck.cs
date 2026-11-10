@@ -15,6 +15,8 @@ public static class StepFourSmokeCheck
     {
         try
         {
+            Require(!string.IsNullOrWhiteSpace(OS.GetEnvironment("AP6412_PROGRESS_STORE_DIR")),
+                "Integrated UI tests require AP6412_PROGRESS_STORE_DIR and must not use real player data.");
             CheckRecovery(); CheckMoveOracle();
             for(int id=1;id<=3;id++)
                 GD.Print("[BALANCE_FINAL] "+System.Text.Json.JsonSerializer.Serialize(BalanceStudy.Measure(BalanceStudy.Load(id),128)));
@@ -31,7 +33,8 @@ public static class StepFourSmokeCheck
             BoardView2D view=ui.FindChild("BoardView2D",true,false) as BoardView2D ?? throw new InvalidOperationException("BoardHost not wired.");
             for(int y=0;y<7;y++)for(int x=0;x<7;x++)Require(view.TryGetCellAtLocalPosition(view.CellCenter(new(x,y)),out var p)&&p==new GridPosition(x,y),"Measured grid center mapping failed.");
             // Real viewport dispatch exercises Control mouse filtering, not direct _UnhandledInput calls.
-            Click(view,new(0,0));Click(view,new(1,0));await Settled(app,session);
+            var noMatch = NonMatchingPair(session.CurrentBoard!);
+            Click(view,noMatch.From);Click(view,noMatch.To);await Settled(app,session);
             Require(Moves(session)==15,"Invalid GUI swap consumed a move or GUI swallowed the input.");
             Require(session.LastResolution?.Status==SwapAttemptStatus.NoMatch,"Viewport input did not reach board.");
             Press(ui.CurrentScreen(),"BackButton");Require(((GameplayScreen)ui.CurrentScreen()).IsLeaveDialogOpen,"Leave modal did not open.");
@@ -41,6 +44,7 @@ public static class StepFourSmokeCheck
             Press(ui.CurrentScreen(),"CloseSettingsButton");
             for(int id=1;id<=3;id++)
             {
+                if(id>1) await Capture(app,"gameplay-level"+id);
                 var level=BalanceStudy.Load(id);var replay=BalanceStudy.Play(level,997,true);Require(replay.won,"Greedy validation path did not win.");
                 foreach(var move in replay.moves)
                 {
@@ -50,6 +54,7 @@ public static class StepFourSmokeCheck
                     Click(view,new(0,0));Click(view,new(1,0));Require(Moves(session)==before-1,"Busy GUI allowed repeated move.");
                     await Settled(app,session);
                     Require(Moves(session)==move.remaining && session.GetSnapshot()["target_remaining"].AsInt32()==move.targets,"Integrated replay diverged.");
+                    if(id==1 && move==replay.moves[0]) await Capture(app,"after-first-swap");
                 }
                 Require(ui.CurrentPage=="result"&&Phase(session)=="won","Real win did not show result page.");
                 Require(ui.CurrentScreen().GetNode<Label>("ResultDetail").Text.Contains($"THIS RUN {replay.stars}/3"),"Earned stars were not displayed.");
@@ -72,11 +77,23 @@ public static class StepFourSmokeCheck
             Press(ui.CurrentScreen(),"BackButton");Press(ui.CurrentScreen(),"ConfirmLeaveButton");await Frames(app,3);
             Require(ui.CurrentPage=="select"&&session.CurrentBoard is null&&app.GetNodeOrNull<BoardView2D>("BoardView2D") is not null,"Leave lost the board presenter.");
             Press(ui.CurrentScreen(),"BackButton");Require(ui.CurrentPage=="start","Back to home failed.");
-            GD.Print("[STEP4_UI_PASS] Reused B home/select/gameplay and art; actual viewport swaps, modal filtering, wins, stars, all three levels, failure/retry/leave and presenter lifetime. Session-only progress, no persistence claim.");
+            GD.Print("[STEP4_UI_PASS] Reused B home/select/gameplay/result and art; actual viewport swaps, modal filtering, wins, stars, all three levels, failure/retry/leave, presenter lifetime and isolated persistent progress.");
             GD.Print("[STEP4_SMOKE_PASS] Deterministic dead-board recovery, bounded errors, move oracle, balance diagnostics and integrated UI.");
             return 0;
         }
         catch(Exception e) { GD.PushError("[STEP4_SMOKE_FAIL] "+e);return 1; }
+    }
+    private static SwapRequest NonMatchingPair(BoardModel board)
+    {
+        var legal = BoardMoves.FindLegal(board).ToHashSet();
+        for (int y = 0; y < board.Height; y++)
+        for (int x = 0; x < board.Width; x++)
+        foreach (var (dx, dy) in new[] { (1, 0), (0, 1) })
+        {
+            var request = new SwapRequest(new(x, y), new(x + dx, y + dy));
+            if (board.ValidateSwap(request.From, request.To) == SwapValidation.Accepted && !legal.Contains(request)) return request;
+        }
+        throw new InvalidOperationException("No nonmatching pair for input rollback check.");
     }
     private static void CheckRecovery()
     {
@@ -139,10 +156,12 @@ public static class StepFourSmokeCheck
     private static async Task Frames(Node n,int count){for(int i=0;i<count;i++)await n.ToSignal(n.GetTree(),SceneTree.SignalName.ProcessFrame);}
     private static async Task Capture(Node app,string name)
     {
-        if(!OS.GetCmdlineUserArgs().Contains("--capture-step4"))return;
+        bool revised=OS.GetCmdlineUserArgs().Contains("--capture-layout-v2");
+        if(!revised && !OS.GetCmdlineUserArgs().Contains("--capture-step4"))return;
+        if(revised && name is "home" or "levels" or "result")return;
         await Frames(app,2);RenderingServer.ForceDraw();await Frames(app,1);
         string dir=ProjectSettings.GlobalizePath("res://../docs/evidence/member-a/screenshots");DirAccess.MakeDirRecursiveAbsolute(dir);
-        Error error=app.GetViewport().GetTexture().GetImage().SaveJpg(dir+"/step4-"+name+".jpg",0.88f);Require(error==Error.Ok,"Screenshot save failed.");
+        Error error=app.GetViewport().GetTexture().GetImage().SaveJpg(dir+(revised ? "/layout-v2-" : "/step4-")+name+".jpg",0.82f);Require(error==Error.Ok,"Screenshot save failed.");
         GD.Print("[STEP4_CAPTURE] "+name);
     }
     private static string Dump(BoardModel b)=>string.Join("/",Enumerable.Range(0,b.Height).Select(y=>string.Join("",Enumerable.Range(0,b.Width).Select(x=>b.GetCell(new(x,y)).ToString()))));

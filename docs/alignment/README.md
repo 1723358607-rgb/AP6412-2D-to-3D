@@ -36,10 +36,10 @@
 
 用户已授权A侧AI在每轮项目任务中处理检查、拉取/同步、提交、推送和PR整合；保留本地与队友修改，不在未发起任务时后台同步。B侧AI在自己的member-b上处理本地工作，不能同时向member-a写代码。
 
-## 当前交付：持久化与正式结算已完成，2D待最终验收
+## 当前交付：布局v2、持久化与正式结算已整合，2D待最终验收
 
-唯一工程game/project.godot，默认app/Main.tscn。A第4步已与B的Crystal Garden页面/素材整合，三关真实玩法、死局恢复与第二关种子调整通过检查。B已实现分模式永久ProgressStore与正式ResultScreen，关闭重开后恢复最佳星数和解锁。
+唯一工程game/project.godot，默认app/Main.tscn。A的三关真实玩法、死局恢复和分散木箱布局v2已与B的Crystal Garden页面/素材、分模式永久ProgressStore及正式ResultScreen整合。当前种子641224/641454/641326，示例3/5/8步通关，保持箱数、预算和星级规则。
 
-A第5步已补实际类图、设计理由、源码类型清单、16步/217个中间步骤规则参考、真实Mac回归和双方验收单，见 [第5步证据](../evidence/member-a/step-5.md)。正式存档、结果/选关绑定及B的重启人工验证已完成；PR合并、剩余双方人工验收及完整AI日志尚缺，因此没有冻结标签、没有进入3D。
+A的最新布局、逐格路径和规则参考见 [布局v2证据](../evidence/member-a/layout-v2.md)。正式存档、结果/选关绑定及B的旧布局重启人工验证已完成；layout-v2双方人工验收、PR合并及完整AI日志尚缺，因此没有冻结标签、没有进入3D。
 
-B先完成 [当前接入清单](HANDOFF_UI.md)，用户按 [人工验收单](../evidence/member-a/step-5-acceptance.md) 实际试玩；以正式main提交及双方记录为依据再冻结。
+按 [人工验收单](../evidence/member-a/step-5-acceptance.md) 实际试玩；以正式main提交及双方记录为依据再冻结。

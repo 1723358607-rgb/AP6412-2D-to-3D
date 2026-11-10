@@ -61,6 +61,11 @@ public partial class AppController : Node
             RunRuleReference();
             return;
         }
+        if (OS.GetCmdlineUserArgs().Contains("--layout-study"))
+        {
+            GetTree().Quit(LayoutStudy.Run());
+            return;
+        }
 
         if (OS.GetCmdlineUserArgs().Contains("--progress-store-test"))
         {

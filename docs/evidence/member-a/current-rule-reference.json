@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "layout_revision": "distributed-boxes-v2",
+  "replays_path": "docs/evidence/member-a/layout-v2-replays.json",
+  "reference_path": "docs/evidence/member-a/layout-v2-rule-reference.json"
+}

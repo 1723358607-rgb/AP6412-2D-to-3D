@@ -36,12 +36,14 @@ public static class StepThreeSmokeCheck
                 for (int y = 0; y < 7; y++)
                 for (int x = 0; x < 7; x++)
                 {
-                    bool box = id == 1 ? y == 6 && x is >= 1 and <= 5 : id == 2 ? y >= 5 && x is >= 1 and <= 5 : y >= 5;
+                    var configured = level.Boxes.SingleOrDefault(b => b.Column == x && b.Row == y);
+                    bool box = configured is not null;
                     BoardCell cell = opening.GetCell(new(x, y));
                     Require((cell.Kind == CellKind.Box) == box, $"Wrong level-{id} box position ({x},{y}).");
-                    if (box) Require(cell.BoxLayers == (id == 3 && y == 5 && x is 1 or 3 or 5 ? 2 : 1), "Wrong box layers.");
+                    if (box) Require(cell.BoxLayers == configured!.Layers, "Wrong box layers.");
                 }
                 Require(Resolver.FindMatches(opening).Count == 0 && ValidMoves(opening, InitialRandom(level)).Count > 0, "Initial board has matches or no legal move.");
+                LayoutStudy.CheckGeometry(level);
                 int beforeId = Id(session);
                 Move first = ValidMoves(opening, InitialRandom(level))[0];
                 await session.RequestSwapAsync(first.From, first.To);

@@ -1,4 +1,4 @@
-> 2026-11-09完成更新：Member B已在`codex/member-b-progress-store`实现正式ProgressStore、真实选关数据和Crystal Garden ResultScreen，并通过隔离存档、重启恢复、Step4 UI与Crystal UI检查。用户已人工确认第一关三星、第二关解锁、第三关锁定及关闭重开恢复。下方第4步后清单保留为历史交接记录；当前待PR审查、剩余双方验收和2D冻结决定。
+> 2026-11-10整合更新：A的分散木箱布局v2与B的正式ProgressStore、真实选关数据、Crystal Garden ResultScreen/Settings已在`codex/member-b-progress-store`合并验证。布局种子为641224/641454/641326，新路径3/5/8步；旧L1路径及旧布局人工结果只作历史记录。下方第4步后清单保留为历史交接记录；当前待PR #10审查、双方按layout-v2重新人工验收和2D冻结决定。
 
 # 第4步后，B下一轮接入清单（2026-11-08）
 
