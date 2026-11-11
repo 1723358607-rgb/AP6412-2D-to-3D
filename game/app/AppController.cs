@@ -282,7 +282,9 @@ public partial class AppController : Node
             var host3D = _ui?.FindChild("BoardHost", true, false) as Control
                 ?? throw new InvalidOperationException("3D gameplay needs the shared BoardHost control.");
             host3D.MouseFilter = Control.MouseFilterEnum.Ignore;
-            _board3D.AttachHost(host3D); _board3D.SetBoard(_session.CurrentBoard);
+            host3D.GetParent().GetNodeOrNull<Control>("BoardFrame")?.Hide();
+            _board3D.AttachHost(host3D);
+            _board3D.SetBoard(_session.CurrentBoard);
             return;
         }
         // Optional named UI slot; public bridge signatures stay unchanged.

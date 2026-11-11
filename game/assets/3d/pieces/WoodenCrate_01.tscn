@@ -1,0 +1,4 @@
+[gd_scene format=3]
+[ext_resource type="ArrayMesh" path="res://assets/3d/pieces/meshes/CrateBody.res" id="crate"]
+[node name="WoodenCrate_01" type="MeshInstance3D"]
+mesh = ExtResource("crate")

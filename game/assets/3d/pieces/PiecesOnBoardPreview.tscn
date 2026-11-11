@@ -1,0 +1,62 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalPink.tscn" id="CrystalPink"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalBlue.tscn" id="CrystalBlue"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalPurple.tscn" id="CrystalPurple"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalGold.tscn" id="CrystalGold"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/WoodenCrate_01.tscn" id="WoodenCrate_01"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/WoodenCrate_02.tscn" id="WoodenCrate_02"]
+[ext_resource type="Script" path="res://assets/3d/pieces/PreviewViews.gd" id="views"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/PreviewStudio.tscn" id="rig"]
+[ext_resource type="PackedScene" path="res://assets/3d/board/CrystalGardenBoard.tscn" id="board"]
+
+[node name="PiecesOnBoardPreview" type="Node3D"]
+script = ExtResource("views")
+
+[node name="Studio" parent="." instance=ExtResource("rig")]
+
+
+[node name="CrystalGardenBoard" parent="." instance=ExtResource("board")]
+
+
+[node name="Pieces" type="Node3D" parent="."]
+
+
+[node name="CrystalPink_R2C1" parent="Pieces" instance=ExtResource("CrystalPink")]
+position = Vector3(-2.06,0.161,-1.03)
+
+[node name="CrystalBlue_R2C2" parent="Pieces" instance=ExtResource("CrystalBlue")]
+position = Vector3(-1.03,0.161,-1.03)
+
+[node name="CrystalPurple_R2C3" parent="Pieces" instance=ExtResource("CrystalPurple")]
+position = Vector3(0,0.161,-1.03)
+
+[node name="CrystalGold_R2C4" parent="Pieces" instance=ExtResource("CrystalGold")]
+position = Vector3(1.03,0.161,-1.03)
+
+[node name="WoodenCrate_02_R3C4" parent="Pieces" instance=ExtResource("WoodenCrate_02")]
+position = Vector3(1.03,0.161,0)
+
+[node name="WoodenCrate_01_R3C5" parent="Pieces" instance=ExtResource("WoodenCrate_01")]
+position = Vector3(2.06,0.161,0)
+
+[node name="CrystalPink_R5C4" parent="Pieces" instance=ExtResource("CrystalPink")]
+position = Vector3(1.03,0.161,2.06)
+
+[node name="CrystalBlue_R4C1" parent="Pieces" instance=ExtResource("CrystalBlue")]
+position = Vector3(-2.06,0.161,1.03)
+
+[node name="CrystalPurple_R1C5" parent="Pieces" instance=ExtResource("CrystalPurple")]
+position = Vector3(2.06,0.161,-2.06)
+
+[node name="CrystalGold_R4C2" parent="Pieces" instance=ExtResource("CrystalGold")]
+position = Vector3(-1.03,0.161,1.03)
+
+[node name="WoodenCrate_01_R1C1" parent="Pieces" instance=ExtResource("WoodenCrate_01")]
+position = Vector3(-2.06,0.161,-2.06)
+
+[node name="Overview" type="Camera3D" parent="."]
+position = Vector3(2.1,8.95,11.1)
+rotation = Vector3(-0.6604826791399699,0.1886392162245031,0)
+projection = 1
+size = 7.25
+current = true

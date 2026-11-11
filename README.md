@@ -4,7 +4,7 @@ AP6412 Group Assignment · Route B · Two-person collaboration.
 
 ## Current status: isolated 3D playable preview
 
-This `codex/member-a-3d` branch adds solid3D gems/crates, a camera, ray picking and animations, reusing the same rules/levels/UI/store. **Reopen the project, build C#, then F5 runs3D.** Open app/Main.tscn and F6 to run2D instead. The main branch retains the separate2D candidate at a067c5f.
+The `codex/member-a-3d` branch uses member B's Crystal Garden board, four crystal scenes and two wooden crate scenes in the playable 3D levels. Member A connected them to the existing camera, input, animations and shared rules. **Reopen the project, build C#, then press F5 for 3D.** Open `app/Main.tscn` and press F6 for 2D. The main branch contains the separate 2D candidate.
 
 3D tests pass for49 projected cells, all3 levels,16 swaps/193 animated steps compared to the2D archive, failure/retry/modal/lifetime behavior and separate-process3D saves with2D unaffected. Final build0 warnings/errors. Old2D regression checks pass. See [Step6 evidence and limits](docs/evidence/member-a/step-6.md).
 

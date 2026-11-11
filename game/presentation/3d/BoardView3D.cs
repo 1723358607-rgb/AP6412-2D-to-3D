@@ -7,6 +7,11 @@ namespace AP6412Match3.Presentation;
 /// <summary>Real 3D meshes in a viewport, projected ray picking and computed-step animation.</summary>
 public partial class BoardView3D : Node3D, IBoardPresenter
 {
+    private const float TilePitch = 1.03f;
+    private const float TileSurface = .161f;
+    private const string BoardScene = "res://assets/3d/board/CrystalGardenBoard.tscn";
+    private static readonly Vector2 SurfaceSize = new(780, 700);
+
     private SubViewport _viewport = null!;
     private Camera3D _camera = null!;
     private Node3D _cells = null!;
@@ -20,34 +25,50 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     public BoardModel? PresentedBoard { get; private set; }
     public int PresentedSteps { get; private set; }
     public int RenderedCellCount => _nodes.Count;
-    public Aabb MeshBounds(GridPosition p) => _nodes[p].GetChild<MeshInstance3D>(0).Mesh.GetAabb();
+    public Aabb MeshBounds(GridPosition p) => GemMeshes.Bounds(_nodes[p]);
     public event Action<BoardStep>? StepPresented;
     [Signal] public delegate void SwapRequestedEventHandler(Vector2I from, Vector2I to);
 
     public override void _Ready()
     {
         _models = new GemMeshes();
-        _viewport = new SubViewport { Name = "BoardViewport", Size = new Vector2I(1080,1096),
+        _viewport = new SubViewport { Name = "BoardViewport", Size = new Vector2I(1248, 1120),
             OwnWorld3D = true, TransparentBg = true, GuiDisableInput = true,
             RenderTargetUpdateMode = SubViewport.UpdateMode.Always, Msaa3D = Viewport.Msaa.Msaa4X };
         AddChild(_viewport);
         var world = new Node3D { Name = "BoardWorld" }; _viewport.AddChild(world);
         world.AddChild(new WorldEnvironment { Environment = new Godot.Environment {
-            BackgroundMode = Godot.Environment.BGMode.Color, BackgroundColor = new Color("241c38"),
+            BackgroundMode = Godot.Environment.BGMode.Color, BackgroundColor = new Color("261833"),
             AmbientLightSource = Godot.Environment.AmbientSource.Color,
-            AmbientLightColor = new Color("d5c5e8"), AmbientLightEnergy = .75f } });
+            AmbientLightColor = new Color(.86f, .77f, .91f), AmbientLightEnergy = .32f } });
         _camera = new Camera3D { Name = "BoardCamera", Projection = Camera3D.ProjectionType.Orthogonal,
-            Size = 8.8f, Position = new Vector3(0,10,6), Current = true, Near = .1f, Far = 50 };
-        world.AddChild(_camera); _camera.LookAt(Vector3.Zero);
-        world.AddChild(new DirectionalLight3D { RotationDegrees = new Vector3(-50,-30,0), LightEnergy = 1.5f, ShadowEnabled = true });
-        world.AddChild(new OmniLight3D { Position = new Vector3(-4,5,3), OmniRange = 14,
-            LightColor = new Color("ffd6ef"), LightEnergy = 1.4f });
-        world.AddChild(GemMeshes.Box(new Vector3(7.8f,.3f,8.9f),new Vector3(0,-.35f,0),_models.Base));
-        for(int y=0;y<7;y++) for(int x=0;x<7;x++)
-            world.AddChild(GemMeshes.Box(new Vector3(.94f,.10f,1.04f),Point(new(x,y))+new Vector3(0,-.11f,0),_models.Tile));
-        _cells = new Node3D { Name = "Cells" }; world.AddChild(_cells);
-        _selection = new MeshInstance3D { Name = "SelectedCell", Mesh = new TorusMesh { InnerRadius = .43f, OuterRadius = .49f, Rings = 24, RingSegments = 6 },
-            MaterialOverride = _models.Band, Scale = new Vector3(1,1,1.12f), Visible = false }; world.AddChild(_selection);
+            Size = 8.55f, Position = new Vector3(0, 12, 4.5f), Current = true, Near = .1f, Far = 50 };
+        world.AddChild(_camera);
+        _camera.LookAt(new Vector3(0, .1f, .10f));
+        world.AddChild(new DirectionalLight3D { RotationDegrees = new Vector3(-54, -29, 0),
+            LightColor = new Color(1, .88f, .75f), LightEnergy = .53f, ShadowEnabled = true });
+        world.AddChild(new OmniLight3D { Position = new Vector3(4, 3, 5), OmniRange = 12,
+            LightColor = new Color(.79f, .65f, 1), LightEnergy = .65f });
+        world.AddChild(new DirectionalLight3D { RotationDegrees = new Vector3(-24, 141, 0),
+            LightColor = new Color(1, .85f, .78f), LightEnergy = .19f });
+
+        var board = GD.Load<PackedScene>(BoardScene).Instantiate<Node3D>();
+        world.AddChild(board);
+        _cells = new Node3D { Name = "Cells" };
+        board.AddChild(_cells);
+        _selection = new MeshInstance3D
+        {
+            Name = "SelectedCell",
+            Mesh = new TorusMesh { InnerRadius = .43f, OuterRadius = .49f, Rings = 24, RingSegments = 6 },
+            MaterialOverride = new StandardMaterial3D
+            {
+                AlbedoColor = new Color("ffe7a4"),
+                ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+            },
+            CastShadow = GeometryInstance3D.ShadowCastingSetting.Off,
+            Visible = false,
+        };
+        board.AddChild(_selection);
         _surface = new TextureRect { Name = "Board3DSurface", Texture = _viewport.GetTexture(),
             ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize, StretchMode = TextureRect.StretchModeEnum.Scale,
             MouseFilter = Control.MouseFilterEnum.Ignore, Visible = false };
@@ -57,10 +78,10 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     }
     public void AttachHost(Control host)
     {
-        if (_surface.GetParent()!=host) _surface.Reparent(host,false);
-        _surface.Position = CrystalGardenBoardLayout.FirstCellCenter - Vector2.One * BoardView2D.CellSize/2;
-        _surface.Size = new Vector2(6*CrystalGardenBoardLayout.Pitch.X+BoardView2D.CellSize,
-            6*CrystalGardenBoardLayout.Pitch.Y+BoardView2D.CellSize);
+        if (_surface.GetParent() != host) _surface.Reparent(host, false);
+        // Center on the shared board slot and fit between the top controls and progress HUD.
+        _surface.Position = new Vector2((host.Size.X - SurfaceSize.X) / 2, -135);
+        _surface.Size = SurfaceSize;
         _surface.Show(); Show();
         _viewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
     }
@@ -80,7 +101,9 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     }
     public void SetInteractive(bool enabled) { _interactive=enabled; SetProcessUnhandledInput(enabled); if(!enabled)_selection.Hide(); }
     public void ClearBoard() { _version++; Interaction=null; PresentedBoard=null; _selection.Hide(); ClearNodes(); SetInteractive(false); Park(); }
-    private static Vector3 Point(GridPosition p) => new(p.Column-3,0,(p.Row-3)*1.12f);
+    // Board-local bottom pivots, as specified by the authored 49-tile scene.
+    private static Vector3 Point(GridPosition p) =>
+        new((p.Column - 3) * TilePitch, TileSurface + .001f, (p.Row - 3) * TilePitch);
     private void ClearNodes() { foreach(var node in _nodes.Values) node.Free(); _nodes.Clear(); }
     private void Rebuild(BoardModel board)
     {
@@ -93,26 +116,45 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     }
     public Vector2 CellCanvasCenter(GridPosition p)
     {
-        Vector2 projected=_camera.UnprojectPosition(Point(p)+new Vector3(0,.42f,0));
-        return _surface.GetGlobalTransformWithCanvas() * (projected/(Vector2)_viewport.Size*_surface.Size);
+        Vector3 center = _nodes.ContainsKey(p) ? MeshBounds(p).GetCenter() : Vector3.Zero;
+        Vector2 projected = _camera.UnprojectPosition(_cells.ToGlobal(Point(p) + center));
+        return _surface.GetGlobalTransformWithCanvas() * (projected / (Vector2)_viewport.Size * _surface.Size);
     }
-    public bool TryPick(Vector2 canvasPosition,out GridPosition position)
+
+    public bool TryPick(Vector2 canvasPosition, out GridPosition position)
     {
-        position=default; if(Interaction is null || !_surface.IsVisibleInTree())return false;
-        Vector2 local=_surface.GetGlobalTransformWithCanvas().AffineInverse()*canvasPosition;
-        if(!new Rect2(Vector2.Zero,_surface.Size).HasPoint(local))return false;
-        Vector2 pixel=local/_surface.Size*(Vector2)_viewport.Size;
-        Vector3 origin=_camera.ProjectRayOrigin(pixel), direction=_camera.ProjectRayNormal(pixel);
-        float nearest=float.PositiveInfinity; bool hit=false;
-        for(int y=0;y<Interaction.Board.Height;y++)for(int x=0;x<Interaction.Board.Width;x++)
+        position = default;
+        if (Interaction is null || !_surface.IsVisibleInTree()) return false;
+        Vector2 local = _surface.GetGlobalTransformWithCanvas().AffineInverse() * canvasPosition;
+        if (!new Rect2(Vector2.Zero, _surface.Size).HasPoint(local)) return false;
+        Vector2 pixel = local / _surface.Size * (Vector2)_viewport.Size;
+        Vector3 origin = _cells.ToLocal(_camera.ProjectRayOrigin(pixel));
+        Vector3 direction = _cells.GlobalBasis.Inverse() * _camera.ProjectRayNormal(pixel);
+
+        float nearest = float.PositiveInfinity;
+        foreach (var (p, node) in _nodes)
         {
-            GridPosition p=new(x,y); Vector3 center=Point(p)+new Vector3(0,.42f,0);
-            if(RayBox(origin,direction,center-new Vector3(.43f,.58f,.48f),center+new Vector3(.43f,.58f,.48f),out float t)&&t<nearest)
-            { nearest=t; position=p;hit=true; }
+            Aabb bounds = node.Transform * GemMeshes.Bounds(node);
+            if (RayBox(origin, direction, bounds.Position, bounds.End, out float distance) && distance < nearest)
+            {
+                nearest = distance;
+                position = p;
+            }
         }
-        return hit;
+        if (float.IsFinite(nearest)) return true;
+
+        // The visible stone around a piece is also part of its tile.
+        float planeDistance = (TileSurface - origin.Y) / direction.Y;
+        Vector3 tile = origin + direction * planeDistance;
+        position = new GridPosition(Mathf.RoundToInt(tile.X / TilePitch + 3), Mathf.RoundToInt(tile.Z / TilePitch + 3));
+        Vector3 delta = tile - Point(position);
+        return planeDistance >= 0
+            && position.Column >= 0 && position.Column < Interaction.Board.Width
+            && position.Row >= 0 && position.Row < Interaction.Board.Height
+            && Mathf.Abs(delta.X) <= .5f && Mathf.Abs(delta.Z) <= .5f;
     }
-    // Ray versus 3D collision proxies: works independently of physics-frame timing.
+
+    // Use the meshes' bounding volumes without waiting for a physics update.
     private static bool RayBox(Vector3 origin,Vector3 direction,Vector3 min,Vector3 max,out float distance)
     {
         float near=0,far=float.PositiveInfinity;
@@ -130,7 +172,7 @@ public partial class BoardView3D : Node3D, IBoardPresenter
         if(!_interactive || input is not InputEventMouseButton {Pressed:true,ButtonIndex:MouseButton.Left} mouse || !TryPick(mouse.Position,out var p))return;
         var outcome=Interaction!.Click(p);
         _selection.Visible=Interaction.Selected.HasValue;
-        if(Interaction.Selected is {} selected)_selection.Position=Point(selected)+new Vector3(0,.08f,0);
+        if(Interaction.Selected is {} selected)_selection.Position=Point(selected) + Vector3.Up * .014f;
         if(outcome==SelectionOutcome.RequestAccepted && Interaction.LastAcceptedRequest is {} request)
             EmitSignal(SignalName.SwapRequested,new Vector2I(request.From.Column,request.From.Row),new Vector2I(request.To.Column,request.To.Row));
         GetViewport().SetInputAsHandled();

@@ -36,11 +36,12 @@ public static class StepSixSmokeCheck
             Require(((LevelSelectionScreen)ui.CurrentScreen()).IsLevelLocked(2),"3D inherited the 2D unlock.");
             Press(ui,"LevelCards/Level1Card/ClickTarget");await Frames(app,3);
             Require(view.RenderedCellCount==49 && view.PresentedBoard is not null,"3D meshes not populated.");
-            foreach(var p in Enumerable.Range(0,49).Select(i=>new GridPosition(i%7,i/7)))
-            {
-                Require(view.TryPick(view.CellCanvasCenter(p),out var picked)&&picked==p,$"3D ray center mismatch at {p}.");
-                Vector3 size=view.MeshBounds(p).Size;Require(size.X>.1f&&size.Y>.1f&&size.Z>.1f,"A piece is a flat impostor.");
-            }
+            var board = view.GetNode<Node3D>("BoardViewport/BoardWorld/CrystalGardenBoard");
+            Require(board.SceneFilePath == "res://assets/3d/board/CrystalGardenBoard.tscn"
+                && board.GetNode("BoardTiles").GetChildCount() == 49, "Authored 3D board is missing tiles.");
+            Require(!ui.CurrentScreen().GetNode<Control>("BoardFrame").Visible, "The 2D frame obscures the 3D board.");
+            var scenes = new HashSet<string>();
+            CheckModels(view, board, scenes);
             Require(!view.TryPick(new Vector2(-20,-20),out _),"3D picked outside its viewport.");
             app.GetWindow().Size=new Vector2I(1280,720);await Frames(app,3);
             foreach(var p in Enumerable.Range(0,49).Select(i=>new GridPosition(i%7,i/7)))
@@ -56,10 +57,12 @@ public static class StepSixSmokeCheck
             GD.Print("[STEP6_RAY_PASS] Actual camera projection/ray versus 49 three-dimensional cell volumes, solid meshes, box rejection and viewport rollback.");
 
             var presented=new List<BoardStep>();view.StepPresented+=presented.Add;int moves=0,steps=0;
+            int reinforcedCratesDamaged = 0;
             foreach(var level in archive.RootElement.GetProperty("levels").EnumerateArray())
             {
                 int id=level.GetProperty("level_id").GetInt32();
                 Require(Rows(session.CurrentBoard!).SequenceEqual(Strings(level.GetProperty("initial").GetProperty("grid"))),"3D opening differs from 2D.");
+                CheckModels(view, board, scenes);
                 foreach(var move in level.GetProperty("moves").EnumerateArray())
                 {
                     presented.Clear();int before=Moves(session);
@@ -81,6 +84,19 @@ public static class StepSixSmokeCheck
                             && Positions(presented[i].Cleared)==Positions(expected[i].GetProperty("cleared"))
                             && Positions(presented[i].DamagedBoxes??[])==Positions(expected[i].GetProperty("damaged_boxes")),"3D intermediate state or box damage diverged.");
                     }
+                    if (ui.CurrentPage == "game")
+                    {
+                        foreach (var damaged in presented.SelectMany(step => step.DamagedBoxes ?? []).Distinct())
+                        {
+                            BoardCell cell = session.CurrentBoard!.GetCell(damaged);
+                            if (cell.Kind == CellKind.Box)
+                            {
+                                Require(CheckModel(board, damaged, cell).EndsWith("WoodenCrate_01.tscn"),
+                                    "Damaged reinforced crate did not become a regular crate.");
+                                reinforcedCratesDamaged++;
+                            }
+                        }
+                    }
                     moves++;steps+=presented.Count;
                 }
                 Require(ui.CurrentPage=="result"&&session.GetSnapshot()["phase"].AsString()=="won","3D result navigation failed.");
@@ -88,6 +104,9 @@ public static class StepSixSmokeCheck
                 if(id<3){Press(ui,"NextButton");await Frames(app,3);}
                 else Require(ui.CurrentScreen().GetNodeOrNull<Button>("NextButton") is null,"3D exposed level4.");
             }
+            Require(scenes.Count == 6, "The three levels did not use all six authored piece scenes.");
+            Require(reinforcedCratesDamaged > 0, "No reinforced crate damage visual was exercised.");
+            GD.Print("[STEP6_ASSETS_PASS] Authored board, all six piece scenes, tile alignment, crate labels and damage visuals.");
             GD.Print($"[STEP6_EQUIVALENCE_PASS] 3 real 3D levels, {moves} swaps and {steps} animated presenter steps agree with 2D grid/damage/moves/target/RNG/results.");
 
             Press(ui,"LevelsButton");await Frames(app,3);Press(ui,"LevelCards/Level1Card/ClickTarget");await Frames(app,3);
@@ -120,6 +139,50 @@ public static class StepSixSmokeCheck
         }
         catch(Exception e){GD.PushError("[STEP6_SMOKE_FAIL] "+e);return 1;}
     }
+    private static void CheckModels(BoardView3D view, Node3D board, HashSet<string> scenes)
+    {
+        var presented = view.PresentedBoard!;
+        for (int row = 0; row < presented.Height; row++)
+        for (int column = 0; column < presented.Width; column++)
+        {
+            var p = new GridPosition(column, row);
+            scenes.Add(CheckModel(board, p, presented.GetCell(p)));
+            Require(view.TryPick(view.CellCanvasCenter(p), out var picked) && picked == p,
+                $"3D ray center mismatch at {p}.");
+            Vector3 size = view.MeshBounds(p).Size;
+            Require(size.X > .1f && size.Y > .1f && size.Z > .1f, "A piece is a flat impostor.");
+        }
+    }
+
+    private static string CheckModel(Node3D board, GridPosition p, BoardCell cell)
+    {
+        var tile = board.GetNode<MeshInstance3D>($"BoardTiles/Tile_R{p.Row:D2}_C{p.Column:D2}");
+        var root = board.GetNode<Node3D>($"Cells/Cell_{p.Column}_{p.Row}");
+        var model = root.GetChild<MeshInstance3D>(0);
+        Vector3 tileSurface = tile.Position + Vector3.Up * tile.GetAabb().End.Y;
+        Require(root.Position.DistanceTo(tileSurface) < .002f, $"Model is off its authored tile at {p}.");
+        string name;
+        if (cell.Kind == CellKind.Box)
+        {
+            name = cell.BoxLayers == 1 ? "WoodenCrate_01" : "WoodenCrate_02";
+            Require(root.GetChild<Label3D>(1).Text == cell.BoxLayers.ToString(), "Crate layer label is stale.");
+            Require(model.HasNode("ForgedStraps") == (cell.BoxLayers == 2), "Reinforced crate straps are wrong.");
+        }
+        else
+        {
+            name = cell.Color switch
+            {
+                PieceColor.Red => "CrystalPink",
+                PieceColor.Blue => "CrystalBlue",
+                PieceColor.Green => "CrystalPurple",
+                PieceColor.Yellow => "CrystalGold",
+                _ => throw new InvalidOperationException("Unexpected color in 3D level."),
+            };
+        }
+        Require(model.SceneFilePath == $"res://assets/3d/pieces/{name}.tscn", $"Wrong model at {p}.");
+        return model.SceneFilePath;
+    }
+
     private static int RestartRead()
     {
         var store=new ProgressStore();
