@@ -2,15 +2,15 @@
 
 AP6412 Group Assignment · Route B · Two-person collaboration.
 
-## Current status
+## Current status: isolated 3D playable preview
 
-**The integrated 2D candidate now saves progress.** B's formal ProgressStore, ResultScreen and settings UI are integrated with A's distributed layouts v2 and application bridge. Earned best stars/unlocks survive restart; 2D/3D files are isolated. A's review adds corrupt-source preservation, canonical unlocks, safe temporary-file replacement and the final GARDEN COMPLETE title. Original B commits remain traceable.
+The `codex/member-a-3d` branch uses member B's Crystal Garden board, four crystal scenes and two wooden crate scenes in the playable 3D levels. Member A connected them to the existing camera, input, animations and shared rules. **Reopen the project, build C#, then press F5 for 3D.** Open `app/Main.tscn` and press F6 for 2D. The main branch contains the separate 2D candidate.
 
-Mac build0 warnings/errors; progress/restart/audit, Step0–4/UI demo, layout diagnostics and current rule reference all pass. See [integration evidence and actual limits](docs/evidence/member-a/integration-20261110.md). Human play/visual acceptance is still pending; no2d-baseline or3D implementation yet.
+3D tests pass for49 projected cells, all3 levels,16 swaps/193 animated steps compared to the2D archive, failure/retry/modal/lifetime behavior and separate-process3D saves with2D unaffected. Final build0 warnings/errors. Old2D regression checks pass. See [Step6 evidence and limits](docs/evidence/member-a/step-6.md).
 
-Counts5/10/14, three double layers, budgets15/20/24, seeds641224/641454/641326 and star rules are unchanged. Example wins use3/5/8 swaps; the16-swap/193-step rule archive still matches. See [exact layout/replays](docs/evidence/member-a/layout-v2.md).
+No rendered screenshot/image-quality or human-play acceptance is claimed. The preview is on an independent branch/draft PR; no2d-baseline or3d-final tag has been fabricated while human acceptance remains pending. The real2D comparison SHA and source fingerprints are saved in step-6-base.json.
 
-Godot4.7.2 Mono, C#, net8.0; Mac SDK10.0.302. A @1723358607-rgb gameplay/integration; B @Sherylshiy UI/visuals/progress. Group number/names/raw AI exports remain to supply.
+Rules remain7×7/four colors,5/10/14 boxes,15/20/24 moves, same star thresholds and seeds641224/641454/641326. B's UI/progress/assets are reused unchanged. A's GameSession and app composition really changed for mode support; pure core did not. Final CCR is not yet calculated.
 
 ## 项目对齐与下一步
 
@@ -56,7 +56,7 @@ Full prompts AND responses, including corrections and relevant code blocks, must
 
 ## How to run
 
-Get the **entire repository**. Import `game/project.godot` with **Godot Mono/.NET4.7.2**, build C#, press **F5**. The main scene is `res://app/Main.tscn`. Do not import only a downloaded project.godot file.
+Get the **entire repository**. Import `game/project.godot` with **Godot Mono/.NET4.7.2**, build C#, press **F5**. On this3D branch the main scene is `res://app/Main3D.tscn`; `res://app/Main.tscn` remains the2D entry. Do not import only a downloaded project.godot file.
 
 ```sh
 cd game
@@ -73,10 +73,10 @@ Independent A development harness: open `res://presentation/2d/GameplayLoop.tscn
 From repository root, with GODOT pointing to your executable:
 
 ```sh
-AP6412_PROGRESS_STORE_DIR="$(mktemp -d)" "$GODOT" --headless --path game --fixed-fps 60 -- --step4-smoke-test
+AP6412_PROGRESS_STORE_DIR="$(mktemp -d)" "$GODOT" --headless --path game res://app/Main.tscn --fixed-fps 60 -- --step4-smoke-test
 ```
 
-Expected `[STEP4_SMOKE_PASS]` and exit0. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. `--rule-reference` records actual rule/session/presenter states; after building, `python3 tools/verify-2d-reference.py --godot "$GODOT"` compares them with the provisional archive without updating it. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
+Expected `[STEP4_SMOKE_PASS]` and exit0 for that explicit2D scene. To check3D, use --3d-smoke-test on Main3D; see Step6 for isolated-save/restart commands. Regression flags: `--level-smoke-test`, `--gameplay-smoke-test`, `--board-smoke-test`, `--smoke-test`, `--ui-smoke-test` (isolated B demo). Diagnostic `--balance-scan`. `--rule-reference` records actual rule/session/presenter states; after building, `python3 tools/verify-2d-reference.py --godot "$GODOT"` compares them with the provisional archive without updating it. Actual commands, logs and environment warnings are in Step4 evidence. No standalone export exists.
 
 The known Mac unfinished merge was resolved after verified backup and stash preservation. Its existing checkout can be used directly. If a new unfinished merge appears, inspect and preserve it before pulling; ZIP copies are only an alternative for a separate play copy.
 

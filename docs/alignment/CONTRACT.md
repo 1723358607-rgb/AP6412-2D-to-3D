@@ -1,3 +1,5 @@
+> 3D独立分支补充：公开UI/进度桥接签名不变。GameSession新增ConfigureMode(2d/3d)，仅idle允许切换，snapshot/result.mode与入口对应。AppController选择BoardView2D或BoardView3D；后者仍实现IBoardPresenter并把SubViewport表面挂入原BoardHost。纯核心和关卡不变；Main/Main3D分别提供2D/3D入口。该变化目前只在独立试作分支，不代表正式标签已冻结。
+
 > 2026-11-10联合候选：正常F5挂载B ProgressStore及A IntegratedUi→B页面/ResultScreen；正式文件名沿用B的user://crystal_garden_progress_2d.json和crystal_garden_progress_3d.json。损坏原字节保存为.corrupt-GUID后恢复；解锁由上一关最高星数>0推导。旧文件名和“持久化待交付”描述为历史，当前公共桥接签名/规则不变。
 
 > 2026-11-09完成补充：公共桥接方法/字典/信号未改。B的正式ProgressStore现由AppController挂载；生产流程继续复用A的IntegratedUi桥接，但选关数据来自B存档，结算视觉由B的ResultScreen提供。RuntimeProgressBridge仅保留为缺少正式场景时的旧回退。BoardHost和BoardView2D格心映射未改。下方第4步前状态保留为历史说明。

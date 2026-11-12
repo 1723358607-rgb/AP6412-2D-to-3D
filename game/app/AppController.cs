@@ -20,12 +20,21 @@ public partial class AppController : Node
     private GameUiBridge? _ui;
     private ProgressStoreBridge? _progress;
     private BoardView2D _boardView = null!;
+    private BoardView3D _board3D = null!;
+    [Export] public string DisplayMode { get; set; } = "2d";
 
     public override void _Ready()
     {
         _session = GetNode<GameSession>("GameSession");
         _boardView = GetNode<BoardView2D>("BoardView2D");
-        GD.Print($"[BOOTSTRAP_OK] Godot {Engine.GetVersionInfo()["string"]}; C#; mode=2d; phase=idle");
+        _board3D = GetNode<BoardView3D>("BoardView3D");
+        _session.ConfigureMode(DisplayMode);
+        GD.Print($"[BOOTSTRAP_OK] Godot {Engine.GetVersionInfo()["string"]}; C#; mode={DisplayMode}; phase=idle");
+        if (OS.GetCmdlineUserArgs().Contains("--3d-smoke-test"))
+        {
+            RunThreeDChecks();
+            return;
+        }
 
         if (OS.GetCmdlineUserArgs().Contains("--smoke-test"))
         {
@@ -114,6 +123,7 @@ public partial class AppController : Node
     private async void RunLevelChecks() => GetTree().Quit(await StepThreeSmokeCheck.Run(this));
     private async void RunStepFourChecks() => GetTree().Quit(await StepFourSmokeCheck.Run(this));
     private async void RunRuleReference() => GetTree().Quit(await RuleReferenceCheck.Run());
+    private async void RunThreeDChecks() => GetTree().Quit(await StepSixSmokeCheck.Run(this));
 
     private async void RunGameplayChecks() => GetTree().Quit(await StepTwoSmokeCheck.Run(this));
 
@@ -164,12 +174,12 @@ public partial class AppController : Node
             }
             _progress = progress;
             AddChild(progress);
-            progress.LoadProgress("2d");
+            progress.LoadProgress(DisplayMode);
         }
         else if (runtimeFallback)
         {
             _progress = new RuntimeProgressBridge();
-            AddChild(_progress); _progress.LoadProgress("2d");
+            AddChild(_progress); _progress.LoadProgress(DisplayMode);
             GD.Print("[RUNTIME_PROGRESS] Real session-only stars/unlocks; persistent ProgressStore remains pending with B.");
         }
 
@@ -182,10 +192,14 @@ public partial class AppController : Node
         {
             _progress = progress;
             AddChild(progress);
-            progress.LoadProgress("2d");
+            progress.LoadProgress(DisplayMode);
         }
         _ui = ui;
         GetNode("UiMount").AddChild(ui);
+        var badge = new Label { Name = "EditionBadge", Text = DisplayMode.ToUpperInvariant() + " EDITION",
+            Position = new Vector2(1590,1018), Size = new Vector2(250,40),
+            MouseFilter = Control.MouseFilterEnum.Ignore, Modulate = new Color("fff1ce") };
+        badge.AddThemeFontSizeOverride("font_size",24); GetNode("UiMount").AddChild(badge);
         ui.StartRequested += OnStartRequested;
         ui.RetryRequested += OnRetryRequested;
         ui.NextRequested += OnNextRequested;
@@ -194,9 +208,11 @@ public partial class AppController : Node
         ui.StartScreenRequested += ShowStart;
         _session.StateChanged += OnStateChanged;
         _session.LevelFinished += OnLevelFinished;
-        _session.AttachPresenter(_boardView);
+        _session.AttachPresenter(DisplayMode == "3d" ? _board3D : _boardView);
         _boardView.SwapRequested += OnBoardSwap;
+        _board3D.SwapRequested += OnBoardSwap;
         _boardView.Hide();
+        _board3D.Park();
 
         GetNode<CanvasLayer>("Bootstrap").Hide();
         ui.ShowStart();
@@ -245,7 +261,7 @@ public partial class AppController : Node
         _progress?.GetProgress() ?? new GDictionary
         {
             ["schema_version"] = 1,
-            ["mode"] = "2d",
+            ["mode"] = DisplayMode,
             ["best_stars"] = new GDictionary { ["1"] = 0, ["2"] = 0, ["3"] = 0 },
         });
     }
@@ -261,6 +277,16 @@ public partial class AppController : Node
         if (_session.CurrentBoard is null) return;
         ParkBoard();
         _ui?.ShowGame(_session.GetSnapshot());
+        if (DisplayMode == "3d")
+        {
+            var host3D = _ui?.FindChild("BoardHost", true, false) as Control
+                ?? throw new InvalidOperationException("3D gameplay needs the shared BoardHost control.");
+            host3D.MouseFilter = Control.MouseFilterEnum.Ignore;
+            host3D.GetParent().GetNodeOrNull<Control>("BoardFrame")?.Hide();
+            _board3D.AttachHost(host3D);
+            _board3D.SetBoard(_session.CurrentBoard);
+            return;
+        }
         // Optional named UI slot; public bridge signatures stay unchanged.
         if (_ui?.FindChild("BoardHost", true, false) is Control host)
         {
@@ -292,6 +318,7 @@ public partial class AppController : Node
         // A owns this presenter for the application lifetime, so reclaim it before that callback.
         if (_boardView.GetParent() != this) _boardView.Reparent(this, false);
         _boardView.Hide();
+        _board3D.Park();
     }
 
     private async void OnBoardSwap(Vector2I from, Vector2I to) =>
@@ -320,5 +347,6 @@ public partial class AppController : Node
         _ui.LevelSelectRequested -= ShowLevelSelect;
         _ui.StartScreenRequested -= ShowStart;
         _boardView.SwapRequested -= OnBoardSwap;
+        _board3D.SwapRequested -= OnBoardSwap;
     }
 }
