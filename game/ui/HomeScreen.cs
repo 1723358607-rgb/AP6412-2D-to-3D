@@ -6,8 +6,12 @@ public partial class HomeScreen : Control
 {
     [Signal] public delegate void PlayRequestedEventHandler();
     [Signal] public delegate void LevelsRequestedEventHandler();
+    [Signal] public delegate void ModeSelectedEventHandler(string mode);
 
     private Control _settingsOverlay = null!;
+    private Button _classicButton = null!;
+    private Button _editionButton = null!;
+    private string _displayMode = "3d";
 
     public override void _Ready()
     {
@@ -24,6 +28,14 @@ public partial class HomeScreen : Control
         CrystalGardenUi.Texture("CrystalGardenLogo", "home/crystal_garden_logo.png", this,
             new Rect2(550, 42, 820, 314));
 
+        StyledLabel("GameModeLabel", "GAME MODE", this, new Rect2(760, 365, 400, 50), 24,
+            CrystalTypography.Bold(), HorizontalAlignment.Center, new Color("fff4dd"));
+        _classicButton = ModeButton("Mode2DButton", "◆  2D CLASSIC", new Rect2(650, 420, 300, 72));
+        _editionButton = ModeButton("Mode3DButton", "◆  3D EDITION", new Rect2(970, 420, 300, 72));
+        _classicButton.Pressed += () => SelectMode("2d");
+        _editionButton.Pressed += () => SelectMode("3d");
+        RefreshModeButtons();
+
         TextureButton play = CrystalGardenUi.TextureButton("PlayButton", "home/button_play.png", this,
             new Rect2(660, 525, 600, 186));
         TextureButton levels = CrystalGardenUi.TextureButton("LevelsButton", "home/button_levels.png", this,
@@ -38,6 +50,70 @@ public partial class HomeScreen : Control
         _settingsOverlay = BuildSettingsOverlay();
         _settingsOverlay.Hide();
     }
+
+    public void ConfigureMode(string mode)
+    {
+        if (mode is not ("2d" or "3d"))
+            throw new ArgumentException("Game mode must be '2d' or '3d'.", nameof(mode));
+        _displayMode = mode;
+        if (IsNodeReady()) RefreshModeButtons();
+    }
+
+    public string SelectedMode => _displayMode;
+
+    private void SelectMode(string mode)
+    {
+        if (_displayMode == mode) return;
+        ConfigureMode(mode);
+        EmitSignal(SignalName.ModeSelected, mode);
+    }
+
+    private Button ModeButton(string name, string text, Rect2 rect)
+    {
+        var button = new Button
+        {
+            Name = name, Text = text, Position = rect.Position, Size = rect.Size,
+            FocusMode = FocusModeEnum.None, MouseDefaultCursorShape = CursorShape.PointingHand,
+        };
+        button.AddThemeFontOverride("font", CrystalTypography.Bold());
+        button.AddThemeFontSizeOverride("font_size", 20);
+        AddChild(button);
+        return button;
+    }
+
+    private void RefreshModeButtons()
+    {
+        ApplyModeStyle(_classicButton, _displayMode == "2d");
+        ApplyModeStyle(_editionButton, _displayMode == "3d");
+    }
+
+    private static void ApplyModeStyle(Button button, bool selected)
+    {
+        Color baseColor = selected ? new Color("8d4ac2") : new Color("3b1857");
+        Color hoverColor = selected ? new Color("a65bd6") : new Color("552376");
+        button.AddThemeColorOverride("font_color", selected ? new Color("fff3b0") : new Color("e9daf2"));
+        button.AddThemeColorOverride("font_hover_color", Colors.White);
+        button.AddThemeColorOverride("font_pressed_color", new Color("fff3b0"));
+        button.AddThemeStyleboxOverride("normal", ModeButtonStyle(baseColor, selected ? 5 : 3));
+        button.AddThemeStyleboxOverride("hover", ModeButtonStyle(hoverColor, 5));
+        button.AddThemeStyleboxOverride("pressed", ModeButtonStyle(new Color("642b88"), 5));
+    }
+
+    private static StyleBoxFlat ModeButtonStyle(Color color, int borderWidth) => new()
+    {
+        BgColor = color,
+        BorderColor = new Color("f8d874"),
+        BorderWidthLeft = borderWidth,
+        BorderWidthTop = borderWidth,
+        BorderWidthRight = borderWidth,
+        BorderWidthBottom = borderWidth,
+        CornerRadiusTopLeft = 25,
+        CornerRadiusTopRight = 25,
+        CornerRadiusBottomLeft = 25,
+        CornerRadiusBottomRight = 25,
+        ShadowColor = new Color(0.16f, 0.04f, 0.24f, 0.55f),
+        ShadowSize = 8,
+    };
 
     private Control BuildSettingsOverlay()
     {

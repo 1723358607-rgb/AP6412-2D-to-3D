@@ -10,7 +10,7 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     private const float TilePitch = 1.03f;
     private const float TileSurface = .161f;
     private const string BoardScene = "res://assets/3d/board/CrystalGardenBoard.tscn";
-    private static readonly Vector2 SurfaceSize = new(780, 700);
+    private static readonly Vector2 SurfaceSize = new(850, 760);
 
     private SubViewport _viewport = null!;
     private Camera3D _camera = null!;
@@ -79,8 +79,9 @@ public partial class BoardView3D : Node3D, IBoardPresenter
     public void AttachHost(Control host)
     {
         if (_surface.GetParent() != host) _surface.Reparent(host, false);
-        // Center on the shared board slot and fit between the top controls and progress HUD.
-        _surface.Position = new Vector2((host.Size.X - SurfaceSize.X) / 2, -135);
+        // Center on the shared slot. The larger surface matches the 2D board's visual weight
+        // while keeping the authored board clear of the shared progress ornament below.
+        _surface.Position = new Vector2((host.Size.X - SurfaceSize.X) / 2, -155);
         _surface.Size = SurfaceSize;
         _surface.Show(); Show();
         _viewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;

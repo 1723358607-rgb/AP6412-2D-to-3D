@@ -20,8 +20,10 @@ public partial class IntegratedUi : GameUiBridge
         _garden.LevelSelectRequested+=()=>EmitSignal(SignalName.LevelSelectRequested);
         _garden.StartScreenRequested+=()=>EmitSignal(SignalName.StartScreenRequested);
         _garden.LeaveRequested+=()=>EmitSignal(SignalName.LeaveRequested);
+        _garden.ModeRequested+=mode=>EmitSignal(SignalName.ModeRequested,mode);
     }
     public Control CurrentScreen()=>_host.GetChild<Control>(0);
+    public override void SetDisplayMode(string mode)=>_garden.SetDisplayMode(mode);
     public override void ShowStart() { _garden.ShowStart(); CurrentPage="start"; }
     public override void ShowLevelSelect(GDictionary progress)
     {
@@ -36,6 +38,8 @@ public partial class IntegratedUi : GameUiBridge
         _garden.ShowGame(snapshot); CurrentPage="game";
         var page=CurrentScreen(); page.MouseFilter=MouseFilterEnum.Ignore;
         page.GetNode<Control>("PauseButton").Hide(); // no agreed pause API: do not ship an inert action
+        // Both presenters use the one GameplayScreen progress HUD. Do not create a 3D copy:
+        // the shared frame, stars and track remain visible while this is the sole live fill.
         _fill=new Control { Name="ActualGoalFill",Position=new Vector2(682,912),Size=Vector2.Zero,ClipContents=true,MouseFilter=MouseFilterEnum.Ignore };
         page.AddChild(_fill);
         _fill.AddChild(new TextureRect { Texture=GD.Load<Texture2D>("res://assets/CrystalGarden_Gameplay_Assets/progress_fill_full.png"),
