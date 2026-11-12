@@ -15,7 +15,9 @@ public abstract partial class GameUiBridge : Control
     [Signal] public delegate void LeaveRequestedEventHandler();
     [Signal] public delegate void LevelSelectRequestedEventHandler();
     [Signal] public delegate void StartScreenRequestedEventHandler();
+    [Signal] public delegate void ModeRequestedEventHandler(string mode);
 
+    public virtual void SetDisplayMode(string mode) { }
     public abstract void ShowStart();
     public abstract void ShowLevelSelect(GDictionary progress);
     public abstract void ShowGame(GDictionary snapshot);

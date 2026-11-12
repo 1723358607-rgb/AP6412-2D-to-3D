@@ -21,6 +21,7 @@ public partial class AppController : Node
     private ProgressStoreBridge? _progress;
     private BoardView2D _boardView = null!;
     private BoardView3D _board3D = null!;
+    private Label? _editionBadge;
     [Export] public string DisplayMode { get; set; } = "2d";
 
     public override void _Ready()
@@ -196,16 +197,17 @@ public partial class AppController : Node
         }
         _ui = ui;
         GetNode("UiMount").AddChild(ui);
-        var badge = new Label { Name = "EditionBadge", Text = DisplayMode.ToUpperInvariant() + " EDITION",
+        _editionBadge = new Label { Name = "EditionBadge", Text = DisplayMode.ToUpperInvariant() + " EDITION",
             Position = new Vector2(1590,1018), Size = new Vector2(250,40),
             MouseFilter = Control.MouseFilterEnum.Ignore, Modulate = new Color("fff1ce") };
-        badge.AddThemeFontSizeOverride("font_size",24); GetNode("UiMount").AddChild(badge);
+        _editionBadge.AddThemeFontSizeOverride("font_size",24); GetNode("UiMount").AddChild(_editionBadge);
         ui.StartRequested += OnStartRequested;
         ui.RetryRequested += OnRetryRequested;
         ui.NextRequested += OnNextRequested;
         ui.LeaveRequested += OnLeaveRequested;
         ui.LevelSelectRequested += ShowLevelSelect;
         ui.StartScreenRequested += ShowStart;
+        ui.ModeRequested += OnModeRequested;
         _session.StateChanged += OnStateChanged;
         _session.LevelFinished += OnLevelFinished;
         _session.AttachPresenter(DisplayMode == "3d" ? _board3D : _boardView);
@@ -215,6 +217,7 @@ public partial class AppController : Node
         _board3D.Park();
 
         GetNode<CanvasLayer>("Bootstrap").Hide();
+        ui.SetDisplayMode(DisplayMode);
         ui.ShowStart();
         GD.Print("[UI_CONNECTED] UI mounted through the shared C# bridge.");
     }
@@ -252,6 +255,20 @@ public partial class AppController : Node
     private void OnLeaveRequested()
     {
         ShowLevelSelect();
+    }
+
+    private void OnModeRequested(string mode)
+    {
+        if (mode is not ("2d" or "3d") || mode == DisplayMode) return;
+        _session.LeaveLevel();
+        ParkBoard();
+        DisplayMode = mode;
+        _session.ConfigureMode(mode);
+        _session.AttachPresenter(mode == "3d" ? _board3D : _boardView);
+        _progress?.LoadProgress(mode);
+        _ui?.SetDisplayMode(mode);
+        if (_editionBadge is not null) _editionBadge.Text = mode.ToUpperInvariant() + " EDITION";
+        GD.Print($"[MODE_CHANGED] {mode}");
     }
 
     private void ShowLevelSelect()
@@ -346,6 +363,7 @@ public partial class AppController : Node
         _ui.LeaveRequested -= OnLeaveRequested;
         _ui.LevelSelectRequested -= ShowLevelSelect;
         _ui.StartScreenRequested -= ShowStart;
+        _ui.ModeRequested -= OnModeRequested;
         _boardView.SwapRequested -= OnBoardSwap;
         _board3D.SwapRequested -= OnBoardSwap;
     }

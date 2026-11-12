@@ -17,6 +17,7 @@ public partial class GameUiRoot : GameUiBridge
 
     private Control _screenHost = null!;
     private readonly ILevelProgressProvider _demoProgress = new DemoLevelProgressProvider();
+    private string _displayMode = "3d";
 
     public override void _Ready()
     {
@@ -27,9 +28,23 @@ public partial class GameUiRoot : GameUiBridge
     public override void ShowStart()
     {
         var screen = Instantiate<HomeScreen>(HomeScenePath);
+        screen.ConfigureMode(_displayMode);
+        screen.ModeSelected += mode =>
+        {
+            _displayMode = mode;
+            EmitSignal(SignalName.ModeRequested, mode);
+        };
         screen.PlayRequested += RequestLevelSelection;
         screen.LevelsRequested += RequestLevelSelection;
         SetScreen(screen);
+    }
+
+    public override void SetDisplayMode(string mode)
+    {
+        if (mode is not ("2d" or "3d"))
+            throw new ArgumentException("Game mode must be '2d' or '3d'.", nameof(mode));
+        _displayMode = mode;
+        if (CurrentScreen is HomeScreen home) home.ConfigureMode(mode);
     }
 
     public override void ShowLevelSelect(GDictionary progress)
