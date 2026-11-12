@@ -2,15 +2,21 @@
 
 AP6412 Group Assignment · Route B · Two-person collaboration.
 
-## Current status: isolated 3D playable preview
+## Play the 2D baseline and integrated 3D version
 
-The `codex/member-a-3d` branch uses member B's Crystal Garden board, four crystal scenes and two wooden crate scenes in the playable 3D levels. Member A connected them to the existing camera, input, animations and shared rules. **Reopen the project, build C#, then press F5 for 3D.** Open `app/Main.tscn` and press F6 for 2D. The main branch contains the separate 2D candidate.
+| Version | Source | How to launch |
+|---|---|---|
+| Frozen 2D baseline | [`2d-baseline`](https://github.com/1723358607-rgb/AP6412-2D-to-3D/tree/2d-baseline) · `a067c5f` | Import `game/project.godot` from the tag and press F5. |
+| Integrated 3D snapshot | [`250ae4d`](https://github.com/1723358607-rgb/AP6412-2D-to-3D/tree/250ae4db120e2a3dd2e636a22e99794f39d8a1bb) | Import `game/project.godot`, press F5 and use **3D EDITION** or **2D CLASSIC** on Home before Play. |
 
-3D tests pass for49 projected cells, all3 levels,16 swaps/193 animated steps compared to the2D archive, failure/retry/modal/lifetime behavior and separate-process3D saves with2D unaffected. Final build0 warnings/errors. Old2D regression checks pass. See [Step6 evidence and limits](docs/evidence/member-a/step-6.md).
+Godot **4.7.2 Mono/.NET**, C# targeting **net8.0** and .NET SDK **10.0.302** were used to verify both snapshots. Use a separate extracted folder for the frozen baseline and the integrated snapshot.
 
-No rendered screenshot/image-quality or human-play acceptance is claimed. The preview is on an independent branch/draft PR; no2d-baseline or3d-final tag has been fabricated while human acceptance remains pending. The real2D comparison SHA and source fingerprints are saved in step-6-base.json.
+- [2D to 3D GitHub comparison](https://github.com/1723358607-rgb/AP6412-2D-to-3D/compare/2d-baseline...250ae4db120e2a3dd2e636a22e99794f39d8a1bb)
+- [2D and 3D Class Maps](docs/closeout/class-maps.md)
+- [Change map and CCR](docs/closeout/transition.md)
+- [Verification at the submission snapshots](docs/closeout/verification.md)
 
-Rules remain7×7/four colors,5/10/14 boxes,15/20/24 moves, same star thresholds and seeds641224/641454/641326. B's UI/progress/assets are reused unchanged. A's GameSession and app composition really changed for mode support; pure core did not. Final CCR is not yet calculated.
+Member A (`1723358607-rgb`) implemented core gameplay, level rules and layouts, and 3D gameplay integration. Member B (`Sherylshiy`) implemented the Crystal Garden UI and progress store, supplied the 3D assets, and added mode selection. Key integration history is recorded in [2D integration #12](https://github.com/1723358607-rgb/AP6412-2D-to-3D/pull/12), [3D gameplay #13](https://github.com/1723358607-rgb/AP6412-2D-to-3D/pull/13), [3D assets #14](https://github.com/1723358607-rgb/AP6412-2D-to-3D/pull/14) and [mode selection #15](https://github.com/1723358607-rgb/AP6412-2D-to-3D/pull/15).
 
 ## 项目对齐与下一步
 
@@ -56,7 +62,7 @@ Full prompts AND responses, including corrections and relevant code blocks, must
 
 ## How to run
 
-Get the **entire repository**. Import `game/project.godot` with **Godot Mono/.NET4.7.2**, build C#, press **F5**. On this3D branch the main scene is `res://app/Main3D.tscn`; `res://app/Main.tscn` remains the2D entry. Do not import only a downloaded project.godot file.
+Import `game/project.godot` from the complete version folder in Godot Mono/.NET 4.7.2. The baseline boots into 2D. The integrated snapshot boots into the mode-select Home screen with 3D selected.
 
 ```sh
 cd game
@@ -64,7 +70,7 @@ dotnet restore AP6412Match3.csproj
 dotnet build AP6412Match3.sln --no-restore
 ```
 
-Home→Levels: initially only level1 is unlocked, no earned stars. Home→Play starts level1 (15 moves/5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock the next level and save actual best stars. Retry/Levels/Next use real gameplay. Closing and reopening the app restores the saved stars and unlocks.
+On a fresh save, only level 1 is unlocked. From Home, choose Play and select level 1 (15 moves, 5 boxes). Click two adjacent gems; invalid swaps do not spend moves. Win to unlock the next level and save actual best stars. Retry/Levels/Next use real gameplay. Closing and reopening the app restores the saved stars and unlocks.
 
 For a deterministic level1 win, start/retry, then swap **row4/col3↔row5/col3**, **row6/col4↔row7/col4**, **row6/col4↔row6/col5** (1-based). Wait after each move. Expect12 moves remaining and3 stars. See [layout v2](docs/evidence/member-a/layout-v2.md) for all replays.
 
@@ -86,11 +92,11 @@ Formal B UI/store are now connected. Sync the integrated main into your own bran
 
 ## Submission checklist
 
-- [ ] Playable 2D and 3D versions with consistent essential rules
+- [x] Playable 2D and 3D versions with consistent essential rules
 - [ ] Immutable baseline/final tags and GitHub comparison links
-- [ ] Initial and final Class Maps matching the code
-- [ ] Change map and explicitly defined CCR
-- [ ] Personal branches, meaningful commits and merge/PR evidence
+- [x] 2D and 3D Class Maps matching the recorded snapshots
+- [x] Change map and explicitly defined CCR
+- [x] Personal branches, meaningful commits and merge/PR evidence
 - [ ] Complete AI logs for each member, or explicit non-use declarations
 - [ ] One PDF group report with a named reflection subsection per member
 - [ ] Signed group Original Work declaration and individual AI-use declarations
