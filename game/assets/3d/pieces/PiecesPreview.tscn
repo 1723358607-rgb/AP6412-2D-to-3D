@@ -1,0 +1,104 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalPink.tscn" id="CrystalPink"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalBlue.tscn" id="CrystalBlue"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalPurple.tscn" id="CrystalPurple"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/CrystalGold.tscn" id="CrystalGold"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/WoodenCrate_01.tscn" id="WoodenCrate_01"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/WoodenCrate_02.tscn" id="WoodenCrate_02"]
+[ext_resource type="Script" path="res://assets/3d/pieces/PreviewViews.gd" id="views"]
+[ext_resource type="PackedScene" path="res://assets/3d/pieces/PreviewStudio.tscn" id="rig"]
+[ext_resource type="ArrayMesh" path="res://assets/3d/pieces/meshes/DisplayTile.res" id="tile"]
+
+[node name="PiecesPreview" type="Node3D"]
+script = ExtResource("views")
+
+[node name="Studio" parent="." instance=ExtResource("rig")]
+position = Vector3(0,0.33,0)
+
+[node name="Gems" type="Node3D" parent="."]
+
+
+[node name="CratesGroup" type="Node3D" parent="."]
+
+
+[node name="Pink" type="Node3D" parent="Gems"]
+position = Vector3(-2.22,0,-0.85)
+
+[node name="Plinth" type="MeshInstance3D" parent="Gems/Pink"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="Gems/Pink" instance=ExtResource("CrystalPink")]
+rotation_degrees = Vector3(0,-9,0)
+
+[node name="Blue" type="Node3D" parent="Gems"]
+position = Vector3(-0.74,0,-0.85)
+
+[node name="Plinth" type="MeshInstance3D" parent="Gems/Blue"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="Gems/Blue" instance=ExtResource("CrystalBlue")]
+rotation_degrees = Vector3(0,-9,0)
+
+[node name="Purple" type="Node3D" parent="Gems"]
+position = Vector3(0.74,0,-0.85)
+
+[node name="Plinth" type="MeshInstance3D" parent="Gems/Purple"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="Gems/Purple" instance=ExtResource("CrystalPurple")]
+rotation_degrees = Vector3(0,-9,0)
+
+[node name="Gold" type="Node3D" parent="Gems"]
+position = Vector3(2.22,0,-0.85)
+
+[node name="Plinth" type="MeshInstance3D" parent="Gems/Gold"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="Gems/Gold" instance=ExtResource("CrystalGold")]
+rotation_degrees = Vector3(0,-9,0)
+
+[node name="Standard" type="Node3D" parent="CratesGroup"]
+position = Vector3(-0.87,0,1.12)
+
+[node name="Plinth" type="MeshInstance3D" parent="CratesGroup/Standard"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="CratesGroup/Standard" instance=ExtResource("WoodenCrate_01")]
+rotation_degrees = Vector3(0,-18,0)
+
+[node name="Reinforced" type="Node3D" parent="CratesGroup"]
+position = Vector3(0.87,0,1.12)
+
+[node name="Plinth" type="MeshInstance3D" parent="CratesGroup/Reinforced"]
+mesh = ExtResource("tile")
+
+[node name="Model" parent="CratesGroup/Reinforced" instance=ExtResource("WoodenCrate_02")]
+rotation_degrees = Vector3(0,-18,0)
+
+[node name="Overview" type="Camera3D" parent="."]
+position = Vector3(1.95,4.609999999999999,8.739999999999998)
+rotation = Vector3(-0.4539166272433947,0.2204937613666717,0)
+projection = 1
+size = 4.65
+current = true
+
+[node name="Crystals" type="Camera3D" parent="."]
+position = Vector3(0.88,3.03,7.65)
+rotation = Vector3(-0.300703485032241,0.10316188467248363,0)
+projection = 1
+size = 3.65
+current = false
+
+[node name="Close" type="Camera3D" parent="."]
+position = Vector3(-1.4200000000000002,2.1799999999999997,4.95)
+rotation = Vector3(-0.28258436165077966,0.13706617431018764,0)
+projection = 1
+size = 1.7
+current = false
+
+[node name="Crates" type="Camera3D" parent="."]
+position = Vector3(1.55,3.97,9.370000000000001)
+rotation = Vector3(-0.40513574690737275,0.18571384825964385,0)
+projection = 1
+size = 2.25
+current = false

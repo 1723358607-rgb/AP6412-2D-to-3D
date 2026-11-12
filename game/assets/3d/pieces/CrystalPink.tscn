@@ -1,0 +1,6 @@
+[gd_scene format=3]
+[ext_resource type="ArrayMesh" path="res://assets/3d/pieces/meshes/DoubleTerminated.res" id="shape"]
+[ext_resource type="ShaderMaterial" path="res://assets/3d/pieces/materials/Pink.tres" id="tint"]
+[node name="CrystalPink" type="MeshInstance3D"]
+mesh = ExtResource("shape")
+material_override = ExtResource("tint")

@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3]
+[ext_resource type="Shader" path="res://assets/3d/pieces/Facets.gdshader" id="cut"]
+[resource]
+shader = ExtResource("cut")
+shader_parameter/deep = Color(0.09412, 0.21961, 0.54510, 1)
+shader_parameter/body = Color(0.14118, 0.49804, 0.88235, 1)
+shader_parameter/light_facet = Color(0.39216, 0.85098, 1.00000, 1)
+shader_parameter/glint = Color(0.83137, 0.96863, 1.00000, 1)

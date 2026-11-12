@@ -1,0 +1,52 @@
+[gd_scene format=3]
+[ext_resource type="Shader" path="res://assets/3d/board/StudioSky.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="Dome"]
+shader = ExtResource("3")
+
+[sub_resource type="Sky" id="Sky"]
+sky_material = SubResource("Dome")
+
+[sub_resource type="Environment" id="Env"]
+background_mode = 1
+background_color = Color(0.15,0.094,0.20,1)
+sky = SubResource("Sky")
+ambient_light_source = 2
+ambient_light_color = Color(0.86,0.77,0.91,1)
+ambient_light_energy = 0.32
+reflected_light_source = 2
+tonemap_mode = 0
+
+[sub_resource type="StandardMaterial3D" id="Ground"]
+albedo_color = Color(0.19,0.125,0.237,1)
+roughness = 0.98
+
+[sub_resource type="BoxMesh" id="FloorMesh"]
+size = Vector3(200,0.08,200)
+material = SubResource("Ground")
+
+[node name="Studio" type="Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Env")
+
+[node name="StudioGround" type="MeshInstance3D" parent="."]
+position = Vector3(0,-0.57,0)
+mesh = SubResource("FloorMesh")
+
+[node name="WarmKey" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-54,-29,0)
+light_color = Color(1,0.88,0.75,1)
+light_energy = 0.53
+shadow_enabled = true
+directional_shadow_max_distance = 32.0
+
+[node name="AmethystBounce" type="OmniLight3D" parent="."]
+position = Vector3(4,3,5)
+light_color = Color(0.79,0.65,1,1)
+light_energy = 0.65
+omni_range = 12
+
+[node name="Rim" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-24,141,0)
+light_color = Color(1,0.85,0.78,1)
+light_energy = 0.19
